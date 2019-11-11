@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">RunYasso800</string>
+    <string name="config">Configuration</string>
+    <string name="time">Time</string>
+    <string name="run_yasso_800">RunYasso800</string>
+    <string name="result">Result</string>
+    <string name="title_activity_config">Config</string>
+
+    <!-- Time Activity -->
+    <string name="your_goal">Your Goal: Marathon Time</string>
+    <string name="run_name">Name of this run</string>
+    <string name="hours">Hours</string>
+    <string name="minutes">Minutes</string>
+
+    <string name="run_time">800 meter runtime</string>
+    <string name="seconds">Seconds</string>
+    <string name="select">Select</string>
+
+    <!-- Run Activity -->
+    <string name="location">Location</string>
+    <string name="latitude">lat.</string>
+    <string name="longitude">long.</string>
+    <string name="sprint">Sprints Number</string>
+    <string name="sprint_time">Sprint Time</string>
+    <string name="jog">Jog Number</string>
+    <string name="jog_time">Jog Time</string>
+    <string name="done">Done</string>
+    <string name="unknown">Unknown</string>
+
+    <!-- Result Activity -->
+    <string name="splits">Splits</string>
+    <string name="map">Map</string>
+
+    <!-- Persist Activity -->
+    <string name="share">Share</string>
+    <string name="facebook">Facebook</string>
+    <string name="email">Email</string>
+    <string name="drive">Google Drive</string>
+
+</resources>

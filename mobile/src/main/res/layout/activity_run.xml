@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable name="listener"
+            type="com.ctyeung.runyasso800.RunActivity"/>
+    </data>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#DDDDDD"
+        android:gravity="center_vertical"
+        tools:context=".RunActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="15dp"
+            android:paddingLeft="30dp"
+            android:background="@drawable/round_corners"
+            android:gravity="left">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_location"/>
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/latitude"/>
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/unknown"
+                android:id="@+id/txtLat"/>
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/longitude"/>
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/unknown"
+                android:id="@+id/txtLong"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="15dp"
+            android:paddingLeft="30dp"
+            android:background="@drawable/round_corners"
+            android:gravity="left">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="15dp"
+                android:gravity="left">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_run"/>
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="10"
+                    android:id="@+id/txtSprint"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="15dp"
+                android:gravity="left">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_access_time"/>
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="10:00"
+                    android:id="@+id/txtSprintTime"
+                    android:layout_margin="10dp"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_distance"/>
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="600m"
+                    android:id="@+id/txtSprintDistance"
+                    android:layout_margin="10dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="15dp"
+            android:paddingLeft="30dp"
+            android:background="@drawable/round_corners"
+            android:gravity="left">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="15dp"
+                android:gravity="left">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_jog"/>
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="10"
+                    android:id="@+id/txtJog"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="15dp"
+                android:gravity="left">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_access_time"/>
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="10:00"
+                    android:id="@+id/txtJogTime"
+                    android:layout_margin="10dp"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_distance"/>
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="600m"
+                    android:id="@+id/txtJogDistance"
+                    android:layout_margin="10dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="30dp"
+            android:gravity="center">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:src="@drawable/ic_play_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:backgroundTint="#88FF88"
+                android:layout_margin="10dp"
+                android:onClick="@{()-> listener.onClickStart()}"
+                android:id="@+id/btnStart"/>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:src="@drawable/ic_stop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:backgroundTint="#FFBB55"
+                android:layout_margin="10dp"
+                android:onClick="@{()-> listener.onClickStop()}"
+                android:id="@+id/btnStop"/>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:src="@drawable/ic_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:backgroundTint="#FF5555"
+                android:layout_margin="10dp"
+                android:onClick="@{()-> listener.onClickClear()}"
+                android:id="@+id/btnClear"/>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:src="@drawable/ic_navigate_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:backgroundTint="#8888FF"
+                android:layout_margin="10dp"
+                android:onClick="@{()-> listener.onClickDone()}"
+                android:id="@+id/btnDone"/>
+
+        </LinearLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>
