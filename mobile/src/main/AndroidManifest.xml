@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ResultActivity"></activity>
-        <activity android:name=".TimeActivity" />
+        <activity android:name=".GoalActivity" />
         <activity android:name=".RunActivity" />
         <activity
             android:name=".PersistActivity"

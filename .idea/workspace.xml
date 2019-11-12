@@ -3,18 +3,374 @@
   <component name="AndroidGradleBuildConfiguration">
     <option name="COMMAND_LINE_OPTIONS" value="--stacktrace --debug" />
   </component>
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a7f23c7d-28c0-4a37-be60-ae5f42b5e57f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/PersistActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/PersistActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/TimeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/GoalActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/main/res/layout/activity_config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/res/layout/activity_persist.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/main/res/layout/activity_time.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/res/layout/activity_goal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/main/res/values/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/res/values/dimens.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/res/values/strings.xml" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="testRunner" value="GRADLE" />
+    <option name="delegatedBuild" value="true" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="344c5a4832333098" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view />
+      </state>
+    </system>
+  </component>
+  <component name="FileEditorManager">
+    <splitter split-orientation="horizontal" split-proportion="0.56101847">
+      <split-first>
+        <leaf>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/PersistActivity.kt">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="120">
+                  <caret line="8" selection-start-line="8" selection-end-line="8" />
+                  <folding>
+                    <element signature="e#33#246#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_run.xml">
+              <provider editor-type-id="android-designer2" />
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-2044" />
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_main.xml">
+              <provider editor-type-id="android-designer2" />
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="103">
+                  <caret line="25" column="28" lean-forward="true" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="60" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mobile/src/main/res/values/strings.xml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="270">
+                  <caret line="18" column="42" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/GoalActivity.kt">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="346">
+                  <caret line="50" column="33" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
+                  <folding>
+                    <element signature="e#33#833#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mobile/src/main/res/values/dimens.xml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="120">
+                  <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="105">
+                  <caret line="15" selection-start-line="13" selection-start-column="3" selection-end-line="15" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_result.xml">
+              <provider editor-type-id="android-designer2" />
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_persist.xml">
+              <provider editor-type-id="android-designer2" />
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mobile/src/main/res/drawable/round_corners.xml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="135">
+                  <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_goal.xml">
+              <provider editor-type-id="android-designer2" />
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="153">
+                  <caret line="61" column="16" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="16" />
+                  <folding>
+                    <element signature="e#784#806#0" expanded="true" />
+                    <element signature="e#970#988#0" expanded="true" />
+                    <element signature="e#1080#1102#0" expanded="true" />
+                    <element signature="e#1254#1272#0" expanded="true" />
+                    <element signature="e#1364#1386#0" expanded="true" />
+                    <element signature="e#1705#1727#0" expanded="true" />
+                    <element signature="e#1884#1902#0" expanded="true" />
+                    <element signature="e#1994#2016#0" expanded="true" />
+                    <element signature="e#2215#2233#0" expanded="true" />
+                    <element signature="e#2325#2347#0" expanded="true" />
+                    <element signature="e#2486#2506#0" expanded="true" />
+                    <element signature="e#2690#2712#0" expanded="true" />
+                    <element signature="e#2919#2937#0" expanded="true" />
+                    <element signature="e#3029#3051#0" expanded="true" />
+                    <element signature="e#3207#3225#0" expanded="true" />
+                    <element signature="e#3317#3339#0" expanded="true" />
+                    <element signature="e#3749#3770#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/PersistActivity.kt" />
+        <option value="$PROJECT_DIR$/mobile/src/main/res/values/dimens.xml" />
+        <option value="$PROJECT_DIR$/mobile/src/main/res/layout/activity_goal.xml" />
+        <option value="$PROJECT_DIR$/mobile/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/GoalActivity.kt" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_1_0_0_jar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_1_0_2_jar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_0_2_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_common_2_0_0_jar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_collection_collection_1_0_0_jar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_1_1_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_1_1_3_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_solver_1_1_0_jar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_solver_1_1_3_jar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_0_2_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_ktx_1_0_2_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_databinding_databinding_adapters_3_5_1_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_databinding_databinding_common_3_5_1_jar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_databinding_databinding_runtime_3_5_1_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_v4_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_0_0_jar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_media_media_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_percentlayout_percentlayout_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_core_1_1_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_1_1_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_1_1_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_ext_junit_1_1_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_1_1_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_1_1_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_0_1_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_wear_wear_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_duanhong169_checkerboarddrawable_1_0_2_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_duanhong169_colorpicker_1_1_2_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_duanhong169_logger_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_base_16_0_1_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_base_17_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_16_0_1_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_17_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_16_0_1_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_17_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_wearable_16_0_1_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_wearable_17_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_0_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_support_wearable_2_4_0_aar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_wearable_wearable_2_4_0_jar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_2_0_1_jar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_javawriter_2_1_1_jar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1_jar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12_jar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__net_sf_kxml_kxml2_2_3_0_jar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3_jar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_integration_1_3_jar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_library_1_3_jar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_annotations_13_0_jar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_android_extensions_runtime_1_3_50_jar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_3_50_jar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_3_50_jar.xml" />
+        <option value="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_3_50_jar.xml" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="155" />
-    <option name="y" value="55" />
+    <option name="x" value="287" />
+    <option name="y" value="47" />
     <option name="width" value="1140" />
     <option name="height" value="810" />
   </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="RunYasso800" type="1abcf292:AndroidViewProjectNode" />
+              <item name="mobile" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="RunYasso800" type="1abcf292:AndroidViewProjectNode" />
+              <item name="mobile" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="RunYasso800" type="1abcf292:AndroidViewProjectNode" />
+              <item name="mobile" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="runyasso800" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RunYasso800" type="1abcf292:AndroidViewProjectNode" />
+              <item name="mobile" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="runyasso800" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="utilities" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RunYasso800" type="1abcf292:AndroidViewProjectNode" />
+              <item name="mobile" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+            </path>
+            <path>
+              <item name="RunYasso800" type="1abcf292:AndroidViewProjectNode" />
+              <item name="mobile" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="RunYasso800" type="1abcf292:AndroidViewProjectNode" />
+              <item name="mobile" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="RunYasso800" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="not.eligible.for.single.variant.sync" value="true" />
     <property name="settings.editor.selected.configurable" value="gradle.compiler" />
     <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="Android App.mobile">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -130,6 +486,181 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a7f23c7d-28c0-4a37-be60-ae5f42b5e57f" name="Default Changelist" comment="" />
+      <created>1573516022642</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1573516022642</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" visible="true" weight="0.18526466" />
+      <window_info id="Structure" side_tool="true" />
+      <window_info id="Build Variants" side_tool="true" />
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="Resources Explorer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Run" visible="true" weight="0.32771084" />
+      <window_info anchor="bottom" id="Logcat" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="TODO" />
+      <window_info anchor="bottom" id="Find" weight="0.28433734" />
+      <window_info anchor="bottom" id="Debug" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Flutter Performance" side_tool="true" />
+      <window_info anchor="bottom" id="Build" weight="0.3286908" />
+      <window_info anchor="bottom" id="Android Profiler" />
+      <window_info anchor="right" id="Device File Explorer" side_tool="true" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Gradle" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Flutter Inspector" />
+      <window_info anchor="right" id="Preview" />
+      <window_info anchor="right" id="Flutter Outline" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Viewer" side_tool="true" />
+    </layout>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/MainActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="37" column="6" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/ResultActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/utilities/GPSTracker.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="17" column="2" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/drawable/round_corners.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="15" selection-start-line="13" selection-start-column="3" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_result.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_persist.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/PersistActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#33#246#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="25" column="28" lean-forward="true" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_run.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2044" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_goal.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="61" column="16" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="16" />
+          <folding>
+            <element signature="e#784#806#0" expanded="true" />
+            <element signature="e#970#988#0" expanded="true" />
+            <element signature="e#1080#1102#0" expanded="true" />
+            <element signature="e#1254#1272#0" expanded="true" />
+            <element signature="e#1364#1386#0" expanded="true" />
+            <element signature="e#1705#1727#0" expanded="true" />
+            <element signature="e#1884#1902#0" expanded="true" />
+            <element signature="e#1994#2016#0" expanded="true" />
+            <element signature="e#2215#2233#0" expanded="true" />
+            <element signature="e#2325#2347#0" expanded="true" />
+            <element signature="e#2486#2506#0" expanded="true" />
+            <element signature="e#2690#2712#0" expanded="true" />
+            <element signature="e#2919#2937#0" expanded="true" />
+            <element signature="e#3029#3051#0" expanded="true" />
+            <element signature="e#3207#3225#0" expanded="true" />
+            <element signature="e#3317#3339#0" expanded="true" />
+            <element signature="e#3749#3770#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/values/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="42" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/GoalActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="50" column="33" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
+          <folding>
+            <element signature="e#33#833#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
   <component name="masterDetails">
     <states>

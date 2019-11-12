@@ -1,20 +1,22 @@
 <resources>
     <string name="app_name">RunYasso800</string>
     <string name="config">Configuration</string>
-    <string name="time">Time</string>
+    <string name="time">Goal (run time)</string>
     <string name="run_yasso_800">RunYasso800</string>
     <string name="result">Result</string>
     <string name="title_activity_config">Config</string>
 
-    <!-- Time Activity -->
-    <string name="your_goal">Your Goal: Marathon Time</string>
-    <string name="run_name">Name of this run</string>
+    <!-- Goal Activity -->
+    <string name="your_goal">Marathon goal</string>
+    <string name="run_name">Run name</string>
     <string name="hours">Hours</string>
     <string name="minutes">Minutes</string>
 
-    <string name="run_time">800 meter runtime</string>
+    <string name="run_time">800 meter goal</string>
     <string name="seconds">Seconds</string>
     <string name="select">Select</string>
+    <string name="enter_time">Enter Time</string>
+    <string name="calculating">Calculating...</string>
 
     <!-- Run Activity -->
     <string name="location">Location</string>

@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
     fun onClickTime()
     {
-        navigate2Activity(TimeActivity::class.java)
+        navigate2Activity(GoalActivity::class.java)
     }
 
     fun onClickRun()
