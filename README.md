@@ -12,7 +12,7 @@ This is a mobile phone implementation of Yasso800 in Kotlin for runners.  I inte
 <img src="https://user-images.githubusercontent.com/1282659/68713828-4b838380-0564-11ea-97c9-b645e0fe66f6.jpg" width="200"> 
 
 ### Goal (run time) Activity
-Activity support the following functions.
+Activity provides the following functions.
 - Name this run.
 - Select user Marathon goal (run-time) in Hours:Minutes.
 - Generates Yasso800 sprint time in Minutes:Seconds.
