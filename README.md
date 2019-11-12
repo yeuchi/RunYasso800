@@ -12,9 +12,9 @@ The calculated value is from user's marathon time in hours and minutes.
 ### Run Activity
 
 Activity features support the running porting of Yasso800 as described below, "How to Do a Yasso 800 Workout".  They include:
-a. start of GPS location service
-b. track/location/timing of 800 meter x 10 runs
-c. track/location/timing of 800 meter x 10 jogs 
+- start of GPS location service
+- track/location/timing of 800 meter x 10 runs
+- track/location/timing of 800 meter x 10 jogs 
 
 Note: Failure to meet the time goal at any point(s) will produce a red highlight.  The run <-> jog loop will continue until all 10X have been completed.  
 
@@ -33,18 +33,20 @@ Activity presents run and jog results in map and sprint listing.
 ### Persist (Share) Activity
 
 Activity provides persistence (share) methods to user.  They include the follow:
-a. Facebook - summary
-b. Email - xml file attachments
-c. Drive - xml files
-d. database management - delete 
+- Facebook - summary
+- Email - xml file attachments
+- Drive - xml files
+- database management - delete 
 
 # How to Do a Yasso 800 Workout <sup>1</sup>
-"Take your marathon goal time in hours and minutes and convert this to minutes and seconds. For example, if your marathon goal is 3 hours and 10 minutes then convert that to 3 minutes and 10 seconds.
-First, do an easy warm-up of 5 to 10 minutes jogging and a few warm-up exercises.
-Next, try to run 800 meters (approximately 1/2 mile) at your converted time (3:10 in this example).
-Recover after each 800 by jogging or walking for the same amount of time (again, 3:10 in this example).
-Start with three or four repetitions per workout in the first week.
-Don't forget to cool down with 5 minutes of easy running or walking, followed by stretching."
+"Take your marathon goal time in hours and minutes and convert this to minutes and seconds. 
+For example, if your marathon goal is 3 hours and 10 minutes then convert that to 3 minutes and 10 seconds.
+
+- First, do an easy warm-up of 5 to 10 minutes jogging and a few warm-up exercises.
+- Next, try to run 800 meters (approximately 1/2 mile) at your converted time (3:10 in this example).
+- Recover after each 800 by jogging or walking for the same amount of time (again, 3:10 in this example).
+- Start with three or four repetitions per workout in the first week.
+- Don't forget to cool down with 5 minutes of easy running or walking, followed by stretching."
 
 # References
 1. How to do Yasso 800s, by Christine Luff, VeryWellFit, August 04, 2019
