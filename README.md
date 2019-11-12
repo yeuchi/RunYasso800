@@ -13,7 +13,7 @@ The calculated value is from user's marathon time in hours and minutes.
 
 ### Run Activity
 Activity features support the running porting of Yasso800 as described below, "How to Do a Yasso 800 Workout".  They include:
-- start of GPS location service
+- GPS location service
 - track/location/timing of 800 meter x 10 runs
 - track/location/timing of 800 meter x 10 jogs 
 
