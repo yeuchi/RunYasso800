@@ -28,8 +28,6 @@ Supported functions are as follow:
 
 Note: Failure to meet the time goal at any point(s) will produce a red highlight.  The run <-> jog loop will continue until all 10X have been completed.  
 
-<img width="495" alt="RunStateMachine" src="https://user-images.githubusercontent.com/1282659/68631191-74960c80-04af-11ea-8142-fe9e71b9d292.png">
-
 <img src="https://user-images.githubusercontent.com/1282659/68713851-53dbbe80-0564-11ea-81be-0f3ccc34ae49.jpg" width="200"> 
 
 #### State machine 
@@ -37,6 +35,8 @@ Note: Failure to meet the time goal at any point(s) will produce a red highlight
 - Run <-> Jog - loop for 10X .
 - DONE - Yasso800 completed successfully.
 - INTERRUP - STOP by user or ERROR conditions
+
+<img width="495" alt="RunStateMachine" src="https://user-images.githubusercontent.com/1282659/68631191-74960c80-04af-11ea-8142-fe9e71b9d292.png">
 
 ### Result Activity
 Activity presents run and jog results in map and sprint listing.
