@@ -1,5 +1,5 @@
 # RunYasso800
-"Yasso 800s are a popular workout among runners who are trying to achieve a specific marathon goal."<sup>1</sup>
+"Yasso 800s are a popular workout among runners who are trying to achieve a specific marathon goal."<sup>[1]</sup>
 
 # Introduction 
 This is a mobile phone implementation of Yasso800 in Kotlin for runners.  I intend to use this for my personal marathon training.  Hopefully, it is useful to others as well.
@@ -37,7 +37,7 @@ Activity provides persistence (share) methods to user.  They include the follow:
 - Drive - xml files
 - database management - delete 
 
-### How to Do a Yasso 800 Workout <sup>1</sup>
+### How to Do a Yasso 800 Workout 
 "Take your marathon goal time in hours and minutes and convert this to minutes and seconds. 
 For example, if your marathon goal is 3 hours and 10 minutes then convert that to 3 minutes and 10 seconds.
 
@@ -45,7 +45,7 @@ For example, if your marathon goal is 3 hours and 10 minutes then convert that t
 - Next, try to run 800 meters (approximately 1/2 mile) at your converted time (3:10 in this example).
 - Recover after each 800 by jogging or walking for the same amount of time (again, 3:10 in this example).
 - Start with three or four repetitions per workout in the first week.
-- Don't forget to cool down with 5 minutes of easy running or walking, followed by stretching."
+- Don't forget to cool down with 5 minutes of easy running or walking, followed by stretching."<sup>[1]</sup>
 
 ## Test
 This application has been tested on Samsung Galaxy9.
