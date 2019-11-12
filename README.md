@@ -20,10 +20,11 @@ Note: Failure to meet the time goal at any point(s) will produce a red highlight
 
 <img width="495" alt="RunStateMachine" src="https://user-images.githubusercontent.com/1282659/68631191-74960c80-04af-11ea-8142-fe9e71b9d292.png">
 
-State machine 
-a. IDLE - Activity intialization; nothing is happening.
-b. Run <-> Jog - loop for 10X or ERROR or STOP by user.
+#### State machine 
+a. IDLE - Activity intialization or CLEAR by user
+b. Run <-> Jog - loop for 10X .
 c. DONE - Yasso800 completed successfully.
+d. INTERRUP - STOP by user or ERROR conditions
 
 ### Result Activity
 
@@ -51,3 +52,10 @@ https://www.verywellfit.com/how-to-do-yasso-800s-2911888
 
 2. How to use Yasso 800 in your marathon training, by Jason Fitzgerald, Active.com, October 20, 2019
 https://www.active.com/running/articles/how-to-use-yasso-800s-in-your-marathon-training
+
+3. Distance icon credit to Freepike from Flaticon
+https://www.flaticon.com/free-icon/distance-to-travel-between-two-points_55212#term=distance&page=1&position=4
+
+4. Android-Location Based services, GPSTracker, TutorialPoints, 2019
+https://www.tutorialspoint.com/android/android_location_based_services.htm
+
