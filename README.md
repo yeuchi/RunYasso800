@@ -51,10 +51,10 @@ For example, if your marathon goal is 3 hours and 10 minutes then convert that t
 This application has been tested on Samsung Galaxy9.
 
 ## IDE
-Android Studio 3.5.2
-JRE: 1.8.0_202-release-1483-b49-5587405 x86_64
-JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
-compileSdkVersion 28
+- Android Studio 3.5.2
+- JRE: 1.8.0_202-release-1483-b49-5587405 x86_64
+- JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
+- compileSdkVersion 28
 
 ## Watch
 Look forward to implementation.
