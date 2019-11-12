@@ -15,8 +15,7 @@ This is a mobile phone implementation of Yasso800 in Kotlin for runners.  I inte
 Activity calculate the Yasso800 meter goal time in minutes and seconds.
 The calculated value is from user's marathon time in hours and minutes.
 
-<img src="https://user-images.githubusercontent.com/1282659/68713832-4e7e7400-0564-11ea-9cb4-7b75d55d30d3.jpg" width="200"> 
-<img src="https://user-images.githubusercontent.com/1282659/68713843-51796480-0564-11ea-8d3d-5032d0da38b2.jpg" width="200"> 
+<img src="https://user-images.githubusercontent.com/1282659/68713832-4e7e7400-0564-11ea-9cb4-7b75d55d30d3.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/68714362-5be82e00-0565-11ea-802d-7c3aa2ed0555.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/68714364-5e4a8800-0565-11ea-892d-ff842ad82eaf.jpg" width="200">
 
 ### Run Activity
 Activity features support the running porting of Yasso800 as described below, "How to Do a Yasso 800 Workout".  They include:
