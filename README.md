@@ -34,7 +34,7 @@ Note: Failure to meet the time goal at any point(s) will produce a red highlight
 - IDLE - Activity intialization or CLEAR by user
 - Run <-> Jog - loop for 10X .
 - DONE - Yasso800 completed successfully.
-- INTERRUP - STOP by user or ERROR conditions
+- INTERRUP - STOP by user or ERROR conditions (GPS or Phone dies)
 
 <img width="495" alt="RunStateMachine" src="https://user-images.githubusercontent.com/1282659/68631191-74960c80-04af-11ea-8142-fe9e71b9d292.png">
 
