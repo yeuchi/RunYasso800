@@ -1,10 +1,12 @@
 package com.ctyeung.runyasso800
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.StrictMode
 import android.util.Log
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
@@ -19,10 +21,12 @@ import java.util.ArrayList
  */
 class PersistActivity : AppCompatActivity() {
     lateinit var binding:ActivityPersistBinding
+    lateinit var context: Context
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_persist)
+        context = this
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_persist)
         binding?.listener = this
@@ -34,12 +38,10 @@ class PersistActivity : AppCompatActivity() {
             val builder = StrictMode.VmPolicy.Builder()
             StrictMode.setVmPolicy(builder.build())
 
-            val uriLeft = SharedPrefUtility.getImageUri(this.applicationContext)
-            val uriRight = SharedPrefUtility.getImageUri(this.applicationContext)
+            //val uriRight = SharedPrefUtility.getImageUri(this.applicationContext)
 
             val uris = ArrayList<Uri>()
-            uris.add(uriLeft)
-            uris.add(uriRight)
+         //   uris.add(uriRight)
 
             val emailIntent = Intent(Intent.ACTION_SEND_MULTIPLE)
             emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
@@ -60,16 +62,17 @@ class PersistActivity : AppCompatActivity() {
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "subject")
 
             // need to insert image in the middle ...
-            val header = "message header"
-            val footer = "message footer"
-            emailIntent.putExtra(Intent.EXTRA_TEXT, header + "\n\n" + footer)
+            val header = findViewById<EditText>(R.id.txtHeader)
+            val footer = findViewById<EditText>(R.id.txtFooter)
+            val msg = header.text.toString() + "\n\n" + footer.text
+            emailIntent.putExtra(Intent.EXTRA_TEXT, msg)
 
             // load image
-            emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris)
+       //     emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris)
 
-            if (emailIntent.resolveActivity(this.applicationContext.getPackageManager()) != null) {
+            if (emailIntent.resolveActivity(context.getPackageManager()) != null) {
                 val send_title = "some title"
-                this.applicationContext.startActivity(Intent.createChooser(emailIntent, send_title))
+                context.startActivity(Intent.createChooser(emailIntent, send_title))
             }
 
         } catch (e: Exception) {
