@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">RunYasso800</string>
-    <string name="config">Configuration</string>
-    <string name="time">Goal (run time)</string>
+    <string name="persist">Persist (share)</string>
+    <string name="goal">Goal (run time)</string>
     <string name="run_yasso_800">RunYasso800</string>
     <string name="result">Result</string>
     <string name="title_activity_config">Config</string>
@@ -9,6 +9,7 @@
     <!-- Goal Activity -->
     <string name="your_goal">Marathon goal</string>
     <string name="run_name">Run name</string>
+    <string name="enter_name">Enter name</string>
     <string name="hours">Hours</string>
     <string name="minutes">Minutes</string>
 
@@ -38,5 +39,9 @@
     <string name="facebook">Facebook</string>
     <string name="email">Email</string>
     <string name="drive">Google Drive</string>
+    <string name="header">Header</string>
+    <string name="header_msg">Header msg</string>
+    <string name="footer">Footer</string>
+    <string name="footer_msg">Footer msg</string>
 
 </resources>

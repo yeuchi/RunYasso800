@@ -22,17 +22,73 @@
             android:textStyle="bold"
             android:text="@string/share"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:background="@drawable/round_corners"
+            android:layout_margin="@dimen/common_margin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/title_wid"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="15dp"
-                android:paddingLeft="30dp"
-                android:background="@drawable/round_corners"
-                android:gravity="left">
+                android:layout_margin="@dimen/common_margin"
+                android:textStyle="bold"
+                android:text="@string/header"/>
 
-            </LinearLayout>
+            <EditText
+                android:id="@+id/txtHeader"
+                android:layout_width="@dimen/value_wid"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin"
+                android:textAllCaps="false"
+                android:text="@string/header_msg" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:background="@drawable/round_corners"
+            android:layout_margin="@dimen/common_margin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/title_wid"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin"
+                android:textStyle="bold"
+                android:text="@string/footer"/>
+
+            <EditText
+                android:id="@+id/txtFooter"
+                android:layout_width="@dimen/value_wid"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin"
+                android:textAllCaps="false"
+                android:text="@string/footer_msg" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="100dp"
+            android:gravity="end">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:src="@drawable/ic_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:backgroundTint="#8888FF"
+                android:layout_margin="@dimen/common_margin"
+                android:onClick="@{()-> listener.onClickShare()}"
+                android:id="@+id/btnShare"/>
+
+        </LinearLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

@@ -8,6 +8,7 @@ import com.ctyeung.runyasso800.databinding.ActivityGoalBinding
 import androidx.databinding.adapters.TextViewBindingAdapter.setText
 import android.widget.TimePicker
 import android.app.TimePickerDialog
+import android.content.Intent
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import androidx.core.content.ContextCompat.getSystemService
@@ -51,5 +52,11 @@ class GoalActivity : AppCompatActivity() {
             }, hour, minute, true
         )
         timePickerDialog.show()
+    }
+
+    fun onClickDone()
+    {
+        val intent = Intent(this.applicationContext, RunActivity::class.java)
+        startActivity(intent)
     }
 }

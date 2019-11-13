@@ -6,6 +6,17 @@
     <uses-permission android:name = "android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
+    <uses-permission android:name="com.example.ctyeung.capstonestage1.database.TERM_READ" />
+
+    <uses-permission android:name="com.google.android.providers.gmail.permission.READ_GMAIL" />
+    <uses-permission android:name="com.google.android.providers.gmail.permission.WRITE_GMAIL" />
+
+    <!--
+    https://developer.android.com/training/data-storage/files#java
+    -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,10 +27,7 @@
         <activity android:name=".ResultActivity"></activity>
         <activity android:name=".GoalActivity" />
         <activity android:name=".RunActivity" />
-        <activity
-            android:name=".PersistActivity"
-            android:label="@string/title_activity_config"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".PersistActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,6 +35,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--
+        Fileprovider
+
+        https://infinum.co/the-capsized-eight/share-files-using-fileprovider
+        -->
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.ctyeung.runyasso800.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths"/>
+        </provider>
+
     </application>
 
 </manifest>
