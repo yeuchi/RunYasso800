@@ -1,7 +1,7 @@
 # RunYasso800
 "Yasso 800s are a popular workout among runners who are trying to achieve a specific marathon goal."<sup>[1]</sup>
 
-# WORK-IN-PROGRESS
+# !!!!!! WORK-IN-PROGRESS !!!!!
 
 # Introduction 
 This is a mobile phone implementation of Yasso800 in Kotlin for runners.  I intend to use this for my personal marathon training.  Hopefully, it is useful to others as well.
@@ -9,25 +9,34 @@ This is a mobile phone implementation of Yasso800 in Kotlin for runners.  I inte
 ## Workflow
 <img width="738" alt="workflow" src="https://user-images.githubusercontent.com/1282659/68631194-7790fd00-04af-11ea-9a5d-4ed80a8c9cd5.png">
 
-### Time Activity
-Activity calculate the Yasso800 meter goal time in minutes and seconds.
-The calculated value is from user's marathon time in hours and minutes.
+<img src="https://user-images.githubusercontent.com/1282659/68713828-4b838380-0564-11ea-97c9-b645e0fe66f6.jpg" width="200"> 
+
+### Goal (run time) Activity
+Activity provides the following functions.
+- Name this run.
+- Select user Marathon goal (run-time) in Hours:Minutes.
+- Generates Yasso800 sprint time in Minutes:Seconds.
+
+<img src="https://user-images.githubusercontent.com/1282659/68713832-4e7e7400-0564-11ea-9cb4-7b75d55d30d3.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/68714362-5be82e00-0565-11ea-802d-7c3aa2ed0555.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/68714364-5e4a8800-0565-11ea-892d-ff842ad82eaf.jpg" width="200">
 
 ### Run Activity
-Activity features support the running porting of Yasso800 as described below, "How to Do a Yasso 800 Workout".  They include:
+Activity manages the running portion of Yasso800.  For detail of Yasso800 workout, see below reference article.  
+Supported functions are as follow:
 - GPS location service
 - track/location/timing of 800 meter x 10 runs
 - track/location/timing of 800 meter x 10 jogs 
 
 Note: Failure to meet the time goal at any point(s) will produce a red highlight.  The run <-> jog loop will continue until all 10X have been completed.  
 
-<img width="495" alt="RunStateMachine" src="https://user-images.githubusercontent.com/1282659/68631191-74960c80-04af-11ea-8142-fe9e71b9d292.png">
+<img src="https://user-images.githubusercontent.com/1282659/68713851-53dbbe80-0564-11ea-81be-0f3ccc34ae49.jpg" width="200"> 
 
 #### State machine 
 - IDLE - Activity intialization or CLEAR by user
 - Run <-> Jog - loop for 10X .
 - DONE - Yasso800 completed successfully.
-- INTERRUP - STOP by user or ERROR conditions
+- INTERRUP - STOP by user or ERROR conditions (GPS or Phone dies)
+
+<img width="495" alt="RunStateMachine" src="https://user-images.githubusercontent.com/1282659/68631191-74960c80-04af-11ea-8142-fe9e71b9d292.png">
 
 ### Result Activity
 Activity presents run and jog results in map and sprint listing.
