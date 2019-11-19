@@ -48,6 +48,8 @@ Activity provides persistence (share) methods to user.  They include the follow:
 - Drive - xml files
 - database management - delete 
 
+<img src="https://user-images.githubusercontent.com/1282659/68807583-b220a400-062d-11ea-9494-7003950ac881.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/68807590-b482fe00-062d-11ea-947b-2c4ea054e054.jpg" width="200"> 
+
 ### How to Do a Yasso 800 Workout 
 "Take your marathon goal time in hours and minutes and convert this to minutes and seconds. 
 For example, if your marathon goal is 3 hours and 10 minutes then convert that to 3 minutes and 10 seconds.
