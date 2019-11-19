@@ -1,14 +1,20 @@
 package com.ctyeung.runyasso800
 
 import android.content.Intent
+import android.graphics.PointF
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 
 import androidx.databinding.DataBindingUtil
 import com.ctyeung.runyasso800.databinding.ActivityRunBinding
 import com.ctyeung.runyasso800.utilities.GPSTracker
+import com.ctyeung.runyasso800.utilities.SharedPrefUtility
+import java.util.*
+import java.util.jar.Manifest
 
 /*
  * Distance icon credit to Freepike from Flaticon
@@ -17,6 +23,9 @@ import com.ctyeung.runyasso800.utilities.GPSTracker
 class RunActivity : AppCompatActivity() {
     lateinit var binding:ActivityRunBinding
     lateinit var gps:GPSTracker
+    val timer = Timer()
+    var origin:PointF = PointF(0F,0F)
+    var last:PointF = PointF(0F,0F)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +34,26 @@ class RunActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_run)
         binding?.listener = this
 
-        startGPS()
+        gps = GPSTracker(this);
+        getLocation()
+        origin = last
+
+        if (shouldAskPermissions())
+            askPermissions()
+    }
+
+    protected fun shouldAskPermissions(): Boolean {
+        return Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1
+    }
+
+    protected fun askPermissions() {
+        val permissions = arrayOf(
+            "android.permission.READ_EXTERNAL_STORAGE",
+            "android.permission.WRITE_EXTERNAL_STORAGE",
+            "android.permission.ACCESS_FINE_LOCATION"
+        )
+        val requestCode = 200
+        requestPermissions(permissions, requestCode)
     }
 
     /*
@@ -54,25 +82,45 @@ class RunActivity : AppCompatActivity() {
         // 9. loop step 1 for next Sprint 1...9
     }
 
-    fun startGPS()
+    fun getLocation()
     {
-        gps = GPSTracker(this);
-
         // check if GPS enabled
-        if(gps.canGetLocation()){
+        if(gps.canGetLocation())
+        {
+            val lat = gps.getLatitude()
+            val long = gps.getLongitude()
 
-            val latitude = gps.getLatitude()
-            val txtLat = findViewById<TextView>(R.id.txtLat)
-            txtLat?.setText(latitude.toString())
+            if(last.x != lat.toFloat() || last.y != long.toFloat())
+            {
+                val dis = calculateDistance()
 
-            val longitude = gps.getLongitude()
-            val txtLong = findViewById<TextView>(R.id.txtLong)
-            txtLong?.setText(longitude.toString())
+                last.x = lat.toFloat()
+                last.y = long.toFloat()
+
+                val txtLat = findViewById<TextView>(R.id.txtLat)
+                txtLat?.setText(last.x.toString())
+
+                val txtLong = findViewById<TextView>(R.id.txtLong)
+                txtLong?.setText(last.y.toString())
+
+                // insert db new data points & distance
+
+                // query total distance
+                /*
+                 * if total distance >= 800meter -> next state
+                 *  a. sprint, jog or done
+                 */
+            }
         }
         else
         {
             Toast.makeText(getApplicationContext(), "Can't get location", Toast.LENGTH_LONG).show()
         }
+    }
+
+    fun calculateDistance()
+    {
+
     }
 
     /*
@@ -81,7 +129,11 @@ class RunActivity : AppCompatActivity() {
      */
     fun onClickStop()
     {
+        timer?.cancel()
 
+        /*
+         * change state -> Interrupt
+         */
     }
 
     /*
@@ -89,12 +141,34 @@ class RunActivity : AppCompatActivity() {
      */
     fun onClickClear()
     {
+        timer?.cancel()
 
     }
 
     fun onClickDone()
     {
+        timer?.cancel()
+
         val intent = Intent(this.applicationContext, ResultActivity::class.java)
         startActivity(intent)
+    }
+
+    fun startTimer()
+    {
+        /*
+         * blink interval = duration of both colors
+         */
+        var milliseconds:Int = SharedPrefUtility.INTERVAL_MULTIPLY * SharedPrefUtility.getInterval(this.applicationContext)
+
+        //Set the schedule function
+        timer?.scheduleAtFixedRate(
+            object : TimerTask() {
+
+                override fun run() {
+                    getLocation()
+                }
+            },
+            0, milliseconds.toLong()
+        )   // 1000 Millisecond  = 1 second
     }
 }

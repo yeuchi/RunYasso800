@@ -16,6 +16,25 @@ object SharedPrefUtility
     val keyColor1 = "color1"
     val keyColor2 = "color2"
     val keyImageUri = "imageUri"
+    val INTERVAL_MIN:Int = 1
+    val INTERVAL_MAX:Int = 10
+    val INTERVAL_DEFAULT:Int = 1
+    var INTERVAL_MULTIPLY = 1000
+    var keyInterval = "time"
+
+    open fun getInterval(context:Context):Int
+    {
+        val sharedPreferences = getSharedPref(context)
+        return sharedPreferences.getInt(keyInterval, INTERVAL_DEFAULT)
+    }
+
+    open fun setInterval(context:Context, time:Int)
+    {
+        val sharedPreferences = getSharedPref(context)
+        val editor = sharedPreferences.edit()
+        editor.putInt(keyInterval, time)
+        editor.commit()
+    }
 
     /*
      * uri to last random dot images
