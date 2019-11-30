@@ -7,14 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 
 import androidx.databinding.DataBindingUtil
 import com.ctyeung.runyasso800.databinding.ActivityRunBinding
 import com.ctyeung.runyasso800.utilities.GPSTracker
-import com.ctyeung.runyasso800.utilities.SharedPrefUtility
+import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 import java.util.*
-import java.util.jar.Manifest
 
 /*
  * Distance icon credit to Freepike from Flaticon

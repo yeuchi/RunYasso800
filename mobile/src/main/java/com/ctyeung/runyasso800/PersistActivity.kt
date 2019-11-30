@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 
 import androidx.databinding.DataBindingUtil
 import com.ctyeung.runyasso800.databinding.ActivityPersistBinding
-import com.ctyeung.runyasso800.utilities.SharedPrefUtility
 import java.util.ArrayList
 
 /*
