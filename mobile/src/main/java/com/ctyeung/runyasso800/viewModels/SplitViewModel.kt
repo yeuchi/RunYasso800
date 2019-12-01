@@ -4,9 +4,9 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.ctyeung.runyasso800.room.Split
-import com.ctyeung.runyasso800.room.SplitDatabase
-import com.ctyeung.runyasso800.room.SplitRepository
+import com.ctyeung.runyasso800.room.splits.Split
+import com.ctyeung.runyasso800.room.YassoDatabase
+import com.ctyeung.runyasso800.room.splits.SplitRepository
 import kotlinx.coroutines.launch
 
 class SplitViewModel (application: Application) : AndroidViewModel(application)
@@ -15,7 +15,7 @@ class SplitViewModel (application: Application) : AndroidViewModel(application)
     var yasso:LiveData<List<Split>>
 
     init {
-        val splitDao = SplitDatabase.getDatabase(application, viewModelScope).splitDao()
+        val splitDao = YassoDatabase.getDatabase(application, viewModelScope).splitDao()
         repository = SplitRepository(splitDao)
         yasso = repository.yasso
     }

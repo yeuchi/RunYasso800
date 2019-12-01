@@ -7,11 +7,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 
+import androidx.lifecycle.Observer
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.ctyeung.runyasso800.databinding.ActivityRunBinding
 import com.ctyeung.runyasso800.utilities.GPSTracker
 import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
+import com.ctyeung.runyasso800.viewModels.SplitViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.*
 
 /*
@@ -20,6 +25,8 @@ import java.util.*
  */
 class RunActivity : AppCompatActivity() {
     lateinit var binding:ActivityRunBinding
+    lateinit var activity: RunActivity
+    lateinit var splitViewModel:SplitViewModel
     lateinit var gps:GPSTracker
     val timer = Timer()
     var origin:PointF = PointF(0F,0F)
@@ -32,10 +39,20 @@ class RunActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_run)
         binding?.listener = this
 
+        activity = this
+
         gps = GPSTracker(this);
         getLocation()
         origin = last
 
+        // data
+        splitViewModel = ViewModelProvider(this).get(SplitViewModel::class.java)
+        splitViewModel.yasso.observe(this, Observer { yasso ->
+            // Update the cached copy of the words in the adapter.
+            yasso?.let {
+                // update here ..
+            }
+        })
         if (shouldAskPermissions())
             askPermissions()
     }
@@ -55,11 +72,31 @@ class RunActivity : AppCompatActivity() {
     }
 
     /*
+ * User permission request -> result
+ */
+    override fun onRequestPermissionsResult(requestCode: Int,
+                                            permissions: Array<String>,
+                                            grantResults: IntArray)
+    {
+        for(permission:String in permissions)
+        {
+            // result:0 is ok
+            val result = ContextCompat.checkSelfPermission(activity, permission)
+            if (0!=result)
+            {
+                // not permitted to save or read -- !!! data-binding refactor
+
+            }
+        }
+    }
+
+    /*
      * If cleared, start GPS and Timer
      */
     fun onClickStart()
     {
         // 0. start GPS
+        startTimer()
 
         // 1. record current time/location -> Sprint 0
 
