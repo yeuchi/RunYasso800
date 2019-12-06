@@ -5,6 +5,11 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.ctyeung.runyasso800.databinding.ActivityResultBinding
 
+/*
+ * Review results after run !
+ * - fragment1 : show map with GPS co-ordinates
+ * - fragment2 : show recyclerview of splits
+ */
 class ResultActivity : AppCompatActivity() {
     lateinit var binding: ActivityResultBinding
 

@@ -9,8 +9,8 @@ data class Step(var iteration:Int=0,   // 0 - 9 : total of 10
                 var step:Int=0,
                 var run_type:String="",   // jog or sprint
                 var time:Long=0,         // in seconds
-                var lat:Long=0,          // in Lat/Long unit x 1000
-                var long:Long=0)         // in Lat/Long unit x 1000
+                var lat:Double=0.0,          // in Lat/Long unit x 1000
+                var long:Double=0.0)         // in Lat/Long unit x 1000
 {
 
 }

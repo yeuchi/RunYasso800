@@ -80,22 +80,22 @@ public abstract class YassoDatabase : RoomDatabase ()
 
             var split = Split(0,
                     "sprint",
-                    800,
+                    800.0,
                     java.lang.System.currentTimeMillis(),
-                    0,
-                    0,
+                    0.0,
+                    0.0,
                     java.lang.System.currentTimeMillis()+ 100,
-                    10,
-                    10)
+                0.0,
+                0.0)
             splitDao.insert(split)
 
             stepDao.deleteAll()
             var step = Step(0,
                             0,
-                            "sprint",
+                            Split.RUN_TYPE_SPRINT,
                             java.lang.System.currentTimeMillis(),
-                            0,
-                            0)
+                            0.0,
+                            0.0)
 
             stepDao.insert(step)
         }

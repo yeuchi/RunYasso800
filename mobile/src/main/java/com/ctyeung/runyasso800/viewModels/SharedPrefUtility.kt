@@ -19,15 +19,45 @@ object SharedPrefUtility
     val INTERVAL_MIN:Int = 1
     val INTERVAL_MAX:Int = 10
     val INTERVAL_DEFAULT:Int = 1
-    var INTERVAL_MULTIPLY = 1000
+    var INTERVAL_MULTIPLY = 200
     var keyInterval = "time"
+    var keyLatitude = "lat"
+    var keyLongitude = "long"
+    var LAT_LONG_DEFAULT:String = "0"
+
+    open fun getLatitude(context:Context):Double
+    {
+        val sharedPreferences = getSharedPref(context)
+        val str = sharedPreferences.getString(keyLatitude, LAT_LONG_DEFAULT)
+        return str.toDouble()
+    }
+
+    open fun setLatitude(context:Context, latitude:Double)
+    {
+        val sharedPreferences = getSharedPref(context)
+        val editor = sharedPreferences.edit()
+        editor.putString(keyLatitude, latitude.toString())
+        editor.commit()
+    }
+
+    open fun getLongitude(context:Context):Double
+    {
+        val sharedPreferences = getSharedPref(context)
+        val str = sharedPreferences.getString(keyLongitude, LAT_LONG_DEFAULT)
+        return str.toDouble()
+    }
+
+    open fun setLongitude(context:Context, longitude:Double)
+    {
+        val sharedPreferences = getSharedPref(context)
+        val editor = sharedPreferences.edit()
+        editor.putString(keyLongitude, longitude.toString())
+        editor.commit()
+    }
 
     open fun getInterval(context:Context):Int
     {
-        val sharedPreferences =
-            getSharedPref(
-                context
-            )
+        val sharedPreferences = getSharedPref(context)
         return sharedPreferences.getInt(
             keyInterval,
             INTERVAL_DEFAULT
@@ -36,10 +66,7 @@ object SharedPrefUtility
 
     open fun setInterval(context:Context, time:Int)
     {
-        val sharedPreferences =
-            getSharedPref(
-                context
-            )
+        val sharedPreferences = getSharedPref(context)
         val editor = sharedPreferences.edit()
         editor.putInt(keyInterval, time)
         editor.commit()
@@ -51,10 +78,7 @@ object SharedPrefUtility
     fun getImageUri(context: Context): Uri
     {
         val defaultValue = "someDefaultUri"
-        val sharedPreferences =
-            getSharedPref(
-                context
-            )
+        val sharedPreferences = getSharedPref(context)
         val path = sharedPreferences.getString(keyImageUri, defaultValue)
         val file = File(path!!)
         return FileProvider.getUriForFile(
@@ -69,19 +93,13 @@ object SharedPrefUtility
         if(colorName == keyColor2)
             defaultValue = Color.GREEN;
 
-        val sharedPreferences =
-            getSharedPref(
-                context
-            )
+        val sharedPreferences = getSharedPref(context)
         return sharedPreferences.getInt(colorName, defaultValue)
     }
 
     open fun setColor(context:Context, colorName:String, color:Int)
     {
-        val sharedPreferences =
-            getSharedPref(
-                context
-            )
+        val sharedPreferences = getSharedPref(context)
         val editor = sharedPreferences.edit()
         editor.putInt(colorName, color)
         editor.commit()
