@@ -30,6 +30,12 @@ Note: Failure to meet the time goal at any point(s) will produce a red highlight
 
 <img src="https://user-images.githubusercontent.com/1282659/68713851-53dbbe80-0564-11ea-81be-0f3ccc34ae49.jpg" width="200"> 
 
+#### Data
+http://erdraw.com/graphs/487344524370/edit
+<img width="583" src="https://user-images.githubusercontent.com/1282659/70194212-37482780-16c7-11ea-8cf8-de4c32708f22.png">
+
+A Yasso800 Entity is composed of 10 x 2 (sprint/jog) Split Entities.  Each Split is a measure of 800 meter.  Within a split, samplings of GPS lat/long are considered every 200 milli-seconds and stored in the database as Step Entities.
+
 #### State machine 
 - IDLE - Activity intialization or CLEAR by user
 - Run <-> Jog - loop for 10X .
