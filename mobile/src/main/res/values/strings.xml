@@ -43,5 +43,10 @@
     <string name="header_msg">Header msg</string>
     <string name="footer">Footer</string>
     <string name="footer_msg">Footer msg</string>
+    <string name="title_activity_map">Map</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_result">Map</string>
 
 </resources>
