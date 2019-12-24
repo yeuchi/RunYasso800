@@ -91,3 +91,5 @@ https://www.flaticon.com/free-icon/distance-to-travel-between-two-points_55212#t
 4. Android-Location Based services, GPSTracker, TutorialPoints, 2019
 https://www.tutorialspoint.com/android/android_location_based_services.htm
 
+5. Polylines and Polygons to Represent Routes and Areas, Android documentation
+https://developers.google.com/maps/documentation/android-sdk/polygon-tutorial
