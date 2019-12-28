@@ -93,3 +93,6 @@ https://www.tutorialspoint.com/android/android_location_based_services.htm
 
 5. Polylines and Polygons to Represent Routes and Areas, Android documentation
 https://developers.google.com/maps/documentation/android-sdk/polygon-tutorial
+
+6. Reduce GPS data error on Android with Kalman filter and accelerometer, by Oleg Katkov, Mar 19, 2018
+https://blog.maddevs.io/reduce-gps-data-error-on-android-with-kalman-filter-and-accelerometer-43594faed19c
