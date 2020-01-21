@@ -46,6 +46,8 @@ A Yasso800 Entity is composed of 10 x 2 (sprint/jog) Split Entities.  Each Split
 
 ### Result Activity
 Activity presents run and jog results in map and sprint listing.
+Splits separated by map markers for selection to obtain detail recorded metrics.
+<img src="https://user-images.githubusercontent.com/1282659/72771599-a36ee400-3bbe-11ea-8d76-e2eb1ff11cda.jpg" width="200"> 
 
 ### Persist (Share) Activity
 Activity provides persistence (share) methods to user.  They include the follow:
