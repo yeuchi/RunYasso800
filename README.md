@@ -45,7 +45,9 @@ A Yasso800 Entity is composed of 10 x 2 (sprint/jog) Split Entities.  Each Split
 <img width="495" alt="RunStateMachine" src="https://user-images.githubusercontent.com/1282659/68631191-74960c80-04af-11ea-8142-fe9e71b9d292.png">
 
 ### Result Activity
-Activity presents run and jog results in map and sprint listing.
+Activity presents run and jog results in map and sprint listing.\
+Splits separated by map markers for selection to obtain detail recorded metrics.\
+<img src="https://user-images.githubusercontent.com/1282659/72771599-a36ee400-3bbe-11ea-8d76-e2eb1ff11cda.jpg" width="200"> 
 
 ### Persist (Share) Activity
 Activity provides persistence (share) methods to user.  They include the follow:
@@ -91,3 +93,8 @@ https://www.flaticon.com/free-icon/distance-to-travel-between-two-points_55212#t
 4. Android-Location Based services, GPSTracker, TutorialPoints, 2019
 https://www.tutorialspoint.com/android/android_location_based_services.htm
 
+5. Polylines and Polygons to Represent Routes and Areas, Android documentation
+https://developers.google.com/maps/documentation/android-sdk/polygon-tutorial
+
+6. Reduce GPS data error on Android with Kalman filter and accelerometer, by Oleg Katkov, Mar 19, 2018
+https://blog.maddevs.io/reduce-gps-data-error-on-android-with-kalman-filter-and-accelerometer-43594faed19c
