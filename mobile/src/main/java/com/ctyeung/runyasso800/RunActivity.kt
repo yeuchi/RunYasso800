@@ -25,6 +25,9 @@ import com.ctyeung.runyasso800.viewModels.StepViewModel
 
 
 /*
+ * GPS noise is a big problem and need to be address before this can ever be of value.
+ * There is a Kalman filter in C example to try; linear regression is an alternative.
+ *
  * Distance icon credit to Freepike from Flaticon
  * https://www.flaticon.com/free-icon/distance-to-travel-between-two-points_55212#term=distance&page=1&position=4
  *
@@ -61,6 +64,8 @@ class RunActivity : AppCompatActivity() {
         if (shouldAskPermissions())
             askPermissions()
     }
+
+
 
     override fun onStop() {
         super.onStop()

@@ -2,19 +2,18 @@ package com.ctyeung.runyasso800
 
 import android.app.Activity
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
+
 
 class ResultActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
@@ -75,10 +74,32 @@ class ResultActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMark
         mMap.getUiSettings().setZoomControlsEnabled(true)
         mMap.setOnMarkerClickListener(this)
 
-        val myPlace = LatLng(40.73, -73.99)  // this is New York
-        mMap.addMarker(MarkerOptions().position(myPlace).title("My Favorite City"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myPlace, 12.0f))
-        setUpMap()
+
+        val posStart = LatLng(39.653599, -105.191101)
+        val posEnd = LatLng(39.5912114, -105.01921)
+
+        val line: Polyline = mMap.addPolyline(
+            PolylineOptions()
+                .add(posStart, posEnd)
+                .width(5f)
+                .color(Color.RED)
+        )
+
+        //val myPlace = LatLng(40.73, -73.99)  // this is New York
+        mMap.addMarker(MarkerOptions().position(posStart).title("1st"))
+        mMap.addMarker(MarkerOptions().position(posEnd).title("2nd"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(posStart, 12.0f))
+        //setUpMap()
+    }
+
+    private fun drawLine(posStart:LatLng, posEnd:LatLng)
+    {
+        val line: Polyline = mMap.addPolyline(
+            PolylineOptions()
+                .add(posStart, posEnd)
+                .width(5f)
+                .color(Color.RED)
+        )
     }
 
     private fun setUpMap() {

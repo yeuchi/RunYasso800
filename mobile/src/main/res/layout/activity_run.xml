@@ -84,8 +84,37 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="10"
-                    android:id="@+id/txtSprint"/>
+                    android:text="Step:1"
+                    android:id="@+id/txtStepSplits"/>
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Total: 10"
+                    android:id="@+id/txtTotalSplits"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="15dp"
+                android:gravity="left">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_assignment_24px"/>
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Sprint / Run"
+                    android:id="@+id/txtStep"/>
 
             </LinearLayout>
 
@@ -105,55 +134,16 @@
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:text="10:00"
-                    android:id="@+id/txtSprintTime"
+                    android:text="Step: 00:00"
+                    android:id="@+id/txtStepTime"
                     android:layout_margin="10dp"/>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:src="@drawable/ic_distance"/>
 
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:text="600m"
-                    android:id="@+id/txtSprintDistance"
+                    android:text="Total: 00:00"
+                    android:id="@+id/txtTotalTime"
                     android:layout_margin="10dp"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="15dp"
-            android:paddingLeft="30dp"
-            android:background="@drawable/round_corners"
-            android:gravity="left">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="15dp"
-                android:gravity="left">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:src="@drawable/ic_jog"/>
-
-                <TextView
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="10"
-                    android:id="@+id/txtJog"/>
 
             </LinearLayout>
 
@@ -168,26 +158,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:src="@drawable/ic_access_time"/>
-
-                <TextView
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:text="10:00"
-                    android:id="@+id/txtJogTime"
-                    android:layout_margin="10dp"/>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
                     android:src="@drawable/ic_distance"/>
 
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:text="600m"
-                    android:id="@+id/txtJogDistance"
+                    android:text="Step: 0m"
+                    android:id="@+id/txtStepDistance"
+                    android:layout_margin="10dp"/>
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Total: 600m"
+                    android:id="@+id/txtTotalDistance"
                     android:layout_margin="10dp"/>
 
             </LinearLayout>
