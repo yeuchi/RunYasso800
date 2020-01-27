@@ -195,13 +195,13 @@
                 android:id="@+id/btnStart"/>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:src="@drawable/ic_stop"
+                android:src="@drawable/ic_pause"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:backgroundTint="#FFBB55"
                 android:layout_margin="10dp"
-                android:onClick="@{()-> listener.onClickStop()}"
-                android:id="@+id/btnStop"/>
+                android:onClick="@{()-> listener.onClickPause()}"
+                android:id="@+id/btnPause"/>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:src="@drawable/ic_clear"
@@ -218,8 +218,8 @@
                 android:layout_height="wrap_content"
                 app:backgroundTint="#8888FF"
                 android:layout_margin="10dp"
-                android:onClick="@{()-> listener.onClickDone()}"
-                android:id="@+id/btnDone"/>
+                android:onClick="@{()-> listener.onClickNext()}"
+                android:id="@+id/btnNext"/>
 
         </LinearLayout>
 

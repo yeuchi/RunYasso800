@@ -40,6 +40,7 @@ class RunActivity : AppCompatActivity() {
     lateinit var splitViewModel:SplitViewModel
     lateinit var stepViewModel:StepViewModel
     var prevLocation:Location ?= null
+    var stateMachine:RunStateMachine = RunStateMachine()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,6 +70,10 @@ class RunActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
+
+        /*
+         * No need to save.  User must restart from scratch.
+         */
 
        // SharedPrefUtility.setLatitude(activity, prevLocation.latitude)
        // SharedPrefUtility.setLongitude(activity, prevLocation.longitude)
@@ -126,24 +131,11 @@ class RunActivity : AppCompatActivity() {
      */
     fun onClickStart()
     {
+        // must be in Idle
+        if(RunState.Idle == stateMachine.state) {
+            stateMachine.changeState(RunState.Resume)
+        }
 
-        // 1. record current time/location -> Sprint 0
-
-        // 2. start timer event to detect 800 meters
-
-        // 3. when Sprint 0 reach 800 meter, record time/location
-
-        // 4. Inform user of Sprint completion
-
-        // 5. record current time/location -> Jog 0
-
-        // 6. start timer event to detect 800 meters
-
-        // 7. when Jog 0 reach 800 meter, record time/location
-
-        // 8. Inform user of Jog completion
-
-        // 9. loop step 1 for next Sprint 1...9
     }
 
     fun getLocation(location: Location)
@@ -196,16 +188,14 @@ class RunActivity : AppCompatActivity() {
             return Split.RUN_TYPE_JOG
     }
 
-    /*
-     * If running, stop GPS and Timer,
-     * persist data for result -> review
-     */
-    fun onClickStop()
-    {
 
-        /*
-         * change state -> Interrupt
-         */
+
+    /*
+     * Pause everything (timer, distance measure, etc) ... let user cheat.
+     */
+    fun onClickPause()
+    {
+        // must be sprint / jog
     }
 
     /*
@@ -213,12 +203,18 @@ class RunActivity : AppCompatActivity() {
      */
     fun onClickClear()
     {
-
+        // must be paused / error / done
     }
 
-    fun onClickDone()
+    fun onClickNext()
     {
+        when(stateMachine.state) {
+            RunState.Done -> gotoNextActivity()
+            RunState.Pause -> gotoNextActivity()
+        }
+    }
 
+    fun gotoNextActivity() {
         val intent = Intent(this.applicationContext, ResultActivity::class.java)
         startActivity(intent)
     }
