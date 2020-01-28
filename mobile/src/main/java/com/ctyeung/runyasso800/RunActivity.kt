@@ -19,9 +19,11 @@ import com.ctyeung.runyasso800.databinding.ActivityRunBinding
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.steps.Step
 import com.ctyeung.runyasso800.utilities.LocationUtils
+import com.ctyeung.runyasso800.viewModels.RunFloatingActionButtons
 import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 import com.ctyeung.runyasso800.viewModels.SplitViewModel
 import com.ctyeung.runyasso800.viewModels.StepViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 /*
@@ -39,6 +41,7 @@ class RunActivity : AppCompatActivity() {
     lateinit var activity: RunActivity
     lateinit var splitViewModel:SplitViewModel
     lateinit var stepViewModel:StepViewModel
+    lateinit var fab:RunFloatingActionButtons
     var prevLocation:Location ?= null
     var stateMachine:RunStateMachine = RunStateMachine()
 
@@ -49,7 +52,9 @@ class RunActivity : AppCompatActivity() {
         activity = this
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_run)
-        binding?.listener = this
+        binding?.run = this
+
+        fab = RunFloatingActionButtons(this)
 
         // data
         stepViewModel = ViewModelProvider(this).get(StepViewModel::class.java)
@@ -66,14 +71,8 @@ class RunActivity : AppCompatActivity() {
             askPermissions()
     }
 
-
-
     override fun onStop() {
         super.onStop()
-
-        /*
-         * No need to save.  User must restart from scratch.
-         */
 
        // SharedPrefUtility.setLatitude(activity, prevLocation.latitude)
        // SharedPrefUtility.setLongitude(activity, prevLocation.longitude)
@@ -134,8 +133,8 @@ class RunActivity : AppCompatActivity() {
         // must be in Idle
         if(RunState.Idle == stateMachine.state) {
             stateMachine.changeState(RunState.Resume)
+            fab.changeState(RunState.Resume)
         }
-
     }
 
     fun getLocation(location: Location)
@@ -196,6 +195,13 @@ class RunActivity : AppCompatActivity() {
     fun onClickPause()
     {
         // must be sprint / jog
+        when(stateMachine.state){
+            RunState.Jog,
+            RunState.Sprint -> {
+                stateMachine.changeState(RunState.Pause)
+                fab.changeState(RunState.Pause)
+            }
+        }
     }
 
     /*
@@ -204,13 +210,23 @@ class RunActivity : AppCompatActivity() {
     fun onClickClear()
     {
         // must be paused / error / done
+        when(stateMachine.state){
+            RunState.Pause,
+            RunState.Error,
+            RunState.Done -> {
+                stateMachine.changeState(RunState.Clear)
+                fab.changeState(RunState.Clear)
+            }
+        }
     }
 
     fun onClickNext()
     {
         when(stateMachine.state) {
-            RunState.Done -> gotoNextActivity()
+            RunState.Done,
             RunState.Pause -> gotoNextActivity()
+
+            // default -> display Toast error
         }
     }
 
