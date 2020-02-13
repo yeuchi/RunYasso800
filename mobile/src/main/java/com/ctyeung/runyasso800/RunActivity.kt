@@ -1,6 +1,5 @@
 package com.ctyeung.runyasso800
 
-import android.content.Context
 import android.content.Intent
 import android.location.Location
 import android.os.Build
@@ -11,19 +10,17 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.ctyeung.runyasso800.databinding.ActivityRunBinding
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.steps.Step
+import com.ctyeung.runyasso800.stateMachine.RunState
+import com.ctyeung.runyasso800.stateMachine.RunStateMachine
 import com.ctyeung.runyasso800.utilities.LocationUtils
 import com.ctyeung.runyasso800.viewModels.RunFloatingActionButtons
-import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 import com.ctyeung.runyasso800.viewModels.SplitViewModel
 import com.ctyeung.runyasso800.viewModels.StepViewModel
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 /*
@@ -43,7 +40,8 @@ class RunActivity : AppCompatActivity() {
     lateinit var stepViewModel:StepViewModel
     lateinit var fab:RunFloatingActionButtons
     var prevLocation:Location ?= null
-    var stateMachine:RunStateMachine = RunStateMachine()
+    var stateMachine: RunStateMachine =
+        RunStateMachine()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

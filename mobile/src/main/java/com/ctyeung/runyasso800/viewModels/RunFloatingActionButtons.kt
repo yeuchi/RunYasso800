@@ -1,9 +1,8 @@
 package com.ctyeung.runyasso800.viewModels
 
-import android.content.Context
 import com.ctyeung.runyasso800.R
 import com.ctyeung.runyasso800.RunActivity
-import com.ctyeung.runyasso800.RunState
+import com.ctyeung.runyasso800.stateMachine.RunState
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class RunFloatingActionButtons(activity:RunActivity ) {
@@ -24,7 +23,7 @@ class RunFloatingActionButtons(activity:RunActivity ) {
         btnClear.isEnabled = false;
         btnNext.isEnabled = false;
     }
-    fun changeState(state:RunState){
+    fun changeState(state: RunState){
 
         when(state) {
             RunState.Resume -> {

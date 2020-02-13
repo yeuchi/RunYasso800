@@ -1,4 +1,4 @@
-package com.ctyeung.runyasso800
+package com.ctyeung.runyasso800.stateMachine
 
 import android.location.Location
 
@@ -18,13 +18,15 @@ class RunStateMachine {
     var previous:Location ?= null
     var stepDis:Double = 0.0
     var splitIndex:Int = 0
-    var state:RunState = RunState.Idle
-    var prevState:RunState = RunState.Idle
+    var state: RunState =
+        RunState.Idle
+    var prevState: RunState =
+        RunState.Idle
 
     /*
      * evaluate and change state as appropriate
      */
-    fun changeState(goTo:RunState) {
+    fun changeState(goTo: RunState) {
 
         when(goTo) {
             RunState.Idle -> gotoIdle()
@@ -46,8 +48,12 @@ class RunStateMachine {
 
             if (stepDis > 800) {
                 when (state) {
-                    RunState.Sprint -> changeState(RunState.Jog)
-                    RunState.Jog -> changeState(RunState.Sprint)
+                    RunState.Sprint -> changeState(
+                        RunState.Jog
+                    )
+                    RunState.Jog -> changeState(
+                        RunState.Sprint
+                    )
                     // not considering other run-states
                 }
             }
