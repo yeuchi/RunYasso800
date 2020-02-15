@@ -38,11 +38,14 @@ A Yasso800 Entity is composed of 10 x 2 (sprint/jog) Split Entities.  Each Split
 
 #### State machine 
 - IDLE - Activity intialization or CLEAR by user
-- Run <-> Jog - loop for 10X .
+- START - transition to SPRINT
+- SPRINT <-> JOG - loop for 10X 
 - DONE - Yasso800 completed successfully.
-- INTERRUP - STOP by user or ERROR conditions (GPS or Phone dies)
+- PAUSE - User put the porgram on temporary suspension.
+- RESUME - User de-selects PAUSE button; program resumes.
+- ERROR - unexpected conditions (Examples: GPS fails or Phone dies)
 
-<img width="495" alt="RunStateMachine" src="https://user-images.githubusercontent.com/1282659/68631191-74960c80-04af-11ea-8142-fe9e71b9d292.png">
+<img width="495" alt="Screen Shot 2020-02-15 at 3 30 04 PM" src="https://user-images.githubusercontent.com/1282659/74596116-145fbb00-5008-11ea-9a89-86802782d4dc.png">
 
 ### Result Activity
 Activity presents run and jog results in map and sprint listing.\
