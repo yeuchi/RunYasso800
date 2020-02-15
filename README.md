@@ -28,7 +28,7 @@ Supported functions are as follow:
 
 Note: Failure to meet the time goal at any point(s) will produce a red highlight.  The run <-> jog loop will continue until all 10X have been completed.  
 
-<img src="https://user-images.githubusercontent.com/1282659/68713851-53dbbe80-0564-11ea-81be-0f3ccc34ae49.jpg" width="200"> 
+<img src="https://user-images.githubusercontent.com/1282659/74595865-1758ac80-5004-11ea-8dd6-c38dfc117162.jpg" width="200"> 
 
 #### Data
 http://erdraw.com/graphs/487344524370/edit
