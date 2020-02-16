@@ -123,18 +123,6 @@ class RunActivity : AppCompatActivity() {
         })
     }
 
-    /*
-     * If cleared, start GPS and Timer
-     */
-    fun onClickStart()
-    {
-        // must be in Idle
-        if(RunState.Idle == stateMachine.state) {
-            stateMachine.changeState(RunState.Resume)
-            fab.changeState(RunState.Resume)
-        }
-    }
-
     fun getLocation(location: Location)
     {
         if(null==prevLocation)
@@ -185,10 +173,26 @@ class RunActivity : AppCompatActivity() {
             return Split.RUN_TYPE_JOG
     }
 
-
+    /*
+     * ONLY when IDLE state
+     * -> goto SPRINT state
+     */
+    fun onClickStart()
+    {
+        // must be in Idle
+        if(RunState.Idle == stateMachine.state) {
+            stateMachine.changeState(RunState.Resume)
+            fab.changeState(RunState.Resume)
+        }
+    }
 
     /*
+     * ONLY when SPRINT or JOG or PAUSE state
+     * - SPRINT / JOG -> goto PAUSE
+     * - PAUSE -> goto RESUME
+     *
      * Pause everything (timer, distance measure, etc) ... let user cheat.
+     * Resume back to sprint / jog
      */
     fun onClickPause()
     {
@@ -203,7 +207,8 @@ class RunActivity : AppCompatActivity() {
     }
 
     /*
-     * If Stopped, clear data
+     * Only when PAUSE state
+     * -> goto CLEAR -> IDLE
      */
     fun onClickClear()
     {
@@ -218,6 +223,10 @@ class RunActivity : AppCompatActivity() {
         }
     }
 
+    /*
+     * Only when DONE state
+     * -> goto next Activity
+     */
     fun onClickNext()
     {
         when(stateMachine.state) {
