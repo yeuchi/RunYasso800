@@ -28,7 +28,7 @@ Supported functions are as follow:
 
 Note: Failure to meet the time goal at any point(s) will produce a red highlight.  The run <-> jog loop will continue until all 10X have been completed.  
 
-<img src="https://user-images.githubusercontent.com/1282659/68713851-53dbbe80-0564-11ea-81be-0f3ccc34ae49.jpg" width="200"> 
+<img src="https://user-images.githubusercontent.com/1282659/74595865-1758ac80-5004-11ea-8dd6-c38dfc117162.jpg" width="200"> 
 
 #### Data
 http://erdraw.com/graphs/487344524370/edit
@@ -38,11 +38,14 @@ A Yasso800 Entity is composed of 10 x 2 (sprint/jog) Split Entities.  Each Split
 
 #### State machine 
 - IDLE - Activity intialization or CLEAR by user
-- Run <-> Jog - loop for 10X .
+- START - transition to SPRINT
+- SPRINT <-> JOG - loop for 10X 
 - DONE - Yasso800 completed successfully.
-- INTERRUP - STOP by user or ERROR conditions (GPS or Phone dies)
+- PAUSE - User put the porgram on temporary suspension.
+- RESUME - User de-selects PAUSE button; program resumes.
+- ERROR - unexpected conditions (Examples: GPS fails or Phone dies)
 
-<img width="495" alt="RunStateMachine" src="https://user-images.githubusercontent.com/1282659/68631191-74960c80-04af-11ea-8142-fe9e71b9d292.png">
+<img width="495" alt="Screen Shot 2020-02-15 at 3 30 04 PM" src="https://user-images.githubusercontent.com/1282659/74596116-145fbb00-5008-11ea-9a89-86802782d4dc.png">
 
 ### Result Activity
 Activity presents run and jog results in map and sprint listing.\
