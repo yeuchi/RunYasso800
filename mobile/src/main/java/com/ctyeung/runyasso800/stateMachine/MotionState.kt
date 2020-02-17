@@ -2,7 +2,7 @@ package com.ctyeung.runyasso800.stateMachine
 
 import android.location.Location
 
-abstract class MotionState : state() {
+abstract class MotionState : StateAbstract() {
     var stepDis:Double = 0.0
     var previous:Location ?= null
     var splitIndex:Int = 0

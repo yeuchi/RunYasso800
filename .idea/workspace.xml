@@ -14,10 +14,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7f23c7d-28c0-4a37-be60-ae5f42b5e57f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/MotionState.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateDone.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateMachine.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/state.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -28,16 +24,18 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/MotionState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/MotionState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/RunStateMachine.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateClear.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateClear.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateDone.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateDone.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateError.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateError.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateIdle.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateIdle.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateJog.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateJog.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateMachine.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateMachine.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StatePause.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StatePause.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateResume.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateResume.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateSprint.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateSprint.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/state.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateAbstract.kt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,8 +66,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateMachine.kt">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
-                  <caret line="53" selection-start-line="53" selection-end-line="53" />
+                <state relative-caret-position="189">
+                  <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
                 </state>
               </provider>
             </entry>
@@ -84,7 +82,7 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/state.kt">
+            <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateAbstract.kt">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="150">
                   <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
@@ -162,8 +160,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="232">
-                  <caret line="225" selection-start-line="225" selection-end-line="228" selection-end-column="7" />
+                <state relative-caret-position="278">
+                  <caret line="227" column="19" selection-start-line="227" selection-start-column="19" selection-end-line="227" selection-end-column="19" />
                 </state>
               </provider>
             </entry>
@@ -173,15 +171,6 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="315">
                   <caret line="27" selection-start-line="27" selection-end-line="27" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/RunStateMachine.kt">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="525">
-                  <caret line="146" selection-start-line="146" selection-end-line="154" selection-end-column="5" />
                 </state>
               </provider>
             </entry>
@@ -290,7 +279,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/viewModels/SharedPrefUtility.kt" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/room/steps/StepRepository.kt" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/room/splits/Split.kt" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/room/YassoDatabase.kt" />
@@ -334,20 +322,21 @@
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateClear.kt" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateResume.kt" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateError.kt" />
-        <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateSprint.kt" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateJog.kt" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/MotionState.kt" />
-        <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateMachine.kt" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/RunStateMachine.kt" />
+        <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateAbstract.kt" />
+        <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateMachine.kt" />
+        <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt" />
         <option value="$PROJECT_DIR$/mobile/src/debug/res/values/google_maps_api.xml" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-20" />
+    <option name="x" value="27" />
     <option name="y" value="23" />
-    <option name="width" value="1426" />
+    <option name="width" value="1400" />
     <option name="height" value="860" />
   </component>
   <component name="ProjectView">
@@ -628,11 +617,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-20" y="23" width="1426" height="860" extended-state="0" />
+    <frame x="27" y="23" width="1400" height="860" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.14544138" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.14823009" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Build Variants" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
@@ -640,14 +629,14 @@
       <window_info id="Resources Explorer" order="6" />
       <window_info id="Capture Tool" order="7" />
       <window_info id="Favorites" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Build" order="0" weight="0.22005208" />
+      <window_info active="true" anchor="bottom" id="Build" order="0" visible="true" weight="0.39583334" />
       <window_info anchor="bottom" id="Run" order="1" weight="0.32738853" />
       <window_info anchor="bottom" id="Logcat" order="2" weight="0.25859872" />
       <window_info anchor="bottom" id="TODO" order="3" />
       <window_info anchor="bottom" id="Android Profiler" order="4" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.28407642" />
       <window_info anchor="bottom" id="Terminal" order="6" weight="0.3299363" />
-      <window_info anchor="bottom" id="Debug" order="7" visible="true" weight="0.21223958" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.35677084" />
       <window_info anchor="bottom" id="Flutter Performance" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
@@ -705,13 +694,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt</url>
-          <line>110</line>
+          <line>108</line>
           <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt</url>
-          <line>107</line>
+          <line>105</line>
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
@@ -729,7 +718,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt</url>
-          <line>135</line>
+          <line>133</line>
           <properties />
           <option name="timeStamp" value="12" />
         </line-breakpoint>
@@ -931,13 +920,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/state.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StatePause.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -966,38 +948,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateClear.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateDone.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="225" selection-start-line="225" selection-end-line="228" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/utilities/LocationUtils.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateSprint.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -1008,6 +962,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/RunStateMachine.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateSprint.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/utilities/LocationUtils.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/MotionState.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -1015,17 +990,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateMachine.kt">
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateClear.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/RunStateMachine.kt">
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateAbstract.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="146" selection-start-line="146" selection-end-line="154" selection-end-column="5" />
+        <state relative-caret-position="150">
+          <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateMachine.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="227" column="19" selection-start-line="227" selection-start-column="19" selection-end-line="227" selection-end-column="19" />
         </state>
       </provider>
     </entry>

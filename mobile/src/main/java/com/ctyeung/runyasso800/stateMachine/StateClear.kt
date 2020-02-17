@@ -1,6 +1,6 @@
 package com.ctyeung.runyasso800.stateMachine
 
-object StateClear : state(), Iclear, Iidle {
+object StateClear : StateAbstract(), Iclear, Iidle {
     override fun setState(previous:RunState) {
 
         this.prevState = previous

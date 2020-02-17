@@ -1,6 +1,6 @@
 package com.ctyeung.runyasso800.stateMachine
 
-object StatePause : state(), Ipause, Iresume, Iclear {
+object StatePause : StateAbstract(), Ipause, Iresume, Iclear {
 
     override fun setState(previous:RunState) {
 

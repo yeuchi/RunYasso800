@@ -1,6 +1,6 @@
 package com.ctyeung.runyasso800.stateMachine
 
-abstract class state {
+abstract class StateAbstract {
 
     var runState:RunState = RunState.Idle
     var prevState:RunState = RunState.Idle

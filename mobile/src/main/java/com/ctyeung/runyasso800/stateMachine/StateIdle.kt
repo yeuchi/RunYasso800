@@ -1,6 +1,6 @@
 package com.ctyeung.runyasso800.stateMachine
 
-object StateIdle :state(), Iidle, Isprint {
+object StateIdle :StateAbstract(), Iidle, Isprint {
 
     override fun setState(previous:RunState) {
 

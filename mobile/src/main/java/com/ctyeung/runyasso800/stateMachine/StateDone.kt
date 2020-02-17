@@ -1,6 +1,6 @@
 package com.ctyeung.runyasso800.stateMachine
 
-object StateDone : state(), Idone {
+object StateDone : StateAbstract(), Idone {
 
     override fun setState(previous:RunState) {
 

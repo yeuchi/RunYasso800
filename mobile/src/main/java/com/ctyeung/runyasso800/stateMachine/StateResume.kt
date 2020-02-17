@@ -1,6 +1,6 @@
 package com.ctyeung.runyasso800.stateMachine
 
-object StateResume : state(), Iresume, Isprint, Ijog {
+object StateResume : StateAbstract(), Iresume, Isprint, Ijog {
 
     override fun setState(previous:RunState) {
 

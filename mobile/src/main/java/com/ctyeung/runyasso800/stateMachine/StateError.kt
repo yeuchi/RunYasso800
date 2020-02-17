@@ -1,6 +1,6 @@
 package com.ctyeung.runyasso800.stateMachine
 
-object StateError : state(), Ierror, Iclear {
+object StateError : StateAbstract(), Ierror, Iclear {
 
     override fun setState(previous:RunState) {
 

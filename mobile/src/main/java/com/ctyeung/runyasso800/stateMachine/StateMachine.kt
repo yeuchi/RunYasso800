@@ -2,9 +2,26 @@ package com.ctyeung.runyasso800.stateMachine
 
 import android.location.Location
 
+enum class RunState {
+    Idle,
+    Resume, // start / come back from pause
+    Sprint,
+    Jog,
+    Pause,
+    Clear,
+    Done,
+    Error
+}
+
 object StateMachine {
 
-    var state:RunState = RunState.Idle
+    var state:StateAbstract? = null
+
+    fun getCurrent() : RunState {
+
+        val s = state?.runState?:RunState.Idle
+        return s;
+    }
 
     /*
      * ONLY when IDLE state

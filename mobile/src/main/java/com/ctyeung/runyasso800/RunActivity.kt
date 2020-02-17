@@ -16,7 +16,7 @@ import com.ctyeung.runyasso800.databinding.ActivityRunBinding
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.steps.Step
 import com.ctyeung.runyasso800.stateMachine.RunState
-import com.ctyeung.runyasso800.stateMachine.RunStateMachine
+import com.ctyeung.runyasso800.stateMachine.StateMachine
 import com.ctyeung.runyasso800.utilities.LocationUtils
 import com.ctyeung.runyasso800.viewModels.RunFloatingActionButtons
 import com.ctyeung.runyasso800.viewModels.SplitViewModel
@@ -40,8 +40,6 @@ class RunActivity : AppCompatActivity() {
     lateinit var stepViewModel:StepViewModel
     lateinit var fab:RunFloatingActionButtons
     var prevLocation:Location ?= null
-    var stateMachine: RunStateMachine =
-        RunStateMachine()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +48,7 @@ class RunActivity : AppCompatActivity() {
         activity = this
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_run)
-        binding?.run = this
+        binding.run = this
 
         fab = RunFloatingActionButtons(this)
 
@@ -132,11 +130,11 @@ class RunActivity : AppCompatActivity() {
         }
 
         // insert db new data points & distance when user move more than unit of 1
-        val dis:Float = location?.distanceTo(prevLocation)?:0F
+        val dis:Float = location.distanceTo(prevLocation)
         if(dis>0)
         {
             // these values should be initialized from database -- not sharedPreference !!!!
-            prevLocation = location?:prevLocation // will never use prev
+            prevLocation = location // will never use prev
 
             val txtLat = findViewById<TextView>(R.id.txtLat)
             txtLat?.setText(prevLocation?.latitude.toString())
@@ -180,8 +178,8 @@ class RunActivity : AppCompatActivity() {
     fun onClickStart()
     {
         // must be in Idle
-        if(RunState.Idle == stateMachine.state) {
-            stateMachine.changeState(RunState.Resume)
+        if(RunState.Idle == StateMachine.getCurrent()) {
+            StateMachine.interruptStart()
             fab.changeState(RunState.Resume)
         }
     }
@@ -197,11 +195,18 @@ class RunActivity : AppCompatActivity() {
     fun onClickPause()
     {
         // must be sprint / jog
-        when(stateMachine.state){
+        when(StateMachine.getCurrent()){
             RunState.Jog,
             RunState.Sprint -> {
-                stateMachine.changeState(RunState.Pause)
+                StateMachine.interruptPause()
                 fab.changeState(RunState.Pause)
+            }
+            RunState.Pause -> {
+                StateMachine.interruptPause()
+                fab.changeState(RunState.Resume)
+            }
+            else -> {
+                // error condition
             }
         }
     }
@@ -213,12 +218,15 @@ class RunActivity : AppCompatActivity() {
     fun onClickClear()
     {
         // must be paused / error / done
-        when(stateMachine.state){
+        when(StateMachine.getCurrent()){
             RunState.Pause,
             RunState.Error,
             RunState.Done -> {
-                stateMachine.changeState(RunState.Clear)
+                StateMachine.interruptClear()
                 fab.changeState(RunState.Clear)
+            }
+            else -> {
+                // error condition
             }
         }
     }
@@ -229,12 +237,8 @@ class RunActivity : AppCompatActivity() {
      */
     fun onClickNext()
     {
-        when(stateMachine.state) {
-            RunState.Done,
-            RunState.Pause -> gotoNextActivity()
-
-            // default -> display Toast error
-        }
+        if(StateMachine.getCurrent()==RunState.Done)
+            gotoNextActivity()
     }
 
     fun gotoNextActivity() {
