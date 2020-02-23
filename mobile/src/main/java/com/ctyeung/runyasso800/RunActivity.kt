@@ -93,11 +93,11 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
          *  ... also potential lifecycle issues
          * use dependency injection.
          */
-        StateSprint.listener = this
+        StateSprint.actListener = this
         StateSprint.splitViewModel = splitViewModel
         StateSprint.stepViewModel = stepViewModel
 
-        StateJog.listener = this
+        StateJog.actListener = this
         StateJog.splitViewModel = splitViewModel
         StateJog.stepViewModel = stepViewModel
     }
@@ -157,7 +157,7 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
     fun onClickStart()
     {
         // must be in Idle
-        if(RunState.Idle == StateMachine.getCurrent()) {
+        if(RunState.Idle == StateMachine.getStateEnum()) {
             StateMachine.interruptStart()
             fab.changeState(RunState.Resume)
         }
@@ -174,7 +174,7 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
     fun onClickPause()
     {
         // must be sprint / jog
-        when(StateMachine.getCurrent()){
+        when(StateMachine.getStateEnum()){
             RunState.Jog,
             RunState.Sprint -> {
                 StateMachine.interruptPause()
@@ -197,7 +197,7 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
     fun onClickClear()
     {
         // must be paused / error / done
-        when(StateMachine.getCurrent()){
+        when(StateMachine.getStateEnum()){
             RunState.Pause,
             RunState.Error,
             RunState.Done -> {
@@ -216,7 +216,7 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
      */
     fun onClickNext()
     {
-        if(StateMachine.getCurrent()==RunState.Done)
+        if(StateMachine.getStateEnum()==RunState.Done)
             gotoNextActivity()
     }
 

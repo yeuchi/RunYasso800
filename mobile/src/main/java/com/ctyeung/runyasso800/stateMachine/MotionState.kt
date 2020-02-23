@@ -8,10 +8,11 @@ import com.ctyeung.runyasso800.viewModels.SplitViewModel
 import com.ctyeung.runyasso800.viewModels.StepViewModel
 
 abstract class MotionState : StateAbstract() {
+    var FINISH_DISTANCE = 800
     var stepDis:Double = 0.0
     var previous:Location ?= null
     var splitIndex:Int = 0
-    lateinit var listener:IRunStatsCallBack
+    lateinit var actListener:IRunStatsCallBack
     lateinit var splitViewModel: SplitViewModel
     lateinit var stepViewModel: StepViewModel
 
@@ -39,7 +40,7 @@ abstract class MotionState : StateAbstract() {
             )
             stepViewModel.insert(step, dis.toDouble())
 
-            this.listener.onHandleLocationUpdate(location, splitIndex, stepIndex)
+            this.actListener.onHandleLocationUpdate(location, splitIndex, stepIndex)
         }
     }
 

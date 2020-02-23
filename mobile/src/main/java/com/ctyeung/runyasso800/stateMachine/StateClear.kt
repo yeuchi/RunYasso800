@@ -1,14 +1,18 @@
 package com.ctyeung.runyasso800.stateMachine
 
 object StateClear : StateAbstract(), Iclear, Iidle {
-    override fun setState(previous:RunState) {
+    override fun execute(previous:RunState) {
 
         this.prevState = previous
         // things to perform in this state
 
+        goto()
     }
 
-    override fun getNextState():RunState {
-        return RunState.Idle
+    /*
+     * go to idle after we clear everything
+     */
+    override fun goto() {
+        listener.onChangeState(StateIdle)
     }
 }

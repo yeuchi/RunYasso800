@@ -29,11 +29,14 @@ object StateMachine : IStateCallback {
     var current:StateAbstract? = null
     lateinit var listener: IRunStatsCallBack
 
+    /*
+     * state has been updated
+     */
     override fun onChangeState(state: StateAbstract) {
         this.current = state
     }
 
-    fun getCurrentStateEnum() : RunState {
+    fun getStateEnum() : RunState {
 
         val s = current?.runState?:RunState.Idle
         return s;
@@ -107,7 +110,7 @@ object StateMachine : IStateCallback {
          * if total distance >= 800meter -> next state
          *  a. sprint, jog or done
          */
-        when(getCurrentStateEnum()) {
+        when(getStateEnum()) {
             RunState.Sprint -> StateSprint.setLocation(location)
             RunState.Jog -> StateJog.setLocation(location)
 

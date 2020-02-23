@@ -2,14 +2,15 @@ package com.ctyeung.runyasso800.stateMachine
 
 object StateIdle :StateAbstract(), Iidle, Isprint {
 
-    override fun setState(previous:RunState) {
+    override fun execute(previous:RunState) {
 
         this.prevState = previous
         // things to perform in this state
-
     }
 
-    override fun getNextState():RunState {
-        return RunState.Sprint
+    override fun goto() {
+        // do nothing -- IDLE
+
+        // wait for interrupt to change state
     }
 }

@@ -4,15 +4,22 @@ import android.location.Location
 
 object StateSprint : MotionState(), Isprint, Ijog {
 
-    override fun setState(previous:RunState) {
+    override fun execute(previous:RunState) {
 
         this.prevState = previous
         // things to perform in this state
 
+        goto()
     }
 
-    override fun getNextState():RunState {
-        return RunState.Jog
+    override fun goto() {
+        when {
+            stepDis >= FINISH_DISTANCE -> listener.onChangeState(StateJog)
+
+            else -> {
+                // do nothing -- keep sprinting
+            }
+        }
     }
 
 }
