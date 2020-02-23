@@ -2,6 +2,7 @@ package com.ctyeung.runyasso800.stateMachine
 
 abstract class StateAbstract {
 
+    lateinit var stateCallback:IStateCallback
     var runState:RunState = RunState.Idle
     var prevState:RunState = RunState.Idle
 

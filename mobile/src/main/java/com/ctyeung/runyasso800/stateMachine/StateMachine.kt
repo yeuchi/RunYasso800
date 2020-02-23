@@ -1,6 +1,17 @@
 package com.ctyeung.runyasso800.stateMachine
 
+import android.app.Activity
 import android.location.Location
+import android.util.Log
+import android.widget.TextView
+import android.widget.Toast
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
+import com.ctyeung.runyasso800.R
+import com.ctyeung.runyasso800.room.splits.Split
+import com.ctyeung.runyasso800.room.steps.Step
+import com.ctyeung.runyasso800.utilities.LocationUtils
+import com.ctyeung.runyasso800.viewModels.IRunStatsCallBack
 
 enum class RunState {
     Idle,
@@ -13,13 +24,18 @@ enum class RunState {
     Error
 }
 
-object StateMachine {
+object StateMachine : IStateCallback {
+    var prevLocation:Location ?= null
+    var current:StateAbstract? = null
+    lateinit var listener: IRunStatsCallBack
 
-    var state:StateAbstract? = null
+    override fun onChangeState(state: StateAbstract) {
+        this.current = state
+    }
 
-    fun getCurrent() : RunState {
+    fun getCurrentStateEnum() : RunState {
 
-        val s = state?.runState?:RunState.Idle
+        val s = current?.runState?:RunState.Idle
         return s;
     }
 
@@ -54,18 +70,46 @@ object StateMachine {
 
     /*
      * Only when DONE state
-     * -> goto next Activity
+     * -> going to next Activity
+     * (so reset state machine)
      */
-    //fun interruptNext() {}
+    fun interruptNext() {
+        // reset
+    }
+
+    fun observe(listener:IRunStatsCallBack,
+                lifeCycle:LifecycleOwner) {
+
+        this.listener = listener
+
+        LocationUtils.getLocation().observe(lifeCycle, Observer { location ->
+            location?.let{
+                // Yay! location recived. Do location related work here
+                Log.i("RunActivity","Location: ${location.latitude}  ${location.longitude}")
+                update(location)
+            }
+        })
+    }
 
     /*
      * Update state machine of metrics
      */
-    fun update(current:Location) {
+    private fun update(location: Location) {
 
-        when(state) {
-            RunState.Sprint -> StateSprint.setLocation(current)
-            RunState.Jog -> StateJog.setLocation(current)
+        if(null==prevLocation)
+        {
+            prevLocation = location
+            return
+        }
+
+        // query total distance
+        /*
+         * if total distance >= 800meter -> next state
+         *  a. sprint, jog or done
+         */
+        when(getCurrentStateEnum()) {
+            RunState.Sprint -> StateSprint.setLocation(location)
+            RunState.Jog -> StateJog.setLocation(location)
 
             // check for state change
 

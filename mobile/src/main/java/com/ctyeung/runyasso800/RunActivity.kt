@@ -16,8 +16,11 @@ import com.ctyeung.runyasso800.databinding.ActivityRunBinding
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.steps.Step
 import com.ctyeung.runyasso800.stateMachine.RunState
+import com.ctyeung.runyasso800.stateMachine.StateJog
 import com.ctyeung.runyasso800.stateMachine.StateMachine
+import com.ctyeung.runyasso800.stateMachine.StateSprint
 import com.ctyeung.runyasso800.utilities.LocationUtils
+import com.ctyeung.runyasso800.viewModels.IRunStatsCallBack
 import com.ctyeung.runyasso800.viewModels.RunFloatingActionButtons
 import com.ctyeung.runyasso800.viewModels.SplitViewModel
 import com.ctyeung.runyasso800.viewModels.StepViewModel
@@ -33,13 +36,28 @@ import com.ctyeung.runyasso800.viewModels.StepViewModel
  * tutorial on fusedLocationProviderClient
  * https://medium.com/@droidbyme/get-current-location-using-fusedlocationproviderclient-in-android-cb7ebf5ab88e
  * */
-class RunActivity : AppCompatActivity() {
+class RunActivity : AppCompatActivity(), IRunStatsCallBack {
     lateinit var binding:ActivityRunBinding
     lateinit var activity: RunActivity
     lateinit var splitViewModel:SplitViewModel
     lateinit var stepViewModel:StepViewModel
     lateinit var fab:RunFloatingActionButtons
-    var prevLocation:Location ?= null
+
+    /*
+     * callback from State machine
+     * -> update view model and UI
+     */
+    override fun onHandleLocationUpdate(location:Location,
+                                        SplitIndex:Int,
+                                        StepIndex:Int) {
+
+        val txtLat = findViewById<TextView>(R.id.txtLat)
+        txtLat?.setText(StateMachine.prevLocation?.latitude.toString())
+
+        val txtLong = findViewById<TextView>(R.id.txtLong)
+        txtLong?.setText(StateMachine.prevLocation?.longitude.toString())
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +75,8 @@ class RunActivity : AppCompatActivity() {
         // observe when total steps delta >= 800meter ?
 
         splitViewModel = ViewModelProvider(this).get(SplitViewModel::class.java)
+        initStateMachine()
+
         splitViewModel.yasso.observe(this, Observer { yasso ->
             // Update the cached copy of the words in the adapter.
             yasso?.let {
@@ -65,6 +85,21 @@ class RunActivity : AppCompatActivity() {
         })
         if (shouldAskPermissions())
             askPermissions()
+    }
+
+    private fun initStateMachine() {
+        /*
+         * Not sure this is a good idea ... want to decouple
+         *  ... also potential lifecycle issues
+         * use dependency injection.
+         */
+        StateSprint.listener = this
+        StateSprint.splitViewModel = splitViewModel
+        StateSprint.stepViewModel = stepViewModel
+
+        StateJog.listener = this
+        StateJog.splitViewModel = splitViewModel
+        StateJog.stepViewModel = stepViewModel
     }
 
     override fun onStop() {
@@ -112,63 +147,7 @@ class RunActivity : AppCompatActivity() {
     fun startLocationService()
     {
         LocationUtils.getInstance(activity)
-        LocationUtils.getLocation().observe(this, Observer {location ->
-            location?.let{
-                // Yay! location recived. Do location related work here
-                Log.i("RunActivity","Location: ${location.latitude}  ${location.longitude}")
-                getLocation(location)
-            }
-        })
-    }
-
-    fun getLocation(location: Location)
-    {
-        if(null==prevLocation)
-        {
-            prevLocation = location
-            return
-        }
-
-        // insert db new data points & distance when user move more than unit of 1
-        val dis:Float = location.distanceTo(prevLocation)
-        if(dis>0)
-        {
-            // these values should be initialized from database -- not sharedPreference !!!!
-            prevLocation = location // will never use prev
-
-            val txtLat = findViewById<TextView>(R.id.txtLat)
-            txtLat?.setText(prevLocation?.latitude.toString())
-
-            val txtLong = findViewById<TextView>(R.id.txtLong)
-            txtLong?.setText(prevLocation?.longitude.toString())
-
-            val iteration = splitViewModel.yasso.value?.size ?: 0
-            val index = stepViewModel.steps.value?.size ?: 0
-            val latitude:Double = prevLocation?.latitude ?: 0.0
-            val longitude:Double = prevLocation?.longitude ?: 0.0
-            val step = Step(iteration, index, getRunType(iteration), System.currentTimeMillis(), latitude, longitude)
-            stepViewModel.insert(step, dis.toDouble())
-
-
-            // query total distance
-            /*
-             * if total distance >= 800meter -> next state
-             *  a. sprint, jog or done
-             */
-        }
-        else
-        {
-            Toast.makeText(getApplicationContext(), "Can't get location", Toast.LENGTH_LONG).show()
-        }
-    }
-
-    private fun getRunType(iteration:Int):String
-    {
-        if(0==iteration%2)
-            return Split.RUN_TYPE_SPRINT
-
-        else
-            return Split.RUN_TYPE_JOG
+        StateMachine.observe(this, this)
     }
 
     /*

@@ -28,4 +28,5 @@ object StateJog : MotionState(), Ijog, Isprint, Idone {
         // fetch count from persistence
         return 0
     }
+
 }

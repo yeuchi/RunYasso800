@@ -23,6 +23,7 @@ class RunFloatingActionButtons(activity:RunActivity ) {
         btnClear.isEnabled = false;
         btnNext.isEnabled = false;
     }
+
     fun changeState(state: RunState){
 
         when(state) {
