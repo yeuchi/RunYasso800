@@ -26,7 +26,7 @@ enum class RunState {
 
 object StateMachine : IStateCallback {
     var prevLocation:Location ?= null
-    var current:StateAbstract? = null
+    var current:StateAbstract = StateIdle
     lateinit var listener: IRunStatsCallBack
 
     /*
@@ -49,6 +49,20 @@ object StateMachine : IStateCallback {
      */
     fun interruptStart() {
 
+        when(current::class) {
+            StateIdle::class,
+            StatePause::class,
+            StateResume::class -> StateSprint.execute(current.runState)
+
+            StateJog::class,
+            StateSprint::class -> {
+                // continue
+            }
+
+            else -> {
+                // do nothing
+            }
+        }
     }
 
     /*
@@ -61,6 +75,16 @@ object StateMachine : IStateCallback {
       */
     fun interruptPause() {
 
+        when(current::class) {
+            StateSprint::class,
+            StateJog::class -> StatePause.execute(current.runState)
+
+            StatePause::class -> interruptStart()
+
+            else -> {
+                // do nothing
+            }
+        }
     }
 
     /*
@@ -69,6 +93,15 @@ object StateMachine : IStateCallback {
      */
     fun interruptClear() {
 
+        when(current::class) {
+            StatePause::class,
+            StateError::class,
+            StateDone::class -> StateClear.execute(current.runState)
+
+            else -> {
+                // do nothing
+            }
+        }
     }
 
     /*
@@ -77,7 +110,8 @@ object StateMachine : IStateCallback {
      * (so reset state machine)
      */
     fun interruptNext() {
-        // reset
+
+        // reset or delete all
     }
 
     fun observe(listener:IRunStatsCallBack,
