@@ -27,6 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/common_margin"
                 android:textStyle="bold"
+                android:inputType="textPersonName"
                 android:text="@string/run_name"/>
 
             <EditText

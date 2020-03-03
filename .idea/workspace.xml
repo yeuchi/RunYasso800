@@ -14,12 +14,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7f23c7d-28c0-4a37-be60-ae5f42b5e57f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile/mobile.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/mobile.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateMachine.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateMachine.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/viewModels/RunFloatingActionButtons.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/viewModels/RunFloatingActionButtons.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/main/res/layout/activity_goal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/res/layout/activity_goal.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,7 +38,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_5X_API_28" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="344c5a4832333098" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -44,32 +52,23 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5017513">
+    <splitter split-orientation="horizontal" split-proportion="0.23280424">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="247">
-                  <caret line="213" column="27" lean-forward="true" selection-start-line="213" selection-start-column="27" selection-end-line="213" selection-end-column="27" />
+                <state relative-caret-position="165">
+                  <caret line="145" selection-start-line="145" selection-end-line="145" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/IStateCallback.kt">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="45">
-                  <caret line="3" column="21" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="21" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateMachine.kt">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="194">
-                  <caret line="113" column="30" selection-start-line="113" selection-start-column="30" selection-end-line="113" selection-end-column="30" />
+                <state relative-caret-position="110">
+                  <caret line="48" column="7" lean-forward="true" selection-start-line="48" selection-start-column="7" selection-end-line="48" selection-end-column="7" />
                   <folding>
                     <element signature="e#46#509#0" expanded="true" />
                   </folding>
@@ -78,10 +77,11 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/Ierror.kt">
+            <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_run.xml">
+              <provider editor-type-id="android-designer2" />
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="60">
-                  <caret line="4" selection-start-line="4" selection-end-line="4" />
+                <state relative-caret-position="679">
+                  <caret line="220" selection-start-line="220" selection-end-line="220" />
                 </state>
               </provider>
             </entry>
@@ -90,25 +90,35 @@
             <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateAbstract.kt">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="75">
-                  <caret line="5" column="11" lean-forward="true" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+                  <caret line="5" selection-start-line="5" selection-end-line="5" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateDone.kt">
+            <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/MainActivity.kt">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="255">
-                  <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+                <state relative-caret-position="450">
+                  <caret line="65" selection-start-line="65" selection-end-line="65" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StatePause.kt">
+            <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/GoalActivity.kt">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="270">
-                  <caret line="18" column="53" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="53" />
+                <state relative-caret-position="-12">
+                  <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_goal.xml">
+              <provider editor-type-id="android-designer2" />
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="192">
+                  <caret line="29" column="49" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
                 </state>
               </provider>
             </entry>
@@ -195,8 +205,17 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/mobile/src/debug/res/values/google_maps_api.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="330">
+                <state relative-caret-position="324">
                   <caret line="22" column="100" selection-start-line="22" selection-start-column="100" selection-end-line="22" selection-end-column="100" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/viewModels/RunFloatingActionButtons.kt">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="152">
+                  <caret line="38" selection-start-line="38" selection-end-line="38" />
                 </state>
               </provider>
             </entry>
@@ -213,8 +232,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateSprint.kt">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="240">
-                  <caret line="16" column="42" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
+                <state relative-caret-position="120">
+                  <caret line="8" selection-start-line="8" selection-end-line="8" />
                 </state>
               </provider>
             </entry>
@@ -243,7 +262,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>calculateDistance</find>
       <find>startTimer</find>
       <find>origin</find>
       <find>distance</find>
@@ -273,6 +291,7 @@
       <find>State</find>
       <find>splitViewModel</find>
       <find>actList</find>
+      <find>fab</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -281,7 +300,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/room/steps/Step.kt" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/viewModels/StepViewModel.kt" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/utilities/LocationUtility.kt" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/utilities/LocationUtils.kt" />
@@ -315,7 +333,6 @@
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/Ierror.kt" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/state.kt" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/RunStateMachine.kt" />
-        <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/viewModels/RunFloatingActionButtons.kt" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/viewModels/IRunStatsCallBack.kt" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/IMotionCallback.kt" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/IStateCallback.kt" />
@@ -329,14 +346,16 @@
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateSprint.kt" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/MotionState.kt" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateDone.kt" />
-        <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateMachine.kt" />
+        <option value="$PROJECT_DIR$/mobile/src/main/res/layout/activity_goal.xml" />
+        <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt" />
+        <option value="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/viewModels/RunFloatingActionButtons.kt" />
         <option value="$PROJECT_DIR$/mobile/src/debug/res/values/google_maps_api.xml" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="8" />
+    <option name="x" value="19" />
     <option name="y" value="23" />
     <option name="width" value="1421" />
     <option name="height" value="860" />
@@ -346,6 +365,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -367,9 +389,19 @@
             <path>
               <item name="RunYasso800" type="1abcf292:AndroidViewProjectNode" />
               <item name="mobile" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="runyasso800" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="stateMachine" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+            </path>
+            <path>
+              <item name="RunYasso800" type="1abcf292:AndroidViewProjectNode" />
+              <item name="mobile" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="RunYasso800" type="1abcf292:AndroidViewProjectNode" />
+              <item name="mobile" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
             <path>
               <item name="RunYasso800" type="1abcf292:AndroidViewProjectNode" />
@@ -379,9 +411,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -608,11 +637,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="8" y="23" width="1421" height="860" extended-state="0" />
+    <frame x="19" y="23" width="1421" height="860" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.17066085" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.1764706" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Build Variants" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
@@ -620,14 +649,14 @@
       <window_info id="Resources Explorer" order="6" />
       <window_info id="Capture Tool" order="7" />
       <window_info id="Favorites" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Build" order="0" visible="true" weight="0.25" />
+      <window_info anchor="bottom" id="Build" order="0" weight="0.25" />
       <window_info anchor="bottom" id="Run" order="1" weight="0.32738853" />
       <window_info anchor="bottom" id="Logcat" order="2" weight="0.25859872" />
       <window_info anchor="bottom" id="TODO" order="3" />
-      <window_info anchor="bottom" id="Android Profiler" order="4" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Android Profiler" order="4" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.28407642" />
       <window_info anchor="bottom" id="Terminal" order="6" weight="0.3299363" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.35677084" />
+      <window_info anchor="bottom" id="Debug" order="7" visible="true" weight="0.35677084" />
       <window_info anchor="bottom" id="Flutter Performance" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
@@ -685,13 +714,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt</url>
-          <line>143</line>
+          <line>145</line>
           <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt</url>
-          <line>140</line>
+          <line>142</line>
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
@@ -731,14 +760,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/PersistActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="56" column="22" selection-start-line="56" selection-start-column="22" selection-end-line="56" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/TabPageAdapter.kt" />
     <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/fragment_splits.xml" />
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/fragments/SplitsFragment.kt" />
     <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-28/android/app/ActivityThread.java">
@@ -819,21 +840,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/MainActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="65" selection-start-line="65" selection-end-line="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_run.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3300">
-          <caret line="220" selection-start-line="220" selection-end-line="220" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/Iresume.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -867,13 +873,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" selection-start-line="8" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/viewModels/RunFloatingActionButtons.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
         </state>
       </provider>
     </entry>
@@ -971,13 +970,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateSprint.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="42" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateResume.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -985,34 +977,78 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/MainActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="65" selection-start-line="65" selection-end-line="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/GoalActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-12">
+          <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_goal.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="29" column="49" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_run.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="679">
+          <caret line="220" selection-start-line="220" selection-end-line="220" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="145" selection-start-line="145" selection-end-line="145" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateAbstract.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
-          <caret line="5" column="11" lean-forward="true" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/viewModels/RunFloatingActionButtons.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateMachine.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="113" column="30" selection-start-line="113" selection-start-column="30" selection-end-line="113" selection-end-column="30" />
+        <state relative-caret-position="110">
+          <caret line="48" column="7" lean-forward="true" selection-start-line="48" selection-start-column="7" selection-end-line="48" selection-end-column="7" />
           <folding>
             <element signature="e#46#509#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/debug/res/values/google_maps_api.xml">
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateSprint.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="100" selection-start-line="22" selection-start-column="100" selection-end-line="22" selection-end-column="100" />
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt">
+    <entry file="file://$PROJECT_DIR$/mobile/src/debug/res/values/google_maps_api.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="213" column="27" lean-forward="true" selection-start-line="213" selection-start-column="27" selection-end-line="213" selection-end-column="27" />
+        <state relative-caret-position="324">
+          <caret line="22" column="100" selection-start-line="22" selection-start-column="100" selection-end-line="22" selection-end-column="100" />
         </state>
       </provider>
     </entry>

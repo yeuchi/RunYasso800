@@ -85,13 +85,15 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
         })
         if (shouldAskPermissions())
             askPermissions()
+
+        binding.invalidateAll()
     }
 
     private fun initStateMachine() {
         /*
          * Not sure this is a good idea ... want to decouple
          *  ... also potential lifecycle issues
-         * use dependency injection.
+         * use dependency injection -- dagger ?
          */
         StateSprint.actListener = this
         StateSprint.splitViewModel = splitViewModel
@@ -125,8 +127,8 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
     }
 
     /*
- * User permission request -> result
- */
+     * User permission request -> result
+     */
     override fun onRequestPermissionsResult(requestCode: Int,
                                             permissions: Array<String>,
                                             grantResults: IntArray)

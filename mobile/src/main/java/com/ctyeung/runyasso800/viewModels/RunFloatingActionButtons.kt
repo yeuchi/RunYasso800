@@ -1,5 +1,8 @@
 package com.ctyeung.runyasso800.viewModels
 
+import android.opengl.Visibility
+import android.view.View
+import androidx.core.view.isVisible
 import com.ctyeung.runyasso800.R
 import com.ctyeung.runyasso800.RunActivity
 import com.ctyeung.runyasso800.stateMachine.RunState
@@ -19,33 +22,35 @@ class RunFloatingActionButtons(activity:RunActivity ) {
         btnClear = activity.findViewById(R.id.btnClear) as FloatingActionButton
         btnNext = activity.findViewById(R.id.btnNext) as FloatingActionButton
 
-        btnPause.isEnabled = false;
-        btnClear.isEnabled = false;
-        btnNext.isEnabled = false;
+        changeState(RunState.Idle)
     }
 
     fun changeState(state: RunState){
 
         when(state) {
+
+            RunState.Sprint,
+            RunState.Jog,
             RunState.Resume -> {
-                btnStart.isEnabled = false;
-                btnPause.isEnabled = true;
-                btnClear.isEnabled = false;
-                btnNext.isEnabled = false;
+                btnPause.show()
+                btnStart.hide()
+                btnClear.hide()
+                btnNext.hide()
             }
 
             RunState.Pause -> {
-                btnStart.isEnabled = true;
-                btnPause.isEnabled = false;
-                btnClear.isEnabled = true;
-                btnNext.isEnabled = true;
+                btnStart.show()
+                btnClear.show()
+                btnNext.show()
+                btnPause.hide()
             }
 
+            RunState.Idle,
             RunState.Clear -> {
-                btnStart.isEnabled = true;
-                btnPause.isEnabled = false;
-                btnClear.isEnabled = false;
-                btnNext.isEnabled = false;
+                btnStart.show()
+                btnPause.hide()
+                btnClear.hide()
+                btnNext.hide()
             }
         }
     }
