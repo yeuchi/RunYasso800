@@ -144,9 +144,9 @@ object StateMachine : IStateCallback {
          * if total distance >= 800meter -> next state
          *  a. sprint, jog or done
          */
-        when(getStateEnum()) {
-            RunState.Sprint -> StateSprint.setLocation(location)
-            RunState.Jog -> StateJog.setLocation(location)
+        when(current::class) {
+            StateSprint::class -> StateSprint.setLocation(location)
+            StateJog::class -> StateJog.setLocation(location)
 
             // check for state change
 
@@ -154,15 +154,5 @@ object StateMachine : IStateCallback {
                 // nothing to do
             }
         }
-    }
-
-    /*
-     * Measure distance traveled
-     * @return distance in meters
-     */
-    private fun distance(previous:Location?, present:Location):Double {
-
-        // perform calculations
-        return 0.0;
     }
 }

@@ -18,27 +18,33 @@ abstract class MotionState : StateAbstract() {
 
     fun setLocation(location: Location) {
         // insert db new data points & distance when user move more than unit of 1
-        val dis: Float = location.distanceTo(StateMachine.prevLocation)
+        val dis: Double = location.distanceTo(StateMachine.prevLocation) as Double
         if (dis > 0) {
             // these values should be initialized from database -- not sharedPreference !!!!
             StateMachine.prevLocation = location // will never use prev
+            stepDis += dis
 
-            /*
-             * should this stuff be under state machine ??
-             */
             val splitIndex = splitViewModel.yasso.value?.size ?: 0
             val stepIndex = stepViewModel.steps.value?.size ?: 0
             val latitude: Double = StateMachine.prevLocation?.latitude ?: 0.0
             val longitude: Double = StateMachine.prevLocation?.longitude ?: 0.0
-            val step = Step(
-                splitIndex,
-                stepIndex,
-                getRunType(splitIndex),
-                System.currentTimeMillis(),
-                latitude,
-                longitude
-            )
-            stepViewModel.insert(step, dis.toDouble())
+            val step = Step(splitIndex,
+                            stepIndex,
+                            dis,
+                            getRunType(splitIndex),
+                            System.currentTimeMillis(),
+                            latitude,
+                            longitude)
+            stepViewModel.insert(step)
+
+            /*
+             * if larger 800m -> update SplitViewModel and reset stepViewModel
+             */
+
+            /*
+             * Consider idemtpotency ?
+             */
+            goto()
 
             this.actListener.onHandleLocationUpdate(location, splitIndex, stepIndex)
         }
@@ -49,7 +55,7 @@ abstract class MotionState : StateAbstract() {
      */
     private fun getRunType(iteration:Int):String
     {
-        if(0==iteration%2)
+        if(this is StateSprint)
             return Split.RUN_TYPE_SPRINT
 
         else

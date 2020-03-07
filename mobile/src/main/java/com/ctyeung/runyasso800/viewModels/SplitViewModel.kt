@@ -7,12 +7,20 @@ import androidx.lifecycle.viewModelScope
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.YassoDatabase
 import com.ctyeung.runyasso800.room.splits.SplitRepository
+import com.ctyeung.runyasso800.utilities.TimeFormatter
+import kotlinx.android.synthetic.main.activity_run.*
 import kotlinx.coroutines.launch
 
 class SplitViewModel (application: Application) : AndroidViewModel(application)
 {
     var repository:SplitRepository
     var yasso:LiveData<List<Split>>
+    var totalDistance:Double = 0.0
+    var elapsedTime:Long = 0
+    var disTotalString:String = "Total: 0m"
+    var indexString:String = "Split: 1"
+    var typeString:String = "Sprint / Jog"
+    var elapsedTimeString:String = "Total: 00:00"
 
     init {
         val splitDao = YassoDatabase.getDatabase(application, viewModelScope).splitDao()
@@ -21,8 +29,27 @@ class SplitViewModel (application: Application) : AndroidViewModel(application)
     }
 
     fun insert(split: Split) = viewModelScope.launch {
+        totalDistance += split.dis
+        disTotalString = "Total: "+ totalDistance + "m"
+        indexString = "Split: "+yasso.value?.size+1
+        typeString = "Type: " + split.run_type
+        calculateTimeElapsed(split.startTime)
+        elapsedTimeString = "Total: " + TimeFormatter.printTime(elapsedTime)
         repository.insert(split)
     }
+
+    /*
+     * calculate the total elapsed time since start
+     * ** but what about 'PAUSE' ????
+     */
+    private fun calculateTimeElapsed(seconds:Long) {
+        if(0==yasso.value?.size)
+            elapsedTime = 0
+
+        else
+            elapsedTime = seconds - yasso.value!![0].startTime
+    }
+
 
     fun clear() = viewModelScope.launch {
         repository.clear()

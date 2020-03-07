@@ -11,7 +11,7 @@ import androidx.room.*
 @Dao
 interface SplitDao
 {
-    @Query("SELECT * from split_table ORDER BY `index`")
+    @Query("SELECT * from split_table ORDER BY `splitIndex`")
     fun getAll() : LiveData<List<Split>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

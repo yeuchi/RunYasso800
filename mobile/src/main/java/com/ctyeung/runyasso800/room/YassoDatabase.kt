@@ -79,7 +79,7 @@ public abstract class YassoDatabase : RoomDatabase ()
             splitDao.deleteAll()
 
             var split = Split(0,
-                    "sprint",
+                    Split.RUN_TYPE_SPRINT,
                     800.0,
                     java.lang.System.currentTimeMillis(),
                     0.0,
@@ -92,12 +92,17 @@ public abstract class YassoDatabase : RoomDatabase ()
             stepDao.deleteAll()
             var step = Step(0,
                             0,
+                            0.0,
                             Split.RUN_TYPE_SPRINT,
                             java.lang.System.currentTimeMillis(),
                             0.0,
                             0.0)
 
             stepDao.insert(step)
+
+            /*
+             * actually need to delete above for a fresh start
+             */
         }
     }
 

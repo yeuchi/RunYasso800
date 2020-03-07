@@ -4,6 +4,9 @@ import android.location.Location
 
 object StateJog : MotionState(), Ijog, Isprint, Idone {
 
+    /*
+     * Acknowledge we are in Jog state
+     */
     override fun execute(previous:RunState) {
 
         this.prevState = previous
@@ -12,6 +15,10 @@ object StateJog : MotionState(), Ijog, Isprint, Idone {
         goto()
     }
 
+    /*
+     * state change conditions
+     * - Jog, Sprint or Done
+     */
     override fun goto() {
 
         when {
@@ -23,8 +30,13 @@ object StateJog : MotionState(), Ijog, Isprint, Idone {
         }
     }
 
+    /*
+     * Check if we are on the 10th split -> DONE !
+     * - else, we have more iterations
+     */
     fun changeState() {
-        when(getIteration()) {
+
+        when(splitIndex) {
 
             10 -> {
                 listener.onChangeState(StateDone)
@@ -34,10 +46,4 @@ object StateJog : MotionState(), Ijog, Isprint, Idone {
             }
         }
     }
-
-    fun getIteration():Int {
-        // fetch count from persistence
-        return 0
-    }
-
 }

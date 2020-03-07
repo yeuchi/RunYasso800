@@ -84,8 +84,8 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Step:1"
-                    android:id="@+id/txtStepSplits"/>
+                    android:text="Split:1"
+                    android:id="@+id/txtSplitIndex"/>
 
                 <TextView
                     android:layout_width="80dp"
@@ -113,8 +113,8 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Sprint / Run"
-                    android:id="@+id/txtStep"/>
+                    android:text="Sprint / Jog"
+                    android:id="@+id/txtSplitType"/>
 
             </LinearLayout>
 
@@ -134,8 +134,8 @@
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:text="Step: 00:00"
-                    android:id="@+id/txtStepTime"
+                    android:text="Time: 00:00"
+                    android:id="@+id/txtSplitTime"
                     android:layout_margin="10dp"/>
 
                 <TextView

@@ -7,7 +7,7 @@ import com.ctyeung.runyasso800.room.splits.Split
 @Dao
 interface StepDao
 {
-    @Query("SELECT * from step_table ORDER BY iteration, step")
+    @Query("SELECT * from step_table ORDER BY splitIndex, stepIndex")
     fun getAll() : LiveData<List<Step>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

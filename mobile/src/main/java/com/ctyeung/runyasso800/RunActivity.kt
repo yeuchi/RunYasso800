@@ -24,6 +24,7 @@ import com.ctyeung.runyasso800.viewModels.IRunStatsCallBack
 import com.ctyeung.runyasso800.viewModels.RunFloatingActionButtons
 import com.ctyeung.runyasso800.viewModels.SplitViewModel
 import com.ctyeung.runyasso800.viewModels.StepViewModel
+import kotlinx.android.synthetic.main.activity_run.*
 
 
 /*
@@ -51,12 +52,26 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
                                         SplitIndex:Int,
                                         StepIndex:Int) {
 
-        val txtLat = findViewById<TextView>(R.id.txtLat)
-        txtLat?.setText(StateMachine.prevLocation?.latitude.toString())
+        txtLat.text = StateMachine.prevLocation?.latitude.toString()
+        txtLong.text = StateMachine.prevLocation?.longitude.toString()
 
-        val txtLong = findViewById<TextView>(R.id.txtLong)
-        txtLong?.setText(StateMachine.prevLocation?.longitude.toString())
 
+        // distance in current split
+        txtStepDistance.text = stepViewModel.disTotalString
+        // distance total
+        txtTotalDistance.text = splitViewModel.disTotalString
+
+        // split index
+        txtSplitIndex.text = splitViewModel.indexString
+
+        // split type (sprint or jog)
+        txtSplitType.text = splitViewModel.typeString
+
+        // split time (sprint or jog)
+        txtSplitTime.text = stepViewModel.elapsedTimeString
+        txtTotalTime.text = splitViewModel.elapsedTimeString
+
+        binding.invalidateAll()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,13 +91,13 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
 
         splitViewModel = ViewModelProvider(this).get(SplitViewModel::class.java)
         initStateMachine()
-
+/*
         splitViewModel.yasso.observe(this, Observer { yasso ->
             // Update the cached copy of the words in the adapter.
             yasso?.let {
-                // update here ..
+                // database update success ..
             }
-        })
+        })*/
         if (shouldAskPermissions())
             askPermissions()
 
@@ -104,6 +119,10 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
         StateJog.stepViewModel = stepViewModel
     }
 
+    /*
+     * Stop by Android; user kills app; error
+     * - do we persist data ?
+     */
     override fun onStop() {
         super.onStop()
 

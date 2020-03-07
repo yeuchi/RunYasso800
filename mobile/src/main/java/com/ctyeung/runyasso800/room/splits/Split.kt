@@ -9,16 +9,16 @@ import java.util.*
 /*
  * Split is 800m, minimum unit of run length in this workout
  */
-@Entity(tableName = "split_table")
-data class Split(@PrimaryKey @ColumnInfo(name = "index")val index:Int=0,        // 0 - 9 : total of 10
-                                                         val run_type:String,   // jog or sprint
-                                                         val distance:Double,     // in meters x1000
-                                                         val startTime:Long,    // in seconds
-                                                         val startLat:Double,   // in Lat/Long unit x 1000
-                                                         val startLong:Double,  // in Lat/Long unit x 1000
-                                                         val endTime:Long,      // in seconds
-                                                         val endLat:Double,     // in Lat/Long unit x 1000
-                                                         val endLong:Double)    // in Lat/Long unit x 1000
+@Entity(tableName = "split_table", primaryKeys=["splitIndex"])
+data class Split(val splitIndex:Int=0,  // 0 - 9 : total of 10
+                 val run_type:String,   // jog or sprint
+                 val dis:Double,        // in meters x1000
+                 val startTime:Long,    // in seconds
+                 val startLat:Double,   // in Lat/Long unit x 1000
+                 val startLong:Double,  // in Lat/Long unit x 1000
+                 val endTime:Long,      // in seconds
+                 val endLat:Double,     // in Lat/Long unit x 1000
+                 val endLong:Double)    // in Lat/Long unit x 1000
 {
     companion object{
         const val UNIT_SCALER:Double = 1000.0
