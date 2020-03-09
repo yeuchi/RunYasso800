@@ -1,8 +1,15 @@
 package com.ctyeung.runyasso800.stateMachine
 
-object StateDone : StateAbstract(), Idone {
+import java.lang.reflect.Type
 
-    override fun execute(previous:RunState) {
+class StateDone : StateAbstract, Idone {
+
+    constructor(listener:IStateCallback):super(listener)
+    {
+
+    }
+
+    override fun execute(previous:Type) {
 
         this.prevState = previous
         // things to perform in this state

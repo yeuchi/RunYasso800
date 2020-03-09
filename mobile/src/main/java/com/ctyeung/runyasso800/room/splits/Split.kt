@@ -12,18 +12,30 @@ import java.util.*
 @Entity(tableName = "split_table", primaryKeys=["splitIndex"])
 data class Split(val splitIndex:Int=0,  // 0 - 9 : total of 10
                  val run_type:String,   // jog or sprint
-                 val dis:Double,        // in meters x1000
+                 var dis:Double,        // in meters x1000
                  val startTime:Long,    // in seconds
                  val startLat:Double,   // in Lat/Long unit x 1000
                  val startLong:Double,  // in Lat/Long unit x 1000
-                 val endTime:Long,      // in seconds
-                 val endLat:Double,     // in Lat/Long unit x 1000
-                 val endLong:Double)    // in Lat/Long unit x 1000
+                 var endTime:Long,      // in seconds
+                 var endLat:Double,     // in Lat/Long unit x 1000
+                 var endLong:Double)    // in Lat/Long unit x 1000
 {
     companion object{
+        const val SPLIT_DISTANCE:Double = 800.0
         const val UNIT_SCALER:Double = 1000.0
         const val RUN_TYPE_SPRINT:String = "sprint"
         const val RUN_TYPE_JOG:String = "jog"
+    }
+
+    fun update( dis:Double,        // in meters x1000
+                endTime:Long,      // in seconds
+                endLat:Double,     // in Lat/Long unit x 1000
+                endLong:Double)    // in Lat/Long unit x 1000
+    {
+        this.dis = dis
+        this.endTime = endTime
+        this.endLat = endLat
+        this.endLong = endLong
     }
 
     fun getStartDate():String

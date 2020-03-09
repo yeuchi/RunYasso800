@@ -1,8 +1,15 @@
 package com.ctyeung.runyasso800.stateMachine
 
-object StateError : StateAbstract(), Ierror, Iclear {
+import java.lang.reflect.Type
 
-    override fun execute(previous:RunState) {
+class StateError : StateAbstract, Ierror, Iclear {
+
+    constructor(listener:IStateCallback):super(listener)
+    {
+
+    }
+
+    override fun execute(previous:Type) {
 
         this.prevState = previous
         // things to perform in this state

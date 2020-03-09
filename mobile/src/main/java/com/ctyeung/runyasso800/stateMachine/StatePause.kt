@@ -1,8 +1,14 @@
 package com.ctyeung.runyasso800.stateMachine
 
-object StatePause : StateAbstract(), Ipause, Iresume, Iclear {
+import java.lang.reflect.Type
 
-    override fun execute(previous:RunState) {
+class StatePause : StateAbstract, Ipause, Iresume, Iclear {
+
+    constructor(listener:IStateCallback):super(listener)
+    {
+
+    }
+    override fun execute(previous:Type) {
 
         this.prevState = previous
         // things to perform in this state
@@ -16,7 +22,7 @@ object StatePause : StateAbstract(), Ipause, Iresume, Iclear {
          * (except if user CLEAR
          */
         when(prevState){
-            RunState.Pause -> listener.onChangeState(StateResume)
+            StatePause::class.java -> listener.onChangeState(StateResume::class.java)
             else -> {
                 // do nothing -- stay in pause
             }

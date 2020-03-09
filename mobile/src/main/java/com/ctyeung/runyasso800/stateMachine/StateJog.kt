@@ -1,13 +1,25 @@
 package com.ctyeung.runyasso800.stateMachine
 
 import android.location.Location
+import com.ctyeung.runyasso800.viewModels.IRunStatsCallBack
+import com.ctyeung.runyasso800.viewModels.SplitViewModel
+import com.ctyeung.runyasso800.viewModels.StepViewModel
+import java.lang.reflect.Type
 
-object StateJog : MotionState(), Ijog, Isprint, Idone {
+class StateJog : MotionState, Ijog, Isprint, Idone {
+
+    constructor(listener:IStateCallback,
+                actListener: IRunStatsCallBack,
+                splitViewModel: SplitViewModel,
+                stepViewModel: StepViewModel):super(listener, actListener, splitViewModel, stepViewModel)
+    {
+
+    }
 
     /*
      * Acknowledge we are in Jog state
      */
-    override fun execute(previous:RunState) {
+    override fun execute(previous:Type) {
 
         this.prevState = previous
         // things to perform in this state
@@ -22,11 +34,10 @@ object StateJog : MotionState(), Ijog, Isprint, Idone {
     override fun goto() {
 
         when {
-            stepDis >= FINISH_DISTANCE -> changeState()
+            stepTotalDis >= FINISH_DISTANCE -> changeState()
 
-            else -> {
-                // do nothing -- keep jogging
-            }
+            // current state @ Jog !
+            else -> listener.onChangeState(this.javaClass)
         }
     }
 
@@ -39,10 +50,10 @@ object StateJog : MotionState(), Ijog, Isprint, Idone {
         when(splitIndex) {
 
             10 -> {
-                listener.onChangeState(StateDone)
+                listener.onChangeState(StateDone::class.java)
             }
             else -> {
-                listener.onChangeState(StateSprint)
+                listener.onChangeState(StateSprint::class.java)
             }
         }
     }

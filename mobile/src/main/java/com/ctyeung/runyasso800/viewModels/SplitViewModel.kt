@@ -28,14 +28,22 @@ class SplitViewModel (application: Application) : AndroidViewModel(application)
         yasso = repository.yasso
     }
 
-    fun insert(split: Split) = viewModelScope.launch {
+    fun insert(split: Split?) = viewModelScope.launch {
+        if(null!=split) {
+            setTextProperties(split)
+            repository.insert(split)
+        }
+    }
+
+    private fun setTextProperties(split:Split)
+    {
         totalDistance += split.dis
-        disTotalString = "Total: "+ totalDistance + "m"
-        indexString = "Split: "+yasso.value?.size+1
+        disTotalString = "Total: " + totalDistance + "m"
+        indexString = "Split: " + yasso.value?.size + 1
         typeString = "Type: " + split.run_type
         calculateTimeElapsed(split.startTime)
         elapsedTimeString = "Total: " + TimeFormatter.printTime(elapsedTime)
-        repository.insert(split)
+
     }
 
     /*
@@ -55,7 +63,10 @@ class SplitViewModel (application: Application) : AndroidViewModel(application)
         repository.clear()
     }
 
-    fun update(split: Split) = viewModelScope.launch {
-        repository.update(split)
+    fun update(split: Split?) = viewModelScope.launch {
+        if(null!=split) {
+            setTextProperties(split)
+            repository.update(split)
+        }
     }
 }

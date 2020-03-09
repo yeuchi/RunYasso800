@@ -5,16 +5,17 @@ import android.view.View
 import androidx.core.view.isVisible
 import com.ctyeung.runyasso800.R
 import com.ctyeung.runyasso800.RunActivity
-import com.ctyeung.runyasso800.stateMachine.RunState
+import com.ctyeung.runyasso800.stateMachine.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.lang.reflect.Type
 
 class RunFloatingActionButtons(activity:RunActivity ) {
 
     // can be managed with binding below
-    lateinit var btnStart: FloatingActionButton
-    lateinit var btnPause: FloatingActionButton
-    lateinit var btnClear: FloatingActionButton
-    lateinit var btnNext: FloatingActionButton
+     var btnStart: FloatingActionButton
+     var btnPause: FloatingActionButton
+     var btnClear: FloatingActionButton
+     var btnNext: FloatingActionButton
 
     init {
         btnStart = activity.findViewById(R.id.btnStart) as FloatingActionButton
@@ -22,31 +23,31 @@ class RunFloatingActionButtons(activity:RunActivity ) {
         btnClear = activity.findViewById(R.id.btnClear) as FloatingActionButton
         btnNext = activity.findViewById(R.id.btnNext) as FloatingActionButton
 
-        changeState(RunState.Idle)
+        changeState(StateIdle::class.java)
     }
 
-    fun changeState(state: RunState){
+    fun changeState(state: Type){
 
         when(state) {
 
-            RunState.Sprint,
-            RunState.Jog,
-            RunState.Resume -> {
+            StateSprint::class.java,
+            StateJog::class.java,
+            StateResume::class.java -> {
                 btnPause.show()
                 btnStart.hide()
                 btnClear.hide()
                 btnNext.hide()
             }
 
-            RunState.Pause -> {
+            StatePause::class.java -> {
                 btnStart.show()
                 btnClear.show()
                 btnNext.show()
                 btnPause.hide()
             }
 
-            RunState.Idle,
-            RunState.Clear -> {
+            StateIdle::class.java,
+            StateClear::class.java -> {
                 btnStart.show()
                 btnPause.hide()
                 btnClear.hide()

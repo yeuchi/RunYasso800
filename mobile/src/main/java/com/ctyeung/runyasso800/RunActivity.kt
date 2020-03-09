@@ -15,10 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.ctyeung.runyasso800.databinding.ActivityRunBinding
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.steps.Step
-import com.ctyeung.runyasso800.stateMachine.RunState
-import com.ctyeung.runyasso800.stateMachine.StateJog
-import com.ctyeung.runyasso800.stateMachine.StateMachine
-import com.ctyeung.runyasso800.stateMachine.StateSprint
+import com.ctyeung.runyasso800.stateMachine.*
 import com.ctyeung.runyasso800.utilities.LocationUtils
 import com.ctyeung.runyasso800.viewModels.IRunStatsCallBack
 import com.ctyeung.runyasso800.viewModels.RunFloatingActionButtons
@@ -39,21 +36,20 @@ import kotlinx.android.synthetic.main.activity_run.*
  * */
 class RunActivity : AppCompatActivity(), IRunStatsCallBack {
     lateinit var binding:ActivityRunBinding
-    lateinit var activity: RunActivity
+    lateinit var fab:RunFloatingActionButtons
+    lateinit var stateMachine:StateMachine
     lateinit var splitViewModel:SplitViewModel
     lateinit var stepViewModel:StepViewModel
-    lateinit var fab:RunFloatingActionButtons
+    lateinit var activity: RunActivity
 
     /*
      * callback from State machine
      * -> update view model and UI
      */
-    override fun onHandleLocationUpdate(location:Location,
-                                        SplitIndex:Int,
-                                        StepIndex:Int) {
+    override fun onHandleLocationUpdate() {
 
-        txtLat.text = StateMachine.prevLocation?.latitude.toString()
-        txtLong.text = StateMachine.prevLocation?.longitude.toString()
+        txtLat.text = stateMachine.prevLocation?.latitude.toString()
+        txtLong.text = stateMachine.prevLocation?.longitude.toString()
 
 
         // distance in current split
@@ -85,12 +81,9 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
 
         fab = RunFloatingActionButtons(this)
 
-        // data
         stepViewModel = ViewModelProvider(this).get(StepViewModel::class.java)
-        // observe when total steps delta >= 800meter ?
-
         splitViewModel = ViewModelProvider(this).get(SplitViewModel::class.java)
-        initStateMachine()
+        stateMachine = StateMachine(this, splitViewModel, stepViewModel)
 /*
         splitViewModel.yasso.observe(this, Observer { yasso ->
             // Update the cached copy of the words in the adapter.
@@ -102,21 +95,6 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
             askPermissions()
 
         binding.invalidateAll()
-    }
-
-    private fun initStateMachine() {
-        /*
-         * Not sure this is a good idea ... want to decouple
-         *  ... also potential lifecycle issues
-         * use dependency injection -- dagger ?
-         */
-        StateSprint.actListener = this
-        StateSprint.splitViewModel = splitViewModel
-        StateSprint.stepViewModel = stepViewModel
-
-        StateJog.actListener = this
-        StateJog.splitViewModel = splitViewModel
-        StateJog.stepViewModel = stepViewModel
     }
 
     /*
@@ -168,7 +146,7 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
     fun startLocationService()
     {
         LocationUtils.getInstance(activity)
-        StateMachine.observe(this, this)
+        stateMachine.observe(this, this)
     }
 
     /*
@@ -178,9 +156,9 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
     fun onClickStart()
     {
         // must be in Idle
-        if(RunState.Idle == StateMachine.getStateEnum()) {
-            StateMachine.interruptStart()
-            fab.changeState(RunState.Resume)
+        if(StateIdle::class.java == stateMachine.current) {
+            stateMachine.interruptStart()
+            fab.changeState(StateResume::class.java)
         }
     }
 
@@ -195,15 +173,15 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
     fun onClickPause()
     {
         // must be sprint / jog
-        when(StateMachine.getStateEnum()){
-            RunState.Jog,
-            RunState.Sprint -> {
-                StateMachine.interruptPause()
-                fab.changeState(RunState.Pause)
+        when(stateMachine.current){
+            StateJog::class.java,
+            StateSprint::class.java -> {
+                stateMachine.interruptPause()
+                fab.changeState(StatePause::class.java)
             }
-            RunState.Pause -> {
-                StateMachine.interruptPause()
-                fab.changeState(RunState.Resume)
+            StatePause::class.java -> {
+                stateMachine.interruptPause()
+                fab.changeState(StateResume::class.java)
             }
             else -> {
                 // error condition
@@ -218,12 +196,12 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
     fun onClickClear()
     {
         // must be paused / error / done
-        when(StateMachine.getStateEnum()){
-            RunState.Pause,
-            RunState.Error,
-            RunState.Done -> {
-                StateMachine.interruptClear()
-                fab.changeState(RunState.Clear)
+        when(stateMachine.current){
+            StatePause::class.java,
+            StateError::class.java,
+            StateDone::class.java -> {
+                stateMachine.interruptClear()
+                fab.changeState(StateClear::class.java)
             }
             else -> {
                 // error condition
@@ -237,7 +215,7 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
      */
     fun onClickNext()
     {
-        if(StateMachine.getStateEnum()==RunState.Done)
+        if(StateDone::class.java == stateMachine.current)
             gotoNextActivity()
     }
 

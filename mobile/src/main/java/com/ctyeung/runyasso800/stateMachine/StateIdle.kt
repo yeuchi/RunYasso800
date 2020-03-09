@@ -1,8 +1,18 @@
 package com.ctyeung.runyasso800.stateMachine
 
-object StateIdle :StateAbstract(), Iidle, Isprint {
+import com.ctyeung.runyasso800.viewModels.IRunStatsCallBack
+import java.lang.reflect.Type
 
-    override fun execute(previous:RunState) {
+class StateIdle :StateAbstract, Iidle, Isprint {
+    var actListener:IRunStatsCallBack
+
+    constructor(listener:IStateCallback,
+                actListener:IRunStatsCallBack):super(listener)
+    {
+        this.actListener = actListener
+    }
+
+    override fun execute(previous:Type) {
 
         this.prevState = previous
         // things to perform in this state
@@ -10,7 +20,13 @@ object StateIdle :StateAbstract(), Iidle, Isprint {
 
     override fun goto() {
         // do nothing -- IDLE
-
         // wait for interrupt to change state
+
+        /*
+         * update view
+         * update state machine
+         */
+        actListener.onHandleLocationUpdate()
+        listener.onChangeState(this.javaClass)
     }
 }

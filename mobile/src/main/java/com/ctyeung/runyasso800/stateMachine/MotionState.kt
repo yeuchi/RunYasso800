@@ -6,54 +6,87 @@ import com.ctyeung.runyasso800.room.steps.Step
 import com.ctyeung.runyasso800.viewModels.IRunStatsCallBack
 import com.ctyeung.runyasso800.viewModels.SplitViewModel
 import com.ctyeung.runyasso800.viewModels.StepViewModel
+import java.time.LocalTime
 
-abstract class MotionState : StateAbstract() {
+abstract class MotionState  : StateAbstract {
+
+    var actListener: IRunStatsCallBack
+    var stepViewModel: StepViewModel
+    var splitViewModel:SplitViewModel
     var FINISH_DISTANCE = 800
-    var stepDis:Double = 0.0
+    var stepTotalDis:Double = 0.0
     var previous:Location ?= null
     var splitIndex:Int = 0
-    lateinit var actListener:IRunStatsCallBack
-    lateinit var splitViewModel: SplitViewModel
-    lateinit var stepViewModel: StepViewModel
+    var split:Split?=null
 
-    fun setLocation(location: Location) {
+    constructor(listener:IStateCallback,
+                actListener: IRunStatsCallBack,
+                splitViewModel:SplitViewModel,
+                stepViewModel: StepViewModel) : super(listener)
+    {
+        this.actListener = actListener
+        this.stepViewModel = stepViewModel
+        this.splitViewModel = splitViewModel
+    }
+    /*
+     * prevLocation is never null here
+     */
+    fun setLocation(prevLocation:Location?, location: Location) {
         // insert db new data points & distance when user move more than unit of 1
-        val dis: Double = location.distanceTo(StateMachine.prevLocation) as Double
+        val dis: Double = location.distanceTo(prevLocation).toDouble()
         if (dis > 0) {
             // these values should be initialized from database -- not sharedPreference !!!!
-            StateMachine.prevLocation = location // will never use prev
-            stepDis += dis
+            stepTotalDis += dis
+            val latitude: Double = prevLocation?.latitude ?: 0.0
+            val longitude: Double = prevLocation?.longitude ?: 0.0
+            val timeNow = System.currentTimeMillis()
 
-            val splitIndex = splitViewModel.yasso.value?.size ?: 0
-            val stepIndex = stepViewModel.steps.value?.size ?: 0
-            val latitude: Double = StateMachine.prevLocation?.latitude ?: 0.0
-            val longitude: Double = StateMachine.prevLocation?.longitude ?: 0.0
+            val stepIndex = this.stepViewModel.steps.value?.size ?: 0
             val step = Step(splitIndex,
                             stepIndex,
                             dis,
-                            getRunType(splitIndex),
-                            System.currentTimeMillis(),
+                            getRunType(),
+                            timeNow,
                             latitude,
                             longitude)
+
             stepViewModel.insert(step)
 
-            /*
-             * if larger 800m -> update SplitViewModel and reset stepViewModel
-             */
+            // initialize Split
+            if(split == null){
+                split = Split(splitIndex,
+                    getRunType(),
+                    0.0,
+                    timeNow,
+                    latitude,
+                    longitude,
+                    timeNow,
+                    latitude,
+                    longitude)
+
+                splitViewModel.insert(split);
+            }
+            else if(stepTotalDis > Split.SPLIT_DISTANCE) {
+                split?.update(dis,timeNow, latitude, longitude)
+                splitViewModel.update(split)
+                splitIndex ++;
+                stepTotalDis = 0.0
+                split = null
+            }
 
             /*
              * Consider idemtpotency ?
              */
             goto()
 
-            this.actListener.onHandleLocationUpdate(location, splitIndex, stepIndex)
+            this.actListener.onHandleLocationUpdate()
         }
     }
 
     /*
      * Don't need this ... just check parent class
      */
-    private fun getRunType(iteration:Int):String
+    private fun getRunType():String
     {
         if(this is StateSprint)
             return Split.RUN_TYPE_SPRINT

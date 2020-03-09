@@ -1,7 +1,15 @@
 package com.ctyeung.runyasso800.stateMachine
 
-object StateClear : StateAbstract(), Iclear, Iidle {
-    override fun execute(previous:RunState) {
+import java.lang.reflect.Type
+
+class StateClear : StateAbstract, Iclear, Iidle {
+
+    constructor(listener:IStateCallback):super(listener)
+    {
+
+    }
+
+    override fun execute(previous:Type) {
 
         this.prevState = previous
         // things to perform in this state
@@ -13,6 +21,6 @@ object StateClear : StateAbstract(), Iclear, Iidle {
      * go to idle after we clear everything
      */
     override fun goto() {
-        listener.onChangeState(StateIdle)
+        listener.onChangeState(StateIdle::class.java)
     }
 }

@@ -7,39 +7,60 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import com.ctyeung.runyasso800.R
-import com.ctyeung.runyasso800.room.splits.Split
-import com.ctyeung.runyasso800.room.steps.Step
 import com.ctyeung.runyasso800.utilities.LocationUtils
 import com.ctyeung.runyasso800.viewModels.IRunStatsCallBack
+import com.ctyeung.runyasso800.viewModels.SplitViewModel
+import com.ctyeung.runyasso800.viewModels.StepViewModel
+import java.lang.reflect.Type
 
-enum class RunState {
-    Idle,
-    Resume, // start / come back from pause
-    Sprint,
-    Jog,
-    Pause,
-    Clear,
-    Done,
-    Error
-}
-
-object StateMachine : IStateCallback {
+class StateMachine : IStateCallback {
     var prevLocation:Location ?= null
-    var current:StateAbstract = StateIdle
+    var current:Type
+    var previous:Type
     lateinit var listener: IRunStatsCallBack
+
+    // put below objects in a hash ?
+    var stateSprint:StateSprint
+    var stateJog:StateJog
+    var stateIdle:StateIdle
+    var stateError:StateError
+    var stateDone:StateDone
+    var stateClear:StateClear
+    var statePause:StatePause
+    var stateResume:StateResume
+
+    constructor(actListener: IRunStatsCallBack,
+                splitViewModel: SplitViewModel,
+                stepViewModel: StepViewModel)
+    {
+        stateSprint = StateSprint(this, actListener, splitViewModel, stepViewModel)
+        stateJog = StateJog(this, actListener, splitViewModel, stepViewModel)
+
+        stateError = StateError(this)
+        stateDone = StateDone(this)
+        stateClear = StateClear(this)
+        statePause = StatePause(this)
+        stateResume = StateResume(this)
+
+        stateIdle = StateIdle(this, actListener)
+        current = StateIdle::class.java
+        previous = StateIdle::class.java
+    }
 
     /*
      * state has been updated
      */
-    override fun onChangeState(state: StateAbstract) {
-        this.current = state
-    }
+    override fun onChangeState(type:Type) {
+        previous = current
+        current = type
 
-    fun getStateEnum() : RunState {
-
-        val s = current?.runState?:RunState.Idle
-        return s;
+        when(current){
+            StateError::class.java -> {
+                /*
+                 * Yikes !  Handle error here !
+                 */
+            }
+        }
     }
 
     /*
@@ -52,7 +73,7 @@ object StateMachine : IStateCallback {
         when(current::class) {
             StateIdle::class,
             StatePause::class,
-            StateResume::class -> StateSprint.execute(current.runState)
+            StateResume::class -> stateSprint.execute(current)
 
             StateJog::class,
             StateSprint::class -> {
@@ -77,9 +98,12 @@ object StateMachine : IStateCallback {
 
         when(current::class) {
             StateSprint::class,
-            StateJog::class -> StatePause.execute(current.runState)
+            StateJog::class -> statePause.execute(current)
 
-            StatePause::class -> interruptStart()
+            /*
+             * if we were at pause, then resume !
+             */
+            StatePause::class -> stateResume.execute(previous)
 
             else -> {
                 // do nothing
@@ -96,7 +120,7 @@ object StateMachine : IStateCallback {
         when(current::class) {
             StatePause::class,
             StateError::class,
-            StateDone::class -> StateClear.execute(current.runState)
+            StateDone::class -> stateClear.execute(current)
 
             else -> {
                 // do nothing
@@ -130,29 +154,22 @@ object StateMachine : IStateCallback {
 
     /*
      * Update state machine of metrics
+     * if total distance >= 800meter -> next state
+     *  a. sprint, jog or done
      */
     private fun update(location: Location) {
+        if(null!=prevLocation) {
+            when (current::class) {
+                StateSprint::class -> stateSprint.setLocation(prevLocation, location)
+                StateJog::class -> stateJog.setLocation(prevLocation, location)
 
-        if(null==prevLocation)
-        {
-            prevLocation = location
-            return
-        }
+                // check for state change
 
-        // query total distance
-        /*
-         * if total distance >= 800meter -> next state
-         *  a. sprint, jog or done
-         */
-        when(current::class) {
-            StateSprint::class -> StateSprint.setLocation(location)
-            StateJog::class -> StateJog.setLocation(location)
-
-            // check for state change
-
-            else -> {
-                // nothing to do
+                else -> {
+                    // nothing to do
+                }
             }
+            prevLocation = location
         }
     }
 }
