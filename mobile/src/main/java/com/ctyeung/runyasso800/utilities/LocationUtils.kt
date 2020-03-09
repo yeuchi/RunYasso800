@@ -19,8 +19,9 @@ object LocationUtils
     var locationRequest:LocationRequest ?= null
     var fusedLocationProviderClient: FusedLocationProviderClient ?= null
     var location : MutableLiveData<Location> = MutableLiveData()
-    val UPDATE_INTERVAL:Long = 1000
-    val FASTEST_INTERVAL:Long = 1000
+    // every 30 seconds a reading
+    val UPDATE_INTERVAL:Long = 30000
+    val FASTEST_INTERVAL:Long = 30000
 
     var locationCallback: LocationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {

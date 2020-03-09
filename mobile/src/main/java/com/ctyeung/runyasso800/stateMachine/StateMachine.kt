@@ -17,7 +17,6 @@ class StateMachine : IStateCallback {
     var prevLocation:Location ?= null
     var current:Type
     var previous:Type
-    lateinit var listener: IRunStatsCallBack
 
     // put below objects in a hash ?
     var stateSprint:StateSprint
@@ -28,11 +27,14 @@ class StateMachine : IStateCallback {
     var stateClear:StateClear
     var statePause:StatePause
     var stateResume:StateResume
+    var actListener:IRunStatsCallBack
 
     constructor(actListener: IRunStatsCallBack,
                 splitViewModel: SplitViewModel,
                 stepViewModel: StepViewModel)
     {
+        this.actListener = actListener
+
         stateSprint = StateSprint(this, actListener, splitViewModel, stepViewModel)
         stateJog = StateJog(this, actListener, splitViewModel, stepViewModel)
 
@@ -70,13 +72,13 @@ class StateMachine : IStateCallback {
      */
     fun interruptStart() {
 
-        when(current::class) {
-            StateIdle::class,
-            StatePause::class,
-            StateResume::class -> stateSprint.execute(current)
+        when(current) {
+            StateIdle::class.java,
+            StatePause::class.java,
+            StateResume::class.java -> stateSprint.execute(current)
 
-            StateJog::class,
-            StateSprint::class -> {
+            StateJog::class.java,
+            StateSprint::class.java -> {
                 // continue
             }
 
@@ -96,14 +98,14 @@ class StateMachine : IStateCallback {
       */
     fun interruptPause() {
 
-        when(current::class) {
-            StateSprint::class,
-            StateJog::class -> statePause.execute(current)
+        when(current) {
+            StateSprint::class.java,
+            StateJog::class.java -> statePause.execute(current)
 
             /*
              * if we were at pause, then resume !
              */
-            StatePause::class -> stateResume.execute(previous)
+            StatePause::class.java -> stateResume.execute(previous)
 
             else -> {
                 // do nothing
@@ -117,10 +119,10 @@ class StateMachine : IStateCallback {
      */
     fun interruptClear() {
 
-        when(current::class) {
-            StatePause::class,
-            StateError::class,
-            StateDone::class -> stateClear.execute(current)
+        when(current) {
+            StatePause::class.java,
+            StateError::class.java,
+            StateDone::class.java -> stateClear.execute(current)
 
             else -> {
                 // do nothing
@@ -138,10 +140,7 @@ class StateMachine : IStateCallback {
         // reset or delete all
     }
 
-    fun observe(listener:IRunStatsCallBack,
-                lifeCycle:LifecycleOwner) {
-
-        this.listener = listener
+    fun observe(lifeCycle:LifecycleOwner) {
 
         LocationUtils.getLocation().observe(lifeCycle, Observer { location ->
             location?.let{
@@ -154,22 +153,30 @@ class StateMachine : IStateCallback {
 
     /*
      * Update state machine of metrics
+     * - wait until at least 2 consecutive reading are NOT null
+     *
      * if total distance >= 800meter -> next state
      *  a. sprint, jog or done
      */
     private fun update(location: Location) {
-        if(null!=prevLocation) {
-            when (current::class) {
-                StateSprint::class -> stateSprint.setLocation(prevLocation, location)
-                StateJog::class -> stateJog.setLocation(prevLocation, location)
-
-                // check for state change
+        if(null!=prevLocation && null!=location) {
+            when (current) {
+                StateSprint::class.java -> {
+                    stateSprint.setLocation(prevLocation, location)
+                }
+                StateJog::class.java -> {
+                    stateJog.setLocation(prevLocation, location)
+                }
+                // just update the latitute / longitude
+                StateIdle::class.java -> {
+                    actListener.onHandleLocationUpdate()
+                }
 
                 else -> {
                     // nothing to do
                 }
             }
-            prevLocation = location
         }
+        prevLocation = location
     }
 }

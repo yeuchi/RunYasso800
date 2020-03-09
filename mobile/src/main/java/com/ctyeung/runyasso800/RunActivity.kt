@@ -146,7 +146,7 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
     fun startLocationService()
     {
         LocationUtils.getInstance(activity)
-        stateMachine.observe(this, this)
+        stateMachine.observe(this)
     }
 
     /*

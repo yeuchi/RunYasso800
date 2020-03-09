@@ -10,6 +10,7 @@ import com.ctyeung.runyasso800.room.steps.Step
 import com.ctyeung.runyasso800.room.steps.StepRepository
 import com.ctyeung.runyasso800.utilities.TimeFormatter
 import kotlinx.coroutines.launch
+import kotlin.math.roundToInt
 
 class StepViewModel (application: Application) : AndroidViewModel(application)
 {
@@ -28,7 +29,7 @@ class StepViewModel (application: Application) : AndroidViewModel(application)
 
     fun insert(step: Step) = viewModelScope.launch {
         totalDistance += step.dis
-        disTotalString = "Step: "+ totalDistance + "m";
+        disTotalString = "Step: "+ totalDistance.roundToInt() + "m";
         calculateTimeElapsed(step.time)
         elapsedTimeString = "Time: " + TimeFormatter.printTime(elapsedTime)
         repository.insert(step)
@@ -39,11 +40,11 @@ class StepViewModel (application: Application) : AndroidViewModel(application)
      * ** but what about 'PAUSE' ????
      */
     private fun calculateTimeElapsed(seconds:Long) {
-        if(0==steps.value?.size)
-            elapsedTime = 0
-
-        else
+        val size = steps.value?.size?:0
+        if(null != steps.value && size > 0)
             elapsedTime = seconds - steps.value!![0].time
+        else
+            elapsedTime = 0
     }
 
     fun clear() = viewModelScope.launch {

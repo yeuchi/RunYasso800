@@ -51,11 +51,12 @@ class SplitViewModel (application: Application) : AndroidViewModel(application)
      * ** but what about 'PAUSE' ????
      */
     private fun calculateTimeElapsed(seconds:Long) {
-        if(0==yasso.value?.size)
-            elapsedTime = 0
+        val size = yasso.value?.size?:0
+        if(null!=yasso.value && size > 0)
+            elapsedTime = seconds - yasso.value!![0].startTime
 
         else
-            elapsedTime = seconds - yasso.value!![0].startTime
+            elapsedTime = 0
     }
 
 
