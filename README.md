@@ -47,6 +47,8 @@ A Yasso800 Entity is composed of 10 x 2 (sprint/jog) Split Entities.  Each Split
 
 <img width="495" alt="Screen Shot 2020-02-15 at 3 30 04 PM" src="https://user-images.githubusercontent.com/1282659/74596116-145fbb00-5008-11ea-9a89-86802782d4dc.png">
 
+<img src="https://user-images.githubusercontent.com/1282659/76312197-82626f80-62a0-11ea-9f15-ff4f8b8f25e8.jpg" width="200"> 
+
 ### Result Activity
 Activity presents run and jog results in map and sprint listing.\
 Splits separated by map markers for selection to obtain detail recorded metrics.\
