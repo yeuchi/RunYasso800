@@ -84,13 +84,23 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
         stepViewModel = ViewModelProvider(this).get(StepViewModel::class.java)
         splitViewModel = ViewModelProvider(this).get(SplitViewModel::class.java)
         stateMachine = StateMachine(this, splitViewModel, stepViewModel)
-/*
+
+        splitViewModel.clear()
+        stepViewModel.clear()
+
+        stepViewModel.steps.observe(this, Observer { steps ->
+            steps?.let {
+
+            }
+        })
+
         splitViewModel.yasso.observe(this, Observer { yasso ->
             // Update the cached copy of the words in the adapter.
             yasso?.let {
                 // database update success ..
             }
-        })*/
+        })
+
         if (shouldAskPermissions())
             askPermissions()
 
@@ -150,25 +160,32 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
     }
 
     /*
-     * ONLY when IDLE state
+     * when IDLE state
      * -> goto SPRINT state
+     *
+     * when PAUSE state
+     * -> goto RESUME state
      */
     fun onClickStart()
     {
-        // must be in Idle
-        if(StateIdle::class.java == stateMachine.current) {
-            stateMachine.interruptStart()
-            fab.changeState(StateResume::class.java)
+        when(stateMachine.current){
+            StateIdle::class.java -> {
+                stateMachine.interruptStart()
+                fab.changeState(StateResume::class.java)
+            }
+
+            StatePause::class.java -> {
+                stateMachine.interruptPause()
+                fab.changeState(StateResume::class.java)
+            }
         }
     }
 
     /*
-     * ONLY when SPRINT or JOG or PAUSE state
+     * ONLY when SPRINT or JOG state
      * - SPRINT / JOG -> goto PAUSE
-     * - PAUSE -> goto RESUME
      *
      * Pause everything (timer, distance measure, etc) ... let user cheat.
-     * Resume back to sprint / jog
      */
     fun onClickPause()
     {
@@ -178,10 +195,6 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
             StateSprint::class.java -> {
                 stateMachine.interruptPause()
                 fab.changeState(StatePause::class.java)
-            }
-            StatePause::class.java -> {
-                stateMachine.interruptPause()
-                fab.changeState(StateResume::class.java)
             }
             else -> {
                 // error condition

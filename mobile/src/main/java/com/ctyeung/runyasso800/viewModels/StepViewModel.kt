@@ -49,6 +49,7 @@ class StepViewModel (application: Application) : AndroidViewModel(application)
 
     fun clear() = viewModelScope.launch {
         totalDistance = 0.0
+        elapsedTime = 0
         repository.clear()
     }
 }

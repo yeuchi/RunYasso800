@@ -43,15 +43,16 @@
 
         <activity
             android:name=".ResultActivity"
-            android:label="@string/title_activity_result"></activity>
-        <activity android:name=".ResultsActivity" />
-        <activity
-            android:name=".MapActivity"
-            android:label="@string/title_activity_map" />
-        <activity android:name=".GoalActivity" />
-        <activity android:name=".RunActivity" />
-        <activity android:name=".PersistActivity" />
-        <activity android:name=".MainActivity">
+            android:label="@string/title_activity_result"
+            android:screenOrientation="nosensor"/>
+        <activity android:name=".GoalActivity"
+            android:screenOrientation="nosensor"/>
+        <activity android:name=".RunActivity"
+            android:screenOrientation="nosensor"/>
+        <activity android:name=".PersistActivity"
+            android:screenOrientation="nosensor"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="nosensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
