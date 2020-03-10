@@ -10,6 +10,8 @@ import com.ctyeung.runyasso800.room.splits.SplitRepository
 import com.ctyeung.runyasso800.utilities.TimeFormatter
 import kotlinx.android.synthetic.main.activity_run.*
 import kotlinx.coroutines.launch
+import kotlin.math.roundToInt
+import kotlin.math.roundToLong
 
 class SplitViewModel (application: Application) : AndroidViewModel(application)
 {
@@ -38,12 +40,12 @@ class SplitViewModel (application: Application) : AndroidViewModel(application)
     private fun setTextProperties(split:Split)
     {
         totalDistance += split.dis
-        disTotalString = "Total: " + totalDistance + "m"
-        indexString = "Split: " + yasso.value?.size + 1
+        disTotalString = "Total: " + totalDistance.roundToInt() + "m"
+        var index = yasso.value?.size?:0 + 1
+        indexString = "Split: " + index.toString()
         typeString = "Type: " + split.run_type
-        calculateTimeElapsed(split.startTime)
+        calculateTimeElapsed(split.endTime)
         elapsedTimeString = "Total: " + TimeFormatter.printTime(elapsedTime)
-
     }
 
     /*

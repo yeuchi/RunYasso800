@@ -25,14 +25,14 @@ object SharedPrefUtility
     var keyLongitude = "long"
     var LAT_LONG_DEFAULT:String = "0"
 
-    open fun getLatitude(context:Context):Double
+     fun getLatitude(context:Context):Double
     {
         val sharedPreferences = getSharedPref(context)
         val str = sharedPreferences.getString(keyLatitude, LAT_LONG_DEFAULT)
         return str.toDouble()
     }
 
-    open fun setLatitude(context:Context, latitude:Double)
+     fun setLatitude(context:Context, latitude:Double)
     {
         val sharedPreferences = getSharedPref(context)
         val editor = sharedPreferences.edit()
@@ -40,14 +40,14 @@ object SharedPrefUtility
         editor.commit()
     }
 
-    open fun getLongitude(context:Context):Double
+     fun getLongitude(context:Context):Double
     {
         val sharedPreferences = getSharedPref(context)
         val str = sharedPreferences.getString(keyLongitude, LAT_LONG_DEFAULT)
         return str.toDouble()
     }
 
-    open fun setLongitude(context:Context, longitude:Double)
+     fun setLongitude(context:Context, longitude:Double)
     {
         val sharedPreferences = getSharedPref(context)
         val editor = sharedPreferences.edit()
@@ -55,7 +55,7 @@ object SharedPrefUtility
         editor.commit()
     }
 
-    open fun getInterval(context:Context):Int
+     fun getInterval(context:Context):Int
     {
         val sharedPreferences = getSharedPref(context)
         return sharedPreferences.getInt(
@@ -64,7 +64,7 @@ object SharedPrefUtility
         )
     }
 
-    open fun setInterval(context:Context, time:Int)
+     fun setInterval(context:Context, time:Int)
     {
         val sharedPreferences = getSharedPref(context)
         val editor = sharedPreferences.edit()
@@ -87,7 +87,7 @@ object SharedPrefUtility
             file
         )
     }
-    open fun getColor(context:Context, colorName:String):Int
+     fun getColor(context:Context, colorName:String):Int
     {
         var defaultValue = Color.WHITE;
         if(colorName == keyColor2)
@@ -97,7 +97,7 @@ object SharedPrefUtility
         return sharedPreferences.getInt(colorName, defaultValue)
     }
 
-    open fun setColor(context:Context, colorName:String, color:Int)
+     fun setColor(context:Context, colorName:String, color:Int)
     {
         val sharedPreferences = getSharedPref(context)
         val editor = sharedPreferences.edit()

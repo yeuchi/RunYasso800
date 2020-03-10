@@ -66,12 +66,15 @@ abstract class MotionState  : StateAbstract {
 
                 splitViewModel.insert(split);
             }
-            else if(stepTotalDis > Split.SPLIT_DISTANCE) {
+            else  {
                 split?.update(dis,timeNow, latitude, longitude)
                 splitViewModel.update(split)
-                splitIndex ++;
-                stepTotalDis = 0.0
-                split = null
+
+                if(stepTotalDis > Split.SPLIT_DISTANCE) {
+                    splitIndex++;
+                    stepTotalDis = 0.0
+                    split = null
+                }
             }
 
             /*

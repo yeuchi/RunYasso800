@@ -63,7 +63,7 @@ public abstract class YassoDatabase : RoomDatabase ()
                     /*
                      * Refactor !!! Use factory pattern here !
                      */
-                    populateDatabase(database.splitDao(), database.stepDao())
+                    //populateDatabase(database.splitDao(), database.stepDao())
                 }
             }
         }
@@ -77,6 +77,7 @@ public abstract class YassoDatabase : RoomDatabase ()
             // Start the app with a clean database every time.
             // Not needed if you only populate on creation.
             splitDao.deleteAll()
+            stepDao.deleteAll()
 
             var split = Split(0,
                     Split.RUN_TYPE_SPRINT,
@@ -101,8 +102,10 @@ public abstract class YassoDatabase : RoomDatabase ()
             stepDao.insert(step)
 
             /*
-             * actually need to delete above for a fresh start
+             * Always a fresh empty instance for now.
              */
+            splitDao.deleteAll()
+            stepDao.deleteAll()
         }
     }
 
