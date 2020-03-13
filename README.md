@@ -11,10 +11,11 @@ This is a mobile phone implementation of Yasso800 in Kotlin for runners.  I inte
 
 <img src="https://user-images.githubusercontent.com/1282659/68713828-4b838380-0564-11ea-97c9-b645e0fe66f6.jpg" width="200"> 
 
-### Configure Split distances
-Sprint and Jog distances are configured under menu selection.
+### Configure 
+- Sprint and Jog distances are configured under menu selection : default 800 meters
+- Number of iterations (Sprint + Jog) pair : default 10
 
-<img src="https://user-images.githubusercontent.com/1282659/76635442-7b906280-6515-11ea-93df-556a3de0c6e5.jpg" width="200"> <img src="https://user-images.githubusercontent.com/1282659/76635445-7c28f900-6515-11ea-8c4a-2b43c893b1f3.jpg" width="200"> 
+<img src="https://user-images.githubusercontent.com/1282659/76650050-d3d45e00-652f-11ea-81d2-3023eaefa023.jpg" width="200"> <img src="https://user-images.githubusercontent.com/1282659/76635445-7c28f900-6515-11ea-8c4a-2b43c893b1f3.jpg" width="200"> 
 
 ### Goal (run time) Activity
 Activity provides the following functions.
