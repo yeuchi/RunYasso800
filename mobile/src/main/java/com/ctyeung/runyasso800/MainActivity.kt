@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListene
                 key = SharedPrefUtility.keyJogDis
             }
         }
-        SharedPrefUtility.setDistance(this, key, value)
+        SharedPrefUtility.setDistance(key, value)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListene
             }
             else -> return false
         }
-        dis = SharedPrefUtility.getDistance(this, key)
+        dis = SharedPrefUtility.getDistance(key)
         dlg.setParams(this, id, 0, max_dis, dis)
         dlg.show(getSupportFragmentManager(), title)
         return true

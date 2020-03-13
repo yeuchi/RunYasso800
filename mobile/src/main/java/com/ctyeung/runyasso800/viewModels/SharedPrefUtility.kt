@@ -5,6 +5,8 @@ import android.content.SharedPreferences
 import android.graphics.Color
 import android.net.Uri
 import androidx.core.content.FileProvider
+import com.ctyeung.runyasso800.MainActivity
+import com.ctyeung.runyasso800.MainApplication
 import com.ctyeung.runyasso800.room.splits.Split
 import java.io.File
 
@@ -28,63 +30,63 @@ object SharedPrefUtility
     var keyJogDis = "jogDis"
     var LAT_LONG_DEFAULT:String = "0"
 
-    fun getDistance(context:Context, key:String):Int
+    fun getDistance(key:String):Int
     {
-        val sharedPreferences = getSharedPref(context)
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
         val i = sharedPreferences.getInt(key, Split.SPLIT_DISTANCE.toInt())
         return i
     }
 
-    fun setDistance(context:Context, key:String, distance:Int)
+    fun setDistance(key:String, distance:Int)
     {
-        val sharedPreferences = getSharedPref(context)
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
         val editor = sharedPreferences.edit()
         editor.putInt(key, distance)
         editor.commit()
     }
 
-     fun getLatitude(context:Context):Double
+    fun getLatitude():Double
     {
-        val sharedPreferences = getSharedPref(context)
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
         val str = sharedPreferences.getString(keyLatitude, LAT_LONG_DEFAULT)
         return str.toDouble()
     }
 
-     fun setLatitude(context:Context, latitude:Double)
+    fun setLatitude(latitude:Double)
     {
-        val sharedPreferences = getSharedPref(context)
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
         val editor = sharedPreferences.edit()
         editor.putString(keyLatitude, latitude.toString())
         editor.commit()
     }
 
-     fun getLongitude(context:Context):Double
+    fun getLongitude():Double
     {
-        val sharedPreferences = getSharedPref(context)
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
         val str = sharedPreferences.getString(keyLongitude, LAT_LONG_DEFAULT)
         return str.toDouble()
     }
 
-     fun setLongitude(context:Context, longitude:Double)
+    fun setLongitude(longitude:Double)
     {
-        val sharedPreferences = getSharedPref(context)
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
         val editor = sharedPreferences.edit()
         editor.putString(keyLongitude, longitude.toString())
         editor.commit()
     }
 
-     fun getInterval(context:Context):Int
+    fun getInterval():Int
     {
-        val sharedPreferences = getSharedPref(context)
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
         return sharedPreferences.getInt(
             keyInterval,
             INTERVAL_DEFAULT
         )
     }
 
-     fun setInterval(context:Context, time:Int)
+    fun setInterval(time:Int)
     {
-        val sharedPreferences = getSharedPref(context)
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
         val editor = sharedPreferences.edit()
         editor.putInt(keyInterval, time)
         editor.commit()
@@ -93,37 +95,38 @@ object SharedPrefUtility
     /*
      * uri to last random dot images
      */
-    fun getImageUri(context: Context): Uri
+    fun getImageUri(): Uri
     {
         val defaultValue = "someDefaultUri"
-        val sharedPreferences = getSharedPref(context)
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
         val path = sharedPreferences.getString(keyImageUri, defaultValue)
         val file = File(path!!)
         return FileProvider.getUriForFile(
-            context,
+            MainApplication.applicationContext(),
             "com.example.ctyeung.runyasso800.fileprovider",
             file
         )
     }
-     fun getColor(context:Context, colorName:String):Int
+
+    fun getColor(colorName:String):Int
     {
         var defaultValue = Color.WHITE;
         if(colorName == keyColor2)
             defaultValue = Color.GREEN;
 
-        val sharedPreferences = getSharedPref(context)
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
         return sharedPreferences.getInt(colorName, defaultValue)
     }
 
-     fun setColor(context:Context, colorName:String, color:Int)
+    fun setColor(colorName:String, color:Int)
     {
-        val sharedPreferences = getSharedPref(context)
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
         val editor = sharedPreferences.edit()
         editor.putInt(colorName, color)
         editor.commit()
     }
 
-    fun getSharedPref(context:Context):SharedPreferences
+    private fun getSharedPref(context:Context):SharedPreferences
     {
         return context.getSharedPreferences(mypreference, Context.MODE_PRIVATE)
     }

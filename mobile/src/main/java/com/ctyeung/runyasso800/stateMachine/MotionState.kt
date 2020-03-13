@@ -4,6 +4,7 @@ import android.location.Location
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.steps.Step
 import com.ctyeung.runyasso800.viewModels.IRunStatsCallBack
+import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 import com.ctyeung.runyasso800.viewModels.SplitViewModel
 import com.ctyeung.runyasso800.viewModels.StepViewModel
 import java.time.LocalTime
@@ -70,7 +71,7 @@ abstract class MotionState  : StateAbstract {
                 split?.update(dis,timeNow, latitude, longitude)
                 splitViewModel.update(split)
 
-                if(stepTotalDis > Split.SPLIT_DISTANCE) {
+                if(stepTotalDis > FINISH_DISTANCE) {
                     splitIndex++;
                     stepTotalDis = 0.0
                     split = null
