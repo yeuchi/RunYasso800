@@ -97,9 +97,9 @@ class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListene
 
             "Num Iterations" -> {
                 value = SharedPrefUtility.getNumIterations()
-                id="iteration"
+                id="iterations"
                 title = "Num Iterations"
-                max = 20
+                max = Split.DEFAULT_SPLIT_ITERATIONS
             }
             else -> return false
         }

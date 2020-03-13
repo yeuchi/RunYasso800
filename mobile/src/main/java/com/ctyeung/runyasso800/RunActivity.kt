@@ -17,10 +17,7 @@ import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.steps.Step
 import com.ctyeung.runyasso800.stateMachine.*
 import com.ctyeung.runyasso800.utilities.LocationUtils
-import com.ctyeung.runyasso800.viewModels.IRunStatsCallBack
-import com.ctyeung.runyasso800.viewModels.RunFloatingActionButtons
-import com.ctyeung.runyasso800.viewModels.SplitViewModel
-import com.ctyeung.runyasso800.viewModels.StepViewModel
+import com.ctyeung.runyasso800.viewModels.*
 import kotlinx.android.synthetic.main.activity_run.*
 
 
@@ -104,6 +101,7 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
         if (shouldAskPermissions())
             askPermissions()
 
+        txtTotalSplits.text = "Total: "+SharedPrefUtility.getNumIterations()
         binding.invalidateAll()
     }
 
