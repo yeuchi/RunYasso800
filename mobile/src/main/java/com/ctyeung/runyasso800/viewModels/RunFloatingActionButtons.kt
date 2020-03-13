@@ -1,8 +1,5 @@
 package com.ctyeung.runyasso800.viewModels
 
-import android.opengl.Visibility
-import android.view.View
-import androidx.core.view.isVisible
 import com.ctyeung.runyasso800.R
 import com.ctyeung.runyasso800.RunActivity
 import com.ctyeung.runyasso800.stateMachine.*

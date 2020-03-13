@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.graphics.Color
 import android.net.Uri
 import androidx.core.content.FileProvider
+import com.ctyeung.runyasso800.room.splits.Split
 import java.io.File
 
 /*
@@ -23,7 +24,24 @@ object SharedPrefUtility
     var keyInterval = "time"
     var keyLatitude = "lat"
     var keyLongitude = "long"
+    var keySprintDis = "sprintDis"
+    var keyJogDis = "jogDis"
     var LAT_LONG_DEFAULT:String = "0"
+
+    fun getDistance(context:Context, key:String):Int
+    {
+        val sharedPreferences = getSharedPref(context)
+        val i = sharedPreferences.getInt(key, Split.SPLIT_DISTANCE.toInt())
+        return i
+    }
+
+    fun setDistance(context:Context, key:String, distance:Int)
+    {
+        val sharedPreferences = getSharedPref(context)
+        val editor = sharedPreferences.edit()
+        editor.putInt(key, distance)
+        editor.commit()
+    }
 
      fun getLatitude(context:Context):Double
     {

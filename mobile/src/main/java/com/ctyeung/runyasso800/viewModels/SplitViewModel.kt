@@ -43,7 +43,7 @@ class SplitViewModel (application: Application) : AndroidViewModel(application)
         disTotalString = "Total: " + totalDistance.roundToInt() + "m"
         var index = yasso.value?.size?:0 + 1
         indexString = "Split: " + index.toString()
-        typeString = "Type: " + split.run_type
+        typeString = split.run_type.capitalize()
         calculateTimeElapsed(split.endTime)
         elapsedTimeString = "Total: " + TimeFormatter.printTime(elapsedTime)
     }

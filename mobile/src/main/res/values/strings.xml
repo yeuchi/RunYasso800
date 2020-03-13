@@ -49,4 +49,16 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_result">Map</string>
 
+    <!-- Distance Fragment -->
+    <string name="sprint_distance">Sprint Distance</string>
+    <string name="jog_distance">Jog Distance</string>
+
+    <!-- number picker dialog -->
+    <string name="choose_distance">Choose Distance</string>
+    <string name="ok">OK</string>
+    <string name="btn_cancel">cancel</string>
+
+    <!-- menu -->
+    <string name="configuration">Config</string>
+
 </resources>

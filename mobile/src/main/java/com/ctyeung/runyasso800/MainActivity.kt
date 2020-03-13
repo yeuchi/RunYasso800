@@ -1,11 +1,17 @@
 package com.ctyeung.runyasso800
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.SharedPreferences
 import android.os.Bundle
-
+import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.ctyeung.runyasso800.databinding.ActivityMainBinding
+import com.ctyeung.runyasso800.dialogs.NumberPickerFragment
+import com.ctyeung.runyasso800.room.splits.Split
+import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
+import java.lang.reflect.Type
 
 
 /*
@@ -35,8 +41,25 @@ import com.ctyeung.runyasso800.databinding.ActivityMainBinding
  * e. Execution of Yasso800
  * f. Vibrate/Sound (voice recording, beep) for start/end/rest time
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListener {
     lateinit var binding: ActivityMainBinding
+    private var dlg:NumberPickerFragment=NumberPickerFragment()
+
+
+    override fun onNumberDialogOKClick(id: String, value: Int) {
+        dlg.dismiss()
+
+        var key:String = ""
+        when(id.toLowerCase()) {
+            "sprint" -> {
+                key = SharedPrefUtility.keySprintDis
+            }
+            "jog" -> {
+                key = SharedPrefUtility.keyJogDis
+            }
+        }
+        SharedPrefUtility.setDistance(this, key, value)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,9 +69,37 @@ class MainActivity : AppCompatActivity() {
         binding?.listener = this
     }
 
-    // add About in app bar
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_tab, menu)
+        return true
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem):Boolean {
 
+        val max_dis:Int = Split.SPLIT_DISTANCE.toInt()
+        var dis:Int = Split.SPLIT_DISTANCE.toInt()
+        var id:String = ""
+        var title:String = ""
+        var key:String = ""
+        when(item.toString()) {
+            "Sprint Distance" -> {
+                key = SharedPrefUtility.keySprintDis
+                id="sprint"
+                title ="Sprint Distance"
+            }
+
+            "Jog Distance" -> {
+                key = SharedPrefUtility.keyJogDis
+                id="jog"
+                title = "Jog Distance"
+            }
+            else -> return false
+        }
+        dis = SharedPrefUtility.getDistance(this, key)
+        dlg.setParams(this, id, 0, max_dis, dis)
+        dlg.show(getSupportFragmentManager(), title)
+        return true
+    }
 
     fun onClickTime()
     {

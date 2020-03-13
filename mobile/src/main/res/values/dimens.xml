@@ -5,4 +5,9 @@
     <dimen name="title_wid">100dp</dimen>
     <dimen name="value_wid">170dp</dimen>
     <dimen name="common_margin">15dp</dimen>
+
+    <!-- distance fragment -->
+    <dimen name="text_wid">150dp</dimen>
+    <dimen name="frag_dis_margin">30dp</dimen>
+
 </resources>
