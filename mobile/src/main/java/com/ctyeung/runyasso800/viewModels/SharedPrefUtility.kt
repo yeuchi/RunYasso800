@@ -23,17 +23,33 @@ object SharedPrefUtility
     val INTERVAL_MAX:Int = 10
     val INTERVAL_DEFAULT:Int = 1
     var INTERVAL_MULTIPLY = 200
-    var keyInterval = "time"
-    var keyLatitude = "lat"
-    var keyLongitude = "long"
-    var keySprintDis = "sprintDis"
-    var keyJogDis = "jogDis"
-    var LAT_LONG_DEFAULT:String = "0"
+    val keyInterval = "time"
+    val keyLatitude = "lat"
+    val keyLongitude = "long"
+    val keySprintDis = "sprintDis"
+    val keyJogDis = "jogDis"
+    val keyNumIterations = "iterations"
+    val LAT_LONG_DEFAULT:String = "0"
+
+    fun getNumIterations():Int
+    {
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
+        val i = sharedPreferences.getInt(keyNumIterations, Split.DEFAULT_SPLIT_ITERATIONS)
+        return i
+    }
+
+    fun setNumIterations(distance:Int)
+    {
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
+        val editor = sharedPreferences.edit()
+        editor.putInt(keyNumIterations, distance)
+        editor.commit()
+    }
 
     fun getDistance(key:String):Int
     {
         val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val i = sharedPreferences.getInt(key, Split.SPLIT_DISTANCE.toInt())
+        val i = sharedPreferences.getInt(key, Split.DEFAULT_SPLIT_ITERATIONS.toInt())
         return i
     }
 

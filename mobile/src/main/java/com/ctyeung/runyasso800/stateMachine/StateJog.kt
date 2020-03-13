@@ -1,6 +1,7 @@
 package com.ctyeung.runyasso800.stateMachine
 
 import android.location.Location
+import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.viewModels.IRunStatsCallBack
 import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 import com.ctyeung.runyasso800.viewModels.SplitViewModel
@@ -9,12 +10,15 @@ import java.lang.reflect.Type
 
 class StateJog : MotionState, Ijog, Isprint, Idone {
 
+    var NUM_ITERATIONS:Int = Split.DEFAULT_SPLIT_ITERATIONS
+
     constructor(listener:IStateCallback,
                 actListener: IRunStatsCallBack,
                 splitViewModel: SplitViewModel,
                 stepViewModel: StepViewModel):super(listener, actListener, splitViewModel, stepViewModel)
     {
         FINISH_DISTANCE = SharedPrefUtility.getDistance(SharedPrefUtility.keyJogDis)
+        NUM_ITERATIONS = SharedPrefUtility.getNumIterations()
     }
 
     /*
@@ -50,7 +54,7 @@ class StateJog : MotionState, Ijog, Isprint, Idone {
 
         when(splitIndex) {
 
-            10 -> {
+            NUM_ITERATIONS -> {
                 listener.onChangeState(StateDone::class.java)
             }
             else -> {

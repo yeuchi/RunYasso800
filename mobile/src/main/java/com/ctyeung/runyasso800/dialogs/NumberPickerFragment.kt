@@ -41,7 +41,7 @@ class NumberPickerFragment : DialogFragment() {
         val context = activity?.baseContext
         val ok = context?.resources?.getString(R.string.ok)
         val cancel = context?.resources?.getString(R.string.btn_cancel)
-        val chooseValue = context?.resources?.getString(R.string.choose_distance)
+        val chooseValue = context?.resources?.getString(R.string.choose_number)
         numberPicker = NumberPicker(activity)
         setNumberValues()
         val builder = AlertDialog.Builder(activity)

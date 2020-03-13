@@ -52,13 +52,15 @@ class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListene
         var key:String = ""
         when(id.toLowerCase()) {
             "sprint" -> {
-                key = SharedPrefUtility.keySprintDis
+                SharedPrefUtility.setDistance(SharedPrefUtility.keySprintDis, value)
             }
             "jog" -> {
-                key = SharedPrefUtility.keyJogDis
+                SharedPrefUtility.setDistance(SharedPrefUtility.keyJogDis, value)
+            }
+            "iterations" -> {
+                SharedPrefUtility.setNumIterations(value)
             }
         }
-        SharedPrefUtility.setDistance(key, value)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,27 +78,32 @@ class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListene
 
     override fun onOptionsItemSelected(item: MenuItem):Boolean {
 
-        val max_dis:Int = Split.SPLIT_DISTANCE.toInt()
-        var dis:Int = Split.SPLIT_DISTANCE.toInt()
+        var max:Int = Split.DEFAULT_SPLIT_DISTANCE.toInt()
+        var value:Int = Split.DEFAULT_SPLIT_DISTANCE.toInt()
         var id:String = ""
         var title:String = ""
-        var key:String = ""
         when(item.toString()) {
             "Sprint Distance" -> {
-                key = SharedPrefUtility.keySprintDis
+                value = SharedPrefUtility.getDistance(SharedPrefUtility.keySprintDis)
                 id="sprint"
                 title ="Sprint Distance"
             }
 
             "Jog Distance" -> {
-                key = SharedPrefUtility.keyJogDis
+                value = SharedPrefUtility.getDistance(SharedPrefUtility.keyJogDis)
                 id="jog"
                 title = "Jog Distance"
             }
+
+            "Num Iterations" -> {
+                value = SharedPrefUtility.getNumIterations()
+                id="iteration"
+                title = "Num Iterations"
+                max = 20
+            }
             else -> return false
         }
-        dis = SharedPrefUtility.getDistance(key)
-        dlg.setParams(this, id, 0, max_dis, dis)
+        dlg.setParams(this, id, 0, max, value)
         dlg.show(getSupportFragmentManager(), title)
         return true
     }
