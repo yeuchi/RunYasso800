@@ -40,7 +40,7 @@ class StateMachine : IStateCallback {
 
         stateError = StateError(this)
         stateDone = StateDone(this)
-        stateClear = StateClear(this)
+        stateClear = StateClear(this, splitViewModel, stepViewModel)
         statePause = StatePause(this)
         stateResume = StateResume(this)
 
@@ -120,6 +120,7 @@ class StateMachine : IStateCallback {
     fun interruptClear() {
 
         when(current) {
+            StateIdle::class.java,
             StatePause::class.java,
             StateError::class.java,
             StateDone::class.java -> stateClear.execute(current)

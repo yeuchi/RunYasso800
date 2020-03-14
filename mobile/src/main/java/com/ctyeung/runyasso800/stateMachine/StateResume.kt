@@ -17,7 +17,7 @@ class StateResume : StateAbstract, Iresume, Isprint, Ijog {
         goto()
     }
 
-    override fun goto() {
+    override fun goto():Boolean {
 
         /*
          * SPRINT or JOG ????????
@@ -30,5 +30,6 @@ class StateResume : StateAbstract, Iresume, Isprint, Ijog {
             StateJog::class.java -> listener.onChangeState(StateJog::class.java)
             else -> listener.onChangeState(StateError::class.java)
         }
+        return true
     }
 }

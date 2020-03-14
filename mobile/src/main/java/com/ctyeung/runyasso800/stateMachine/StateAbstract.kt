@@ -4,7 +4,7 @@ import java.lang.reflect.Type
 
 abstract class StateAbstract {
 
-    lateinit var listener:IStateCallback
+    var listener:IStateCallback
     var prevState:Type = StateIdle::class.java
 
     constructor(listener:IStateCallback){
@@ -15,5 +15,5 @@ abstract class StateAbstract {
     abstract fun execute(previous:Type)
 
     // which state(s) can we transition to ?
-    abstract fun goto()
+    abstract fun goto():Boolean
 }

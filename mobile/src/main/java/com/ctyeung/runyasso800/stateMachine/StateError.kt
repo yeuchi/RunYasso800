@@ -15,10 +15,10 @@ class StateError : StateAbstract, Ierror, Iclear {
         // things to perform in this state
     }
 
-    override fun goto() {
-
+    override fun goto():Boolean {
         /*
          * Stuck in error until user CLEAR
          */
+        return false
     }
 }

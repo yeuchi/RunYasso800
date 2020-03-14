@@ -39,7 +39,6 @@ class SplitViewModel (application: Application) : AndroidViewModel(application)
 
     private fun setTextProperties(split:Split)
     {
-        totalDistance += split.dis
         disTotalString = "Total: " + totalDistance.roundToInt() + "m"
         var index = yasso.value?.size?:0 + 1
         indexString = "Split: " + index.toString()

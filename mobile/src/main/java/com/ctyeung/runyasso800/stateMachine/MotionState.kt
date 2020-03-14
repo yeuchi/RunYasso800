@@ -15,7 +15,6 @@ abstract class MotionState  : StateAbstract {
     var stepViewModel: StepViewModel
     var splitViewModel:SplitViewModel
     var FINISH_DISTANCE = 800
-    var stepTotalDis:Double = 0.0
     var previous:Location ?= null
     var splitIndex:Int = 0
     var split:Split?=null
@@ -37,7 +36,7 @@ abstract class MotionState  : StateAbstract {
         val dis: Double = location.distanceTo(prevLocation).toDouble()
         if (dis > 0) {
             // these values should be initialized from database -- not sharedPreference !!!!
-            stepTotalDis += dis
+
             val latitude: Double = prevLocation?.latitude ?: 0.0
             val longitude: Double = prevLocation?.longitude ?: 0.0
             val timeNow = System.currentTimeMillis()
@@ -68,23 +67,30 @@ abstract class MotionState  : StateAbstract {
                 splitViewModel.insert(split);
             }
             else  {
-                split?.update(dis,timeNow, latitude, longitude)
+                split?.update(stepViewModel.totalDistance,timeNow, latitude, longitude)
                 splitViewModel.update(split)
 
-                if(stepTotalDis > FINISH_DISTANCE) {
-                    splitIndex++;
-                    stepTotalDis = 0.0
-                    split = null
-                }
+                /*
+                 * Consider idemtpotency ?
+                 */
+                goto()
             }
-
-            /*
-             * Consider idemtpotency ?
-             */
-            goto()
-
             this.actListener.onHandleLocationUpdate()
         }
+    }
+
+    /*
+     * Return true if state change should occur
+     */
+    override fun goto():Boolean {
+        if(stepViewModel.totalDistance > FINISH_DISTANCE) {
+            splitIndex++;
+            splitViewModel.totalDistance += stepViewModel.totalDistance
+            stepViewModel.totalDistance = 0.0
+            split = null
+            return true
+        }
+        return false
     }
 
     /*

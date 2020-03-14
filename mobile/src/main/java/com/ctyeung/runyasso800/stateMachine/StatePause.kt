@@ -16,15 +16,19 @@ class StatePause : StateAbstract, Ipause, Iresume, Iclear {
         goto()
     }
 
-    override fun goto() {
+    override fun goto():Boolean {
         /*
          * we are stuck in this state
          * (except if user CLEAR
          */
         when(prevState){
-            StatePause::class.java -> listener.onChangeState(StateResume::class.java)
+            StatePause::class.java -> {
+                listener.onChangeState(StateResume::class.java)
+                return true
+            }
             else -> {
                 // do nothing -- stay in pause
+                return false
             }
         }
     }

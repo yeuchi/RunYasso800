@@ -18,7 +18,7 @@ class StateIdle :StateAbstract, Iidle, Isprint {
         // things to perform in this state
     }
 
-    override fun goto() {
+    override fun goto():Boolean {
         // do nothing -- IDLE
         // wait for interrupt to change state
 
@@ -28,5 +28,6 @@ class StateIdle :StateAbstract, Iidle, Isprint {
          */
         actListener.onHandleLocationUpdate()
         listener.onChangeState(this.javaClass)
+        return false
     }
 }

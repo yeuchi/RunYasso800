@@ -36,13 +36,16 @@ class StateJog : MotionState, Ijog, Isprint, Idone {
      * state change conditions
      * - Jog, Sprint or Done
      */
-    override fun goto() {
-
-        when {
-            stepTotalDis >= FINISH_DISTANCE -> changeState()
-
+    override fun goto():Boolean {
+        val retVal = super.goto()
+        if(retVal) {
+            changeState()
+            return true
+        }
             // current state @ Jog !
-            else -> listener.onChangeState(this.javaClass)
+        else {
+            listener.onChangeState(this.javaClass)
+            return false
         }
     }
 

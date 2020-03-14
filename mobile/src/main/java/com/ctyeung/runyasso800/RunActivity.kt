@@ -82,9 +82,6 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
         splitViewModel = ViewModelProvider(this).get(SplitViewModel::class.java)
         stateMachine = StateMachine(this, splitViewModel, stepViewModel)
 
-        splitViewModel.clear()
-        stepViewModel.clear()
-
         stepViewModel.steps.observe(this, Observer { steps ->
             steps?.let {
 
@@ -97,6 +94,9 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
                 // database update success ..
             }
         })
+
+        // start with a clean slate
+        stateMachine.interruptClear()
 
         if (shouldAskPermissions())
             askPermissions()
@@ -208,6 +208,7 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
     {
         // must be paused / error / done
         when(stateMachine.current){
+            StateIdle::class.java,
             StatePause::class.java,
             StateError::class.java,
             StateDone::class.java -> {

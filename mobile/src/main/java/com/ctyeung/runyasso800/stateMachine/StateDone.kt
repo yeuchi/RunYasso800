@@ -16,11 +16,11 @@ class StateDone : StateAbstract, Idone {
 
     }
 
-    override fun goto() {
-
+    override fun goto():Boolean {
         /*
          * we are stuck in this state
          * (except if user CLEAR
          */
+        return false
     }
 }
