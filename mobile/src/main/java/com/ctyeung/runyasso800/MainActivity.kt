@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListene
     override fun onNumberDialogOKClick(id: String, value: Int) {
         dlg.dismiss()
 
-        var key:String = ""
         when(id.toLowerCase()) {
             "sprint" -> {
                 SharedPrefUtility.setDistance(SharedPrefUtility.keySprintDis, value)

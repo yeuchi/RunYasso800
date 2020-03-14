@@ -8,10 +8,9 @@ object TimeFormatter {
 
     fun printTime(seconds:Long):String
     {
-        val d = Date(seconds * 1000L)
         val df = SimpleDateFormat("HH:mm:ss") // HH for 0-23
         df.setTimeZone(TimeZone.getTimeZone("GMT"))
-        val timeString: String = df.format(d)
+        val timeString: String = df.format(seconds)
         return timeString
     }
 }

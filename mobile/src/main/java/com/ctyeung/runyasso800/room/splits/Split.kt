@@ -21,9 +21,7 @@ data class Split(val splitIndex:Int=0,  // 0 - 9 : total of 10
                  var endLong:Double)    // in Lat/Long unit x 1000
 {
     companion object{
-        //const val DEFAULT_SPLIT_DISTANCE:Double = 800.0
-        // for dev/test use a smaller distance
-        const val DEFAULT_SPLIT_DISTANCE:Double = 100.0
+        const val DEFAULT_SPLIT_DISTANCE:Double = 800.0
         const val DEFAULT_SPLIT_ITERATIONS:Int = 20
         const val UNIT_SCALER:Double = 1000.0
         const val RUN_TYPE_SPRINT:String = "sprint"
