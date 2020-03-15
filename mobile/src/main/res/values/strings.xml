@@ -6,6 +6,12 @@
     <string name="result">Result</string>
     <string name="title_activity_config">Config</string>
 
+    <!-- MainActivity -->
+    <string name="id_sprint">sprint</string>
+    <string name="id_jog">jog</string>
+    <string name="id_iteration">iterations</string>
+    <string name="id_gps">gps</string>
+
     <!-- Goal Activity -->
     <string name="your_goal">Marathon goal</string>
     <string name="run_name">Run name</string>
@@ -53,6 +59,7 @@
     <string name="sprint_distance">Sprint Distance</string>
     <string name="jog_distance">Jog Distance</string>
     <string name="num_iterations">Num Iterations</string>
+    <string name="gps_sample_rate">GPS Sample Rate</string>
 
     <!-- number picker dialog -->
     <string name="choose_number">Choose Number</string>

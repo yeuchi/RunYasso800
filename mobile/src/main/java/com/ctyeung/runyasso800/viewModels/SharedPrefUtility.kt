@@ -8,6 +8,7 @@ import androidx.core.content.FileProvider
 import com.ctyeung.runyasso800.MainActivity
 import com.ctyeung.runyasso800.MainApplication
 import com.ctyeung.runyasso800.room.splits.Split
+import com.ctyeung.runyasso800.utilities.LocationUtils
 import java.io.File
 
 /*
@@ -29,7 +30,23 @@ object SharedPrefUtility
     val keySprintDis = "sprintDis"
     val keyJogDis = "jogDis"
     val keyNumIterations = "iterations"
+    val keyGPSsampleRate = "gps"
     val LAT_LONG_DEFAULT:String = "0"
+
+    fun getGPSsampleRate():Long
+    {
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
+        val i = sharedPreferences.getLong(keyGPSsampleRate, LocationUtils.DEFAULT_SAMPLE_RATE)
+        return i
+    }
+
+    fun setGPSsampleRate(rate:Long)
+    {
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
+        val editor = sharedPreferences.edit()
+        editor.putLong(keyGPSsampleRate, rate)
+        editor.commit()
+    }
 
     fun getNumIterations():Int
     {

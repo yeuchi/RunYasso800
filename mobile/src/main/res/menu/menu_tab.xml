@@ -16,4 +16,9 @@
         android:orderInCategory="3"
         android:title="@string/num_iterations" />
 
+    <item
+        android:id="@+id/gps_sample_rate"
+        android:orderInCategory="4"
+        android:title="@string/gps_sample_rate" />
+
 </menu>

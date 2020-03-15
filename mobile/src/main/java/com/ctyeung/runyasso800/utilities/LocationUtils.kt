@@ -6,11 +6,13 @@ package com.ctyeung.runyasso800.utilities
  */
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.location.Location
 import android.os.Looper
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 import com.google.android.gms.location.*
 
 
@@ -19,9 +21,10 @@ object LocationUtils
     var locationRequest:LocationRequest ?= null
     var fusedLocationProviderClient: FusedLocationProviderClient ?= null
     var location : MutableLiveData<Location> = MutableLiveData()
-    // every 30 seconds a reading
-    val UPDATE_INTERVAL:Long = 30000
-    val FASTEST_INTERVAL:Long = 30000
+    // every 30 seconds a reading -- might want to use dagger for dependency injection
+    val DEFAULT_SAMPLE_RATE:Long = 30000
+    val MIN_SAMPLE_RATE:Long = 5000
+    //val FASTEST_INTERVAL:Long = 30000
 
     var locationCallback: LocationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
@@ -42,10 +45,12 @@ object LocationUtils
             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(appContext)
 
         if(locationRequest == null) {
+            val sampleRate = SharedPrefUtility.getGPSsampleRate()
+
             locationRequest = LocationRequest.create()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                .setInterval(UPDATE_INTERVAL)
-                .setFastestInterval(FASTEST_INTERVAL)
+                .setInterval(sampleRate)
+                .setFastestInterval(sampleRate)
 
             fusedLocationProviderClient?.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
 

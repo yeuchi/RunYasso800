@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import com.ctyeung.runyasso800.databinding.ActivityMainBinding
 import com.ctyeung.runyasso800.dialogs.NumberPickerFragment
 import com.ctyeung.runyasso800.room.splits.Split
+import com.ctyeung.runyasso800.utilities.LocationUtils
 import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 import java.lang.reflect.Type
 
@@ -50,14 +51,17 @@ class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListene
         dlg.dismiss()
 
         when(id.toLowerCase()) {
-            "sprint" -> {
+            this.resources.getString(R.string.id_sprint) -> {
                 SharedPrefUtility.setDistance(SharedPrefUtility.keySprintDis, value)
             }
-            "jog" -> {
+            this.resources.getString(R.string.id_jog) -> {
                 SharedPrefUtility.setDistance(SharedPrefUtility.keyJogDis, value)
             }
-            "iterations" -> {
+            this.resources.getString(R.string.id_iteration) -> {
                 SharedPrefUtility.setNumIterations(value)
+            }
+            this.resources.getString(R.string.id_gps) -> {
+                SharedPrefUtility.setGPSsampleRate(value.toLong())
             }
         }
     }
@@ -78,31 +82,40 @@ class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListene
     override fun onOptionsItemSelected(item: MenuItem):Boolean {
 
         var max:Int = Split.DEFAULT_SPLIT_DISTANCE.toInt()
+        var min:Int = 0
         var value:Int = Split.DEFAULT_SPLIT_DISTANCE.toInt()
         var id:String = ""
         var title:String = ""
         when(item.toString()) {
-            "Sprint Distance" -> {
+            this.resources.getString(R.string.sprint_distance) -> {
                 value = SharedPrefUtility.getDistance(SharedPrefUtility.keySprintDis)
-                id="sprint"
-                title ="Sprint Distance"
+                id= this.resources.getString(R.string.id_sprint)
+                title = this.resources.getString(R.string.sprint_distance)
             }
 
-            "Jog Distance" -> {
+            this.resources.getString(R.string.jog_distance) -> {
                 value = SharedPrefUtility.getDistance(SharedPrefUtility.keyJogDis)
-                id="jog"
-                title = "Jog Distance"
+                id= this.resources.getString(R.string.id_jog)
+                title = this.resources.getString(R.string.jog_distance)
             }
 
-            "Num Iterations" -> {
+            this.resources.getString(R.string.num_iterations) -> {
                 value = SharedPrefUtility.getNumIterations()
-                id="iterations"
-                title = "Num Iterations"
+                id= this.resources.getString(R.string.id_iteration)
+                title = this.resources.getString(R.string.num_iterations)
                 max = Split.DEFAULT_SPLIT_ITERATIONS
+            }
+
+            this.resources.getString(R.string.gps_sample_rate) -> {
+                value = SharedPrefUtility.getGPSsampleRate().toInt()
+                id= this.resources.getString(R.string.id_gps)
+                title = this.resources.getString(R.string.gps_sample_rate)
+                max = LocationUtils.DEFAULT_SAMPLE_RATE.toInt()
+                min = LocationUtils.MIN_SAMPLE_RATE.toInt()
             }
             else -> return false
         }
-        dlg.setParams(this, id, 0, max, value)
+        dlg.setParams(this, id, min, max, value)
         dlg.show(getSupportFragmentManager(), title)
         return true
     }
