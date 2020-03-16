@@ -14,7 +14,6 @@ import com.ctyeung.runyasso800.utilities.LocationUtils
 import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 import java.lang.reflect.Type
 
-
 /*
  * Let me develop a Yasso 800 application for phone.
  * ... then try to get it into a watch next.
@@ -83,9 +82,10 @@ class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListene
 
         var max:Int = Split.DEFAULT_SPLIT_DISTANCE.toInt()
         var min:Int = 0
-        var value:Int = Split.DEFAULT_SPLIT_DISTANCE.toInt()
-        var id:String = ""
-        var title:String = ""
+        var value:Int
+        var id:String
+        var title:String
+
         when(item.toString()) {
             this.resources.getString(R.string.sprint_distance) -> {
                 value = SharedPrefUtility.getDistance(SharedPrefUtility.keySprintDis)

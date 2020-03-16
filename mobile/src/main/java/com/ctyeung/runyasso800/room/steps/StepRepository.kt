@@ -6,6 +6,10 @@ class StepRepository(private val stepDao: StepDao)
 {
     var steps:LiveData<List<Step>> = stepDao.getAll()
 
+    fun query(splitIndex:Int):List<Step> {
+        return stepDao.getBySplit(splitIndex)
+    }
+
     suspend fun insert(step:Step)
     {
         stepDao.insert(step)

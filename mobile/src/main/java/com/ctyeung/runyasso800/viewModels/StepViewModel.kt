@@ -16,9 +16,10 @@ class StepViewModel (application: Application) : AndroidViewModel(application)
 {
     var repository:StepRepository
     var steps:LiveData<List<Step>>
+    var startTime:Long = 0
+
     var totalDistance:Double = 0.0
-    var elapsedTime:Long = 0
-    var disTotalString:String = "Step: 0m"
+    var disTotalString:String = "Distance: 0m"
     var elapsedTimeString:String = "Time: 00:00"
 
     init {
@@ -30,7 +31,7 @@ class StepViewModel (application: Application) : AndroidViewModel(application)
     fun insert(step: Step) = viewModelScope.launch {
         totalDistance += step.dis
         disTotalString = "Step: "+ totalDistance.roundToInt() + "m";
-        calculateTimeElapsed(step.time)
+        val elapsedTime = calculateTimeElapsed(step.time)
         elapsedTimeString = "Time: " + TimeFormatter.printTime(elapsedTime)
         repository.insert(step)
     }
@@ -39,17 +40,19 @@ class StepViewModel (application: Application) : AndroidViewModel(application)
      * calculate the total elapsed time since start
      * ** but what about 'PAUSE' ????
      */
-    private fun calculateTimeElapsed(seconds:Long) {
+    private fun calculateTimeElapsed(seconds:Long):Long {
         val size = steps.value?.size?:0
-        if(null != steps.value && size > 0)
-            elapsedTime = seconds - steps.value!![0].time
-        else
-            elapsedTime = 0
-    }
+        if(null != steps.value && size > 0) {
+            return seconds - startTime
+        }
+        else {
+            startTime = seconds
+            return 0
+        }
+      }
 
     fun clear() = viewModelScope.launch {
         totalDistance = 0.0
-        elapsedTime = 0
         repository.clear()
     }
 }

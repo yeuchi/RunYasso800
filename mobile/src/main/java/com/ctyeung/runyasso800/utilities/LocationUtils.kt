@@ -15,7 +15,6 @@ import androidx.lifecycle.MutableLiveData
 import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 import com.google.android.gms.location.*
 
-
 object LocationUtils
 {
     var locationRequest:LocationRequest ?= null
@@ -23,6 +22,7 @@ object LocationUtils
     var location : MutableLiveData<Location> = MutableLiveData()
     // every 30 seconds a reading -- might want to use dagger for dependency injection
     val DEFAULT_SAMPLE_RATE:Long = 30000
+    //val DEFAULT_SAMPLE_RATE:Long = 5000
     val MIN_SAMPLE_RATE:Long = 5000
     //val FASTEST_INTERVAL:Long = 30000
 
