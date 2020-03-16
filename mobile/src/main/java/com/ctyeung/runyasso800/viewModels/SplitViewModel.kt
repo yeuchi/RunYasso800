@@ -15,6 +15,7 @@ import kotlin.math.roundToLong
 
 class SplitViewModel (application: Application) : AndroidViewModel(application)
 {
+    var index:Int = 0
     var repository:SplitRepository
     var yasso:LiveData<List<Split>>
     var totalDistance:Double = 0.0

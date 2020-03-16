@@ -6,5 +6,6 @@ import android.location.Location
  * call back from state machine to RunActivity
  */
 interface IRunStatsCallBack {
-    fun onHandleLocationUpdate();
+    fun onHandleLocationUpdate()
+    fun onHandleYassoDone()
 }

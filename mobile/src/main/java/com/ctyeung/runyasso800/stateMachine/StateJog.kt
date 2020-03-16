@@ -55,14 +55,13 @@ class StateJog : MotionState, Ijog, Isprint, Idone {
      */
     fun changeState() {
 
-        when(splitIndex) {
-
-            NUM_ITERATIONS -> {
-                listener.onChangeState(StateDone::class.java)
-            }
-            else -> {
-                listener.onChangeState(StateSprint::class.java)
-            }
+        if(splitViewModel.index >= NUM_ITERATIONS)  {
+            // done with Yasso !
+            listener.onChangeState(StateDone::class.java)
+        }
+        else {
+            // go to sprint !
+            listener.onChangeState(StateSprint::class.java)
         }
     }
 }

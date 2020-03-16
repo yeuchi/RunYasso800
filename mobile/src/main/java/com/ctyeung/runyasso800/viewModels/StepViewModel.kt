@@ -17,9 +17,9 @@ class StepViewModel (application: Application) : AndroidViewModel(application)
     var repository:StepRepository
     var steps:LiveData<List<Step>>
     var startTime:Long = 0
-
+    var index:Int = 0
     var totalDistance:Double = 0.0
-    var disTotalString:String = "Distance: 0m"
+    var disTotalString:String = "Step: 0m"
     var elapsedTimeString:String = "Time: 00:00"
 
     init {

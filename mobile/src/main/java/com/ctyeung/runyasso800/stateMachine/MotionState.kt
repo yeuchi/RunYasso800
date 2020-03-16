@@ -16,7 +16,6 @@ abstract class MotionState  : StateAbstract {
     var splitViewModel:SplitViewModel
     var FINISH_DISTANCE = 800
     var previous:Location ?= null
-    var splitIndex:Int = 0
     var split:Split?=null
 
     constructor(listener:IStateCallback,
@@ -41,11 +40,11 @@ abstract class MotionState  : StateAbstract {
             val longitude: Double = prevLocation?.longitude ?: 0.0
             val timeNow = System.currentTimeMillis()
 
-            val stepIndex = this.stepViewModel.steps.value?.size ?: 0
-            val step = Step(splitIndex,
-                            stepIndex,
+            val runType = getRunType()
+            val step = Step(splitViewModel.index,
+                            stepViewModel.index ++,
                             dis,
-                            getRunType(),
+                            runType,
                             timeNow,
                             latitude,
                             longitude)
@@ -54,8 +53,8 @@ abstract class MotionState  : StateAbstract {
 
             // initialize Split
             if(split == null) {
-                split = Split(splitIndex,
-                    getRunType(),
+                split = Split(splitViewModel.index,
+                    runType,
                     0.0,
                     timeNow,
                     latitude,
@@ -84,7 +83,7 @@ abstract class MotionState  : StateAbstract {
      */
     override fun goto():Boolean {
         if(stepViewModel.totalDistance > FINISH_DISTANCE) {
-            splitIndex++
+            splitViewModel.index ++
             splitViewModel.totalDistance += stepViewModel.totalDistance
             stepViewModel.totalDistance = 0.0
             stepViewModel.startTime = System.currentTimeMillis()

@@ -57,10 +57,13 @@ class StateMachine : IStateCallback {
         current = type
 
         when(current){
+            StateDone::class.java -> {
+                // we are done !
+                actListener.onHandleYassoDone()
+            }
+
             StateError::class.java -> {
-                /*
-                 * Yikes !  Handle error here !
-                 */
+                // Yikes !  Handle error here !
             }
         }
     }

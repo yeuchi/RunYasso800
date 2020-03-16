@@ -39,6 +39,10 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
     lateinit var stepViewModel:StepViewModel
     lateinit var activity: RunActivity
 
+    override fun onHandleYassoDone() {
+        fab.changeState(StateClear::class.java)
+    }
+
     /*
      * callback from State machine
      * -> update view model and UI
