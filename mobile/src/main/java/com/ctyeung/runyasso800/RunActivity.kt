@@ -40,7 +40,7 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
     lateinit var activity: RunActivity
 
     override fun onHandleYassoDone() {
-        fab.changeState(StateClear::class.java)
+        fab.changeState(StateDone::class.java)
     }
 
     /*

@@ -36,6 +36,7 @@ class RunFloatingActionButtons(activity:RunActivity ) {
                 btnNext.hide()
             }
 
+            StateDone::class.java,
             StatePause::class.java -> {
                 btnStart.show()
                 btnClear.show()

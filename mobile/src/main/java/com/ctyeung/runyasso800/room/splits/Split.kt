@@ -9,7 +9,7 @@ import java.util.*
 /*
  * Split is 800m, minimum unit of run length in this workout
  */
-@Entity(tableName = "split_table", primaryKeys=["splitIndex"])
+@Entity(tableName = "split_table", primaryKeys=["splitIndex", "run_type"])
 data class Split(val splitIndex:Int=0,  // 0 - 9 : total of 10
                  val run_type:String,   // jog or sprint
                  var dis:Double,        // in meters x1000
