@@ -83,9 +83,7 @@ abstract class MotionState  : StateAbstract {
      */
     override fun goto():Boolean {
         if(stepViewModel.totalDistance > FINISH_DISTANCE) {
-            if (getRunType()==Split.RUN_TYPE_JOG)
-                splitViewModel.index ++
-
+            incrementSplitIndex()
             splitViewModel.totalDistance += stepViewModel.totalDistance
             stepViewModel.totalDistance = 0.0
             stepViewModel.startTime = System.currentTimeMillis()
@@ -93,6 +91,12 @@ abstract class MotionState  : StateAbstract {
             return true
         }
         return false
+    }
+
+    private fun incrementSplitIndex() {
+        if (getRunType()==Split.RUN_TYPE_JOG &&
+            splitViewModel.index < SharedPrefUtility.getNumIterations())
+            splitViewModel.index ++
     }
 
     /*

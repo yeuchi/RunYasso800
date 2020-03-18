@@ -25,10 +25,8 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/room/splits/Split.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/room/splits/Split.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/ResultActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/ResultActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/MotionState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/MotionState.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/viewModels/RunFloatingActionButtons.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/viewModels/RunFloatingActionButtons.kt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -311,19 +309,24 @@
           <option name="timeStamp" value="58" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateSprint.kt</url>
-          <line>38</line>
-          <option name="timeStamp" value="77" />
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/ResultActivity.kt</url>
+          <line>39</line>
+          <option name="timeStamp" value="105" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateJog.kt</url>
-          <line>57</line>
-          <option name="timeStamp" value="97" />
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/ResultActivity.kt</url>
+          <line>46</line>
+          <option name="timeStamp" value="106" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/MotionState.kt</url>
-          <line>84</line>
-          <option name="timeStamp" value="102" />
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/ResultActivity.kt</url>
+          <line>54</line>
+          <option name="timeStamp" value="107" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/ResultActivity.kt</url>
+          <line>144</line>
+          <option name="timeStamp" value="108" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
