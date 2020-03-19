@@ -20,6 +20,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 
+
 class ResultActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private lateinit var activity: Activity
@@ -110,8 +111,20 @@ class ResultActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMark
             for(split in splits){
                 val s = LatLng(split.startLat, split.startLong)
                 val name:String = split.run_type + split.splitIndex
-                mMap.addMarker(MarkerOptions().position(s).title(name))
+                val markerOption = MarkerOptions()
+                                    .position(s)
+                                    .title(name)
+                                    .icon(BitmapDescriptorFactory.defaultMarker(getIconColor(split.run_type)))
+                mMap.addMarker(markerOption)
             }
+        }
+    }
+
+    private fun getIconColor(runType:String):Float {
+        when (runType) {
+            Split.RUN_TYPE_JOG -> return BitmapDescriptorFactory.HUE_CYAN
+            Split.RUN_TYPE_SPRINT -> return BitmapDescriptorFactory.HUE_ORANGE
+            else -> return BitmapDescriptorFactory.HUE_VIOLET
         }
     }
 
