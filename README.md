@@ -62,7 +62,7 @@ Splits separated by map markers for selection to obtain detail recorded metrics.
 
 PLEASE INSERT YOUR GOOGLE MAP KEY in values/google_map_api.xml before running app.
 <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">!! MY_KEY_HERE !!</string>\
-<img src="https://user-images.githubusercontent.com/1282659/72771599-a36ee400-3bbe-11ea-8d76-e2eb1ff11cda.jpg" width="200"> 
+<img src="https://user-images.githubusercontent.com/1282659/72771599-a36ee400-3bbe-11ea-8d76-e2eb1ff11cda.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77124552-338ba700-6a11-11ea-8af6-5a800ad1413b.jpg" width="200">
 
 ### Persist (Share) Activity
 Activity provides persistence (share) methods to user.  They include the follow:
