@@ -10,8 +10,8 @@ data class Step(var splitIndex:Int=0,        // 0 - 9 : total of 10
                 var dis:Double=0.0,          // piecewise distance
                 var run_type:String="",      // jog or sprint
                 var time:Long=0,             // in seconds
-                var lat:Double=0.0,          // in Lat/Long unit x 1000
-                var long:Double=0.0)         // in Lat/Long unit x 1000
+                var latitude:Double=0.0,          // in Lat/Long unit x 1000
+                var longitude:Double=0.0)         // in Lat/Long unit x 1000
 {
 
 }

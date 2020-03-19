@@ -35,7 +35,9 @@ class ResultActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMark
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
         activity = this
-        askPermissions()
+
+        if(shouldAskPermissions())
+            askPermissions()
 
         stepViewModel = ViewModelProvider(this).get(StepViewModel::class.java)
         splitViewModel = ViewModelProvider(this).get(SplitViewModel::class.java)
@@ -90,33 +92,12 @@ class ResultActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMark
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
-
         /*
          * load markers from splits
          */
-
         mMap = googleMap
         mMap.getUiSettings().setZoomControlsEnabled(true)
         mMap.setOnMarkerClickListener(this)
-/*
-
-        val posStart = LatLng(39.653599, -105.191101)
-        val posEnd = LatLng(39.5912114, -105.01921)
-
-        val line: Polyline = mMap.addPolyline(
-            PolylineOptions()
-                .add(posStart, posEnd)
-                .width(5f)
-                .color(Color.RED)
-        )
-
-        //val myPlace = LatLng(40.73, -73.99)  // this is New York
-        mMap.addMarker(MarkerOptions().position(posStart).title("1st"))
-        mMap.addMarker(MarkerOptions().position(posEnd).title("2nd"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(posStart, 12.0f))
-        */
-
-        //setUpMap()
     }
 
     /*
@@ -144,15 +125,15 @@ class ResultActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMark
             val max = steps.size -1
             for(i in 1..max) {
 
-                val stt = LatLng(steps[i-1].lat, steps[i-1].long)
-                val end = LatLng(steps[i].lat, steps[i].long)
+                val stt = LatLng(steps[i-1].latitude, steps[i-1].longitude)
+                val end = LatLng(steps[i].latitude, steps[i].longitude)
                 val line: Polyline = mMap.addPolyline(
                                             PolylineOptions()
                                                 .add(stt, end)
                                                 .width(5f)
                                                 .color(Color.RED))
             }
-            val stt = LatLng(steps[0].lat, steps[0].long)
+            val stt = LatLng(steps[0].latitude, steps[0].longitude)
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(stt, 12.0f))
         }
     }

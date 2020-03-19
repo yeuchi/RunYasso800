@@ -15,7 +15,6 @@ abstract class MotionState  : StateAbstract {
     var stepViewModel: StepViewModel
     var splitViewModel:SplitViewModel
     var FINISH_DISTANCE = 800
-    var previous:Location ?= null
     var split:Split?=null
 
     constructor(listener:IStateCallback,
@@ -35,9 +34,6 @@ abstract class MotionState  : StateAbstract {
         val dis: Double = location.distanceTo(prevLocation).toDouble()
         if (dis > 0) {
             // these values should be initialized from database -- not sharedPreference !!!!
-
-            val latitude: Double = prevLocation?.latitude ?: 0.0
-            val longitude: Double = prevLocation?.longitude ?: 0.0
             val timeNow = System.currentTimeMillis()
 
             val runType = getRunType()
@@ -46,8 +42,8 @@ abstract class MotionState  : StateAbstract {
                             dis,
                             runType,
                             timeNow,
-                            latitude,
-                            longitude)
+                            location.latitude,
+                            location.longitude)
 
             stepViewModel.insert(step)
 
@@ -57,16 +53,16 @@ abstract class MotionState  : StateAbstract {
                     runType,
                     0.0,
                     timeNow,
-                    latitude,
-                    longitude,
+                    location.latitude,
+                    location.longitude,
                     timeNow,
-                    latitude,
-                    longitude)
+                    location.latitude,
+                    location.longitude)
 
                 splitViewModel.insert(split);
             }
             else  {
-                split?.update(stepViewModel.totalDistance,timeNow, latitude, longitude)
+                split?.update(stepViewModel.totalDistance,timeNow, location.latitude, location.longitude)
                 splitViewModel.update(split)
 
                 /*
@@ -82,7 +78,11 @@ abstract class MotionState  : StateAbstract {
      * Return true if state change should occur
      */
     override fun goto():Boolean {
-        if(stepViewModel.totalDistance > FINISH_DISTANCE) {
+        if(splitViewModel.index > SharedPrefUtility.getNumIterations()) {
+            // debug only .. should never arrive here
+            return true
+        }
+        if(stepViewModel.totalDistance >= FINISH_DISTANCE) {
             incrementSplitIndex()
             splitViewModel.totalDistance += stepViewModel.totalDistance
             stepViewModel.totalDistance = 0.0
@@ -94,8 +94,7 @@ abstract class MotionState  : StateAbstract {
     }
 
     private fun incrementSplitIndex() {
-        if (getRunType()==Split.RUN_TYPE_JOG &&
-            splitViewModel.index < SharedPrefUtility.getNumIterations())
+        if (Split.RUN_TYPE_JOG == getRunType())
             splitViewModel.index ++
     }
 
