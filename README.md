@@ -77,34 +77,18 @@ Activity provides persistence (share) methods to user.  They include the follow:
 
 Header msg
 
-{"Splits":
-[{"dis":2.073444226756692,"endLat":44.911246,"endLong":-93.3179815,"endTime":1584724769197,"run_type":"jog","splitIndex":0,"startLat":44.9112449,"startLong":-93.3179797,"startTime":1584724334196},
-{"dis":2.8574838638305664,"endLat":44.9112455,"endLong":-93.3179789,"endTime":1584724325221,"run_type":"sprint","splitIndex":0,"startLat":44.9112411,"startLong":-93.3179959,"startTime":1584724319776}]}
+{"Splits":[
+{"dis":3.545224189758301,"endLat":44.9112447,"endLong":-93.3179279,"endTime":1584726337232,"run_type":"jog","splitIndex":0,"startLat":44.9112306,"startLong":-93.3179156,"startTime":1584726332201},
+{"dis":10.589152574539185,"endLat":44.9112401,"endLong":-93.3178987,"endTime":1584726327200,"run_type":"sprint","splitIndex":0,"startLat":44.911234,"startLong":-93.3180002,"startTime":1584726321537}]
 
-{"Steps":
-[{"dis":1.4287419319152832,"latitude":44.9112411,"longitude":-93.3179959,"run_type":"sprint","splitIndex":0,"stepIndex":0,"time":1584724319776},
-{"dis":1.4287419319152832,"latitude":44.9112455,"longitude":-93.3179789,"run_type":"sprint","splitIndex":0,"stepIndex":1,"time":1584724325221},
-{"dis":0.09185320138931274,"latitude":44.9112449,"longitude":-93.3179797,"run_type":"jog","splitIndex":0,"stepIndex":2,"time":1584724334196},
-{"dis":0.07302355021238327,"latitude":44.9112444,"longitude":-93.3179803,"run_type":"jog","splitIndex":0,"stepIndex":3,"time":1584724339218},
-{"dis":0.06496883183717728,"latitude":44.911244,"longitude":-93.3179809,"run_type":"jog","splitIndex":0,"stepIndex":4,"time":1584724344196},
-{"dis":0.20389369130134583,"latitude":44.9112458,"longitude":-93.3179804,"run_type":"jog","splitIndex":0,"stepIndex":5,"time":1584724355177},
-{"dis":0.013633012771606445,"latitude":44.9112459,"longitude":-93.3179805,"run_type":"jog","splitIndex":0,"stepIndex":6,"time":1584724365045},
-{"dis":0.04717438668012619,"latitude":44.9112455,"longitude":-93.3179807,"run_type":"jog","splitIndex":0,"stepIndex":7,"time":1584724374196},
-{"dis":0.013633012771606445,"latitude":44.9112454,"longitude":-93.3179808,"run_type":"jog","splitIndex":0,"stepIndex":8,"time":1584724379198},
-{"dis":0.07749170064926147,"latitude":44.9112448,"longitude":-93.3179813,"run_type":"jog","splitIndex":0,"stepIndex":9,"time":1584724394187},
-{"dis":0.06714402139186859,"latitude":44.9112454,"longitude":-93.3179812,"run_type":"jog","splitIndex":0,"stepIndex":10,"time":1584724399207},
-{"dis":0.07779102772474289,"latitude":44.9112461,"longitude":-93.3179812,"run_type":"jog","splitIndex":0,"stepIndex":11,"time":1584724404193},
-{"dis":0.0078968470916152,"latitude":44.9112461,"longitude":-93.3179811,"run_type":"jog","splitIndex":0,"stepIndex":12,"time":1584724409188},
-{"dis":0.026167547330260277,"latitude":44.911246,"longitude":-93.3179814,"run_type":"jog","splitIndex":0,"stepIndex":13,"time":1584724414186},
-{"dis":0.12260224670171738,"latitude":44.9112453,"longitude":-93.3179826,"run_type":"jog","splitIndex":0,"stepIndex":14,"time":1584724429203},
-{"dis":0.08203666657209396,"latitude":44.9112451,"longitude":-93.3179816,"run_type":"jog","splitIndex":0,"stepIndex":15,"time":1584724439219},
-{"dis":0.1624220758676529,"latitude":44.9112461,"longitude":-93.3179801,"run_type":"jog","splitIndex":0,"stepIndex":16,"time":1584724449190},
-{"dis":0.039484232664108276,"latitude":44.9112461,"longitude":-93.3179796,"run_type":"jog","splitIndex":0,"stepIndex":17,"time":1584724454187},
-{"dis":0.013633012771606445,"latitude":44.9112462,"longitude":-93.3179795,"run_type":"jog","splitIndex":0,"stepIndex":18,"time":1584724459195},
-{"dis":0.04531004652380943,"latitude":44.911246,"longitude":-93.31798,"run_type":"jog","splitIndex":0,"stepIndex":19,"time":1584724464186},
-{"dis":0.034261494874954224,"latitude":44.9112457,"longitude":-93.3179801,"run_type":"jog","splitIndex":0,"stepIndex":20,"time":1584724469197}]}
 
-Footer msg 
+{"Steps":[
+{"dis":2.545236825942993,"latitude":44.911234,"longitude":-93.3180002,"run_type":"sprint","splitIndex":0,"stepIndex":0,"time":1584726321537},
+{"dis":8.043915748596191,"latitude":44.9112401,"longitude":-93.3178987,"run_type":"sprint","splitIndex":0,"stepIndex":1,"time":1584726327200},
+{"dis":1.70166015625,"latitude":44.9112306,"longitude":-93.3179156,"run_type":"jog","splitIndex":0,"stepIndex":2,"time":1584726332201},
+{"dis":1.8435640335083008,"latitude":44.9112447,"longitude":-93.3179279,"run_type":"jog","splitIndex":0,"stepIndex":3,"time":1584726337232}]
+
+Footer msg
 
 ### How to Do a Yasso 800 Workout 
 "Take your marathon goal time in hours and minutes and convert this to minutes and seconds. 
