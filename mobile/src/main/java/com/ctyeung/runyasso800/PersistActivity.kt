@@ -19,6 +19,7 @@ import java.util.ArrayList
 import androidx.lifecycle.Observer
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.steps.Step
+import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_persist.*
 import java.lang.StringBuilder
@@ -149,7 +150,7 @@ class PersistActivity : AppCompatActivity() {
             }*/
 
             // Subject
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "subject")
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, SharedPrefUtility.getName())
 
             // need to insert image in the middle ...
             emailIntent.putExtra(Intent.EXTRA_TEXT, buildYassoMsg())

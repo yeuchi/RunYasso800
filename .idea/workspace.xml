@@ -25,8 +25,9 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/GoalActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/GoalActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/PersistActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/PersistActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile/src/main/res/layout/activity_persist.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/res/layout/activity_persist.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/viewModels/SharedPrefUtility.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/viewModels/SharedPrefUtility.kt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -311,8 +312,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/PersistActivity.kt</url>
-          <line>126</line>
+          <line>127</line>
           <option name="timeStamp" value="129" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/GoalActivity.kt</url>
+          <line>48</line>
+          <option name="timeStamp" value="130" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -323,6 +329,7 @@
         <watch expression="StateIdle::class.java" language="kotlin" />
         <watch expression="current" language="kotlin" />
         <watch expression="item.toString()" language="kotlin" />
+        <watch expression="s.toString()" language="kotlin" />
       </configuration>
     </watches-manager>
   </component>

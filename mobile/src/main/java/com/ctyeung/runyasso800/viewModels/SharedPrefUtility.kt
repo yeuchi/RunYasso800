@@ -17,13 +17,8 @@ import java.io.File
 object SharedPrefUtility
 {
     val mypreference = "mypref"
-    val keyColor1 = "color1"
-    val keyColor2 = "color2"
     val keyImageUri = "imageUri"
-    val INTERVAL_MIN:Int = 1
-    val INTERVAL_MAX:Int = 10
     val INTERVAL_DEFAULT:Int = 1
-    var INTERVAL_MULTIPLY = 200
     val keyInterval = "time"
     val keyLatitude = "lat"
     val keyLongitude = "long"
@@ -31,7 +26,22 @@ object SharedPrefUtility
     val keyJogDis = "jogDis"
     val keyNumIterations = "iterations"
     val keyGPSsampleRate = "gps"
+    val keyName = "name"
     val LAT_LONG_DEFAULT:String = "0"
+
+    fun getName():String
+    {
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
+        return sharedPreferences.getString(keyName, "RunYasso800")
+    }
+
+    fun setName(str:String)
+    {
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
+        val editor = sharedPreferences.edit()
+        editor.putString(keyName, str)
+        editor.commit()
+    }
 
     fun getGPSsampleRate():Long
     {
@@ -139,24 +149,6 @@ object SharedPrefUtility
             "com.example.ctyeung.runyasso800.fileprovider",
             file
         )
-    }
-
-    fun getColor(colorName:String):Int
-    {
-        var defaultValue = Color.WHITE;
-        if(colorName == keyColor2)
-            defaultValue = Color.GREEN;
-
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        return sharedPreferences.getInt(colorName, defaultValue)
-    }
-
-    fun setColor(colorName:String, color:Int)
-    {
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val editor = sharedPreferences.edit()
-        editor.putInt(colorName, color)
-        editor.commit()
     }
 
     private fun getSharedPref(context:Context):SharedPreferences
