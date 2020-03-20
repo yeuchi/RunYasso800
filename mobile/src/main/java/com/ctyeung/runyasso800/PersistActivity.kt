@@ -36,6 +36,10 @@ class PersistActivity : AppCompatActivity() {
     lateinit var context: Context
     var hasSteps:Boolean = false
     var hasSplits:Boolean = false
+    var totalRunTime:Long = 0
+    var totalJogTime:Long = 0
+    var totalRunDis:Double = 0.0
+    var totalJogDis:Double = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,18 +66,6 @@ class PersistActivity : AppCompatActivity() {
         })
     }
 
-    private fun getRaceGoal():String {
-        val seconds = SharedPrefUtility.getGoal(SharedPrefUtility.keyRaceGoal)
-        val str = TimeFormatter.printTime(seconds)
-        return resources.getString(R.string.race_goal) + str
-    }
-
-    private fun getSprintGoal():String {
-        val seconds = SharedPrefUtility.getGoal(SharedPrefUtility.keySprintGoal)
-        val str = TimeFormatter.printTime(seconds)
-        return resources.getString(R.string.sprint_goal) + str
-    }
-
     /*
      * print a summary of marathon training
      */
@@ -88,6 +80,14 @@ class PersistActivity : AppCompatActivity() {
         sb.appendln(getSprintGoal())
         sb.appendln()
 
+        val str = getPerformance()
+        sb.appendln("Total Run distance:"+totalRunDis + "m time:"+ TimeFormatter.printTime(totalRunTime/1000))
+        sb.appendln("Total Jog distance:"+totalJogDis + "m time:"+TimeFormatter.printTime(totalJogTime/1000))
+        sb.appendln()
+
+        sb.appendln(str)
+        sb.appendln()
+
         sb.appendln(getSplits())
         sb.appendln()
 
@@ -98,8 +98,67 @@ class PersistActivity : AppCompatActivity() {
         return sb.toString()
     }
 
+    private fun getRaceGoal():String {
+        val seconds = SharedPrefUtility.getGoal(SharedPrefUtility.keyRaceGoal)
+        val str = TimeFormatter.printTime(seconds)
+        return resources.getString(R.string.race_goal) + str
+    }
+
+    private fun getSprintGoal():String {
+        val seconds = SharedPrefUtility.getGoal(SharedPrefUtility.keySprintGoal)
+        val str = TimeFormatter.printTime(seconds)
+        return resources.getString(R.string.sprint_goal) + str
+    }
+
+    private fun incrementTime(type:String, time:Long, dis:Double) {
+        when(type) {
+            Split.RUN_TYPE_SPRINT -> {
+                totalRunTime += time
+                totalRunDis += dis
+            }
+
+            Split.RUN_TYPE_JOG -> {
+                totalJogTime += time
+                totalJogDis += dis
+            }
+        }
+    }
+
     /*
-     * Should I use Gson library ?
+     * Build a summary of distances, time-elapsed on splits
+     */
+    private fun getPerformance():String {
+        totalRunTime = 0
+        totalJogTime = 0
+        totalRunDis = 0.0
+        totalJogDis = 0.0
+        var sb = StringBuilder()
+        val splits:List<Split>? = splitViewModel.yasso.value?:null
+        if(null!=splits) {
+            sb.appendln("{\"Performance\":[")
+            val size = splits.size
+            var i = 0
+            for (split in splits) {
+                sb.append( "{\"split\": "+ split.splitIndex +", ")
+                sb.append( "{\"type\": \""+ split.run_type +"\", ")
+                sb.append("\"distance\":"+split.dis +", ")
+                val timeDiff:Long = split.endTime - split.startTime
+                incrementTime(split.run_type, timeDiff, split.dis)
+
+                val str = TimeFormatter.printTime(timeDiff/1000)
+                sb.append("\"elapsed\":\""+str+"\"}")
+
+                if(++i >= size)
+                    sb.appendln("]")
+                else
+                    sb.appendln(", ")
+            }
+        }
+        return sb.toString()
+    }
+
+    /*
+     * Raw split data dump
      */
     private fun getSplits():String {
         var sb = StringBuilder()
@@ -122,6 +181,9 @@ class PersistActivity : AppCompatActivity() {
         return sb.toString()
     }
 
+    /*
+     * Raw step data dump
+     */
     private fun getSteps():String {
         var sb = StringBuilder()
         val steps:List<Step>? = stepViewModel.steps.value?:null
