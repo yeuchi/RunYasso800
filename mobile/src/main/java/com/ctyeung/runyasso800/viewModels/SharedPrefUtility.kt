@@ -7,6 +7,7 @@ import android.net.Uri
 import androidx.core.content.FileProvider
 import com.ctyeung.runyasso800.MainActivity
 import com.ctyeung.runyasso800.MainApplication
+import com.ctyeung.runyasso800.R
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.utilities.LocationUtils
 import java.io.File
@@ -32,7 +33,8 @@ object SharedPrefUtility
     fun getName():String
     {
         val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        return sharedPreferences.getString(keyName, "RunYasso800")
+        val defaultName = MainApplication.applicationContext().resources.getString(R.string.run_yasso_800)
+        return sharedPreferences.getString(keyName, defaultName)
     }
 
     fun setName(str:String)
