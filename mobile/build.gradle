@@ -74,6 +74,8 @@ dependencies {
     wearApp project(':wear')
     implementation 'com.google.android.gms:play-services-wearable:+'
 
-    implementation 'com.google.dagger:dagger:2.13'
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    //implementation 'com.google.dagger:dagger:2.13'
     kapt 'com.google.dagger:dagger-compiler:2.13'
 }

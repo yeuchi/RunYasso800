@@ -21,7 +21,7 @@ class SplitViewModel (application: Application) : AndroidViewModel(application)
     var totalDistance:Double = 0.0
     var elapsedTime:Long = 0
     var disTotalString:String = "Total: 0m"
-    var indexString:String = "Split: 1"
+    var indexString:String = "Split: 0"
     var typeString:String = "Sprint / Jog"
     var elapsedTimeString:String = "Total: 00:00"
 
@@ -41,8 +41,7 @@ class SplitViewModel (application: Application) : AndroidViewModel(application)
     private fun setTextProperties(split:Split)
     {
         disTotalString = "Total: " + totalDistance.roundToInt() + "m"
-        var index = yasso.value?.size?:0
-        indexString = "Split: " + index.toString()
+        indexString = "Split: " + (index+1).toString()
         typeString = split.run_type.capitalize()
         calculateTimeElapsed(split.endTime)
         elapsedTimeString = "Total: " + TimeFormatter.printTime(elapsedTime)

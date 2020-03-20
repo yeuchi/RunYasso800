@@ -1,6 +1,7 @@
 package com.ctyeung.runyasso800
 
 import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Build
@@ -19,10 +20,11 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
-
+import androidx.databinding.DataBindingUtil
+import com.ctyeung.runyasso800.databinding.ActivityResultBinding
 
 class ResultActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
-
+    private lateinit var binding:ActivityResultBinding
     private lateinit var activity: Activity
     private lateinit var mMap: GoogleMap
     lateinit var splitViewModel: SplitViewModel
@@ -30,7 +32,9 @@ class ResultActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMark
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_result)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_result)
+        binding.res = this
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
@@ -53,7 +57,7 @@ class ResultActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMark
         splitViewModel.yasso.observe(this, Observer { yasso ->
             // Update the cached copy of the words in the adapter.
             yasso?.let {
-                // database update success ..
+                // consider custom markers
                 drawSplitMarkers()
             }
         })
@@ -163,5 +167,13 @@ class ResultActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMark
     override fun onMarkerClick(p0: Marker?): Boolean {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         return false
+    }
+
+    /*
+     * Go to next activity
+     */
+    fun onClickNext() {
+        val intent = Intent(this.applicationContext, PersistActivity::class.java)
+        startActivity(intent)
     }
 }

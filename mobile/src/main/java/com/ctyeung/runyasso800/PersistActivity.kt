@@ -11,16 +11,28 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.ctyeung.runyasso800.databinding.ActivityPersistBinding
+import com.ctyeung.runyasso800.viewModels.SplitViewModel
+import com.ctyeung.runyasso800.viewModels.StepViewModel
 import java.util.ArrayList
+import androidx.lifecycle.Observer
+import com.ctyeung.runyasso800.room.splits.Split
+import com.ctyeung.runyasso800.room.steps.Step
+import com.google.gson.Gson
+import java.lang.StringBuilder
 
 /*
  * - Persist (share) data to facebook, email or drive
  * - option to delete entries in db
  */
 class PersistActivity : AppCompatActivity() {
+    lateinit var splitViewModel:SplitViewModel
+    lateinit var stepViewModel:StepViewModel
     lateinit var binding:ActivityPersistBinding
     lateinit var context: Context
+    var hasSteps:Boolean = false
+    var hasSplits:Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +41,62 @@ class PersistActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_persist)
         binding?.listener = this
+
+        stepViewModel = ViewModelProvider(this).get(StepViewModel::class.java)
+        splitViewModel = ViewModelProvider(this).get(SplitViewModel::class.java)
+
+        stepViewModel.steps.observe(this, Observer { steps ->
+            steps?.let {
+                hasSteps = true
+            }
+        })
+
+        splitViewModel.yasso.observe(this, Observer { yasso ->
+            // Update the cached copy of the words in the adapter.
+            yasso?.let {
+                hasSplits = true
+            }
+        })
+    }
+
+    /*
+     * Should my data be in JSON ?
+     */
+    private fun getYasso():String {
+        var sb = StringBuilder()
+        sb.append(getSplits())
+        sb.appendln()
+        sb.append(getSteps())
+        return sb.toString()
+    }
+
+    /*
+     * Should I use Gson library ?
+     */
+    private fun getSplits():String {
+        var sb = StringBuilder()
+        val splits:List<Split>? = splitViewModel.yasso.value?:null
+        if(null!=splits) {
+            var gson = Gson()
+            for (split in splits) {
+                val str = gson.toJson(split)
+                sb.appendln(str)
+            }
+        }
+        return sb.toString()
+    }
+
+    private fun getSteps():String {
+        var sb = StringBuilder()
+        val steps:List<Step>? = stepViewModel.steps.value?:null
+        if(null!=steps) {
+            var gson = Gson()
+            for(step in steps) {
+                val str = gson.toJson(step)
+                sb.appendln(str)
+            }
+        }
+        return sb.toString()
     }
 
     fun onClickShare()
@@ -63,7 +131,7 @@ class PersistActivity : AppCompatActivity() {
             // need to insert image in the middle ...
             val header = findViewById<EditText>(R.id.txtHeader)
             val footer = findViewById<EditText>(R.id.txtFooter)
-            val msg = header.text.toString() + "\n\n" + footer.text
+            val msg = header.text.toString() + getYasso() + footer.text
             emailIntent.putExtra(Intent.EXTRA_TEXT, msg)
 
             // load image

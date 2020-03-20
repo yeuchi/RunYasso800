@@ -52,7 +52,6 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
         txtLat.text = stateMachine.prevLocation?.latitude.toString()
         txtLong.text = stateMachine.prevLocation?.longitude.toString()
 
-
         // distance in current split
         txtStepDistance.text = stepViewModel.disTotalString
         // distance total
