@@ -81,7 +81,7 @@ Race Goal:2hours 5minutes 0seconds
 
 Sprint Goal:0hours 2minutes 5seconds
 
-Total Run distance:36.716938614845276m time:0hours 0minutes 15seconds
+Total Run distance:36.716938614845276m time:0hours 0minutes 15seconds\
 Total Jog distance:26.044604063034058m time:0hours 1minutes 37seconds
 
 {"Performance":[
