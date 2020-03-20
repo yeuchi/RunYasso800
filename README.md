@@ -73,6 +73,23 @@ Activity provides persistence (share) methods to user.  They include the follow:
 
 <img src="https://user-images.githubusercontent.com/1282659/68807583-b220a400-062d-11ea-9494-7003950ac881.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/68807590-b482fe00-062d-11ea-947b-2c4ea054e054.jpg" width="200"> 
 
+### Example Email received
+
+Header msg
+
+{"Splits":[
+{"dis":3.545224189758301,"endLat":44.9112447,"endLong":-93.3179279,"endTime":1584726337232,"run_type":"jog","splitIndex":0,"startLat":44.9112306,"startLong":-93.3179156,"startTime":1584726332201},
+{"dis":10.589152574539185,"endLat":44.9112401,"endLong":-93.3178987,"endTime":1584726327200,"run_type":"sprint","splitIndex":0,"startLat":44.911234,"startLong":-93.3180002,"startTime":1584726321537}]
+
+
+{"Steps":[
+{"dis":2.545236825942993,"latitude":44.911234,"longitude":-93.3180002,"run_type":"sprint","splitIndex":0,"stepIndex":0,"time":1584726321537},
+{"dis":8.043915748596191,"latitude":44.9112401,"longitude":-93.3178987,"run_type":"sprint","splitIndex":0,"stepIndex":1,"time":1584726327200},
+{"dis":1.70166015625,"latitude":44.9112306,"longitude":-93.3179156,"run_type":"jog","splitIndex":0,"stepIndex":2,"time":1584726332201},
+{"dis":1.8435640335083008,"latitude":44.9112447,"longitude":-93.3179279,"run_type":"jog","splitIndex":0,"stepIndex":3,"time":1584726337232}]
+
+Footer msg
+
 ### How to Do a Yasso 800 Workout 
 "Take your marathon goal time in hours and minutes and convert this to minutes and seconds. 
 For example, if your marathon goal is 3 hours and 10 minutes then convert that to 3 minutes and 10 seconds.
