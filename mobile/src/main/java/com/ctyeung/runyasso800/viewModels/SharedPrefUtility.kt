@@ -28,7 +28,10 @@ object SharedPrefUtility
     val keyNumIterations = "iterations"
     val keyGPSsampleRate = "gps"
     val keyName = "name"
+    val keySprintGoal = "sprintGoal"
+    val keyRaceGoal = "raceGoal"
     val LAT_LONG_DEFAULT:String = "0"
+    var DEFAULT_RACE_GOAL_SEC:Long = 14400
 
     fun getName():String
     {
@@ -44,6 +47,29 @@ object SharedPrefUtility
         editor.putString(keyName, str)
         editor.commit()
     }
+
+    fun getGoal(key:String):Long
+    {
+        var defaultSeconds:Long = DEFAULT_RACE_GOAL_SEC
+        when(key) {
+            keySprintGoal -> {
+                defaultSeconds /= 60
+            }
+            keyRaceGoal -> { /* default */ }
+        }
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
+        val seconds = sharedPreferences.getLong(key, defaultSeconds)
+        return seconds
+    }
+
+    fun setGoal(key:String, seconds:Long)
+    {
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
+        val editor = sharedPreferences.edit()
+        editor.putLong(key, seconds)
+        editor.commit()
+    }
+
 
     fun getGPSsampleRate():Long
     {

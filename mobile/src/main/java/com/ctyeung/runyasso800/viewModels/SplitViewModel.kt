@@ -44,7 +44,7 @@ class SplitViewModel (application: Application) : AndroidViewModel(application)
         indexString = "Split: " + (index+1).toString()
         typeString = split.run_type.capitalize()
         calculateTimeElapsed(split.endTime)
-        elapsedTimeString = "Total: " + TimeFormatter.printTime(elapsedTime)
+        elapsedTimeString = "Total: " + TimeFormatter.printDateTime(elapsedTime)
     }
 
     /*

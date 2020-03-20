@@ -15,14 +15,15 @@ import androidx.lifecycle.ViewModelProvider
 import com.ctyeung.runyasso800.databinding.ActivityPersistBinding
 import com.ctyeung.runyasso800.viewModels.SplitViewModel
 import com.ctyeung.runyasso800.viewModels.StepViewModel
-import java.util.ArrayList
 import androidx.lifecycle.Observer
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.steps.Step
+import com.ctyeung.runyasso800.utilities.TimeFormatter
 import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_persist.*
 import java.lang.StringBuilder
+import java.util.*
 
 /*
  * - Persist (share) data to facebook, email or drive
@@ -61,12 +62,30 @@ class PersistActivity : AppCompatActivity() {
         })
     }
 
+    private fun getRaceGoal():String {
+        val seconds = SharedPrefUtility.getGoal(SharedPrefUtility.keyRaceGoal)
+        val str = TimeFormatter.printTime(seconds)
+        return resources.getString(R.string.race_goal) + str
+    }
+
+    private fun getSprintGoal():String {
+        val seconds = SharedPrefUtility.getGoal(SharedPrefUtility.keySprintGoal)
+        val str = TimeFormatter.printTime(seconds)
+        return resources.getString(R.string.sprint_goal) + str
+    }
+
     /*
-     * Should my data be in JSON ?
+     * print a summary of marathon training
      */
     private fun buildYassoMsg():String {
         var sb = StringBuilder()
         sb.appendln(txtHeader.text)
+        sb.appendln()
+
+        sb.appendln(getRaceGoal())
+        sb.appendln()
+
+        sb.appendln(getSprintGoal())
         sb.appendln()
 
         sb.appendln(getSplits())

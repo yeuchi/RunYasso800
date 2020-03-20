@@ -32,7 +32,7 @@ class StepViewModel (application: Application) : AndroidViewModel(application)
         totalDistance += step.dis
         disTotalString = "Step: "+ totalDistance.roundToInt() + "m";
         val elapsedTime = calculateTimeElapsed(step.time)
-        elapsedTimeString = "Time: " + TimeFormatter.printTime(elapsedTime)
+        elapsedTimeString = "Time: " + TimeFormatter.printDateTime(elapsedTime)
         repository.insert(step)
     }
 

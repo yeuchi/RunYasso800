@@ -18,6 +18,8 @@ import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import com.ctyeung.runyasso800.utilities.LocationUtils
+import com.ctyeung.runyasso800.utilities.TimeFormatter
 import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 import kotlinx.android.synthetic.main.activity_goal.*
 import java.text.DateFormat
@@ -69,10 +71,14 @@ class GoalActivity : AppCompatActivity() {
                 // marathon goal
                 val raceGoal = findViewById<Button>(R.id.btn_race_goal)
                 raceGoal.setText(hourOfDay.toString() + "hours " + minute + "minutes")
+                val raceMilliSec = TimeFormatter.convertHHmmss(hourOfDay, minute, 0)
+                SharedPrefUtility.setGoal(SharedPrefUtility.keyRaceGoal, raceMilliSec)
 
                 // sprint goal
                 val sprintGoal = findViewById<TextView>(R.id.txt_sprint_goal)
                 sprintGoal.setText(hourOfDay.toString() + "minutes "+minute+"seconds")
+                val sprintMilliSec = TimeFormatter.convertHHmmss(0, hourOfDay, minute)
+                SharedPrefUtility.setGoal(SharedPrefUtility.keySprintGoal, sprintMilliSec)
 
             }, hour, minute, true
         )
