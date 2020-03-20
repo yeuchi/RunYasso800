@@ -20,6 +20,7 @@ import androidx.lifecycle.Observer
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.steps.Step
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_persist.*
 import java.lang.StringBuilder
 
 /*
@@ -62,11 +63,18 @@ class PersistActivity : AppCompatActivity() {
     /*
      * Should my data be in JSON ?
      */
-    private fun getYasso():String {
+    private fun buildYassoMsg():String {
         var sb = StringBuilder()
-        sb.append(getSplits())
+        sb.appendln(txtHeader.text)
         sb.appendln()
+
+        sb.appendln(getSplits())
+        sb.appendln()
+
         sb.append(getSteps())
+        sb.appendln()
+
+        sb.appendln(txtFooter.text)
         return sb.toString()
     }
 
@@ -77,10 +85,18 @@ class PersistActivity : AppCompatActivity() {
         var sb = StringBuilder()
         val splits:List<Split>? = splitViewModel.yasso.value?:null
         if(null!=splits) {
+            sb.appendln("{\"Splits\":[")
+            val size = splits.size
             var gson = Gson()
+            var i = 0
             for (split in splits) {
                 val str = gson.toJson(split)
-                sb.appendln(str)
+                i++
+
+                if(i >= size)
+                    sb.appendln(str +"]")
+                else
+                    sb.appendln(str + ", ")
             }
         }
         return sb.toString()
@@ -90,10 +106,17 @@ class PersistActivity : AppCompatActivity() {
         var sb = StringBuilder()
         val steps:List<Step>? = stepViewModel.steps.value?:null
         if(null!=steps) {
+            sb.appendln("{\"Steps\":[")
+            var size = steps.size
             var gson = Gson()
+            var i = 0
             for(step in steps) {
                 val str = gson.toJson(step)
-                sb.appendln(str)
+                i++
+                if(i >= size)
+                    sb.appendln(str +"]")
+                else
+                    sb.appendln(str + ", ")
             }
         }
         return sb.toString()
@@ -129,10 +152,7 @@ class PersistActivity : AppCompatActivity() {
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "subject")
 
             // need to insert image in the middle ...
-            val header = findViewById<EditText>(R.id.txtHeader)
-            val footer = findViewById<EditText>(R.id.txtFooter)
-            val msg = header.text.toString() + getYasso() + footer.text
-            emailIntent.putExtra(Intent.EXTRA_TEXT, msg)
+            emailIntent.putExtra(Intent.EXTRA_TEXT, buildYassoMsg())
 
             // load image
        //     emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris)
