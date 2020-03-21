@@ -88,6 +88,15 @@
                 android:onClick="@{()-> listener.onClickShare()}"
                 android:id="@+id/btnShare"/>
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:src="@drawable/ic_navigate_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:backgroundTint="#8888FF"
+                android:layout_margin="10dp"
+                android:onClick="@{()-> listener.onClickNext()}"
+                android:id="@+id/btnNext"/>
+
         </LinearLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>

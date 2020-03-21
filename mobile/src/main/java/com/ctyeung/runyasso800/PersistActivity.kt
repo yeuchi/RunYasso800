@@ -204,8 +204,26 @@ class PersistActivity : AppCompatActivity() {
         return sb.toString()
     }
 
-    fun onClickShare()
-    {
+    /*
+     * Return to MainActivity
+     */
+    fun onClickNext() {
+        val intent = Intent(this.applicationContext, MainActivity::class.java)
+        startActivity(intent)
+    }
+
+    /*
+     * Share summary via email, drive, facebook ,etc
+     */
+    fun onClickShare() {
+        if (hasSteps && hasSplits) {
+            sendEmail()
+            return
+        }
+        Toast.makeText(this, resources.getString(R.string.no_models), Toast.LENGTH_LONG).show()
+    }
+
+    fun sendEmail() {
         try {
             val builder = StrictMode.VmPolicy.Builder()
             StrictMode.setVmPolicy(builder.build())
