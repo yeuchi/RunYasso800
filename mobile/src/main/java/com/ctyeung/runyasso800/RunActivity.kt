@@ -5,6 +5,7 @@ import android.location.Location
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
@@ -20,9 +21,15 @@ import com.ctyeung.runyasso800.stateMachine.*
 import com.ctyeung.runyasso800.utilities.LocationUtils
 import com.ctyeung.runyasso800.viewModels.*
 import kotlinx.android.synthetic.main.activity_run.*
+import java.lang.reflect.Type
 
 
 /*
+ * To do:
+ * 1. add background color change between sprint/jog/idle/done
+ * 2. Vibrate/Sound (voice recording, beep) for start/end/rest time
+ * 3. add home button -> MainActivity
+ *
  * GPS noise is a big problem and need to be address before this can ever be of value.
  * There is a Kalman filter in C example to try; linear regression is an alternative.
  *
@@ -31,14 +38,60 @@ import kotlinx.android.synthetic.main.activity_run.*
  *
  * tutorial on fusedLocationProviderClient
  * https://medium.com/@droidbyme/get-current-location-using-fusedlocationproviderclient-in-android-cb7ebf5ab88e
- * */
-class RunActivity : AppCompatActivity(), IRunStatsCallBack {
+ *
+ * Description:
+ * User performs sprint, jog in this activity.
+ * Collect performance data with GPS and persist in db.
+ */
+class RunActivity : BaseActivity(), IRunStatsCallBack {
     lateinit var binding:ActivityRunBinding
     lateinit var fab:RunFloatingActionButtons
     lateinit var stateMachine:StateMachine
     lateinit var splitViewModel:SplitViewModel
     lateinit var stepViewModel:StepViewModel
     lateinit var activity: RunActivity
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_run)
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+
+        activity = this
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_run)
+        binding.run = this
+
+        initActionBar()
+        fab = RunFloatingActionButtons(this)
+
+        stepViewModel = ViewModelProvider(this).get(StepViewModel::class.java)
+        splitViewModel = ViewModelProvider(this).get(SplitViewModel::class.java)
+        stateMachine = StateMachine(this, splitViewModel, stepViewModel)
+
+        stepViewModel.steps.observe(this, Observer { steps ->
+            steps?.let {
+
+            }
+        })
+
+        splitViewModel.yasso.observe(this, Observer { yasso ->
+            // Update the cached copy of the words in the adapter.
+            yasso?.let {
+                // database update success ..
+            }
+        })
+
+        // start with a clean slate
+        stateMachine.interruptClear()
+
+        if (shouldAskPermissions())
+            askPermissions()
+
+        txtTotalSplits.text = "Total: "+SharedPrefUtility.getNumIterations()
+        binding.invalidateAll()
+    }
+
+
 
     override fun onHandleYassoDone() {
         fab.changeState(StateDone::class.java)
@@ -68,45 +121,6 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
         txtSplitTime.text = stepViewModel.elapsedTimeString
         txtTotalTime.text = splitViewModel.elapsedTimeString
 
-        binding.invalidateAll()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_run)
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-
-        activity = this
-
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_run)
-        binding.run = this
-
-        fab = RunFloatingActionButtons(this)
-
-        stepViewModel = ViewModelProvider(this).get(StepViewModel::class.java)
-        splitViewModel = ViewModelProvider(this).get(SplitViewModel::class.java)
-        stateMachine = StateMachine(this, splitViewModel, stepViewModel)
-
-        stepViewModel.steps.observe(this, Observer { steps ->
-            steps?.let {
-
-            }
-        })
-
-        splitViewModel.yasso.observe(this, Observer { yasso ->
-            // Update the cached copy of the words in the adapter.
-            yasso?.let {
-                // database update success ..
-            }
-        })
-
-        // start with a clean slate
-        stateMachine.interruptClear()
-
-        if (shouldAskPermissions())
-            askPermissions()
-
-        txtTotalSplits.text = "Total: "+SharedPrefUtility.getNumIterations()
         binding.invalidateAll()
     }
 
@@ -233,11 +247,6 @@ class RunActivity : AppCompatActivity(), IRunStatsCallBack {
     fun onClickNext()
     {
         if(StateDone::class.java == stateMachine.current)
-            gotoNextActivity()
-    }
-
-    fun gotoNextActivity() {
-        val intent = Intent(this.applicationContext, ResultActivity::class.java)
-        startActivity(intent)
+            gotoActivity(ResultActivity::class.java)
     }
 }

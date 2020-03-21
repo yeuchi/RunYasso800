@@ -1,0 +1,29 @@
+package com.ctyeung.runyasso800
+
+import android.content.Intent
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
+
+open class BaseActivity : AppCompatActivity() {
+
+    /*
+     * Action / menu bar selection - back button
+     */
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.getItemId()) {
+            android.R.id.home -> gotoActivity(MainActivity::class.java)
+        }
+        return true
+    }
+
+    fun gotoActivity(classType:Class<*>) {
+        val intent = Intent(this.applicationContext, classType)
+        startActivity(intent)
+    }
+
+    fun initActionBar() {
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar()?.title = SharedPrefUtility.getName()
+    }
+}

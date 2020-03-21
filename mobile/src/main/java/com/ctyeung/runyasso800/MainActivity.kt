@@ -15,8 +15,9 @@ import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 import java.lang.reflect.Type
 
 /*
- * Let me develop a Yasso 800 application for phone.
- * ... then try to get it into a watch next.
+ * To do:
+ * 1. enable/disable selection base on data already entered.
+ * 2. layout landscape mode ?
  *
  * https://www.verywellfit.com/how-to-do-yasso-800s-2911888
  *
@@ -32,14 +33,14 @@ import java.lang.reflect.Type
  *
  * 6. Don't forget to cool down with 5 minutes of easy running or walking, followed by stretching.
  *
- * Features:
+ * Description:
+ * Main Activity
+ * 1. sub-activities : goal, run, result, persist
+ * 2. menu items configuration : sprint-distance      // default 800meter
+ *                               jog-distance         // default 800meter
+ *                               number of iteration  // default 10x (sprint/jog)
+ *                               GPS sampling rate    // default 10 seconds
  *
- * a. Time
- * b. Map / Location - GPS
- * c. Save/Load results - xml files
- * d. Share data / Drive / email
- * e. Execution of Yasso800
- * f. Vibrate/Sound (voice recording, beep) for start/end/rest time
  */
 class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListener {
     lateinit var binding: ActivityMainBinding
@@ -67,10 +68,8 @@ class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListene
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        binding?.listener = this
+        binding.listener = this
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

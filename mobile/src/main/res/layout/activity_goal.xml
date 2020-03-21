@@ -113,7 +113,7 @@
                 android:layout_height="wrap_content"
                 app:backgroundTint="#8888FF"
                 android:layout_margin="@dimen/common_margin"
-                android:onClick="@{()-> listener.onClickDone()}"
+                android:onClick="@{()-> listener.onClickNext()}"
                 android:id="@+id/btnDone"/>
 
         </LinearLayout>

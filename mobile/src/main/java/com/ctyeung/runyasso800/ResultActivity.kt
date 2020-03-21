@@ -22,18 +22,36 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import androidx.databinding.DataBindingUtil
 import com.ctyeung.runyasso800.databinding.ActivityResultBinding
+import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 
-class ResultActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+/*
+ * To do:
+ * 1. custom markers - sprint/jog/index
+ * 2. calculate and zoom to appropriate magnification
+ * 3. add pop-up with split details (all sprint/jog or just selected individual?)
+ * 4. screenshots and store as image files
+ *
+ * Description:
+ * Display performance result as follows
+ * 1. Map path of sprints and jogs
+ * 2. selectable sprint / jog detail in term of splits
+ */
+class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     private lateinit var binding:ActivityResultBinding
     private lateinit var activity: Activity
     private lateinit var mMap: GoogleMap
     lateinit var splitViewModel: SplitViewModel
     lateinit var stepViewModel: StepViewModel
 
+    companion object {
+        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_result)
         binding.res = this
+        initActionBar()
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
@@ -61,10 +79,6 @@ class ResultActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMark
                 drawSplitMarkers()
             }
         })
-    }
-
-    companion object {
-        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }
 
     protected fun shouldAskPermissions(): Boolean {
@@ -109,7 +123,7 @@ class ResultActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMark
      * Draw marker for each sprint and jog segment
      */
     private fun drawSplitMarkers() {
-        val splits:List<Split>? = splitViewModel.yasso.value?:null
+        val splits:List<Split>? = splitViewModel.yasso.value
         if(null!=splits) {
 
             for(split in splits){
@@ -136,7 +150,7 @@ class ResultActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMark
      * Need at least 2 steps to draw a line
      */
     private fun drawSteps() {
-        val steps:List<Step>? = stepViewModel.steps.value?:null
+        val steps:List<Step>? = stepViewModel.steps.value
 
         if(null!=steps && steps.size > 1) {
             val max = steps.size -1
@@ -173,7 +187,6 @@ class ResultActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMark
      * Go to next activity
      */
     fun onClickNext() {
-        val intent = Intent(this.applicationContext, PersistActivity::class.java)
-        startActivity(intent)
+        gotoActivity (PersistActivity::class.java)
     }
 }

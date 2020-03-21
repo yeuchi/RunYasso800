@@ -26,14 +26,18 @@ import java.lang.StringBuilder
 import java.util.*
 
 /*
+ * To do:
+ * 1. persist image(s) from Result ?
+ * 2. user can delete all data
+ *
+ * Description:
  * - Persist (share) data to facebook, email or drive
  * - option to delete entries in db
  */
-class PersistActivity : AppCompatActivity() {
+class PersistActivity : BaseActivity() {
     lateinit var splitViewModel:SplitViewModel
     lateinit var stepViewModel:StepViewModel
     lateinit var binding:ActivityPersistBinding
-    lateinit var context: Context
     var hasSteps:Boolean = false
     var hasSplits:Boolean = false
     var totalRunTime:Long = 0
@@ -43,11 +47,10 @@ class PersistActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_persist)
-        context = this
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_persist)
-        binding?.listener = this
+        binding.listener = this
+        initActionBar()
 
         stepViewModel = ViewModelProvider(this).get(StepViewModel::class.java)
         splitViewModel = ViewModelProvider(this).get(SplitViewModel::class.java)
@@ -133,7 +136,7 @@ class PersistActivity : AppCompatActivity() {
         totalRunDis = 0.0
         totalJogDis = 0.0
         var sb = StringBuilder()
-        val splits:List<Split>? = splitViewModel.yasso.value?:null
+        val splits:List<Split>? = splitViewModel.yasso.value
         if(null!=splits) {
             sb.appendln("{\"Performance\":[")
             val size = splits.size
@@ -162,7 +165,7 @@ class PersistActivity : AppCompatActivity() {
      */
     private fun getSplits():String {
         var sb = StringBuilder()
-        val splits:List<Split>? = splitViewModel.yasso.value?:null
+        val splits:List<Split>? = splitViewModel.yasso.value
         if(null!=splits) {
             sb.appendln("{\"Splits\":[")
             val size = splits.size
@@ -186,7 +189,7 @@ class PersistActivity : AppCompatActivity() {
      */
     private fun getSteps():String {
         var sb = StringBuilder()
-        val steps:List<Step>? = stepViewModel.steps.value?:null
+        val steps:List<Step>? = stepViewModel.steps.value
         if(null!=steps) {
             sb.appendln("{\"Steps\":[")
             var size = steps.size
@@ -208,8 +211,7 @@ class PersistActivity : AppCompatActivity() {
      * Return to MainActivity
      */
     fun onClickNext() {
-        val intent = Intent(this.applicationContext, MainActivity::class.java)
-        startActivity(intent)
+        gotoActivity(MainActivity::class.java)
     }
 
     /*
@@ -257,9 +259,9 @@ class PersistActivity : AppCompatActivity() {
             // load image
        //     emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris)
 
-            if (emailIntent.resolveActivity(context.getPackageManager()) != null) {
+            if (emailIntent.resolveActivity(MainApplication.applicationContext().getPackageManager()) != null) {
                 val send_title = "some title"
-                context.startActivity(Intent.createChooser(emailIntent, send_title))
+                startActivity(Intent.createChooser(emailIntent, send_title))
             }
 
         } catch (e: Exception) {
