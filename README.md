@@ -81,13 +81,13 @@ Race Goal:2hours 5minutes 0seconds
 
 Sprint Goal:0hours 2minutes 5seconds
 
-Total Run distance:36.716938614845276m time:0hours 0minutes 15seconds
+Total Run distance:36.716938614845276m time:0hours 0minutes 15seconds\
 Total Jog distance:26.044604063034058m time:0hours 1minutes 37seconds
 
-{"Performance":[
-{"split": 0, {"type": "jog", "distance":20.631344318389893, "elapsed":"0hours 0minutes 8seconds"},
-{"split": 0, {"type": "sprint", "distance":30.197261810302734, "elapsed":"0hours 0minutes 5seconds"},
-{"split": 1, {"type": "jog", "distance":5.413259744644165, "elapsed":"0hours 1minutes 28seconds"},
+{"Performance":[\
+{"split": 0, {"type": "jog", "distance":20.631344318389893, "elapsed":"0hours 0minutes 8seconds"},\
+{"split": 0, {"type": "sprint", "distance":30.197261810302734, "elapsed":"0hours 0minutes 5seconds"},\
+{"split": 1, {"type": "jog", "distance":5.413259744644165, "elapsed":"0hours 1minutes 28seconds"},\
 {"split": 1, {"type": "sprint", "distance":6.5196768045425415, "elapsed":"0hours 0minutes 9seconds"}]
 
 
