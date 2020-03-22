@@ -1,7 +1,12 @@
 package com.ctyeung.runyasso800
 
+import android.graphics.drawable.Drawable
+import android.media.AudioManager
+import android.media.ToneGenerator
 import android.os.Build
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -12,15 +17,13 @@ import com.ctyeung.runyasso800.stateMachine.*
 import com.ctyeung.runyasso800.utilities.LocationUtils
 import com.ctyeung.runyasso800.viewModels.*
 import kotlinx.android.synthetic.main.activity_run.*
+import java.lang.reflect.Type
 
 
 /*
  * To do:
- * 1. add background color change between sprint/jog/idle/done
- * 2. Vibrate/Sound (voice recording, beep) for start/end/rest time
- * 3. add home button -> MainActivity
- * 4. Use Dagger for models loading between states and activity ?
- * 5. check availability of GPS
+ * 1. Use Dagger for models loading between states and activity ?
+ * 2. check availability of GPS
  *
  * GPS noise is a big problem and need to be address before this can ever be of value.
  * There is a Kalman filter in C example to try; linear regression is an alternative.
@@ -44,7 +47,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     lateinit var activity: RunActivity
 
     companion object : ICompanion {
-        private var hasDone:Boolean = false
+        private var isDone:Boolean = false
 
         override fun isAvailable(): Boolean {
             return true
@@ -54,7 +57,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
          * Are we completed here ?
          */
         override fun isCompleted():Boolean {
-            if(hasDone)
+            if(isDone)
                 return true
 
             return false
@@ -89,7 +92,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
 
         // start with a clean slate
         stateMachine.interruptClear()
-        hasDone = false
+        isDone = false
 
         if (shouldAskPermissions())
             askPermissions()
@@ -99,8 +102,18 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     }
 
     override fun onHandleYassoDone() {
-        hasDone = true
+        isDone = true
         fab.changeState(StateDone::class.java)
+    }
+
+    /*
+     * let runner knows split is done, change sprint or jog
+     */
+    override fun onChangedSplit() {
+        val type = stateMachine.current
+        dataContainer.background = getViewBackground(type)
+        vibrate(type)
+        beep(type)
     }
 
     /*
@@ -128,6 +141,65 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         txtTotalTime.text = splitViewModel.elapsedTimeString
 
         binding.invalidateAll()
+    }
+
+    /*
+     * Vibrate when split change (sprint/jog/done)
+     * - so runner knows without needing to look at screen
+     */
+    private fun vibrate(state:Type) {
+        var duration:Long = 2000
+
+        when(state) {
+            StateSprint::class.java -> {
+                duration = 1000
+            }
+            StateJog::class.java -> {
+                duration = 500
+            }
+        }
+
+        val vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
+        if (Build.VERSION.SDK_INT >= 26) {
+            vibrator.vibrate(VibrationEffect.createOneShot(duration, VibrationEffect.DEFAULT_AMPLITUDE))
+        } else {
+            vibrator.vibrate(duration)
+        }
+    }
+
+     /*
+      * Beep when split change (sprint/jog/done)
+      * - so runner knows without needing to look at screen
+      */
+    private fun beep(state:Type) {
+        var tone:Int = ToneGenerator.TONE_CDMA_ABBR_ALERT
+        var duration:Int = 3000
+
+        when(state) {
+            StateSprint::class.java -> {
+                tone = ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD
+                duration = 2000
+            }
+            StateJog::class.java -> {
+                tone = ToneGenerator.TONE_CDMA_CALL_SIGNAL_ISDN_NORMAL
+                duration = 1000
+            }
+        }
+        val tg = ToneGenerator(AudioManager.STREAM_ALARM, 1000)
+        tg.startTone(tone, duration)
+    }
+
+    private fun getViewBackground(state:Type):Drawable {
+        var id:Int = R.drawable.round_corners
+        when(state) {
+            StateJog::class.java -> {
+                id = R.drawable.jog_round_corners
+            }
+            StateSprint::class.java -> {
+                id = R.drawable.sprint_round_corners
+            }
+        }
+        return resources.getDrawable(id)
     }
 
     /*
@@ -244,7 +316,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
                 // error condition
             }
         }
-        hasDone = false
+        isDone = false
     }
 
     /*

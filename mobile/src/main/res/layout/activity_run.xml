@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable name="run"
             type="com.ctyeung.runyasso800.RunActivity"/>
     </data>
     <androidx.appcompat.widget.LinearLayoutCompat
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -59,120 +58,121 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/dataContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_margin="15dp"
-            android:paddingLeft="30dp"
             android:background="@drawable/round_corners"
-            android:gravity="left">
+            android:gravity="left"
+            android:orientation="vertical"
+            android:paddingLeft="30dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_margin="15dp"
-                android:gravity="left">
+                android:gravity="left"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:src="@drawable/ic_run"/>
+                    android:src="@drawable/ic_run" />
 
                 <TextView
+                    android:id="@+id/txtSplitIndex"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Split:1"
-                    android:id="@+id/txtSplitIndex"/>
+                    android:text="Split:1" />
 
                 <TextView
+                    android:id="@+id/txtTotalSplits"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Total: 10"
-                    android:id="@+id/txtTotalSplits"/>
+                    android:text="Total: 10" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_margin="15dp"
-                android:gravity="left">
+                android:gravity="left"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:src="@drawable/ic_assignment_24px"/>
+                    android:src="@drawable/ic_assignment_24px" />
 
                 <TextView
+                    android:id="@+id/txtSplitType"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Sprint / Jog"
-                    android:id="@+id/txtSplitType"/>
+                    android:text="Sprint / Jog" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_margin="15dp"
-                android:gravity="left">
+                android:gravity="left"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:src="@drawable/ic_access_time"/>
+                    android:src="@drawable/ic_access_time" />
 
                 <TextView
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:text="Time: 00:00"
                     android:id="@+id/txtSplitTime"
-                    android:layout_margin="10dp"/>
-
-                <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:text="Total: 00:00"
+                    android:layout_margin="10dp"
+                    android:text="Time: 00:00" />
+
+                <TextView
                     android:id="@+id/txtTotalTime"
-                    android:layout_margin="10dp"/>
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Total: 00:00" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_margin="15dp"
-                android:gravity="left">
+                android:gravity="left"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:src="@drawable/ic_distance"/>
+                    android:src="@drawable/ic_distance" />
 
                 <TextView
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:text="Step: 0m"
                     android:id="@+id/txtStepDistance"
-                    android:layout_margin="10dp"/>
-
-                <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:text="Total: 600m"
+                    android:layout_margin="10dp"
+                    android:text="Step: 0m" />
+
+                <TextView
                     android:id="@+id/txtTotalDistance"
-                    android:layout_margin="10dp"/>
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Total: 600m" />
 
             </LinearLayout>
 

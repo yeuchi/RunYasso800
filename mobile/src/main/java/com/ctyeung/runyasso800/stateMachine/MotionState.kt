@@ -68,9 +68,12 @@ abstract class MotionState  : StateAbstract {
                 /*
                  * Consider idemtpotency ?
                  */
-                goto()
+                val isSplitEnd = goto()
+                this.actListener.onHandleLocationUpdate()
+
+                if(isSplitEnd)
+                    this.actListener.onChangedSplit()
             }
-            this.actListener.onHandleLocationUpdate()
         }
     }
 

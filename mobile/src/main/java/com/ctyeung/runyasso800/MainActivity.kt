@@ -123,24 +123,30 @@ class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListene
         return true
     }
 
-    fun onClickTime()
+    fun onClickGoal()
     {
         navigate2Activity(GoalActivity::class.java)
     }
 
     fun onClickRun()
     {
-        navigate2Activity(RunActivity::class.java)
+        if(RunActivity.isAvailable()) {
+            navigate2Activity(RunActivity::class.java)
+        }
     }
 
     fun onClickResult()
     {
-        navigate2Activity(ResultActivity::class.java)
+        if(ResultActivity.isAvailable()) {
+            navigate2Activity(ResultActivity::class.java)
+        }
     }
 
     fun onClickPersist()
     {
-        navigate2Activity(PersistActivity::class.java)
+        if(PersistActivity.isAvailable()) {
+            navigate2Activity(PersistActivity::class.java)
+        }
     }
 
     fun navigate2Activity(classType:Class<*>)

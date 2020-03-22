@@ -17,6 +17,7 @@ import java.util.*
 /*
  * To do:
  * 1. automatically navigate to run-activity ?
+ * 2. Render Goal on action bar ?
  *
  * Description:
  * Activity for naming this training event and selecting a race goal time.

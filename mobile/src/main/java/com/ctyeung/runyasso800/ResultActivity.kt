@@ -158,7 +158,7 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
     private fun getIconColor(runType:String):Float {
         when (runType) {
             Split.RUN_TYPE_JOG -> return BitmapDescriptorFactory.HUE_CYAN
-            Split.RUN_TYPE_SPRINT -> return BitmapDescriptorFactory.HUE_ORANGE
+            Split.RUN_TYPE_SPRINT -> return BitmapDescriptorFactory.HUE_GREEN
             else -> return BitmapDescriptorFactory.HUE_VIOLET
         }
     }
