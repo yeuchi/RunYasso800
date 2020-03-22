@@ -1,27 +1,17 @@
 package com.ctyeung.runyasso800
 
-import android.content.Intent
-import android.location.Location
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import android.view.MenuItem
 import android.view.WindowManager
-import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.ctyeung.runyasso800.databinding.ActivityRunBinding
-import com.ctyeung.runyasso800.room.splits.Split
-import com.ctyeung.runyasso800.room.steps.Step
 import com.ctyeung.runyasso800.stateMachine.*
 import com.ctyeung.runyasso800.utilities.LocationUtils
 import com.ctyeung.runyasso800.viewModels.*
 import kotlinx.android.synthetic.main.activity_run.*
-import java.lang.reflect.Type
 
 
 /*
@@ -53,9 +43,25 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     lateinit var stepViewModel:StepViewModel
     lateinit var activity: RunActivity
 
+    companion object : ICompanion {
+        private var hasDone:Boolean = false
+
+        override fun isAvailable(): Boolean {
+            return true
+        }
+
+        /*
+         * Are we completed here ?
+         */
+        override fun isCompleted():Boolean {
+            if(hasDone)
+                return true
+
+            return false
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_run)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         activity = this
@@ -85,6 +91,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
 
         // start with a clean slate
         stateMachine.interruptClear()
+        hasDone = false
 
         if (shouldAskPermissions())
             askPermissions()
@@ -93,24 +100,8 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         binding.invalidateAll()
     }
 
-    /*
-     * always available to run ?
-     */
-    override fun isAvailable(): Boolean {
-        return true
-    }
-
-    /*
-     * Are we completed here ?
-     */
-    override fun isCompleted():Boolean {
-        if(stateMachine.current == StateDone::class.java)
-            return true
-
-        return false
-    }
-
     override fun onHandleYassoDone() {
+        hasDone = true
         fab.changeState(StateDone::class.java)
     }
 
@@ -255,6 +246,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
                 // error condition
             }
         }
+        hasDone = false
     }
 
     /*

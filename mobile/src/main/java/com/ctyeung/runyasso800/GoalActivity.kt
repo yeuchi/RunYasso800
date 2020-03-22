@@ -1,15 +1,12 @@
 package com.ctyeung.runyasso800
 
 import android.app.TimePickerDialog
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.ctyeung.runyasso800.databinding.ActivityGoalBinding
 import com.ctyeung.runyasso800.utilities.TimeFormatter
@@ -19,7 +16,7 @@ import java.util.*
 
 /*
  * To do:
- * 1. add home button -> MainActivity
+ * 1. automatically navigate to run-activity ?
  *
  * Description:
  * Activity for naming this training event and selecting a race goal time.
@@ -28,34 +25,33 @@ import java.util.*
  */
 class GoalActivity : BaseActivity() {
     lateinit var binding: ActivityGoalBinding
-    var hasName:Boolean = false
-    var hasRaceGoal:Boolean = false
+
+    companion object : ICompanion {
+        var hasName: Boolean = false
+        var hasRaceGoal: Boolean = false
+
+        override fun isAvailable(): Boolean {
+            return true
+        }
+
+        /*
+         * Are we completed here ?
+         */
+        override fun isCompleted():Boolean {
+            if(hasName && hasRaceGoal)
+                return true
+
+            return false
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_goal)
         binding.listener = this
 
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
         handleTextChange()
-    }
-
-    /*
-     * always available for change ?
-     * (except when running ... which can't get here)
-     */
-    override fun isAvailable(): Boolean {
-        return true
-    }
-    /*
-     * Are we completed here ?
-     */
-    override fun isCompleted():Boolean {
-        if(hasName && hasRaceGoal)
-            return true
-
-        return false
     }
 
     /*

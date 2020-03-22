@@ -1,12 +1,10 @@
 package com.ctyeung.runyasso800
 
 import android.app.Activity
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
@@ -22,7 +20,6 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import androidx.databinding.DataBindingUtil
 import com.ctyeung.runyasso800.databinding.ActivityResultBinding
-import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 
 /*
  * To do:
@@ -47,12 +44,29 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
     lateinit var stepViewModel: StepViewModel
     var lines:ArrayList<Polyline> = ArrayList<Polyline>()
 
-    companion object {
+    companion object : ICompanion {
+        private var hasRendered:Boolean = false
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
+
+        override fun isAvailable(): Boolean {
+            // need to check db for available data
+            return true
+        }
+
+        /*
+         * Are we completed rendering here ?
+         */
+        override fun isCompleted():Boolean {
+            if(hasRendered)
+                return true
+
+            return false
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        hasRendered = false
         binding = DataBindingUtil.setContentView(this, R.layout.activity_result)
         binding.res = this
         initActionBar()
@@ -83,26 +97,6 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
                 drawSplitMarkers()
             }
         })
-    }
-
-    override fun isAvailable(): Boolean {
-        if(null!=stepViewModel && null!=splitViewModel) {
-            val steps = stepViewModel.steps.value
-            val splits = splitViewModel.yasso.value
-            if(null!=steps && steps.size>0 && null!=splits && splits.size>0)
-                return true
-        }
-        return false
-    }
-
-    /*
-     * Are we completed rendering here ?
-     */
-    override fun isCompleted():Boolean {
-        if(lines.size > 0)
-            return true
-
-        return false
     }
 
     protected fun shouldAskPermissions(): Boolean {
@@ -147,7 +141,6 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
      * Draw marker for each sprint and jog segment
      */
     private fun drawSplitMarkers() {
-        lines.clear()
         val splits:List<Split>? = splitViewModel.yasso.value
         if(null!=splits) {
 
@@ -175,6 +168,7 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
      * Need at least 2 steps to draw a line
      */
     private fun drawSteps() {
+        lines.clear()
         val steps:List<Step>? = stepViewModel.steps.value
 
         if(null!=steps && steps.size > 1) {
@@ -192,6 +186,9 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
             }
             val stt = LatLng(steps[0].latitude, steps[0].longitude)
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(stt, 12.0f))
+
+            if(lines.size>0)
+                hasRendered = true
         }
     }
 

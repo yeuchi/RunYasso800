@@ -8,18 +8,6 @@ import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 open class BaseActivity : AppCompatActivity() {
 
     /*
-     * MainActivity check if sub-activity is available to user
-     */
-
-    open fun isAvailable():Boolean {
-        return false
-    }
-
-    open fun isCompleted():Boolean {
-        return false
-    }
-
-    /*
      * Navigate to XXX Activity
      */
     fun gotoActivity(classType:Class<*>) {

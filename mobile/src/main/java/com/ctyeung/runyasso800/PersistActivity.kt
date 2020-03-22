@@ -1,14 +1,11 @@
 package com.ctyeung.runyasso800
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.StrictMode
 import android.util.Log
-import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -44,8 +41,25 @@ class PersistActivity : BaseActivity() {
     var totalRunDis:Double = 0.0
     var totalJogDis:Double = 0.0
 
+    companion object : ICompanion {
+        private var hasSendEmail:Boolean = false
+        // Check if images and data is available for sending
+        override fun isAvailable(): Boolean {
+            // need to check db for available data
+            return true
+        }
+
+        override fun isCompleted():Boolean {
+            if(hasSendEmail)
+                return true
+
+            return false
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        hasSendEmail = false
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_persist)
         binding.listener = this
@@ -64,32 +78,6 @@ class PersistActivity : BaseActivity() {
             yasso?.let {
             }
         })
-    }
-
-    /*
-     * Check if images and data is available for sending
-     */
-    override fun isAvailable(): Boolean {
-        if(null!=stepViewModel && null!=splitViewModel) {
-            val steps = stepViewModel.steps.value
-            val splits = splitViewModel.yasso.value
-            if(null!=steps && steps.size>0 && null!=splits && splits.size>0)
-                return true
-        }
-        return false
-    }
-
-    /*
-     * Are we completed here ?
-     */
-    override fun isCompleted():Boolean {
-        if(null!=stepViewModel && null!=splitViewModel) {
-            val steps = stepViewModel.steps.value
-            val splits = splitViewModel.yasso.value
-            if(null!=steps && steps.size>0 && null!=splits && splits.size>0)
-                return true
-        }
-        return false
     }
 
     /*
@@ -286,8 +274,9 @@ class PersistActivity : BaseActivity() {
                 val send_title = "some title"
                 startActivity(Intent.createChooser(emailIntent, send_title))
             }
-
-        } catch (e: Exception) {
+            hasSendEmail = true
+        }
+        catch (e: Exception) {
             val msg = "some failure msg"
 
             Toast.makeText(this,
