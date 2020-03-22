@@ -27,7 +27,7 @@ import java.util.*
 
 /*
  * To do:
- * 1. persist image(s) from Result ?
+ * 1. send image(s) from Result ?
  * 2. user can delete all data
  * 3. Use Dagger for models loading between states and activity ?
  *
@@ -39,8 +39,6 @@ class PersistActivity : BaseActivity() {
     lateinit var splitViewModel:SplitViewModel
     lateinit var stepViewModel:StepViewModel
     lateinit var binding:ActivityPersistBinding
-    var hasSteps:Boolean = false
-    var hasSplits:Boolean = false
     var totalRunTime:Long = 0
     var totalJogTime:Long = 0
     var totalRunDis:Double = 0.0
@@ -58,16 +56,40 @@ class PersistActivity : BaseActivity() {
 
         stepViewModel.steps.observe(this, Observer { steps ->
             steps?.let {
-                hasSteps = true
             }
         })
 
         splitViewModel.yasso.observe(this, Observer { yasso ->
             // Update the cached copy of the words in the adapter.
             yasso?.let {
-                hasSplits = true
             }
         })
+    }
+
+    /*
+     * Check if images and data is available for sending
+     */
+    override fun isAvailable(): Boolean {
+        if(null!=stepViewModel && null!=splitViewModel) {
+            val steps = stepViewModel.steps.value
+            val splits = splitViewModel.yasso.value
+            if(null!=steps && steps.size>0 && null!=splits && splits.size>0)
+                return true
+        }
+        return false
+    }
+
+    /*
+     * Are we completed here ?
+     */
+    override fun isCompleted():Boolean {
+        if(null!=stepViewModel && null!=splitViewModel) {
+            val steps = stepViewModel.steps.value
+            val splits = splitViewModel.yasso.value
+            if(null!=steps && steps.size>0 && null!=splits && splits.size>0)
+                return true
+        }
+        return false
     }
 
     /*
@@ -219,7 +241,7 @@ class PersistActivity : BaseActivity() {
      * Share summary via email, drive, facebook ,etc
      */
     fun onClickShare() {
-        if (hasSteps && hasSplits) {
+        if (isCompleted()) {
             sendEmail()
             return
         }
@@ -275,6 +297,5 @@ class PersistActivity : BaseActivity() {
 
             Log.e(msg, e.message, e)
         }
-
     }
 }

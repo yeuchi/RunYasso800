@@ -29,8 +29,10 @@ import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
  * 1. custom markers - sprint/jog/index
  * 2. calculate and zoom to appropriate magnification
  * 3. add pop-up with split details (all sprint/jog or just selected individual?)
- * 4. screenshots and store as image files
+ * 4. screenshots and store as image files for persist-activity
  * 5. Use Dagger for models loading between states and activity ?
+ * 6. support landscape and rotation
+ * 7. check availability of map
  *
  * Description:
  * Display performance result as follows
@@ -43,6 +45,7 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
     private lateinit var mMap: GoogleMap
     lateinit var splitViewModel: SplitViewModel
     lateinit var stepViewModel: StepViewModel
+    var lines:ArrayList<Polyline> = ArrayList<Polyline>()
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
@@ -68,7 +71,7 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
 
         stepViewModel.steps.observe(this, Observer { steps ->
             steps?.let {
-                // 1st time
+                // 1st time only ?
                 drawSteps()
             }
         })
@@ -76,10 +79,30 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
         splitViewModel.yasso.observe(this, Observer { yasso ->
             // Update the cached copy of the words in the adapter.
             yasso?.let {
-                // consider custom markers
+                // 1st time only ?
                 drawSplitMarkers()
             }
         })
+    }
+
+    override fun isAvailable(): Boolean {
+        if(null!=stepViewModel && null!=splitViewModel) {
+            val steps = stepViewModel.steps.value
+            val splits = splitViewModel.yasso.value
+            if(null!=steps && steps.size>0 && null!=splits && splits.size>0)
+                return true
+        }
+        return false
+    }
+
+    /*
+     * Are we completed rendering here ?
+     */
+    override fun isCompleted():Boolean {
+        if(lines.size > 0)
+            return true
+
+        return false
     }
 
     protected fun shouldAskPermissions(): Boolean {
@@ -111,10 +134,10 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
         }
     }
 
+    /*
+     * Initialize map
+     */
     override fun onMapReady(googleMap: GoogleMap) {
-        /*
-         * load markers from splits
-         */
         mMap = googleMap
         mMap.getUiSettings().setZoomControlsEnabled(true)
         mMap.setOnMarkerClickListener(this)
@@ -124,6 +147,7 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
      * Draw marker for each sprint and jog segment
      */
     private fun drawSplitMarkers() {
+        lines.clear()
         val splits:List<Split>? = splitViewModel.yasso.value
         if(null!=splits) {
 
@@ -164,6 +188,7 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
                                                 .add(stt, end)
                                                 .width(5f)
                                                 .color(Color.RED))
+                lines.add(line)
             }
             val stt = LatLng(steps[0].latitude, steps[0].longitude)
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(stt, 12.0f))

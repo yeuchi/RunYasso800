@@ -42,6 +42,23 @@ class GoalActivity : BaseActivity() {
     }
 
     /*
+     * always available for change ?
+     * (except when running ... which can't get here)
+     */
+    override fun isAvailable(): Boolean {
+        return true
+    }
+    /*
+     * Are we completed here ?
+     */
+    override fun isCompleted():Boolean {
+        if(hasName && hasRaceGoal)
+            return true
+
+        return false
+    }
+
+    /*
      * Training Event name
      */
     fun handleTextChange() {

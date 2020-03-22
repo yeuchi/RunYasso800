@@ -30,6 +30,7 @@ import java.lang.reflect.Type
  * 2. Vibrate/Sound (voice recording, beep) for start/end/rest time
  * 3. add home button -> MainActivity
  * 4. Use Dagger for models loading between states and activity ?
+ * 5. check availability of GPS
  *
  * GPS noise is a big problem and need to be address before this can ever be of value.
  * There is a Kalman filter in C example to try; linear regression is an alternative.
@@ -92,7 +93,22 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         binding.invalidateAll()
     }
 
+    /*
+     * always available to run ?
+     */
+    override fun isAvailable(): Boolean {
+        return true
+    }
 
+    /*
+     * Are we completed here ?
+     */
+    override fun isCompleted():Boolean {
+        if(stateMachine.current == StateDone::class.java)
+            return true
+
+        return false
+    }
 
     override fun onHandleYassoDone() {
         fab.changeState(StateDone::class.java)
