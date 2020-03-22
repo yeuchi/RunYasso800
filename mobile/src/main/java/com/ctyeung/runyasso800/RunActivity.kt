@@ -29,6 +29,7 @@ import java.lang.reflect.Type
  * 1. add background color change between sprint/jog/idle/done
  * 2. Vibrate/Sound (voice recording, beep) for start/end/rest time
  * 3. add home button -> MainActivity
+ * 4. Use Dagger for models loading between states and activity ?
  *
  * GPS noise is a big problem and need to be address before this can ever be of value.
  * There is a Kalman filter in C example to try; linear regression is an alternative.

@@ -30,6 +30,7 @@ import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
  * 2. calculate and zoom to appropriate magnification
  * 3. add pop-up with split details (all sprint/jog or just selected individual?)
  * 4. screenshots and store as image files
+ * 5. Use Dagger for models loading between states and activity ?
  *
  * Description:
  * Display performance result as follows

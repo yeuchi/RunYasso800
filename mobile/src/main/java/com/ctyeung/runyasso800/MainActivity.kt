@@ -18,6 +18,8 @@ import java.lang.reflect.Type
  * To do:
  * 1. enable/disable selection base on data already entered.
  * 2. layout landscape mode ?
+ * 3. create a separate IntentService (thread) to manage db access instead of Split/Step ViewModels ?
+ * 4. unit tests for all
  *
  * https://www.verywellfit.com/how-to-do-yasso-800s-2911888
  *

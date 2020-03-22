@@ -29,6 +29,7 @@ import java.util.*
  * To do:
  * 1. persist image(s) from Result ?
  * 2. user can delete all data
+ * 3. Use Dagger for models loading between states and activity ?
  *
  * Description:
  * - Persist (share) data to facebook, email or drive
@@ -101,13 +102,13 @@ class PersistActivity : BaseActivity() {
         return sb.toString()
     }
 
-    private fun getRaceGoal():String {
+    fun getRaceGoal():String {
         val seconds = SharedPrefUtility.getGoal(SharedPrefUtility.keyRaceGoal)
         val str = TimeFormatter.printTime(seconds)
         return resources.getString(R.string.race_goal) + str
     }
 
-    private fun getSprintGoal():String {
+    fun getSprintGoal():String {
         val seconds = SharedPrefUtility.getGoal(SharedPrefUtility.keySprintGoal)
         val str = TimeFormatter.printTime(seconds)
         return resources.getString(R.string.sprint_goal) + str
