@@ -69,7 +69,6 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
         hasRendered = false
         binding = DataBindingUtil.setContentView(this, R.layout.activity_result)
         binding.res = this
-        initActionBar()
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager

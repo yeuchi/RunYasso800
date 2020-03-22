@@ -2,6 +2,7 @@ package com.ctyeung.runyasso800
 
 import android.app.Application
 import android.content.Context
+import java.lang.reflect.Type
 
 class MainApplication : Application() {
 
@@ -10,6 +11,7 @@ class MainApplication : Application() {
     }
 
     companion object {
+        open var lastSubActivity:Type = MainActivity::class.java
         private var instance: MainApplication? = null
 
         fun applicationContext() : Context {

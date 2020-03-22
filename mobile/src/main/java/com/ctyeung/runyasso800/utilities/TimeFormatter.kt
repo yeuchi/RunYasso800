@@ -25,7 +25,7 @@ object TimeFormatter {
         val hrInSec = HH * 60 * 60
         val mm = (seconds - hrInSec) / 60
         val ss = (seconds - hrInSec) % 60
-        return HH.toString() + "hours " + mm.toString() + "minutes " + ss.toString() + "seconds"
+        return HH.toString() + " : " + mm.toString() + " : " + ss.toString()
     }
 
     /*

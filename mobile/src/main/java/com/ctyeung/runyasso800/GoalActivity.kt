@@ -49,8 +49,6 @@ class GoalActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_goal)
         binding.listener = this
-
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
         handleTextChange()
     }
 
@@ -107,7 +105,7 @@ class GoalActivity : BaseActivity() {
 
                 // marathon goal
                 val raceGoal = findViewById<Button>(R.id.btn_race_goal)
-                raceGoal.setText(hourOfDay.toString() + "hours " + minute + "minutes")
+                raceGoal.setText(hourOfDay.toString() + " : " + minute + " : 00")
                 val raceMilliSec = TimeFormatter.convertHHmmss(hourOfDay, minute, 0)
                 SharedPrefUtility.setGoal(SharedPrefUtility.keyRaceGoal, raceMilliSec)
 
@@ -115,7 +113,7 @@ class GoalActivity : BaseActivity() {
 
                 // sprint goal
                 val sprintGoal = findViewById<TextView>(R.id.txt_sprint_goal)
-                sprintGoal.setText(hourOfDay.toString() + "minutes "+minute+"seconds")
+                sprintGoal.setText("00 : " + hourOfDay.toString() + " : "+minute)
                 val sprintMilliSec = TimeFormatter.convertHHmmss(0, hourOfDay, minute)
                 SharedPrefUtility.setGoal(SharedPrefUtility.keySprintGoal, sprintMilliSec)
 

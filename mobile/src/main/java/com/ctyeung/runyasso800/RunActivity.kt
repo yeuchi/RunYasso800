@@ -64,12 +64,10 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         super.onCreate(savedInstanceState)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
-        activity = this
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_run)
         binding.run = this
+        activity = this
 
-        initActionBar()
         fab = RunFloatingActionButtons(this)
 
         stepViewModel = ViewModelProvider(this).get(StepViewModel::class.java)

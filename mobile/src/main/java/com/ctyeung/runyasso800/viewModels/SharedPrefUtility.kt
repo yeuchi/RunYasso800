@@ -33,6 +33,12 @@ object SharedPrefUtility
     val LAT_LONG_DEFAULT:String = "0"
     var DEFAULT_RACE_GOAL_SEC:Long = 14400
 
+    fun initDefaults() {
+        setName(MainApplication.applicationContext().resources.getString(R.string.run_yasso_800))
+        setGoal(keyRaceGoal, DEFAULT_RACE_GOAL_SEC)
+        setGoal(keySprintGoal, 0)
+    }
+
     fun getName():String
     {
         val sharedPreferences = getSharedPref(MainApplication.applicationContext())

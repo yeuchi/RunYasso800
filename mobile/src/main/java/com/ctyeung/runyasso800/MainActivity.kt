@@ -71,6 +71,7 @@ class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListene
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        SharedPrefUtility.initDefaults()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.listener = this
     }

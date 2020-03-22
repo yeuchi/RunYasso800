@@ -63,7 +63,6 @@ class PersistActivity : BaseActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_persist)
         binding.listener = this
-        initActionBar()
 
         stepViewModel = ViewModelProvider(this).get(StepViewModel::class.java)
         splitViewModel = ViewModelProvider(this).get(SplitViewModel::class.java)
