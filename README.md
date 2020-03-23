@@ -53,7 +53,7 @@ A Yasso800 Entity is composed of 10 x 2 (sprint/jog) Split Entities.  Each Split
 
 <img width="495" alt="Screen Shot 2020-02-15 at 3 30 04 PM" src="https://user-images.githubusercontent.com/1282659/74596116-145fbb00-5008-11ea-9a89-86802782d4dc.png">
 
-IDLE -> START -> SPRINT <-> JOG ->
+IDLE -> START -> SPRINT <-> JOG ->\
 <img src="https://user-images.githubusercontent.com/1282659/77270772-e3b01880-6c7a-11ea-9651-8b9688b7fc4c.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77270817-fcb8c980-6c7a-11ea-8966-92d5229db13c.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77270830-07735e80-6c7b-11ea-9230-108e3fbfbfd9.jpg" width="200"> 
 
 -> PAUSE -> DONE\
