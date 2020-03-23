@@ -30,6 +30,7 @@ import com.ctyeung.runyasso800.databinding.ActivityResultBinding
  * 5. Use Dagger for models loading between states and activity ?
  * 6. support landscape and rotation
  * 7. check availability of map
+ * 8. new viewModel with join entries
  *
  * Description:
  * Display performance result as follows
