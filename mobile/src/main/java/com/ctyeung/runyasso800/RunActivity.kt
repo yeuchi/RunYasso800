@@ -319,6 +319,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
             StateDone::class.java -> {
                 stateMachine.interruptClear()
                 fab.changeState(StateClear::class.java)
+                dataContainer.background = getViewBackground(stateMachine.current)
             }
             else -> {
                 // error condition
