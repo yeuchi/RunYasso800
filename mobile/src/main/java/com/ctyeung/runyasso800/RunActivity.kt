@@ -80,14 +80,14 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
 
         stepViewModel.steps.observe(this, Observer { steps ->
             steps?.let {
-
+                onHandleLocationUpdate()
             }
         })
 
         splitViewModel.yasso.observe(this, Observer { yasso ->
             // Update the cached copy of the words in the adapter.
             yasso?.let {
-                // database update success ..
+                onHandleLocationUpdate()
             }
         })
 
@@ -97,8 +97,6 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
 
         if (shouldAskPermissions())
             askPermissions()
-
-        //binding.invalidateAll()
     }
 
     // State machine callback
@@ -207,9 +205,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
                 stateMachine.interruptPause()
                 fab.changeState(StatePause::class.java)
             }
-            else -> {
-                // error condition
-            }
+            else -> {}
         }
     }
 
@@ -237,12 +233,16 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     }
 
     /*
-     * Only when DONE state
+     * when DONE or PAUSE (quit early?)
      * -> goto next Activity
      */
     fun onClickNext()
     {
-        if(StateDone::class.java == stateMachine.current)
-            gotoActivity(ResultActivity::class.java)
+        when(stateMachine.current){
+            StateDone::class.java,
+            StatePause::class.java -> {
+                gotoActivity(ResultActivity::class.java)
+            }
+        }
     }
 }

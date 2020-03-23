@@ -26,6 +26,7 @@ class StateSprint : MotionState, Isprint, Ijog {
 
         if(retVal) {
             listener.onChangeState(StateJog::class.java)
+            actListener.onChangedSplit()
             return true
         }
         else {
@@ -33,5 +34,6 @@ class StateSprint : MotionState, Isprint, Ijog {
             listener.onChangeState(this.javaClass)
             return false
         }
+        return false
     }
 }

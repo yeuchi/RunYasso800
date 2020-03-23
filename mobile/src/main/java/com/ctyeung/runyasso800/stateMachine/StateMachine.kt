@@ -23,33 +23,23 @@ class StateMachine : IStateCallback {
     var current:Type
     var previous:Type
 
-    // put below objects in a hash ?
-    var stateSprint:StateSprint
-    var stateJog:StateJog
-    var stateIdle:StateIdle
-    var stateError:StateError
-    var stateDone:StateDone
-    var stateClear:StateClear
-    var statePause:StatePause
-    var stateResume:StateResume
     var actListener:IRunStatsCallBack
+    var stateMap = HashMap<Type, StateAbstract>()
 
     constructor(actListener: IRunStatsCallBack,
                 splitViewModel: SplitViewModel,
                 stepViewModel: StepViewModel)
     {
         this.actListener = actListener
+        stateMap.put(StateSprint::class.java, StateSprint(this, actListener, splitViewModel, stepViewModel))
+        stateMap.put(StateJog::class.java, StateJog(this, actListener, splitViewModel, stepViewModel))
+        stateMap.put(StateError::class.java, StateError(this))
+        stateMap.put(StateDone::class.java, StateDone(this, actListener))
+        stateMap.put(StateClear::class.java, StateClear(this, splitViewModel, stepViewModel))
+        stateMap.put(StatePause::class.java, StatePause(this, actListener))
+        stateMap.put(StateResume::class.java, StateResume(this))
+        stateMap.put(StateIdle::class.java, StateIdle(this, actListener))
 
-        stateSprint = StateSprint(this, actListener, splitViewModel, stepViewModel)
-        stateJog = StateJog(this, actListener, splitViewModel, stepViewModel)
-
-        stateError = StateError(this)
-        stateDone = StateDone(this, actListener)
-        stateClear = StateClear(this, splitViewModel, stepViewModel)
-        statePause = StatePause(this,actListener)
-        stateResume = StateResume(this)
-
-        stateIdle = StateIdle(this, actListener)
         current = StateIdle::class.java
         previous = StateIdle::class.java
     }
@@ -63,15 +53,10 @@ class StateMachine : IStateCallback {
 
         when(current){
             StateSprint::class.java,
-            StateJog::class.java -> {
-                if(previous != current)
-                    actListener.onChangedSplit()
-            }
-            StateDone::class.java -> {
-                stateDone.execute(current)
-            }
+            StateJog::class.java,
+            StateDone::class.java,
             StateResume::class.java -> {
-                stateResume.execute(current)
+                stateMap[current]?.execute(current)
             }
             StateError::class.java -> {
                 // Yikes !  Handle error here !
@@ -89,16 +74,15 @@ class StateMachine : IStateCallback {
         when(current) {
             StateIdle::class.java,
             StatePause::class.java,
-            StateResume::class.java -> stateSprint.execute(current)
-
+            StateResume::class.java -> {
+                onChangeState(StateSprint::class.java)
+                actListener.onChangedSplit()
+            }
             StateJog::class.java,
             StateSprint::class.java -> {
                 // continue
             }
-
-            else -> {
-                // do nothing
-            }
+            else -> {}
         }
     }
 
@@ -118,12 +102,14 @@ class StateMachine : IStateCallback {
          */
         when(current) {
             StateSprint::class.java,
-            StateJog::class.java -> statePause.execute(previous)
+            StateJog::class.java -> {
+                stateMap[StatePause::class.java]?.execute((previous))
+            }
 
-            /*
-             * if we were at pause, then resume !
-             */
-            StatePause::class.java -> stateResume.execute(previous)
+            //if we were at pause, then resume !
+            StatePause::class.java -> {
+                stateMap[StateResume::class.java]?.execute((previous))
+            }
 
             else -> {
                 // do nothing
@@ -141,22 +127,14 @@ class StateMachine : IStateCallback {
             StateIdle::class.java,
             StatePause::class.java,
             StateError::class.java,
-            StateDone::class.java -> stateClear.execute(current)
+            StateDone::class.java -> {
+                stateMap[StateClear::class.java]?.execute(current)
+            }
 
             else -> {
                 // do nothing
             }
         }
-    }
-
-    /*
-     * Only when DONE state
-     * -> going to next Activity
-     * (so reset state machine)
-     */
-    fun interruptNext() {
-
-        // reset or delete all
     }
 
     fun observe(lifeCycle:LifecycleOwner) {
@@ -180,20 +158,13 @@ class StateMachine : IStateCallback {
     private fun update(location: Location) {
         if(null!=prevLocation && null!=location) {
             when (current) {
-                StateSprint::class.java -> {
-                    stateSprint.setLocation(prevLocation, location)
-                }
+                StateSprint::class.java,
                 StateJog::class.java -> {
-                    stateJog.setLocation(prevLocation, location)
+                    var state = stateMap[current] as MotionState
+                    state.setLocation(prevLocation, location)
+                    onChangeState(current)
                 }
-                // just update the latitute / longitude
-                StateIdle::class.java -> {
-                    actListener.onHandleLocationUpdate()
-                }
-
-                else -> {
-                    // nothing to do
-                }
+                else -> {}
             }
         }
         prevLocation = location

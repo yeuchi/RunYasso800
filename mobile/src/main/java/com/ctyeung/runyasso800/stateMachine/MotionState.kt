@@ -17,6 +17,7 @@ abstract class MotionState  : StateAbstract {
     var splitViewModel:SplitViewModel
     var FINISH_DISTANCE = 800
     var split:Split?=null
+    var hasNewLocation:Boolean = false
 
     constructor(listener:IStateCallback,
                 actListener: IRunStatsCallBack,
@@ -29,53 +30,71 @@ abstract class MotionState  : StateAbstract {
     }
 
     override fun execute(previous:Type) {
-        this.prevState = previous
-
-        goto()
+        if(hasNewLocation) {
+            this.prevState = previous
+            update()
+        }
     }
 
+    private var prevLocation:Location?=null
+    private var location:Location?=null
     /*
      * prevLocation is never null here
      */
     fun setLocation(prevLocation:Location?, location: Location) {
-        // insert db new data points & distance when user move more than unit of 1
-        val dis: Double = location.distanceTo(prevLocation).toDouble()
-        if (dis > 0) {
-            // these values should be initialized from database -- not sharedPreference !!!!
-            val timeNow = System.currentTimeMillis()
+        this.prevLocation = prevLocation
+        this.location = location
+        hasNewLocation = true
+    }
 
-            val runType = getRunType()
-            val step = Step(splitViewModel.index,
-                            stepViewModel.index ++,
-                            dis,
-                            runType,
-                            timeNow,
-                            location.latitude,
-                            location.longitude)
+    fun update() {
+        hasNewLocation = false
+        if(null!=prevLocation && null!=location) {
+            // insert db new data points & distance when user move more than unit of 1
+            val dis: Double = location!!.distanceTo(prevLocation).toDouble()
+            if (dis > 0) {
+                // these values should be initialized from database -- not sharedPreference !!!!
+                val timeNow = System.currentTimeMillis()
 
-            stepViewModel.insert(step)
-
-            // initialize Split
-            if(split == null) {
-                split = Split(splitViewModel.index,
+                val runType = getRunType()
+                val step = Step(
+                    splitViewModel.index,
+                    stepViewModel.index++,
+                    dis,
                     runType,
-                    0.0,
                     timeNow,
-                    location.latitude,
-                    location.longitude,
-                    timeNow,
-                    location.latitude,
-                    location.longitude)
+                    location!!.latitude,
+                    location!!.longitude
+                )
 
-                splitViewModel.insert(split);
-            }
-            else  {
-                split?.update(stepViewModel.totalDistance,timeNow, location.latitude, location.longitude)
-                splitViewModel.update(split)
+                stepViewModel.insert(step)
 
-                goto()
+                // initialize Split
+                if (split == null) {
+                    split = Split(
+                        splitViewModel.index,
+                        runType,
+                        0.0,
+                        timeNow,
+                        location!!.latitude,
+                        location!!.longitude,
+                        timeNow,
+                        location!!.latitude,
+                        location!!.longitude
+                    )
+
+                    splitViewModel.insert(split);
+                } else {
+                    split?.update(
+                        stepViewModel.totalDistance,
+                        timeNow,
+                        location!!.latitude,
+                        location!!.longitude
+                    )
+                    splitViewModel.update(split)
+                    goto()
+                }
             }
-            this.actListener.onHandleLocationUpdate()
         }
     }
 
@@ -99,9 +118,6 @@ abstract class MotionState  : StateAbstract {
             splitViewModel.index ++
     }
 
-    /*
-     * Don't need this ... just check parent class
-     */
     private fun getRunType():String
     {
         if(this is StateSprint)

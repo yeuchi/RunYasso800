@@ -36,6 +36,7 @@ class StateJog : MotionState, Ijog, Isprint, Idone {
             listener.onChangeState(this.javaClass)
             return false
         }
+        return false
     }
 
     /*
@@ -52,5 +53,6 @@ class StateJog : MotionState, Ijog, Isprint, Idone {
             // go to sprint !
             listener.onChangeState(StateSprint::class.java)
         }
+        actListener.onChangedSplit()
     }
 }

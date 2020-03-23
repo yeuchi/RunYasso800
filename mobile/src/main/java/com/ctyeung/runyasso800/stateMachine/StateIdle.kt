@@ -28,8 +28,8 @@ class StateIdle :StateAbstract, Iidle, Isprint {
          * update view
          * update state machine
          */
-        actListener.onHandleLocationUpdate()
         listener.onChangeState(this.javaClass)
+        actListener.onHandleLocationUpdate()
         return false
     }
 }
