@@ -23,7 +23,7 @@ Activity provides the following functions.
 - Select user Marathon goal (run-time) in Hours:Minutes.
 - Generates Yasso800 sprint time in Minutes:Seconds.
 
-<img src="https://user-images.githubusercontent.com/1282659/68713832-4e7e7400-0564-11ea-9cb4-7b75d55d30d3.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/68714362-5be82e00-0565-11ea-802d-7c3aa2ed0555.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/68714364-5e4a8800-0565-11ea-892d-ff842ad82eaf.jpg" width="200">
+<img src="https://user-images.githubusercontent.com/1282659/68713832-4e7e7400-0564-11ea-9cb4-7b75d55d30d3.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/68714362-5be82e00-0565-11ea-802d-7c3aa2ed0555.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77270701-a8154e80-6c7a-11ea-908c-cf0a66de26ef.jpg" width="200">
 
 ### Run Activity
 Activity manages the running portion of Yasso800.  For detail of Yasso800 workout, see below reference article.  
@@ -53,8 +53,8 @@ A Yasso800 Entity is composed of 10 x 2 (sprint/jog) Split Entities.  Each Split
 
 <img width="495" alt="Screen Shot 2020-02-15 at 3 30 04 PM" src="https://user-images.githubusercontent.com/1282659/74596116-145fbb00-5008-11ea-9a89-86802782d4dc.png">
 
-IDLE -> START -> SPRINT -> PAUSE\
-<img src="https://user-images.githubusercontent.com/1282659/76312197-82626f80-62a0-11ea-9f15-ff4f8b8f25e8.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77263160-c290fd00-6c65-11ea-99ab-478f770c7b14.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77263191-d177af80-6c65-11ea-9551-b1b7cb27b709.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/76326435-a0d36580-62b6-11ea-8dd5-750c32df8f69.jpg" width="200"> 
+IDLE -> START -> SPRINT <-> JOG -> DONE\
+<img src="https://user-images.githubusercontent.com/1282659/77270772-e3b01880-6c7a-11ea-9651-8b9688b7fc4c.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77270817-fcb8c980-6c7a-11ea-8966-92d5229db13c.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77270830-07735e80-6c7b-11ea-9230-108e3fbfbfd9.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77270846-122df380-6c7b-11ea-8b2d-d8d88a6a6688.jpg" width="200"> 
 
 ### Result Activity
 Activity presents run and jog results in map and sprint listing.\
