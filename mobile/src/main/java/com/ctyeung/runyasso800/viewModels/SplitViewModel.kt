@@ -20,10 +20,7 @@ class SplitViewModel (application: Application) : AndroidViewModel(application)
     var yasso:LiveData<List<Split>>
     var totalDistance:Double = 0.0
     var elapsedTime:Long = 0
-    var disTotalString:String = "Total: 0m"
-    var indexString:String = "Split: 0"
     var typeString:String = "Sprint / Jog"
-    var elapsedTimeString:String = "Total: 00:00"
 
     init {
         val splitDao = YassoDatabase.getDatabase(application, viewModelScope).splitDao()
@@ -33,18 +30,15 @@ class SplitViewModel (application: Application) : AndroidViewModel(application)
 
     fun insert(split: Split?) = viewModelScope.launch {
         if(null!=split) {
-            setTextProperties(split)
+            setProperties(split)
             repository.insert(split)
         }
     }
 
-    private fun setTextProperties(split:Split)
+    private fun setProperties(split:Split)
     {
-        disTotalString = "Total: ${totalDistance.roundToInt()}m"
-        indexString = "Split: ${(index+1)}"
         typeString = split.run_type.capitalize()
         calculateTimeElapsed(split.endTime)
-        elapsedTimeString = "Total: ${TimeFormatter.printDateTime(elapsedTime)}"
     }
 
     /*
@@ -69,7 +63,7 @@ class SplitViewModel (application: Application) : AndroidViewModel(application)
 
     fun update(split: Split?) = viewModelScope.launch {
         if(null!=split) {
-            setTextProperties(split)
+            setProperties(split)
             repository.update(split)
         }
     }

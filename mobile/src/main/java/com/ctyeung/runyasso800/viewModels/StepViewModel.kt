@@ -19,8 +19,7 @@ class StepViewModel (application: Application) : AndroidViewModel(application)
     var startTime:Long = 0
     var index:Int = 0
     var totalDistance:Double = 0.0
-    var disTotalString:String = "Step: 0m"
-    var elapsedTimeString:String = "Time: 00:00"
+    var elapsedTime:Long = 0
 
     init {
         val stepDao = YassoDatabase.getDatabase(application, viewModelScope).stepDao()
@@ -30,9 +29,7 @@ class StepViewModel (application: Application) : AndroidViewModel(application)
 
     fun insert(step: Step) = viewModelScope.launch {
         totalDistance += step.dis
-        disTotalString = "Step: "+ totalDistance.roundToInt() + "m";
-        val elapsedTime = calculateTimeElapsed(step.time)
-        elapsedTimeString = "Time: " + TimeFormatter.printDateTime(elapsedTime)
+        elapsedTime = calculateTimeElapsed(step.time)
         repository.insert(step)
     }
 

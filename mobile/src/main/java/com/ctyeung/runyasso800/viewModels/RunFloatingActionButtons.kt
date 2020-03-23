@@ -4,22 +4,27 @@ import com.ctyeung.runyasso800.R
 import com.ctyeung.runyasso800.RunActivity
 import com.ctyeung.runyasso800.stateMachine.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.activity_run.*
 import java.lang.reflect.Type
 
-class RunFloatingActionButtons(activity:RunActivity ) {
+/*
+ * To do:
+ * 1. use Dagger dependency injection
+ */
+class RunFloatingActionButtons {
 
-    // can be managed with binding below
-     var btnStart: FloatingActionButton
-     var btnPause: FloatingActionButton
-     var btnClear: FloatingActionButton
-     var btnNext: FloatingActionButton
+    private var run:RunActivity
+    private var stateMachine:StateMachine
 
-    init {
-        btnStart = activity.findViewById(R.id.btnStart) as FloatingActionButton
-        btnPause = activity.findViewById(R.id.btnPause) as FloatingActionButton
-        btnClear = activity.findViewById(R.id.btnClear) as FloatingActionButton
-        btnNext = activity.findViewById(R.id.btnNext) as FloatingActionButton
+    constructor(activity:RunActivity,
+                stateMachine: StateMachine) {
+        this.run = activity
+        this.stateMachine = stateMachine
 
+        init()
+    }
+
+    fun init() {
         changeState(StateIdle::class.java)
     }
 
@@ -30,26 +35,27 @@ class RunFloatingActionButtons(activity:RunActivity ) {
             StateSprint::class.java,
             StateJog::class.java,
             StateResume::class.java -> {
-                btnPause.show()
-                btnStart.hide()
-                btnClear.hide()
-                btnNext.hide()
+                run.btnStart.show()
+                run.btnPause.show()
+                run.btnStart.hide()
+                run.btnClear.hide()
+                run.btnNext.hide()
             }
 
             StateDone::class.java,
             StatePause::class.java -> {
-                btnStart.show()
-                btnClear.show()
-                btnNext.show()
-                btnPause.hide()
+                run.btnStart.show()
+                run.btnClear.show()
+                run.btnNext.show()
+                run.btnPause.hide()
             }
 
             StateIdle::class.java,
             StateClear::class.java -> {
-                btnStart.show()
-                btnPause.hide()
-                btnClear.hide()
-                btnNext.hide()
+                run.btnStart.show()
+                run.btnPause.hide()
+                run.btnClear.hide()
+                run.btnNext.hide()
             }
         }
     }

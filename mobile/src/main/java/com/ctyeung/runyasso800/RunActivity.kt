@@ -1,8 +1,6 @@
 package com.ctyeung.runyasso800
 
-import android.graphics.drawable.Drawable
-import android.media.AudioManager
-import android.media.ToneGenerator
+
 import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
@@ -22,7 +20,7 @@ import java.lang.reflect.Type
 
 /*
  * To do:
- * 1. Use Dagger for models loading between states and activity ?
+ * 1. Use Dagger dependency injection !!!
  * 2. check availability of GPS
  *
  * GPS noise is a big problem and need to be address before this can ever be of value.
@@ -41,6 +39,7 @@ import java.lang.reflect.Type
 class RunActivity : BaseActivity(), IRunStatsCallBack {
     lateinit var binding:ActivityRunBinding
     lateinit var fab:RunFloatingActionButtons
+    lateinit var splitContainer:SplitContainer
     lateinit var stateMachine:StateMachine
     lateinit var splitViewModel:SplitViewModel
     lateinit var stepViewModel:StepViewModel
@@ -63,6 +62,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
             return false
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
@@ -71,11 +71,12 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         binding.run = this
         activity = this
 
-        fab = RunFloatingActionButtons(this)
-
         stepViewModel = ViewModelProvider(this).get(StepViewModel::class.java)
         splitViewModel = ViewModelProvider(this).get(SplitViewModel::class.java)
         stateMachine = StateMachine(this, splitViewModel, stepViewModel)
+
+        fab = RunFloatingActionButtons(this, stateMachine)
+        splitContainer = SplitContainer(this, stateMachine, stepViewModel, splitViewModel)
 
         stepViewModel.steps.observe(this, Observer { steps ->
             steps?.let {
@@ -97,117 +98,24 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         if (shouldAskPermissions())
             askPermissions()
 
-        txtTotalSplits.text = "${resources.getString(R.string.total)}: ${SharedPrefUtility.getNumIterations()}"
-        binding.invalidateAll()
+        //binding.invalidateAll()
     }
 
+    // State machine callback
     override fun onHandleYassoDone() {
         isDone = true
-
-        // this should be done in viewModel -- need to handle clear/Pause
-        txtSplitType.text = resources.getString(R.string.done)
-        binding.invalidateAll()
-
+        splitContainer.updateType()
         fab.changeState(StateDone::class.java)
     }
 
-    /*
-     * let runner knows split is done, change sprint or jog
-     */
+    // State machine callback -- background update, vibrate, beep
     override fun onChangedSplit() {
-        val type = stateMachine.current
-        dataContainer.background = getViewBackground(type)
-        vibrate(type)
-        beep(type)
+        splitContainer.updateSupport()
     }
 
-    /*
-     * callback from State machine
-     * -> update view model and UI
-     */
+    // State machine callback -- data update
     override fun onHandleLocationUpdate() {
-
-        txtLat.text = stateMachine.prevLocation?.latitude.toString()
-        txtLong.text = stateMachine.prevLocation?.longitude.toString()
-
-        // distance in current split
-        txtStepDistance.text = stepViewModel.disTotalString
-        // distance total
-        txtTotalDistance.text = splitViewModel.disTotalString
-
-        // split index
-        txtSplitIndex.text = splitViewModel.indexString
-
-        // split type (sprint or jog)
-        txtSplitType.text = splitViewModel.typeString
-
-        // split time (sprint or jog)
-        txtSplitTime.text = stepViewModel.elapsedTimeString
-        txtTotalTime.text = splitViewModel.elapsedTimeString
-
-        binding.invalidateAll()
-    }
-
-    /*
-     * Vibrate when split change (sprint/jog/done)
-     * - so runner knows without needing to look at screen
-     */
-    private fun vibrate(state:Type) {
-        var duration:Long = 2000
-
-        when(state) {
-            StateSprint::class.java -> {
-                duration = 1000
-            }
-            StateJog::class.java -> {
-                duration = 500
-            }
-        }
-
-        val vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
-        if (Build.VERSION.SDK_INT >= 26) {
-            vibrator.vibrate(VibrationEffect.createOneShot(duration, VibrationEffect.DEFAULT_AMPLITUDE))
-        } else {
-            vibrator.vibrate(duration)
-        }
-    }
-
-     /*
-      * Beep when split change (sprint/jog/done)
-      * - so runner knows without needing to look at screen
-      */
-    private fun beep(state:Type) {
-        var tone:Int = ToneGenerator.TONE_CDMA_ABBR_ALERT
-        var duration:Int = 3000
-
-        when(state) {
-            StateSprint::class.java -> {
-                tone = ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD
-                duration = 2000
-            }
-            StateJog::class.java -> {
-                tone = ToneGenerator.TONE_CDMA_CALL_SIGNAL_ISDN_NORMAL
-                duration = 1000
-            }
-        }
-        val tg = ToneGenerator(AudioManager.STREAM_ALARM, 1000)
-        tg.startTone(tone, duration)
-    }
-
-    private fun getViewBackground(state:Type):Drawable {
-        var id:Int = R.drawable.round_corners
-        when(state) {
-            StateJog::class.java -> {
-                id = R.drawable.jog_round_corners
-            }
-            StateSprint::class.java -> {
-                id = R.drawable.sprint_round_corners
-            }
-            StatePause::class.java -> {
-                id = R.drawable.pause_round_corners
-            }
-        }
-        return resources.getDrawable(id)
+        splitContainer.updateData()
     }
 
     /*
@@ -319,7 +227,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
             StateDone::class.java -> {
                 stateMachine.interruptClear()
                 fab.changeState(StateClear::class.java)
-                dataContainer.background = getViewBackground(stateMachine.current)
+                splitContainer.updateBackgroundColor()
             }
             else -> {
                 // error condition
