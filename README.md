@@ -54,7 +54,7 @@ A Yasso800 Entity is composed of 10 x 2 (sprint/jog) Split Entities.  Each Split
 <img width="495" alt="Screen Shot 2020-02-15 at 3 30 04 PM" src="https://user-images.githubusercontent.com/1282659/74596116-145fbb00-5008-11ea-9a89-86802782d4dc.png">
 
 IDLE -> START -> SPRINT -> PAUSE\
-<img src="https://user-images.githubusercontent.com/1282659/76312197-82626f80-62a0-11ea-9f15-ff4f8b8f25e8.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/76326432-a03acf00-62b6-11ea-8516-88a4cef42dda.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/76674258-52a2b880-657b-11ea-8c2d-789b356bccbb.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/76326435-a0d36580-62b6-11ea-8dd5-750c32df8f69.jpg" width="200"> 
+<img src="https://user-images.githubusercontent.com/1282659/76312197-82626f80-62a0-11ea-9f15-ff4f8b8f25e8.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77263160-c290fd00-6c65-11ea-99ab-478f770c7b14.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77263191-d177af80-6c65-11ea-9551-b1b7cb27b709.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/76326435-a0d36580-62b6-11ea-8dd5-750c32df8f69.jpg" width="200"> 
 
 ### Result Activity
 Activity presents run and jog results in map and sprint listing.\
@@ -62,7 +62,7 @@ Splits separated by map markers for selection to obtain detail recorded metrics.
 
 PLEASE INSERT YOUR GOOGLE MAP KEY in values/google_map_api.xml before running app.
 <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">!! MY_KEY_HERE !!</string>\
-<img src="https://user-images.githubusercontent.com/1282659/72771599-a36ee400-3bbe-11ea-8d76-e2eb1ff11cda.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77124552-338ba700-6a11-11ea-8af6-5a800ad1413b.jpg" width="200">
+<img src="https://user-images.githubusercontent.com/1282659/77263354-1d2a5900-6c66-11ea-8129-7c84f70166ef.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77124552-338ba700-6a11-11ea-8af6-5a800ad1413b.jpg" width="200">
 
 ### Persist (Share) Activity
 Activity provides persistence (share) methods to user.  They include the follow:
