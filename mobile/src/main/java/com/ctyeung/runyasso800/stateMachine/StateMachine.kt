@@ -13,6 +13,11 @@ import com.ctyeung.runyasso800.viewModels.SplitViewModel
 import com.ctyeung.runyasso800.viewModels.StepViewModel
 import java.lang.reflect.Type
 
+/*
+ * To do:
+ * 1. add a hash table for type -> state
+ * 2. refactor execute and update logic for coherence and simplification
+ */
 class StateMachine : IStateCallback {
     var prevLocation:Location ?= null
     var current:Type
@@ -41,7 +46,7 @@ class StateMachine : IStateCallback {
         stateError = StateError(this)
         stateDone = StateDone(this, actListener)
         stateClear = StateClear(this, splitViewModel, stepViewModel)
-        statePause = StatePause(this)
+        statePause = StatePause(this,actListener)
         stateResume = StateResume(this)
 
         stateIdle = StateIdle(this, actListener)
@@ -62,12 +67,12 @@ class StateMachine : IStateCallback {
                 if(previous != current)
                     actListener.onChangedSplit()
             }
-
             StateDone::class.java -> {
-                // we are done !
-                stateDone.execute(previous)
+                stateDone.execute(current)
             }
-
+            StateResume::class.java -> {
+                stateResume.execute(current)
+            }
             StateError::class.java -> {
                 // Yikes !  Handle error here !
             }
@@ -107,9 +112,13 @@ class StateMachine : IStateCallback {
       */
     fun interruptPause() {
 
+        /*
+         * previous state is sprint or jog
+         * - we wish to return to that state on resume
+         */
         when(current) {
             StateSprint::class.java,
-            StateJog::class.java -> statePause.execute(current)
+            StateJog::class.java -> statePause.execute(previous)
 
             /*
              * if we were at pause, then resume !

@@ -25,6 +25,7 @@ class StateDone : StateAbstract, Idone {
 
     override fun goto():Boolean {
         /*
+         * not used
          * we are stuck in this state
          * (except if user CLEAR
          */

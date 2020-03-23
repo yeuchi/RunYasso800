@@ -24,7 +24,6 @@ import java.lang.reflect.Type
  * To do:
  * 1. Use Dagger for models loading between states and activity ?
  * 2. check availability of GPS
- * 3. blinking background if paused ?
  *
  * GPS noise is a big problem and need to be address before this can ever be of value.
  * There is a Kalman filter in C example to try; linear regression is an alternative.
@@ -203,6 +202,9 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
             }
             StateSprint::class.java -> {
                 id = R.drawable.sprint_round_corners
+            }
+            StatePause::class.java -> {
+                id = R.drawable.pause_round_corners
             }
         }
         return resources.getDrawable(id)

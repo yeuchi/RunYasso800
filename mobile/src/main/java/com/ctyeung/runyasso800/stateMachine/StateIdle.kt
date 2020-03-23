@@ -16,6 +16,8 @@ class StateIdle :StateAbstract, Iidle, Isprint {
 
         this.prevState = previous
         // things to perform in this state
+
+        goto()
     }
 
     override fun goto():Boolean {
