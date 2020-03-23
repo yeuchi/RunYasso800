@@ -68,7 +68,7 @@ class GoalActivity : BaseActivity() {
                 }
 
                 SharedPrefUtility.setName(name)
-                getSupportActionBar()?.title = name
+                initActionBar()
 
                 // go to next activity automatically
                 //if (hasName && hasRaceGoal)
@@ -105,18 +105,17 @@ class GoalActivity : BaseActivity() {
             TimePickerDialog.OnTimeSetListener{ view, hourOfDay, minute ->
 
                 // marathon goal
-                val raceGoal = findViewById<Button>(R.id.btn_race_goal)
-                raceGoal.setText(hourOfDay.toString() + " : " + minute + " : 00")
-                val raceMilliSec = TimeFormatter.convertHHmmss(hourOfDay, minute, 0)
-                SharedPrefUtility.setGoal(SharedPrefUtility.keyRaceGoal, raceMilliSec)
+                val raceInSeconds = TimeFormatter.convertHHmmss(hourOfDay, minute, 0)
+                btn_race_goal.text = TimeFormatter.printTime(raceInSeconds)
+                SharedPrefUtility.setGoal(SharedPrefUtility.keyRaceGoal, raceInSeconds)
 
-                validateRaceGoal(hourOfDay, minute)
+                if(validateRaceGoal(hourOfDay, minute))
+                    initActionBar()
 
                 // sprint goal
-                val sprintGoal = findViewById<TextView>(R.id.txt_sprint_goal)
-                sprintGoal.setText("00 : " + hourOfDay.toString() + " : "+minute)
-                val sprintMilliSec = TimeFormatter.convertHHmmss(0, hourOfDay, minute)
-                SharedPrefUtility.setGoal(SharedPrefUtility.keySprintGoal, sprintMilliSec)
+                val sprintInSeconds = TimeFormatter.convertHHmmss(0, hourOfDay, minute)
+                txt_sprint_goal.text = TimeFormatter.printTime(sprintInSeconds)
+                SharedPrefUtility.setGoal(SharedPrefUtility.keySprintGoal, sprintInSeconds)
 
                 // go to next activity automatically
                 //if(hasName && hasRaceGoal)
@@ -130,12 +129,14 @@ class GoalActivity : BaseActivity() {
     /*
      * Qualify race goal time
      */
-    private fun validateRaceGoal(hours:Int, minutes:Int) {
+    private fun validateRaceGoal(hours:Int, minutes:Int):Boolean {
         // no human can run marathon under an hour yet..
         if(hours > 0)
             hasRaceGoal = true
         else
             hasRaceGoal = false
+
+        return hasRaceGoal
     }
 
     /*

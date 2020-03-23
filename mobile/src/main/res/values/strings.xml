@@ -12,6 +12,9 @@
     <string name="id_iteration">iterations</string>
     <string name="id_gps">gps</string>
 
+    <!-- Base Activity -->
+    <string name="split_goal">Split Goal</string>
+
     <!-- Goal Activity -->
     <string name="your_goal">Marathon goal</string>
     <string name="run_name">Run name</string>
@@ -36,6 +39,7 @@
     <string name="jog_time">Jog Time</string>
     <string name="done">Done</string>
     <string name="unknown">Unknown</string>
+    <string name="total">Total</string>
 
     <!-- Result Activity -->
     <string name="splits">Splits</string>

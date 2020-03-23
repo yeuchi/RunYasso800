@@ -31,11 +31,10 @@ object SharedPrefUtility
     val keySprintGoal = "sprintGoal"
     val keyRaceGoal = "raceGoal"
     val LAT_LONG_DEFAULT:String = "0"
-    var DEFAULT_RACE_GOAL_SEC:Long = 14400
 
     fun initDefaults() {
         setName(MainApplication.applicationContext().resources.getString(R.string.run_yasso_800))
-        setGoal(keyRaceGoal, DEFAULT_RACE_GOAL_SEC)
+        setGoal(keyRaceGoal, 0)
         setGoal(keySprintGoal, 0)
     }
 
@@ -56,7 +55,7 @@ object SharedPrefUtility
 
     fun getGoal(key:String):Long
     {
-        var defaultSeconds:Long = DEFAULT_RACE_GOAL_SEC
+        var defaultSeconds:Long = 0
         when(key) {
             keySprintGoal -> {
                 defaultSeconds /= 60

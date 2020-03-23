@@ -22,17 +22,6 @@ class StateJog : MotionState, Ijog, Isprint, Idone {
     }
 
     /*
-     * Acknowledge we are in Jog state
-     */
-    override fun execute(previous:Type) {
-
-        this.prevState = previous
-        // things to perform in this state
-
-        goto()
-    }
-
-    /*
      * state change conditions
      * - Jog, Sprint or Done
      */

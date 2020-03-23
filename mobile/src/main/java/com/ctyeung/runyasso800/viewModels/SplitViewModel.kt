@@ -40,11 +40,11 @@ class SplitViewModel (application: Application) : AndroidViewModel(application)
 
     private fun setTextProperties(split:Split)
     {
-        disTotalString = "Total: " + totalDistance.roundToInt() + "m"
-        indexString = "Split: " + (index+1).toString()
+        disTotalString = "Total: ${totalDistance.roundToInt()}m"
+        indexString = "Split: ${(index+1)}"
         typeString = split.run_type.capitalize()
         calculateTimeElapsed(split.endTime)
-        elapsedTimeString = "Total: " + TimeFormatter.printDateTime(elapsedTime)
+        elapsedTimeString = "Total: ${TimeFormatter.printDateTime(elapsedTime)}"
     }
 
     /*

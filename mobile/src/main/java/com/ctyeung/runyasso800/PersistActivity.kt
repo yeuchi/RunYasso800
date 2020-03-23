@@ -94,8 +94,8 @@ class PersistActivity : BaseActivity() {
         sb.appendln()
 
         val str = getPerformance()
-        sb.appendln("Total Run distance:"+totalRunDis + "m time:"+ TimeFormatter.printTime(totalRunTime/1000))
-        sb.appendln("Total Jog distance:"+totalJogDis + "m time:"+TimeFormatter.printTime(totalJogTime/1000))
+        sb.appendln("Total Run distance: ${totalRunDis}m time: ${TimeFormatter.printTime(totalRunTime/1000)}")
+        sb.appendln("Total Jog distance: ${totalJogDis}m time: ${TimeFormatter.printTime(totalJogTime/1000)}")
         sb.appendln()
 
         sb.appendln(str)

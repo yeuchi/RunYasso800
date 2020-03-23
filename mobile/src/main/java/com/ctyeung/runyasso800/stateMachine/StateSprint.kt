@@ -18,17 +18,6 @@ class StateSprint : MotionState, Isprint, Ijog {
     }
 
     /*
-     * Acknowledge we are in Sprint state
-     */
-    override fun execute(previous:Type) {
-
-        this.prevState = previous
-        // initialization things to perform in this state
-
-        goto()
-    }
-
-    /*
      * state change conditions
      * - either in Sprint or Jog
      */

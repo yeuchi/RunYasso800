@@ -25,7 +25,15 @@ object TimeFormatter {
         val hrInSec = HH * 60 * 60
         val mm = (seconds - hrInSec) / 60
         val ss = (seconds - hrInSec) % 60
-        return HH.toString() + " : " + mm.toString() + " : " + ss.toString()
+        return "${get2Digits(HH)}:${get2Digits(mm)}:${get2Digits(ss)}"
+    }
+
+    private fun get2Digits(num:Long):String {
+        if(num >= 10)
+            return num.toString()
+
+        else
+            return "0${num}"
     }
 
     /*

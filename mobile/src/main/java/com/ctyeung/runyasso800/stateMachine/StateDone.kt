@@ -1,12 +1,15 @@
 package com.ctyeung.runyasso800.stateMachine
 
+import com.ctyeung.runyasso800.viewModels.IRunStatsCallBack
 import java.lang.reflect.Type
 
 class StateDone : StateAbstract, Idone {
 
-    constructor(listener:IStateCallback):super(listener)
+    private var actListener:IRunStatsCallBack
+    constructor(listener:IStateCallback,
+                actListener: IRunStatsCallBack):super(listener)
     {
-
+        this.actListener = actListener
     }
 
     override fun execute(previous:Type) {
@@ -14,6 +17,10 @@ class StateDone : StateAbstract, Idone {
         this.prevState = previous
         // things to perform in this state
 
+        if(previous != this.javaClass) {
+            actListener.onChangedSplit()
+            actListener.onHandleYassoDone()
+        }
     }
 
     override fun goto():Boolean {

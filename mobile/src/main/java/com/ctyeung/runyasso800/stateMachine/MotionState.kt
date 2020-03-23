@@ -7,6 +7,7 @@ import com.ctyeung.runyasso800.viewModels.IRunStatsCallBack
 import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 import com.ctyeung.runyasso800.viewModels.SplitViewModel
 import com.ctyeung.runyasso800.viewModels.StepViewModel
+import java.lang.reflect.Type
 import java.time.LocalTime
 
 abstract class MotionState  : StateAbstract {
@@ -26,6 +27,13 @@ abstract class MotionState  : StateAbstract {
         this.stepViewModel = stepViewModel
         this.splitViewModel = splitViewModel
     }
+
+    override fun execute(previous:Type) {
+        this.prevState = previous
+
+        goto()
+    }
+
     /*
      * prevLocation is never null here
      */
@@ -65,15 +73,9 @@ abstract class MotionState  : StateAbstract {
                 split?.update(stepViewModel.totalDistance,timeNow, location.latitude, location.longitude)
                 splitViewModel.update(split)
 
-                /*
-                 * Consider idemtpotency ?
-                 */
-                val isSplitEnd = goto()
-                this.actListener.onHandleLocationUpdate()
-
-                if(isSplitEnd)
-                    this.actListener.onChangedSplit()
+                goto()
             }
+            this.actListener.onHandleLocationUpdate()
         }
     }
 
@@ -81,10 +83,6 @@ abstract class MotionState  : StateAbstract {
      * Return true if state change should occur
      */
     override fun goto():Boolean {
-        if(splitViewModel.index > SharedPrefUtility.getNumIterations()) {
-            // debug only .. should never arrive here
-            return true
-        }
         if(stepViewModel.totalDistance >= FINISH_DISTANCE) {
             incrementSplitIndex()
             splitViewModel.totalDistance += stepViewModel.totalDistance

@@ -39,7 +39,7 @@ class StateMachine : IStateCallback {
         stateJog = StateJog(this, actListener, splitViewModel, stepViewModel)
 
         stateError = StateError(this)
-        stateDone = StateDone(this)
+        stateDone = StateDone(this, actListener)
         stateClear = StateClear(this, splitViewModel, stepViewModel)
         statePause = StatePause(this)
         stateResume = StateResume(this)
@@ -57,9 +57,15 @@ class StateMachine : IStateCallback {
         current = type
 
         when(current){
+            StateSprint::class.java,
+            StateJog::class.java -> {
+                if(previous != current)
+                    actListener.onChangedSplit()
+            }
+
             StateDone::class.java -> {
                 // we are done !
-                actListener.onHandleYassoDone()
+                stateDone.execute(previous)
             }
 
             StateError::class.java -> {

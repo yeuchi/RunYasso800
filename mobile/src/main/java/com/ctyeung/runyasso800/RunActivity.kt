@@ -24,6 +24,7 @@ import java.lang.reflect.Type
  * To do:
  * 1. Use Dagger for models loading between states and activity ?
  * 2. check availability of GPS
+ * 3. blinking background if paused ?
  *
  * GPS noise is a big problem and need to be address before this can ever be of value.
  * There is a Kalman filter in C example to try; linear regression is an alternative.
@@ -97,12 +98,17 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         if (shouldAskPermissions())
             askPermissions()
 
-        txtTotalSplits.text = "Total: "+SharedPrefUtility.getNumIterations()
+        txtTotalSplits.text = "${resources.getString(R.string.total)}: ${SharedPrefUtility.getNumIterations()}"
         binding.invalidateAll()
     }
 
     override fun onHandleYassoDone() {
         isDone = true
+
+        // this should be done in viewModel -- need to handle clear/Pause
+        txtSplitType.text = resources.getString(R.string.done)
+        binding.invalidateAll()
+
         fab.changeState(StateDone::class.java)
     }
 
