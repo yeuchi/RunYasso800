@@ -12,6 +12,8 @@ This is a mobile phone implementation of Yasso800 in Kotlin for runners.  I inte
 <img src="https://user-images.githubusercontent.com/1282659/68713828-4b838380-0564-11ea-97c9-b645e0fe66f6.jpg" width="200"> 
 
 ### Configure 
+Thinking out of the box ?  Want to rest (jog) less ?  
+You may adjust some configurable parameters under the menu.
 - Sprint and Jog distances are configured under menu selection : default 800 meters
 - Number of iterations (Sprint + Jog) pair : default 10
 
@@ -33,7 +35,7 @@ Supported functions are as follow:
 - track/locate/time of 800 meter x 10 jogs 
 
 #### Data
-http://erdraw.com/graphs/487344524370/edit
+http://erdraw.com/graphs/487344524370/edit\
 <img width="583" src="https://user-images.githubusercontent.com/1282659/70194212-37482780-16c7-11ea-8cf8-de4c32708f22.png">
 
 A Yasso800 Entity is composed of 10 x 2 (sprint/jog) Split Entities.  Each Split is a measure of 800 meter.  Within a split, samplings of GPS lat/long are considered every 200 milli-seconds and stored in the database as Step Entities.
