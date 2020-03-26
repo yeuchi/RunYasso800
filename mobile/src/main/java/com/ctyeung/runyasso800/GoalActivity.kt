@@ -109,13 +109,13 @@ class GoalActivity : BaseActivity() {
                 btn_race_goal.text = TimeFormatter.printTime(raceInSeconds)
                 SharedPrefUtility.setGoal(SharedPrefUtility.keyRaceGoal, raceInSeconds)
 
-                if(validateRaceGoal(hourOfDay, minute))
-                    initActionBar()
-
                 // sprint goal
                 val sprintInSeconds = TimeFormatter.convertHHmmss(0, hourOfDay, minute)
                 txt_sprint_goal.text = TimeFormatter.printTime(sprintInSeconds)
                 SharedPrefUtility.setGoal(SharedPrefUtility.keySprintGoal, sprintInSeconds)
+
+                if(validateRaceGoal(hourOfDay, minute))
+                    initActionBar()
 
                 // go to next activity automatically
                 //if(hasName && hasRaceGoal)
