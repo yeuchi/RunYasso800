@@ -75,50 +75,7 @@ Activity provides persistence (share) methods to user.  They include the follow:
 <img src="https://user-images.githubusercontent.com/1282659/68807583-b220a400-062d-11ea-9494-7003950ac881.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/68807590-b482fe00-062d-11ea-947b-2c4ea054e054.jpg" width="200"> 
 
 ### Example Email received
-
-Header msg
-
-Race Goal:2hours 5minutes 0seconds
-
-Sprint Goal:0hours 2minutes 5seconds
-
-Total Run distance:36.716938614845276m time:0hours 0minutes 15seconds\
-Total Jog distance:26.044604063034058m time:0hours 1minutes 37seconds
-
-{"Performance":[\
-{"split": 0, {"type": "jog", "distance":20.631344318389893, "elapsed":"0hours 0minutes 8seconds"},\
-{"split": 0, {"type": "sprint", "distance":30.197261810302734, "elapsed":"0hours 0minutes 5seconds"},\
-{"split": 1, {"type": "jog", "distance":5.413259744644165, "elapsed":"0hours 1minutes 28seconds"},\
-{"split": 1, {"type": "sprint", "distance":6.5196768045425415, "elapsed":"0hours 0minutes 9seconds"}]
-
-
-{"Splits":[
-{"dis":20.631344318389893,"endLat":44.9112042,"endLong":-93.3179533,"endTime":1584745186015,"run_type":"jog","splitIndex":0,"startLat":44.9113008,"startLong":-93.3180796,"startTime":1584745177179},
-{"dis":30.197261810302734,"endLat":44.9113352,"endLong":-93.3181378,"endTime":1584745171185,"run_type":"sprint","splitIndex":0,"startLat":44.9112409,"startLong":-93.317998,"startTime":1584745165917},
-{"dis":5.413259744644165,"endLat":44.9112118,"endLong":-93.3179725,"endTime":1584745296173,"run_type":"jog","splitIndex":1,"startLat":44.9112271,"startLong":-93.3179993,"startTime":1584745207179},
-{"dis":6.5196768045425415,"endLat":44.9112248,"endLong":-93.3179962,"endTime":1584745201180,"run_type":"sprint","splitIndex":1,"startLat":44.9112395,"startLong":-93.3179862,"startTime":1584745191194}]
-
-
-{"Steps":[
-{"dis":14.975629806518555,"latitude":44.9112409,"longitude":-93.317998,"run_type":"sprint","splitIndex":0,"stepIndex":0,"time":1584745165917},
-{"dis":15.22163200378418,"latitude":44.9113352,"longitude":-93.3181378,"run_type":"sprint","splitIndex":0,"stepIndex":1,"time":1584745171185},
-{"dis":5.978060245513916,"latitude":44.9113008,"longitude":-93.3180796,"run_type":"jog","splitIndex":0,"stepIndex":2,"time":1584745177179},
-{"dis":14.653284072875977,"latitude":44.9112042,"longitude":-93.3179533,"run_type":"jog","splitIndex":0,"stepIndex":3,"time":1584745186015},
-{"dis":4.705210208892822,"latitude":44.9112395,"longitude":-93.3179862,"run_type":"sprint","splitIndex":1,"stepIndex":4,"time":1584745191194},
-{"dis":1.8144665956497192,"latitude":44.9112248,"longitude":-93.3179962,"run_type":"sprint","splitIndex":1,"stepIndex":5,"time":1584745201180},
-{"dis":0.3539195954799652,"latitude":44.9112271,"longitude":-93.3179993,"run_type":"jog","splitIndex":1,"stepIndex":6,"time":1584745207179},
-{"dis":0.6080166101455688,"latitude":44.911231,"longitude":-93.3179939,"run_type":"jog","splitIndex":1,"stepIndex":7,"time":1584745216117},
-{"dis":0.7732329964637756,"latitude":44.9112244,"longitude":-93.3179908,"run_type":"jog","splitIndex":1,"stepIndex":8,"time":1584745221185},
-{"dis":0.23923984169960022,"latitude":44.9112247,"longitude":-93.3179878,"run_type":"jog","splitIndex":1,"stepIndex":9,"time":1584745227184},
-{"dis":0.07850266993045807,"latitude":44.911225,"longitude":-93.3179869,"run_type":"jog","splitIndex":1,"stepIndex":10,"time":1584745236202},
-{"dis":0.2721477746963501,"latitude":44.9112254,"longitude":-93.3179903,"run_type":"jog","splitIndex":1,"stepIndex":11,"time":1584745246188},
-{"dis":0.17780806124210358,"latitude":44.911227,"longitude":-93.3179903,"run_type":"jog","splitIndex":1,"stepIndex":12,"time":1584745251172},
-{"dis":0.725297212600708,"latitude":44.9112206,"longitude":-93.3179885,"run_type":"jog","splitIndex":1,"stepIndex":13,"time":1584745266174},
-{"dis":0.3918304145336151,"latitude":44.9112171,"longitude":-93.3179891,"run_type":"jog","splitIndex":1,"stepIndex":14,"time":1584745271175},
-{"dis":1.0636401176452637,"latitude":44.9112094,"longitude":-93.3179811,"run_type":"jog","splitIndex":1,"stepIndex":15,"time":1584745286197},
-{"dis":0.7296244502067566,"latitude":44.9112118,"longitude":-93.3179725,"run_type":"jog","splitIndex":1,"stepIndex":16,"time":1584745296173}]
-
-Footer msg
+https://github.com/yeuchi/RunYasso800/tree/master/results
 
 ### How to Do a Yasso 800 Workout 
 "Take your marathon goal time in hours and minutes and convert this to minutes and seconds. 
