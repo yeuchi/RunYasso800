@@ -76,6 +76,7 @@ Activity provides persistence (share) methods to user.  They include the follow:
 
 ### Example Email received
 https://github.com/yeuchi/RunYasso800/tree/master/results
+<img src="https://user-images.githubusercontent.com/1282659/77836627-6d4d6380-711d-11ea-90b5-d4c449cb2657.jpg" width="200">
 
 ### How to Do a Yasso 800 Workout 
 "Take your marathon goal time in hours and minutes and convert this to minutes and seconds. 
