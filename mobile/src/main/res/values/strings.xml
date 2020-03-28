@@ -38,6 +38,9 @@
     <string name="jog">Jog Number</string>
     <string name="jog_time">Jog Time</string>
     <string name="done">Done</string>
+    <string name="pause">Pause</string>
+    <string name="dunno">Dunno</string>
+    <string name="idle">Idle</string>
     <string name="unknown">Unknown</string>
     <string name="total">Total</string>
 

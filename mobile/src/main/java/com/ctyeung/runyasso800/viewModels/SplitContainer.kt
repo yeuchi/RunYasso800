@@ -66,24 +66,23 @@ class SplitContainer {
         /*
          * Use a hash here to reduce the code
          */
-        when(stateMachine.current) {
-            StateIdle::class.java -> {
-                run.txtSplitType.text = "IDLE"
-            }
+        val str = getString(stateMachine.current)
+        run.txtSplitType.text = str
+    }
+
+    private fun getString(type:Type):String {
+        var id = R.string.idle
+        when(type) {
+            StateIdle::class.java -> {/*default*/}
             StateJog::class.java,
             StateSprint::class.java -> {
-                run.txtSplitType.text = splitViewModel.typeString
+                return splitViewModel.typeString
             }
-            StatePause::class.java -> {
-                run.txtSplitType.text = "PAUSE"
-            }
-            StateDone::class.java -> {
-                run.txtSplitType.text = "Done"
-            }
-            else -> {
-                run.txtSplitType.text = "DUNNO"
-            }
+            StatePause::class.java -> {id = R.string.pause}
+            StateDone::class.java -> {id = R.string.done}
+            else -> {id = R.string.dunno}
         }
+        return MainApplication.applicationContext().resources.getString(id)
     }
 
     /*

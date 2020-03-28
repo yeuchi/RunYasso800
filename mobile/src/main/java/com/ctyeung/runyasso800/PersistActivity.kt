@@ -42,6 +42,8 @@ class PersistActivity : BaseActivity() {
     var totalJogDis:Double = 0.0
 
     companion object : ICompanion {
+        private var hasSteps:Boolean = false
+        private var hasSplits:Boolean = false
         private var hasSendEmail:Boolean = false
         // Check if images and data is available for sending
         override fun isAvailable(): Boolean {
@@ -69,12 +71,14 @@ class PersistActivity : BaseActivity() {
 
         stepViewModel.steps.observe(this, Observer { steps ->
             steps?.let {
+                hasSteps = true
             }
         })
 
         splitViewModel.yasso.observe(this, Observer { yasso ->
             // Update the cached copy of the words in the adapter.
             yasso?.let {
+                hasSplits = true
             }
         })
     }
@@ -228,7 +232,7 @@ class PersistActivity : BaseActivity() {
      * Share summary via email, drive, facebook ,etc
      */
     fun onClickShare() {
-        if (isCompleted()) {
+        if (hasSplits && hasSteps) {
             sendEmail()
             return
         }

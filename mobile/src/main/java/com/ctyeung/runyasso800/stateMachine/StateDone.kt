@@ -13,14 +13,11 @@ class StateDone : StateAbstract, Idone {
     }
 
     override fun execute(previous:Type) {
-
         this.prevState = previous
         // things to perform in this state
 
-        if(previous != this.javaClass) {
-            actListener.onChangedSplit()
-            actListener.onHandleYassoDone()
-        }
+        actListener.onChangedSplit()
+        actListener.onHandleYassoDone()
     }
 
     override fun goto():Boolean {
