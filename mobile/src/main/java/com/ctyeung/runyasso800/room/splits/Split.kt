@@ -7,6 +7,13 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 /*
+ * To do:
+ * 1. normalize (refactor)
+ *    - replace [startTime, startLat, startLong] with stepStartIndex
+ *    - replace [endTime, endLat, endLong] with stepStopIndex
+ *
+ * 2. implement Joined entity to handle read-only result
+ *
  * Split is 800m, minimum unit of run length in this workout
  */
 @Entity(tableName = "split_table", primaryKeys=["splitIndex", "run_type"])
