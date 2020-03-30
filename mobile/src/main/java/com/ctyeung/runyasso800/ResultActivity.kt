@@ -1,14 +1,16 @@
 package com.ctyeung.runyasso800
 
 import android.app.Activity
-import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.ctyeung.runyasso800.databinding.ActivityResultBinding
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.steps.Step
 import com.ctyeung.runyasso800.viewModels.SplitViewModel
@@ -18,8 +20,8 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
-import androidx.databinding.DataBindingUtil
-import com.ctyeung.runyasso800.databinding.ActivityResultBinding
+import java.net.URL
+
 
 /*
  * To do:
@@ -144,19 +146,54 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
         if(null!=splits) {
 
             for(split in splits){
-                val s = LatLng(split.startLat, split.startLong)
-                val name:String = split.run_type + split.splitIndex
-
-                val markerOption = MarkerOptions()
-                                    .position(s)
-                                    .title(name)
-                                    .icon(BitmapDescriptorFactory.defaultMarker(getIconColor(split.run_type)))
-
+                val s:LatLng = LatLng(split.startLat, split.startLong)
+                val bmp:Bitmap? = createBmp(split.run_type, split.splitIndex)
+                val markerOption = createMarker(s, bmp, split.run_type)
                 val marker = mMap.addMarker(markerOption)
                 marker.showInfoWindow()
             }
             mMap.setOnMarkerClickListener(this)
         }
+    }
+
+    private fun createMarker(s:LatLng, bmp:Bitmap?, runType: String):MarkerOptions {
+        if(null!=bmp) {
+            return MarkerOptions()
+                    .position(s)
+                    .icon(BitmapDescriptorFactory.fromBitmap(bmp))
+        }
+        else {
+            return MarkerOptions()
+                .position(s)
+                .icon(BitmapDescriptorFactory.defaultMarker(getIconColor(runType)))
+        }
+    }
+
+    private fun createBmp(runType:String, index:Int):Bitmap? {
+        try {
+            /*
+             * need to move this to async network to work !!!
+             */
+            val name: String = getMarkerStyle(runType, index)
+            val path =
+                "https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_${name}.png"
+            val url = URL(path)
+            val bmp:Bitmap? = BitmapFactory.decodeStream(url.openConnection().getInputStream())
+            return bmp
+        }
+        catch(ex:Exception) {
+            return null
+        }
+    }
+
+    private fun getMarkerStyle(runType:String, index:Int):String {
+        var id = R.string.violet
+        when (runType) {
+            Split.RUN_TYPE_JOG -> { id = R.string.blue }
+            Split.RUN_TYPE_SPRINT -> { id = R.string.green }
+            else -> {}
+        }
+        return "${MainApplication.applicationContext().resources.getString(id)}${index}"
     }
 
     private fun getIconColor(runType:String):Float {

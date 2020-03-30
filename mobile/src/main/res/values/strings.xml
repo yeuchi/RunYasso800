@@ -47,6 +47,9 @@
     <!-- Result Activity -->
     <string name="splits">Splits</string>
     <string name="map">Map</string>
+    <string name="green">green</string>
+    <string name="blue">blue</string>
+    <string name="violet">violet</string>
 
     <!-- Persist Activity -->
     <string name="share">Share</string>
