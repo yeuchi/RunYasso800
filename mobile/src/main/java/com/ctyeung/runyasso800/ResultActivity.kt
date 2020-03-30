@@ -134,7 +134,6 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         mMap.getUiSettings().setZoomControlsEnabled(true)
-        mMap.setOnMarkerClickListener(this)
     }
 
     /*
@@ -147,12 +146,16 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
             for(split in splits){
                 val s = LatLng(split.startLat, split.startLong)
                 val name:String = split.run_type + split.splitIndex
+
                 val markerOption = MarkerOptions()
                                     .position(s)
                                     .title(name)
                                     .icon(BitmapDescriptorFactory.defaultMarker(getIconColor(split.run_type)))
-                mMap.addMarker(markerOption)
+
+                val marker = mMap.addMarker(markerOption)
+                marker.showInfoWindow()
             }
+            mMap.setOnMarkerClickListener(this)
         }
     }
 
@@ -193,7 +196,6 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
     }
 
     override fun onMarkerClick(p0: Marker?): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         return false
     }
 
