@@ -55,7 +55,7 @@ IDLE -> START -> SPRINT <-> JOG ->PAUSE\
 <img src="https://user-images.githubusercontent.com/1282659/77359501-a8b0f200-6d19-11ea-9efb-68c7dfc4da21.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77270817-fcb8c980-6c7a-11ea-8966-92d5229db13c.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77270830-07735e80-6c7b-11ea-9230-108e3fbfbfd9.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77334281-966f8d80-6cf2-11ea-8b46-2455e2a7d501.jpg" width="200"> 
 
 -> DONE\
-<img src="https://user-images.githubusercontent.com/1282659/77270846-122df380-6c7b-11ea-8b2d-d8d88a6a6688.jpg" width="200"> 
+<img src="https://user-images.githubusercontent.com/1282659/77836547-acc78000-711c-11ea-9f49-dc592b8a3153.jpg" width="200"> 
 
 ### Result Activity
 Activity presents run and jog results in map and sprint listing.\
@@ -75,7 +75,8 @@ Activity provides persistence (share) methods to user.  They include the follow:
 <img src="https://user-images.githubusercontent.com/1282659/68807583-b220a400-062d-11ea-9494-7003950ac881.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/68807590-b482fe00-062d-11ea-947b-2c4ea054e054.jpg" width="200"> 
 
 ### Example Email received
-https://github.com/yeuchi/RunYasso800/tree/master/results
+https://github.com/yeuchi/RunYasso800/tree/master/results \
+<img src="https://user-images.githubusercontent.com/1282659/77836627-6d4d6380-711d-11ea-90b5-d4c449cb2657.jpg" width="200">
 
 ### How to Do a Yasso 800 Workout 
 "Take your marathon goal time in hours and minutes and convert this to minutes and seconds. 
