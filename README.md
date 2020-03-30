@@ -118,3 +118,6 @@ https://developers.google.com/maps/documentation/android-sdk/polygon-tutorial
 
 6. Reduce GPS data error on Android with Kalman filter and accelerometer, by Oleg Katkov, Mar 19, 2018
 https://blog.maddevs.io/reduce-gps-data-error-on-android-with-kalman-filter-and-accelerometer-43594faed19c
+
+7. Google Maps Markers, by Concept211, August 4, 2015
+https://github.com/Concept211/Google-Maps-Markers
