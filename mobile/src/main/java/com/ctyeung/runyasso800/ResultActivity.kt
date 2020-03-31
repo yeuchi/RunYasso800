@@ -1,12 +1,11 @@
 package com.ctyeung.runyasso800
 
 import android.app.Activity
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Color
+import android.graphics.*
 import android.os.Build
 import android.os.Bundle
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toBitmap
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -142,18 +141,35 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
      * Draw marker for each sprint and jog segment
      */
     private fun drawSplitMarkers() {
+        val FONT_SIZE:Float = 80f
         val splits:List<Split>? = splitViewModel.yasso.value
         if(null!=splits) {
 
             for(split in splits){
-                val s:LatLng = LatLng(split.startLat, split.startLong)
-                val bmp:Bitmap? = createBmp(split.run_type, split.splitIndex)
+                val s = LatLng(split.startLat, split.startLong)
+                val id = getMarkerId(split.run_type)
+                val bmp:Bitmap = drawTextToBitmap(id, FONT_SIZE, split.splitIndex)
                 val markerOption = createMarker(s, bmp, split.run_type)
                 val marker = mMap.addMarker(markerOption)
                 marker.showInfoWindow()
             }
             mMap.setOnMarkerClickListener(this)
         }
+    }
+
+    private fun drawTextToBitmap(gResId:Int, textSize:Float, index: Int): Bitmap {
+        val ICON_LEN:Int = 160
+        val bitmap = getDrawable(gResId)!!.toBitmap(ICON_LEN, ICON_LEN)
+
+        val canvas = Canvas(bitmap)
+        val paint = Paint()
+        paint.color = Color.BLACK
+        paint.textSize = textSize
+        paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_OVER)
+        canvas.drawBitmap(bitmap, 0f, 0f, paint)
+        canvas.drawText(index.toString(), 60f, 90f, paint)
+
+        return bitmap
     }
 
     private fun createMarker(s:LatLng, bmp:Bitmap?, runType: String):MarkerOptions {
@@ -169,38 +185,19 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
         }
     }
 
-    private fun createBmp(runType:String, index:Int):Bitmap? {
-        try {
-            /*
-             * need to move this to async network to work !!!
-             */
-            val name: String = getMarkerStyle(runType, index)
-            val path =
-                "https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_${name}.png"
-            val url = URL(path)
-            val bmp:Bitmap? = BitmapFactory.decodeStream(url.openConnection().getInputStream())
-            return bmp
-        }
-        catch(ex:Exception) {
-            return null
-        }
-    }
-
-    private fun getMarkerStyle(runType:String, index:Int):String {
-        var id = R.string.violet
-        when (runType) {
-            Split.RUN_TYPE_JOG -> { id = R.string.blue }
-            Split.RUN_TYPE_SPRINT -> { id = R.string.green }
-            else -> {}
-        }
-        return "${MainApplication.applicationContext().resources.getString(id)}${index}"
-    }
-
     private fun getIconColor(runType:String):Float {
         when (runType) {
             Split.RUN_TYPE_JOG -> return BitmapDescriptorFactory.HUE_CYAN
             Split.RUN_TYPE_SPRINT -> return BitmapDescriptorFactory.HUE_GREEN
             else -> return BitmapDescriptorFactory.HUE_VIOLET
+        }
+    }
+
+    private fun getMarkerId(runType: String):Int {
+        when (runType) {
+            Split.RUN_TYPE_JOG -> return R.drawable.ic_place_cyan
+            Split.RUN_TYPE_SPRINT -> return R.drawable.ic_place_green
+            else -> return R.drawable.ic_place_purple
         }
     }
 
@@ -225,7 +222,7 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
                 lines.add(line)
             }
             val stt = LatLng(steps[0].latitude, steps[0].longitude)
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(stt, 12.0f))
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(stt, 14.0f))
 
             if(lines.size>0)
                 hasRendered = true
