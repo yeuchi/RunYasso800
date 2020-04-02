@@ -10,6 +10,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.ctyeung.runyasso800.databinding.ActivityResultBinding
+import com.ctyeung.runyasso800.dialogs.IDialogListener
+import com.ctyeung.runyasso800.dialogs.SplitDetailFragment
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.steps.Step
 import com.ctyeung.runyasso800.viewModels.SplitViewModel
@@ -24,7 +26,6 @@ import java.net.URL
 
 /*
  * To do:
- * 1. custom markers - sprint/jog/index
  * 2. calculate and zoom to appropriate magnification
  * 3. add pop-up with split details (all sprint/jog or just selected individual?)
  * 4. screenshots and store as image files for persist-activity
@@ -38,7 +39,8 @@ import java.net.URL
  * 1. Map path of sprints and jogs
  * 2. selectable sprint / jog detail in term of splits
  */
-class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener, IDialogListener {
+    private var dlg:SplitDetailFragment? = null
     private lateinit var binding:ActivityResultBinding
     private lateinit var activity: Activity
     private lateinit var mMap: GoogleMap
@@ -229,7 +231,17 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
         }
     }
 
+    // call back from SplitDetailFragment dialog
+    override fun onDialogOkClicked(key: String?, value: Int) {
+        if(null!=dlg)
+            dlg!!.dismiss()
+
+        dlg = null
+    }
+
     override fun onMarkerClick(p0: Marker?): Boolean {
+        dlg = SplitDetailFragment(this)
+        dlg?.show(supportFragmentManager, "Details")
         return false
     }
 
