@@ -64,7 +64,7 @@ IDLE -> START -> SPRINT <-> JOG ->PAUSE\
 
 PLEASE INSERT YOUR GOOGLE MAP KEY in values/google_map_api.xml before running app.
 <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">!! MY_KEY_HERE !!</string>\
-<img src="https://user-images.githubusercontent.com/1282659/77263354-1d2a5900-6c66-11ea-8129-7c84f70166ef.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/78047459-99dbc800-7335-11ea-8692-b2a6ce3113a9.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/78464074-91272100-76aa-11ea-9c39-c54893d1f346.jpg" width="200">
+<img src="https://user-images.githubusercontent.com/1282659/78503753-346d4a00-772e-11ea-9b0b-a2e2589f328e.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/78503755-359e7700-772e-11ea-874d-1c09a2db0c8d.jpg" width="200">
 
 ### Persist (Share) Activity
 Activity provides persistence (share) methods to user.  They include the follow:
