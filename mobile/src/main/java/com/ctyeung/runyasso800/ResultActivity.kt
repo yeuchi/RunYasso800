@@ -39,7 +39,7 @@ import java.net.URL
  * 1. Map path of sprints and jogs
  * 2. selectable sprint / jog detail in term of splits
  */
-class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener, IDialogListener {
+class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     private var dlg:SplitDetailFragment? = null
     private lateinit var binding:ActivityResultBinding
     private lateinit var activity: Activity
@@ -151,9 +151,9 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
                 val s = LatLng(split.startLat, split.startLong)
                 val id = getMarkerId(split.run_type)
                 val bmp:Bitmap = drawTextToBitmap(id, FONT_SIZE, split.splitIndex)
-                val markerOption = createMarker(s, bmp, split.run_type)
+                val markerOption = createMarker(split.splitIndex, s, bmp, split.run_type)
                 val marker = mMap.addMarker(markerOption)
-                marker.showInfoWindow()
+                marker.hideInfoWindow()
             }
             mMap.setOnMarkerClickListener(this)
         }
@@ -174,16 +174,18 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
         return bitmap
     }
 
-    private fun createMarker(s:LatLng, bmp:Bitmap?, runType: String):MarkerOptions {
+    private fun createMarker(index:Int, s:LatLng, bmp:Bitmap?, runType: String):MarkerOptions {
         if(null!=bmp) {
             return MarkerOptions()
                     .position(s)
                     .icon(BitmapDescriptorFactory.fromBitmap(bmp))
+                    .title(index.toString())
         }
         else {
             return MarkerOptions()
                 .position(s)
                 .icon(BitmapDescriptorFactory.defaultMarker(getIconColor(runType)))
+                .title(index.toString())
         }
     }
 
@@ -231,17 +233,16 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
         }
     }
 
-    // call back from SplitDetailFragment dialog
-    override fun onDialogOkClicked(key: String?, value: Int) {
-        if(null!=dlg)
-            dlg!!.dismiss()
-
-        dlg = null
-    }
-
     override fun onMarkerClick(p0: Marker?): Boolean {
-        dlg = SplitDetailFragment(this)
-        dlg?.show(supportFragmentManager, "Details")
+        val i:Int = p0?.title?.toInt()?:0
+        val splits: List<Split>? = splitViewModel.yasso.value
+
+        if(null!=i && null!=splits) {
+            val split = splits!![i]
+            dlg = SplitDetailFragment(split)
+            dlg?.show(supportFragmentManager, "Details")
+            return true
+        }
         return false
     }
 

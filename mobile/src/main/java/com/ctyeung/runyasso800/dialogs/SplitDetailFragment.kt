@@ -6,27 +6,43 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.ctyeung.runyasso800.R
+import com.ctyeung.runyasso800.room.splits.Split
+import com.ctyeung.runyasso800.utilities.TimeFormatter
+import kotlinx.android.synthetic.main.fragment_split_detail.*
+import com.ctyeung.runyasso800.databinding.FragmentSplitDetailBinding
 
 public class SplitDetailFragment : DialogFragment {
 
-    private var mRoot: View? = null
-    private var listener:IDialogListener
+    private var split:Split
+    private lateinit var binding:FragmentSplitDetailBinding
 
-    constructor(listener: IDialogListener) {
-        this.listener = listener
+    constructor(split:Split) {
+        this.split = split
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        mRoot = inflater.inflate(R.layout.fragment_split_detail, container, false);
-        return mRoot
-       // return super.onCreateView(inflater, container, savedInstanceState)
+    override fun onCreateView(inflater: LayoutInflater,
+                                container: ViewGroup?,
+                                savedInstanceState: Bundle?): View? {
+        binding = FragmentSplitDetailBinding.inflate(inflater, container, false)
+        binding.detail = this
+        //mRoot = inflater.inflate(R.layout.fragment_split_detail, container, false);
+        initText(this.binding)
+        return binding.root
+    }
+
+    fun initText(model:FragmentSplitDetailBinding) {
+        model.txtDetailIndex.text = split.splitIndex.toString()
+        model.txtDetailType.text = split.run_type
+        val duration = split.endTime - split.startTime
+        model.txtDetailTime.text = TimeFormatter.printTime(duration)
+        model.txtDetailDistance.text = Math.round(split.dis).toString() + "meters"
+    }
+
+    fun onClickOk() {
+        this.dismiss()
     }
 }

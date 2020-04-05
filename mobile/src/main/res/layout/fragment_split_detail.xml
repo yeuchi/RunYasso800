@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable name="detail"
             type="com.ctyeung.runyasso800.dialogs.SplitDetailFragment"/>
@@ -17,6 +15,94 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_run" />
+
+            <TextView
+                android:id="@+id/txtDetailIndex"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Split:1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_assignment_24px" />
+
+            <TextView
+                android:id="@+id/txtDetailType"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Sprint / Jog" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_access_time" />
+
+            <TextView
+                android:id="@+id/txtDetailTime"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Time: 00:00" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_distance" />
+
+            <TextView
+                android:id="@+id/txtDetailDistance"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Distance: 0m" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:orientation="horizontal">
 
@@ -24,13 +110,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ok"
+                android:onClick="@{()-> detail.onClickOk()}"
                 android:id="@+id/btn_ok"/>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/btn_cancel"
-                android:id="@+id/btn_cancel"/>
 
         </LinearLayout>
 

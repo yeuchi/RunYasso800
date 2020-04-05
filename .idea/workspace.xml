@@ -14,9 +14,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7f23c7d-28c0-4a37-be60-ae5f42b5e57f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/dialogs/IDialogListener.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/dialogs/SplitDetailFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mobile/src/main/res/layout/fragment_split_detail.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" afterDir="false" />
@@ -30,6 +27,8 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/ResultActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/ResultActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/dialogs/SplitDetailFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/dialogs/SplitDetailFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/main/res/layout/fragment_split_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/res/layout/fragment_split_detail.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -371,8 +370,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/ResultActivity.kt</url>
-          <line>244</line>
-          <option name="timeStamp" value="165" />
+          <line>236</line>
+          <option name="timeStamp" value="175" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/dialogs/SplitDetailFragment.kt</url>
+          <line>37</line>
+          <option name="timeStamp" value="178" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -381,6 +385,9 @@
         <watch expression="stateMachine.current.toString()" language="kotlin" />
         <watch expression="previous.toString()" language="kotlin" />
         <watch expression="current.toString()" language="kotlin" />
+        <watch expression="binding.detail.txtDetailIndex" language="kotlin" custom="import kotlinx.android.synthetic.main.fragment_split_detail.txtDetailIndex" />
+        <watch expression="binding.detail" language="kotlin" />
+        <watch expression="binding.detail.binding.txtDetailIndex" language="kotlin" />
       </configuration>
     </watches-manager>
   </component>
