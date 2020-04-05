@@ -17,7 +17,7 @@ You may adjust some configurable parameters under the menu.
 - Sprint and Jog distances are configured under menu selection : default 800 meters
 - Number of iterations (Sprint + Jog) pair : default 10
 
-<img src="https://user-images.githubusercontent.com/1282659/76650050-d3d45e00-652f-11ea-81d2-3023eaefa023.jpg" width="200"> <img src="https://user-images.githubusercontent.com/1282659/76635445-7c28f900-6515-11ea-8c4a-2b43c893b1f3.jpg" width="200">   <img src="https://user-images.githubusercontent.com/1282659/77270701-a8154e80-6c7a-11ea-908c-cf0a66de26ef.jpg" width="200">
+<img src="https://user-images.githubusercontent.com/1282659/76650050-d3d45e00-652f-11ea-81d2-3023eaefa023.jpg" width="200"> <img src="https://user-images.githubusercontent.com/1282659/76635445-7c28f900-6515-11ea-8c4a-2b43c893b1f3.jpg" width="200">
 
 ### Goal (run time) Activity
 Activity provides the following functions.
@@ -25,7 +25,7 @@ Activity provides the following functions.
 - Select user Marathon goal (run-time) in Hours:Minutes.
 - Generates Yasso800 sprint time in Minutes:Seconds.
 
-<img src="https://user-images.githubusercontent.com/1282659/68713832-4e7e7400-0564-11ea-9cb4-7b75d55d30d3.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/68714362-5be82e00-0565-11ea-802d-7c3aa2ed0555.jpg" width="200">
+<img src="https://user-images.githubusercontent.com/1282659/78502933-3680da00-7729-11ea-8c90-12683cfd88fa.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/78502935-37197080-7729-11ea-9c94-8df088358cd4.jpg" width="200">    <img src="https://user-images.githubusercontent.com/1282659/78502936-384a9d80-7729-11ea-9c0b-a056b88f7841.jpg" width="200">
 
 ### Run Activity
 Activity manages the running portion of Yasso800.  For detail of Yasso800 workout, see below reference article.  
@@ -64,7 +64,7 @@ IDLE -> START -> SPRINT <-> JOG ->PAUSE\
 
 PLEASE INSERT YOUR GOOGLE MAP KEY in values/google_map_api.xml before running app.
 <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">!! MY_KEY_HERE !!</string>\
-<img src="https://user-images.githubusercontent.com/1282659/77263354-1d2a5900-6c66-11ea-8129-7c84f70166ef.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/78047459-99dbc800-7335-11ea-8692-b2a6ce3113a9.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/78464074-91272100-76aa-11ea-9c39-c54893d1f346.jpg" width="200">
+<img src="https://user-images.githubusercontent.com/1282659/78503755-359e7700-772e-11ea-874d-1c09a2db0c8d.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/78503753-346d4a00-772e-11ea-9b0b-a2e2589f328e.jpg" width="200"> 
 
 ### Persist (Share) Activity
 Activity provides persistence (share) methods to user.  They include the follow:
@@ -73,11 +73,11 @@ Activity provides persistence (share) methods to user.  They include the follow:
 - Drive - xml files
 - database management - delete 
 
-<img src="https://user-images.githubusercontent.com/1282659/68807583-b220a400-062d-11ea-9494-7003950ac881.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/68807590-b482fe00-062d-11ea-947b-2c4ea054e054.jpg" width="200"> 
+<img src="https://user-images.githubusercontent.com/1282659/78503756-36370d80-772e-11ea-894b-a6f0fd39b6b0.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/68807590-b482fe00-062d-11ea-947b-2c4ea054e054.jpg" width="200"> 
+ <img src="https://user-images.githubusercontent.com/1282659/77836627-6d4d6380-711d-11ea-90b5-d4c449cb2657.jpg" width="200">
 
 ### Example Email received
 https://github.com/yeuchi/RunYasso800/tree/master/results \
-<img src="https://user-images.githubusercontent.com/1282659/77836627-6d4d6380-711d-11ea-90b5-d4c449cb2657.jpg" width="200">
 
 ### How to Do a Yasso 800 Workout 
 "Take your marathon goal time in hours and minutes and convert this to minutes and seconds. 
