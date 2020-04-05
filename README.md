@@ -73,6 +73,7 @@ Activity provides persistence (share) methods to user.  They include the follow:
 - database management - delete 
 
 <img src="https://user-images.githubusercontent.com/1282659/68807583-b220a400-062d-11ea-9494-7003950ac881.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/68807590-b482fe00-062d-11ea-947b-2c4ea054e054.jpg" width="200"> 
+ <img src="https://user-images.githubusercontent.com/1282659/78464074-91272100-76aa-11ea-9c39-c54893d1f346.jpg" width="200">
 
 ### Example Email received
 https://github.com/yeuchi/RunYasso800/tree/master/results \
