@@ -10,11 +10,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.ctyeung.runyasso800.databinding.ActivityResultBinding
-import com.ctyeung.runyasso800.dialogs.IDialogListener
 import com.ctyeung.runyasso800.dialogs.SplitDetailFragment
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.steps.Step
-import com.ctyeung.runyasso800.stateMachine.StateAbstract
 import com.ctyeung.runyasso800.viewModels.SplitViewModel
 import com.ctyeung.runyasso800.viewModels.StepViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -22,8 +20,6 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
-import java.lang.reflect.Type
-import java.net.URL
 
 
 /*
@@ -148,18 +144,32 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
     private fun drawSplitMarkers() {
         val FONT_SIZE:Float = 80f
         val splits:List<Split>? = splitViewModel.yasso.value
-        if(null!=splits) {
+        if(null!=splits && splits.size>0) {
             var i = 0
+            var builder:LatLngBounds.Builder = LatLngBounds.Builder()
+
             for(split in splits){
                 val s = LatLng(split.startLat, split.startLong)
+                builder.include(s)
+
                 val id = getMarkerId(split.run_type)
                 val bmp:Bitmap = drawTextToBitmap(id, FONT_SIZE, split.splitIndex)
                 val markerOption = createMarker(s, bmp, split.run_type)
                 val marker = mMap.addMarker(markerOption)
                 markerIndexes.put(marker, i++)
             }
+            zoomCamera(builder)
             mMap.setOnMarkerClickListener(this)
         }
+    }
+
+    private fun zoomCamera(builder:LatLngBounds.Builder) {
+        val width = MainApplication.applicationContext().resources.displayMetrics.widthPixels
+        val height = MainApplication.applicationContext().resources.displayMetrics.heightPixels
+        val padding = (width * 0.05).toInt()
+        val bounds = builder.build()
+        val cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding)
+        mMap.animateCamera(cu)
     }
 
     private fun drawTextToBitmap(gResId:Int, textSize:Float, index: Int): Bitmap {

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import com.ctyeung.runyasso800.MainApplication
 import com.ctyeung.runyasso800.R
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.utilities.TimeFormatter
@@ -35,14 +36,18 @@ public class SplitDetailFragment : DialogFragment {
     }
 
     fun initText(model:FragmentSplitDetailBinding) {
-        model.txtDetailIndex.text = "Split: ${split.splitIndex}"
+        model.txtDetailIndex.text = "${getResourceString(R.string.detail_split)} ${split.splitIndex}"
         model.txtDetailType.text = "Type: ${split.run_type}"
-        val duration = split.endTime - split.startTime
+        val duration = (split.endTime - split.startTime)/1000
         model.txtDetailTime.text = "Duration: ${TimeFormatter.printTime(duration)}"
         model.txtDetailDistance.text = "Distance: ${Math.round(split.dis)} m"
     }
 
     fun onClickOk() {
         this.dismiss()
+    }
+
+    fun getResourceString(id:Int):String {
+        return MainApplication.applicationContext().resources.getString(id)
     }
 }
