@@ -14,6 +14,7 @@ import com.ctyeung.runyasso800.dialogs.IDialogListener
 import com.ctyeung.runyasso800.dialogs.SplitDetailFragment
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.steps.Step
+import com.ctyeung.runyasso800.stateMachine.StateAbstract
 import com.ctyeung.runyasso800.viewModels.SplitViewModel
 import com.ctyeung.runyasso800.viewModels.StepViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -21,6 +22,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import java.lang.reflect.Type
 import java.net.URL
 
 
@@ -47,6 +49,7 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
     lateinit var splitViewModel: SplitViewModel
     lateinit var stepViewModel: StepViewModel
     var lines:ArrayList<Polyline> = ArrayList<Polyline>()
+    var markerIndexes = HashMap<Marker, Int>()
 
     companion object : ICompanion {
         private var hasRendered:Boolean = false
@@ -146,14 +149,14 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
         val FONT_SIZE:Float = 80f
         val splits:List<Split>? = splitViewModel.yasso.value
         if(null!=splits) {
-
+            var i = 0
             for(split in splits){
                 val s = LatLng(split.startLat, split.startLong)
                 val id = getMarkerId(split.run_type)
                 val bmp:Bitmap = drawTextToBitmap(id, FONT_SIZE, split.splitIndex)
-                val markerOption = createMarker(split.splitIndex, s, bmp, split.run_type)
+                val markerOption = createMarker(s, bmp, split.run_type)
                 val marker = mMap.addMarker(markerOption)
-                marker.hideInfoWindow()
+                markerIndexes.put(marker, i++)
             }
             mMap.setOnMarkerClickListener(this)
         }
@@ -174,18 +177,16 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
         return bitmap
     }
 
-    private fun createMarker(index:Int, s:LatLng, bmp:Bitmap?, runType: String):MarkerOptions {
+    private fun createMarker(s:LatLng, bmp:Bitmap?, runType: String):MarkerOptions {
         if(null!=bmp) {
             return MarkerOptions()
                     .position(s)
                     .icon(BitmapDescriptorFactory.fromBitmap(bmp))
-                    .title(index.toString())
         }
         else {
             return MarkerOptions()
                 .position(s)
                 .icon(BitmapDescriptorFactory.defaultMarker(getIconColor(runType)))
-                .title(index.toString())
         }
     }
 
@@ -234,10 +235,11 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
     }
 
     override fun onMarkerClick(p0: Marker?): Boolean {
-        val i:Int = p0?.title?.toInt()?:0
+        val INVALID_INDEX = -1
+        val i:Int = markerIndexes[p0]?:INVALID_INDEX
         val splits: List<Split>? = splitViewModel.yasso.value
 
-        if(null!=i && null!=splits) {
+        if(i>INVALID_INDEX && null!=splits) {
             val split = splits!![i]
             dlg = SplitDetailFragment(split)
             dlg?.show(supportFragmentManager, "Details")
