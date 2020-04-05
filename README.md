@@ -17,7 +17,7 @@ You may adjust some configurable parameters under the menu.
 - Sprint and Jog distances are configured under menu selection : default 800 meters
 - Number of iterations (Sprint + Jog) pair : default 10
 
-<img src="https://user-images.githubusercontent.com/1282659/76650050-d3d45e00-652f-11ea-81d2-3023eaefa023.jpg" width="200"> <img src="https://user-images.githubusercontent.com/1282659/76635445-7c28f900-6515-11ea-8c4a-2b43c893b1f3.jpg" width="200">   <img src="https://user-images.githubusercontent.com/1282659/77270701-a8154e80-6c7a-11ea-908c-cf0a66de26ef.jpg" width="200">
+<img src="https://user-images.githubusercontent.com/1282659/76650050-d3d45e00-652f-11ea-81d2-3023eaefa023.jpg" width="200"> <img src="https://user-images.githubusercontent.com/1282659/76635445-7c28f900-6515-11ea-8c4a-2b43c893b1f3.jpg" width="200">
 
 ### Goal (run time) Activity
 Activity provides the following functions.
@@ -25,7 +25,7 @@ Activity provides the following functions.
 - Select user Marathon goal (run-time) in Hours:Minutes.
 - Generates Yasso800 sprint time in Minutes:Seconds.
 
-<img src="https://user-images.githubusercontent.com/1282659/68713832-4e7e7400-0564-11ea-9cb4-7b75d55d30d3.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/68714362-5be82e00-0565-11ea-802d-7c3aa2ed0555.jpg" width="200">
+<img src="https://user-images.githubusercontent.com/1282659/68713832-4e7e7400-0564-11ea-9cb4-7b75d55d30d3.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/68714362-5be82e00-0565-11ea-802d-7c3aa2ed0555.jpg" width="200">    <img src="https://user-images.githubusercontent.com/1282659/77270701-a8154e80-6c7a-11ea-908c-cf0a66de26ef.jpg" width="200">
 
 ### Run Activity
 Activity manages the running portion of Yasso800.  For detail of Yasso800 workout, see below reference article.  
