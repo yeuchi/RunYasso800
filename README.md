@@ -25,7 +25,7 @@ Activity provides the following functions.
 - Select user Marathon goal (run-time) in Hours:Minutes.
 - Generates Yasso800 sprint time in Minutes:Seconds.
 
-<img src="https://user-images.githubusercontent.com/1282659/68713832-4e7e7400-0564-11ea-9cb4-7b75d55d30d3.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/68714362-5be82e00-0565-11ea-802d-7c3aa2ed0555.jpg" width="200">    <img src="https://user-images.githubusercontent.com/1282659/77270701-a8154e80-6c7a-11ea-908c-cf0a66de26ef.jpg" width="200">
+<img src="https://user-images.githubusercontent.com/1282659/78502933-3680da00-7729-11ea-8c90-12683cfd88fa.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/78502935-37197080-7729-11ea-9c94-8df088358cd4.jpg" width="200">    <img src="https://user-images.githubusercontent.com/1282659/78502936-384a9d80-7729-11ea-9c0b-a056b88f7841.jpg" width="200">
 
 ### Run Activity
 Activity manages the running portion of Yasso800.  For detail of Yasso800 workout, see below reference article.  
