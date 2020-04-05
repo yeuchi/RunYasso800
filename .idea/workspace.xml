@@ -26,9 +26,9 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/ResultActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/ResultActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/dialogs/SplitDetailFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/dialogs/SplitDetailFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/src/main/res/layout/fragment_split_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/res/layout/fragment_split_detail.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/main/res/values/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/res/values/dimens.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -367,16 +367,6 @@
           <url>file://$PROJECT_DIR$/mobile/src/androidTest/java/com/ctyeung/runyasso800/PersistActivityTests.kt</url>
           <line>49</line>
           <option name="timeStamp" value="139" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/ResultActivity.kt</url>
-          <line>236</line>
-          <option name="timeStamp" value="175" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/dialogs/SplitDetailFragment.kt</url>
-          <line>37</line>
-          <option name="timeStamp" value="178" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

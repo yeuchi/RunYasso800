@@ -35,11 +35,11 @@ public class SplitDetailFragment : DialogFragment {
     }
 
     fun initText(model:FragmentSplitDetailBinding) {
-        model.txtDetailIndex.text = split.splitIndex.toString()
-        model.txtDetailType.text = split.run_type
+        model.txtDetailIndex.text = "Split: ${split.splitIndex}"
+        model.txtDetailType.text = "Type: ${split.run_type}"
         val duration = split.endTime - split.startTime
-        model.txtDetailTime.text = TimeFormatter.printTime(duration)
-        model.txtDetailDistance.text = Math.round(split.dis).toString() + "meters"
+        model.txtDetailTime.text = "Duration: ${TimeFormatter.printTime(duration)}"
+        model.txtDetailDistance.text = "Distance: ${Math.round(split.dis)} m"
     }
 
     fun onClickOk() {
