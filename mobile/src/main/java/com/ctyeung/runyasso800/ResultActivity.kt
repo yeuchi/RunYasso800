@@ -24,8 +24,6 @@ import com.google.android.gms.maps.model.*
 
 /*
  * To do:
- * 2. calculate and zoom to appropriate magnification
- * 3. add pop-up with split details (all sprint/jog or just selected individual?)
  * 4. screenshots and store as image files for persist-activity
  * 5. Use Dagger for models loading between states and activity ?
  * 6. support landscape and rotation

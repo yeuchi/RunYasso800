@@ -12,7 +12,7 @@
 
     <!-- fragment_split_detail -->
     <dimen name="detail_margin">7dp</dimen>
-    <dimen name="detail_txt_width">100dp</dimen>
+    <dimen name="detail_txt_width">120dp</dimen>
 
 
 </resources>

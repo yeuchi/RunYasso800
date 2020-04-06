@@ -83,7 +83,7 @@
                 android:src="@drawable/ic_share"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:backgroundTint="#8888FF"
+                app:backgroundTint="#88FF88"
                 android:layout_margin="@dimen/common_margin"
                 android:onClick="@{()-> listener.onClickShare()}"
                 android:id="@+id/btnShare"/>

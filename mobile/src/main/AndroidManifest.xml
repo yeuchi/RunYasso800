@@ -45,14 +45,11 @@
 
         <activity
             android:name=".ResultActivity"
-            android:label="@string/title_activity_result"
-            android:screenOrientation="nosensor"/>
-        <activity android:name=".GoalActivity"
-            android:screenOrientation="nosensor"/>
+            android:label="@string/title_activity_result"/>
+        <activity android:name=".GoalActivity"/>
         <activity android:name=".RunActivity"
             android:screenOrientation="nosensor"/>
-        <activity android:name=".PersistActivity"
-            android:screenOrientation="nosensor"/>
+        <activity android:name=".PersistActivity"/>
         <activity android:name=".MainActivity"
             android:screenOrientation="nosensor">
             <intent-filter>
