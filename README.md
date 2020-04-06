@@ -45,7 +45,7 @@ Supported functions are as follow:
 
 #### Data
 http://erdraw.com/graphs/487344524370/edit \
-<img width="583" src="https://user-images.githubusercontent.com/1282659/78581357-67c8db00-77f9-11ea-8681-99f0d9e66866.png">
+<img width="583" src="https://user-images.githubusercontent.com/1282659/78603291-7cb76580-781d-11ea-813e-68308d531cb8.png">
 
 A Yasso800 Entity is composed of 10 x 2 (sprint/jog) Split Entities.  Each Split is a measure of 800 meter.  Within a split, samplings of GPS lat/long are considered every 200 milli-seconds and stored in the database as Step Entities.
 
