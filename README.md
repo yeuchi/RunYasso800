@@ -47,7 +47,11 @@ Supported functions are as follow:
 http://erdraw.com/graphs/487344524370/edit \
 <img width="583" src="https://user-images.githubusercontent.com/1282659/78603291-7cb76580-781d-11ea-813e-68308d531cb8.png">
 
-A Yasso800 Entity is composed of 10 x 2 (sprint/jog) Split Entities.  Each Split is a measure of 800 meter.  Within a split, samplings of GPS lat/long are considered every 200 milli-seconds and stored in the database as Step Entities.
+A Yasso800 Entity is composed of 10 splits.
+Each split is composed of 2 collections, jog steps and sprint steps.
+By default (but configurable in menu), a step is recorded every 5000 milliseconds (5 seconds).
+In an example with Sprint Goal= 40 minutes, there would be 960 steps.
+( 40 minutes (sprint) + 40 minutes (jog) )  * 60 seconds / 5 seconds = 960 samples
 
 #### State machine 
 - IDLE - Activity intialization or CLEAR by user
