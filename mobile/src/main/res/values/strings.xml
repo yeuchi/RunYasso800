@@ -13,7 +13,7 @@
     <string name="id_gps">gps</string>
 
     <!-- Base Activity -->
-    <string name="split_goal">Split Goal</string>
+    <string name="split_goal">Goal</string>
 
     <!-- Goal Activity -->
     <string name="your_goal">Marathon goal</string>

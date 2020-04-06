@@ -4,20 +4,19 @@ import android.app.TimePickerDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.ctyeung.runyasso800.databinding.ActivityGoalBinding
 import com.ctyeung.runyasso800.utilities.TimeFormatter
-import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
+import com.ctyeung.runyasso800.viewModels.GoalViewModel
+import com.ctyeung.runyasso800.viewModels.YassoViewModel
 import kotlinx.android.synthetic.main.activity_goal.*
 import java.util.*
 
 /*
  * To do:
  * 1. automatically navigate to run-activity ?
- * 2. Render Goal on action bar ?
  *
  * Description:
  * Activity for naming this training event and selecting a race goal time.
@@ -26,6 +25,7 @@ import java.util.*
  */
 class GoalActivity : BaseActivity() {
     lateinit var binding: ActivityGoalBinding
+    lateinit var model:GoalViewModel
 
     companion object : ICompanion {
         var hasName: Boolean = false
@@ -50,6 +50,9 @@ class GoalActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_goal)
         binding.listener = this
+
+        model = ViewModelProvider(this).get(GoalViewModel::class.java)
+
         handleTextChange()
     }
 
@@ -67,7 +70,7 @@ class GoalActivity : BaseActivity() {
                     name = resources.getString(R.string.run_yasso_800)
                 }
 
-                SharedPrefUtility.setName(name)
+                model.setName(name)
                 initActionBar()
 
                 // go to next activity automatically
@@ -107,12 +110,12 @@ class GoalActivity : BaseActivity() {
                 // marathon goal
                 val raceInSeconds = TimeFormatter.convertHHmmss(hourOfDay, minute, 0)
                 btn_race_goal.text = TimeFormatter.printTime(raceInSeconds)
-                SharedPrefUtility.setGoal(SharedPrefUtility.keyRaceGoal, raceInSeconds)
+                model.setRaceGoal(raceInSeconds)
 
                 // sprint goal
                 val sprintInSeconds = TimeFormatter.convertHHmmss(0, hourOfDay, minute)
                 txt_sprint_goal.text = TimeFormatter.printTime(sprintInSeconds)
-                SharedPrefUtility.setGoal(SharedPrefUtility.keySprintGoal, sprintInSeconds)
+                model.setSprintGoal(sprintInSeconds)
 
                 if(validateRaceGoal(hourOfDay, minute))
                     initActionBar()

@@ -13,11 +13,15 @@ import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
 import kotlin.math.roundToLong
 
+/*
+ * To do :
+ * 1. refactor variables as getters / setters
+ */
 class SplitViewModel (application: Application) : AndroidViewModel(application)
 {
     var index:Int = 0
     var repository:SplitRepository
-    var yasso:LiveData<List<Split>>
+    var splits:LiveData<List<Split>>
     var totalDistance:Double = 0.0
     var elapsedTime:Long = 0
     var typeString:String = "Sprint / Jog"
@@ -25,7 +29,7 @@ class SplitViewModel (application: Application) : AndroidViewModel(application)
     init {
         val splitDao = YassoDatabase.getDatabase(application, viewModelScope).splitDao()
         repository = SplitRepository(splitDao)
-        yasso = repository.yasso
+        splits = repository.splits
     }
 
     fun insert(split: Split?) = viewModelScope.launch {
@@ -46,9 +50,9 @@ class SplitViewModel (application: Application) : AndroidViewModel(application)
      * ** but what about 'PAUSE' ????
      */
     private fun calculateTimeElapsed(seconds:Long) {
-        val size = yasso.value?.size?:0
-        if(null!=yasso.value && size > 0)
-            elapsedTime = seconds - yasso.value!![0].startTime
+        val size = splits.value?.size?:0
+        if(null!=splits.value && size > 0)
+            elapsedTime = seconds - splits.value!![0].startTime
 
         else
             elapsedTime = 0

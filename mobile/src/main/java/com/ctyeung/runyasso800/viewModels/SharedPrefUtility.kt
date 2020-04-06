@@ -98,11 +98,11 @@ object SharedPrefUtility
         return i
     }
 
-    fun setNumIterations(distance:Int)
+    fun setNumIterations(num:Int)
     {
         val sharedPreferences = getSharedPref(MainApplication.applicationContext())
         val editor = sharedPreferences.edit()
-        editor.putInt(keyNumIterations, distance)
+        editor.putInt(keyNumIterations, num)
         editor.commit()
     }
 

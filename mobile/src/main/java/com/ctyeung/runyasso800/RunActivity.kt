@@ -85,9 +85,9 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
             }
         })
 
-        splitViewModel.yasso.observe(this, Observer { yasso ->
+        splitViewModel.splits.observe(this, Observer { splits ->
             // Update the cached copy of the words in the adapter.
-            yasso?.let {
+            splits?.let {
                 onHandleLocationUpdate()
             }
         })

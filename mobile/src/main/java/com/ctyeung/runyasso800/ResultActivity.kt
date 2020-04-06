@@ -26,7 +26,6 @@ import com.google.android.gms.maps.model.*
  * To do:
  * 4. screenshots and store as image files for persist-activity
  * 5. Use Dagger for models loading between states and activity ?
- * 6. support landscape and rotation
  * 7. check availability of map
  * 8. new viewModel with join entries
  *
@@ -90,9 +89,9 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
             }
         })
 
-        splitViewModel.yasso.observe(this, Observer { yasso ->
+        splitViewModel.splits.observe(this, Observer { splits ->
             // Update the cached copy of the words in the adapter.
-            yasso?.let {
+            splits?.let {
                 // 1st time only ?
                 drawSplitMarkers()
             }
@@ -141,7 +140,7 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
      */
     private fun drawSplitMarkers() {
         val FONT_SIZE:Float = 80f
-        val splits:List<Split>? = splitViewModel.yasso.value
+        val splits:List<Split>? = splitViewModel.splits.value
         if(null!=splits && splits.size>0) {
             var i = 0
             var builder:LatLngBounds.Builder = LatLngBounds.Builder()
@@ -245,10 +244,10 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
     override fun onMarkerClick(p0: Marker?): Boolean {
         val INVALID_INDEX = -1
         val i:Int = markerIndexes[p0]?:INVALID_INDEX
-        val splits: List<Split>? = splitViewModel.yasso.value
+        val splits: List<Split>? = splitViewModel.splits.value
 
         if(i>INVALID_INDEX && null!=splits) {
-            val split = splits!![i]
+            val split = splits[i]
             dlg = SplitDetailFragment(split)
             dlg?.show(supportFragmentManager, "Details")
             return true

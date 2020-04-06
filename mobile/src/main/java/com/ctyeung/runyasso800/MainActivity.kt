@@ -1,18 +1,19 @@
 package com.ctyeung.runyasso800
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.ctyeung.runyasso800.databinding.ActivityMainBinding
 import com.ctyeung.runyasso800.dialogs.NumberPickerFragment
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.utilities.LocationUtils
+import com.ctyeung.runyasso800.viewModels.MainViewModel
+import com.ctyeung.runyasso800.viewModels.YassoViewModel
 import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
-import java.lang.reflect.Type
 
 /*
  * To do:
@@ -47,6 +48,8 @@ import java.lang.reflect.Type
  */
 class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListener {
     lateinit var binding: ActivityMainBinding
+    lateinit var model:MainViewModel
+
     private var dlg:NumberPickerFragment=NumberPickerFragment()
 
 
@@ -55,16 +58,16 @@ class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListene
 
         when(id.toLowerCase()) {
             this.resources.getString(R.string.id_sprint) -> {
-                SharedPrefUtility.setDistance(SharedPrefUtility.keySprintDis, value)
+                model.setSprintDistance(value)
             }
             this.resources.getString(R.string.id_jog) -> {
-                SharedPrefUtility.setDistance(SharedPrefUtility.keyJogDis, value)
+                model.setJogDistance(value)
             }
             this.resources.getString(R.string.id_iteration) -> {
-                SharedPrefUtility.setNumIterations(value)
+                model.setIterations(value)
             }
             this.resources.getString(R.string.id_gps) -> {
-                SharedPrefUtility.setGPSsampleRate(value.toLong())
+                model.setSampleRate(value.toLong())
             }
         }
     }
@@ -74,6 +77,8 @@ class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListene
         SharedPrefUtility.initDefaults()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.listener = this
+
+        model = ViewModelProvider(this).get(MainViewModel::class.java)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -91,26 +96,26 @@ class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListene
 
         when(item.toString()) {
             this.resources.getString(R.string.sprint_distance) -> {
-                value = SharedPrefUtility.getDistance(SharedPrefUtility.keySprintDis)
+                value = model.getSprintDistance()
                 id= this.resources.getString(R.string.id_sprint)
                 title = this.resources.getString(R.string.sprint_distance)
             }
 
             this.resources.getString(R.string.jog_distance) -> {
-                value = SharedPrefUtility.getDistance(SharedPrefUtility.keyJogDis)
+                value = model.getJogDistance()
                 id= this.resources.getString(R.string.id_jog)
                 title = this.resources.getString(R.string.jog_distance)
             }
 
             this.resources.getString(R.string.num_iterations) -> {
-                value = SharedPrefUtility.getNumIterations()
+                value = model.getIterations()
                 id= this.resources.getString(R.string.id_iteration)
                 title = this.resources.getString(R.string.num_iterations)
                 max = Split.DEFAULT_SPLIT_ITERATIONS
             }
 
             this.resources.getString(R.string.gps_sample_rate) -> {
-                value = SharedPrefUtility.getGPSsampleRate().toInt()
+                value = model.getSampleRate().toInt()
                 id= this.resources.getString(R.string.id_gps)
                 title = this.resources.getString(R.string.gps_sample_rate)
                 max = LocationUtils.DEFAULT_SAMPLE_RATE.toInt()

@@ -12,6 +12,10 @@ import com.ctyeung.runyasso800.utilities.TimeFormatter
 import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
 
+/*
+ * To do:
+ * 1. refactor variables to getters / setters
+ */
 class StepViewModel (application: Application) : AndroidViewModel(application)
 {
     var repository:StepRepository

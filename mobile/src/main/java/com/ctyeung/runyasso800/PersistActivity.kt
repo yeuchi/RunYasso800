@@ -75,9 +75,9 @@ class PersistActivity : BaseActivity() {
             }
         })
 
-        splitViewModel.yasso.observe(this, Observer { yasso ->
+        splitViewModel.splits.observe(this, Observer { splits ->
             // Update the cached copy of the words in the adapter.
-            yasso?.let {
+            splits?.let {
                 hasSplits = true
             }
         })
@@ -150,7 +150,7 @@ class PersistActivity : BaseActivity() {
         totalRunDis = 0.0
         totalJogDis = 0.0
         var sb = StringBuilder()
-        val splits:List<Split>? = splitViewModel.yasso.value
+        val splits:List<Split>? = splitViewModel.splits.value
         if(null!=splits) {
             sb.appendln("{\"Performance\":[")
             val size = splits.size
@@ -179,7 +179,7 @@ class PersistActivity : BaseActivity() {
      */
     private fun getSplits():String {
         var sb = StringBuilder()
-        val splits:List<Split>? = splitViewModel.yasso.value
+        val splits:List<Split>? = splitViewModel.splits.value
         if(null!=splits) {
             sb.appendln("{\"Splits\":[")
             val size = splits.size

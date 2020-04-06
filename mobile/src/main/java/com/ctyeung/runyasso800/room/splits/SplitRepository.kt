@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData
  */
 class SplitRepository(private val splitDao: SplitDao)
 {
-    var yasso:LiveData<List<Split>> = splitDao.getAll()
+    var splits:LiveData<List<Split>> = splitDao.getAll()
 
     suspend fun insert(split: Split)
     {
