@@ -3,6 +3,14 @@
 
 # !!!!!! WORK-IN-PROGRESS !!!!!
 
+# Tutorial
+Yasso 800 is composed of 800 meter run followed by 800 jog for 10 times.
+The total workout distance accomplished from Yasso800 is 16000 meters (9.94 miles).
+Of that, sprint distance is 8000 meters (4.97 miles) and jog distance is also 8000 meters (4.97 miles).
+
+## Measure of success
+It is a success workout if the sprint time total is less than sprint goal defined.
+
 # Introduction 
 This is a mobile phone implementation of Yasso800 in Kotlin for runners.  I intend to use this for my personal marathon training.  Hopefully, it is useful to you! (for those whom don't have a fancy running watch with this feature)
 
