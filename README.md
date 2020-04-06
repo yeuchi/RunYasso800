@@ -4,8 +4,8 @@
 # !!!!!! WORK-IN-PROGRESS !!!!!
 
 # Tutorial
-Yasso 800 is composed of 800 meter run followed by 800 jog for 10 times.
-The total workout distance accomplished from Yasso800 is 16000 meters (9.94 miles).
+Yasso 800 is composed of 800 meter run followed by 800 jog for 10 times.\
+The total workout distance accomplished from Yasso800 is 16000 meters (9.94 miles).\
 Of that, sprint distance is 8000 meters (4.97 miles) and jog distance is also 8000 meters (4.97 miles).
 
 ## Measure of success
