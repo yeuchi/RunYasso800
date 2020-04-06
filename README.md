@@ -3,6 +3,15 @@
 
 # !!!!!! WORK-IN-PROGRESS !!!!!
 
+# Tutorial
+Run 16000 meters (9.94 miles) of equal jogs and sprints.\
+Yasso 800 is composed of 800 meter run followed by 800 jog for 10 times.\
+The total workout distance accomplished from Yasso800 is 16000 meters (9.94 miles).\
+Of that, sprint distance is 8000 meters (4.97 miles) and jog distance is also 8000 meters (4.97 miles).
+
+## Measure of success
+It is a success workout if the sprint time total is less than sprint goal defined.
+
 # Introduction 
 This is a mobile phone implementation of Yasso800 in Kotlin for runners.  I intend to use this for my personal marathon training.  Hopefully, it is useful to you! (for those whom don't have a fancy running watch with this feature)
 
@@ -36,7 +45,7 @@ Supported functions are as follow:
 
 #### Data
 http://erdraw.com/graphs/487344524370/edit \
-<img width="583" src="https://user-images.githubusercontent.com/1282659/70194212-37482780-16c7-11ea-8cf8-de4c32708f22.png">
+<img width="583" src="https://user-images.githubusercontent.com/1282659/78581357-67c8db00-77f9-11ea-8681-99f0d9e66866.png">
 
 A Yasso800 Entity is composed of 10 x 2 (sprint/jog) Split Entities.  Each Split is a measure of 800 meter.  Within a split, samplings of GPS lat/long are considered every 200 milli-seconds and stored in the database as Step Entities.
 
