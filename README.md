@@ -7,7 +7,7 @@
 Run 16,000 meters (9.94 miles) of equal jogs and sprints.\
 Yasso 800 is composed of 800 meter jog followed by 800 sprint for 10 times.\
 The total workout distance accomplished from Yasso800 is 16,000 meters (9.94 miles).\
-Of that, sprint distance is 8000 meters (4.97 miles) and jog distance is also 8000 meters (4.97 miles).
+Of that, total sprint distance is 8000 meters (4.97 miles) and total jog distance is also 8000 meters (4.97 miles).
 
 ### How to Do a Yasso 800 Workout 
 "Take your marathon goal time in hours and minutes and convert this to minutes and seconds. \
