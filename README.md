@@ -10,7 +10,7 @@ The total workout distance accomplished from Yasso800 is 16000 meters (9.94 mile
 Of that, sprint distance is 8000 meters (4.97 miles) and jog distance is also 8000 meters (4.97 miles).
 
 ### How to Do a Yasso 800 Workout 
-"Take your marathon goal time in hours and minutes and convert this to minutes and seconds. 
+"Take your marathon goal time in hours and minutes and convert this to minutes and seconds. \
 For example, if your marathon goal is 3 hours and 10 minutes then convert that to 3 minutes and 10 seconds.
 
 - First, this application's RunActivity starts with a jog.  You should warm up for the 1st 800 meters.
