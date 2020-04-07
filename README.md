@@ -102,8 +102,13 @@ Activity provides persistence (share) methods to user.  They include the follow:
 ### Example Email received
 https://github.com/yeuchi/RunYasso800/tree/master/results \
 
-## Test
+## Tests
+
+### Manual
 This application has been tested on Samsung Galaxy9.
+
+### Espresso 
+https://github.com/yeuchi/RunYasso800/tree/master/mobile/src/androidTest/java/com/ctyeung/runyasso800
 
 ## IDE
 - Android Studio 3.5.2
