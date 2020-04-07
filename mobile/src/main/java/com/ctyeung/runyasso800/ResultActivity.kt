@@ -148,7 +148,7 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
                 val s = LatLng(split.startLat, split.startLong)
                 builder.include(s)
 
-                val id = getMarkerId(split.run_type)
+                val id = getMarkerId(split.run_type, split.meetGoal)
                 val bmp:Bitmap = drawTextToBitmap(id, FONT_SIZE, split.splitIndex)
                 val markerOption = createMarker(s, bmp, split.run_type)
                 val marker = mMap.addMarker(markerOption)
@@ -204,10 +204,13 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
         }
     }
 
-    private fun getMarkerId(runType: String):Int {
+    private fun getMarkerId(runType: String, meetGoal:Boolean):Int {
+        if(!meetGoal)
+            return R.drawable.ic_place_red
+
         when (runType) {
             Split.RUN_TYPE_JOG -> return R.drawable.ic_place_cyan
-            Split.RUN_TYPE_SPRINT -> return R.drawable.ic_place_green
+            Split.RUN_TYPE_SPRINT -> { return R.drawable.ic_place_green }
             else -> return R.drawable.ic_place_purple
         }
     }

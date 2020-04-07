@@ -3,6 +3,7 @@ package com.ctyeung.runyasso800.room.splits
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,7 +26,8 @@ data class Split(val splitIndex:Int=0,  // 0 - 9 : total of 10
                  val startLong:Double,  // in Lat/Long unit x 1000
                  var endTime:Long,      // in seconds
                  var endLat:Double,     // in Lat/Long unit x 1000
-                 var endLong:Double)    // in Lat/Long unit x 1000
+                 var endLong:Double,    // in Lat/Long unit x 1000
+                 var meetGoal:Boolean=true)  // duration < sprint goal (run_type == sprint)
 {
     companion object{
         const val DEFAULT_SPLIT_DISTANCE:Double = 800.0
@@ -44,6 +46,11 @@ data class Split(val splitIndex:Int=0,  // 0 - 9 : total of 10
         this.endTime = endTime
         this.endLat = endLat
         this.endLong = endLong
+
+        if(run_type == RUN_TYPE_SPRINT) {
+            if ((endTime - startTime) > SharedPrefUtility.getGoal(SharedPrefUtility.keySprintGoal))
+                this.meetGoal = false
+        }
     }
 
     fun getStartDate():String
