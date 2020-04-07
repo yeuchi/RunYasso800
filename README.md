@@ -4,10 +4,10 @@
 # !!!!!! WORK-IN-PROGRESS !!!!!
 
 # Tutorial
-Run 16000 meters (9.94 miles) of equal jogs and sprints.\
-Yasso 800 is composed of 800 meter jog followed by 800 sprint for 10 times.\
-The total workout distance accomplished from Yasso800 is 16000 meters (9.94 miles).\
-Of that, sprint distance is 8000 meters (4.97 miles) and jog distance is also 8000 meters (4.97 miles).
+Run 16,000 meters (9.94 miles) of equal jogs and sprints.\
+Yasso800 is composed of 800 meter jog followed by 800 sprint for 10 times.\
+The total workout distance accomplished from Yasso800 is 16,000 meters (9.94 miles).\
+Of that, total sprint distance is 8,000 meters (4.97 miles) and total jog distance is also 8,000 meters (4.97 miles).
 
 ### How to Do a Yasso 800 Workout 
 "Take your marathon goal time in hours and minutes and convert this to minutes and seconds. \
@@ -20,7 +20,7 @@ For example, if your marathon goal is 3 hours and 10 minutes then convert that t
 - Don't forget to cool down with 5 minutes of easy running or walking, followed by stretching."<sup>[1]</sup>
 
 ## Measure of success
-It is a success workout if the sprint time total is under your sprint goal.
+It is a success workout if each sprint time is under your sprint goal.
 
 # Introduction 
 This is a mobile phone implementation of Yasso800 in Kotlin for runners.  \
@@ -72,7 +72,7 @@ In an example with Sprint Goal= 40 minutes, there would be 960 steps.\
 - RESUME - User de-selects PAUSE button; program resumes.
 - ERROR - unexpected conditions (Examples: GPS fails or Phone dies)
 
-<img width="495" alt="Screen Shot 2020-02-15 at 3 30 04 PM" src="https://user-images.githubusercontent.com/1282659/74596116-145fbb00-5008-11ea-9a89-86802782d4dc.png">
+<img width="495" alt="Screen Shot 2020-02-15 at 3 30 04 PM" src="https://user-images.githubusercontent.com/1282659/78703407-b5177c00-78cf-11ea-81c2-fda1fd8716bb.png">
 
 IDLE -> START -> SPRINT <-> JOG ->PAUSE\
 <img src="https://user-images.githubusercontent.com/1282659/77359501-a8b0f200-6d19-11ea-9efb-68c7dfc4da21.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77270817-fcb8c980-6c7a-11ea-8966-92d5229db13c.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77270830-07735e80-6c7b-11ea-9230-108e3fbfbfd9.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77334281-966f8d80-6cf2-11ea-8b46-2455e2a7d501.jpg" width="200"> 
@@ -102,8 +102,13 @@ Activity provides persistence (share) methods to user.  They include the follow:
 ### Example Email received
 https://github.com/yeuchi/RunYasso800/tree/master/results \
 
-## Test
+## Tests
+
+#### Manual
 This application has been tested on Samsung Galaxy9.
+
+#### Espresso 
+https://github.com/yeuchi/RunYasso800/tree/master/mobile/src/androidTest/java/com/ctyeung/runyasso800
 
 ## IDE
 - Android Studio 3.5.2
@@ -113,6 +118,11 @@ This application has been tested on Samsung Galaxy9.
 
 ## Wrist Watch
 Look forward to implementation.  Next to implement watch <-> phone interface.
+
+## Known Issues (Opportunities)
+Civilian GPS resolution is 4 meter RMS (7.8 meter 95% Confidence Interval).\
+Without data processing (such as Kalman filter), current result can look choppy like this recording below.\
+<img src="https://user-images.githubusercontent.com/1282659/78703757-60c0cc00-78d0-11ea-8248-b3cdc4cd251d.jpg" width="400">
 
 # References
 1. How to do Yasso 800s, by Christine Luff, VeryWellFit, August 04, 2019\
