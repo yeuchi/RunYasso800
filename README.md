@@ -104,10 +104,10 @@ https://github.com/yeuchi/RunYasso800/tree/master/results \
 
 ## Tests
 
-### Manual
+#### Manual
 This application has been tested on Samsung Galaxy9.
 
-### Espresso 
+#### Espresso 
 https://github.com/yeuchi/RunYasso800/tree/master/mobile/src/androidTest/java/com/ctyeung/runyasso800
 
 ## IDE
