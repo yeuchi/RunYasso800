@@ -50,7 +50,7 @@ Activity provides the following functions.
 Activity manages the running portion of Yasso800.  For detail of Yasso800 workout, see below reference article.  
 Supported functions are as follow:
 - GPS location service
-- track/locate/time of 800 meter x 10 runs
+- track/locate/time of 800 meter x 10 sprints
 - track/locate/time of 800 meter x 10 jogs 
 
 #### Data
