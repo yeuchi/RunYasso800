@@ -20,7 +20,7 @@ For example, if your marathon goal is 3 hours and 10 minutes then convert that t
 - Don't forget to cool down with 5 minutes of easy running or walking, followed by stretching."<sup>[1]</sup>
 
 ## Measure of success
-It is a success workout if the sprint time total is under your sprint goal.
+It is a success workout if each sprint time is under your sprint goal.
 
 # Introduction 
 This is a mobile phone implementation of Yasso800 in Kotlin for runners.  \
