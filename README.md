@@ -29,8 +29,6 @@ This is a mobile phone implementation of Yasso800 in Kotlin for runners.  I inte
 ## Workflow
 <img width="738" alt="workflow" src="https://user-images.githubusercontent.com/1282659/68631194-7790fd00-04af-11ea-9a5d-4ed80a8c9cd5.png">
 
-<img src="https://user-images.githubusercontent.com/1282659/68713828-4b838380-0564-11ea-97c9-b645e0fe66f6.jpg" width="200"> 
-
 ### Configure 
 Thinking out of the box ?  Want to rest (jog) less ?  
 You may adjust some configurable parameters under the menu.
