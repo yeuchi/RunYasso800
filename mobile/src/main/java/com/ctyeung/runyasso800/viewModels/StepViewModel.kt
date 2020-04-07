@@ -14,7 +14,6 @@ import kotlin.math.roundToInt
 
 /*
  * To do:
- * 1. refactor variables to getters / setters
  */
 class StepViewModel (application: Application) : AndroidViewModel(application)
 {
@@ -47,21 +46,6 @@ class StepViewModel (application: Application) : AndroidViewModel(application)
         SharedPrefUtility.setIndex(SharedPrefUtility.keyStepIndex,i+1)
         return i
     }
-
-    /*
-     * calculate the total elapsed time since start
-     * ** but what about 'PAUSE' ????
-     */
- /*   private fun calculateTimeElapsed(seconds:Long):Long {
-        val size = steps.value?.size?:0
-        if(null != steps.value && size > 0) {
-            return seconds - startTime
-        }
-        else {
-            startTime = seconds
-            return 0
-        }
-      } */
 
     fun clear() = viewModelScope.launch {
         repository.clear()

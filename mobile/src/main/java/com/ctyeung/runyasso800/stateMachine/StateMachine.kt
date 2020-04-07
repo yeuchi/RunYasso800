@@ -1,15 +1,12 @@
 package com.ctyeung.runyasso800.stateMachine
 
-import android.app.Activity
 import android.location.Location
 import android.util.Log
-import android.widget.TextView
-import android.widget.Toast
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.ctyeung.runyasso800.utilities.LocationUtils
 import com.ctyeung.runyasso800.viewModels.IRunStatsCallBack
-import com.ctyeung.runyasso800.viewModels.SplitViewModel
+import com.ctyeung.runyasso800.viewModels.RunViewModel
 import com.ctyeung.runyasso800.viewModels.StepViewModel
 import java.lang.reflect.Type
 
@@ -27,15 +24,15 @@ class StateMachine : IStateCallback {
     var stateMap = HashMap<Type, StateAbstract>()
 
     constructor(actListener: IRunStatsCallBack,
-                splitViewModel: SplitViewModel,
+                runViewModel: RunViewModel,
                 stepViewModel: StepViewModel)
     {
         this.actListener = actListener
-        stateMap.put(StateSprint::class.java, StateSprint(this, actListener, splitViewModel, stepViewModel))
-        stateMap.put(StateJog::class.java, StateJog(this, actListener, splitViewModel, stepViewModel))
+        stateMap.put(StateSprint::class.java, StateSprint(this, actListener, runViewModel, stepViewModel))
+        stateMap.put(StateJog::class.java, StateJog(this, actListener, runViewModel, stepViewModel))
         stateMap.put(StateError::class.java, StateError(this))
         stateMap.put(StateDone::class.java, StateDone(this, actListener))
-        stateMap.put(StateClear::class.java, StateClear(this, splitViewModel, stepViewModel))
+        stateMap.put(StateClear::class.java, StateClear(this, runViewModel, stepViewModel))
         stateMap.put(StatePause::class.java, StatePause(this, actListener))
         stateMap.put(StateResume::class.java, StateResume(this))
         stateMap.put(StateIdle::class.java, StateIdle(this, actListener))
@@ -156,7 +153,7 @@ class StateMachine : IStateCallback {
      *  a. sprint, jog or done
      */
     private fun update(location: Location) {
-        if(null!=prevLocation && null!=location) {
+        if(null!=prevLocation) {
             when (current) {
                 StateSprint::class.java,
                 StateJog::class.java -> {

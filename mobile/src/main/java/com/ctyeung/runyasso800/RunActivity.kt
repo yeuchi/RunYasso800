@@ -3,8 +3,6 @@ package com.ctyeung.runyasso800
 
 import android.os.Build
 import android.os.Bundle
-import android.os.VibrationEffect
-import android.os.Vibrator
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -14,8 +12,6 @@ import com.ctyeung.runyasso800.databinding.ActivityRunBinding
 import com.ctyeung.runyasso800.stateMachine.*
 import com.ctyeung.runyasso800.utilities.LocationUtils
 import com.ctyeung.runyasso800.viewModels.*
-import kotlinx.android.synthetic.main.activity_run.*
-import java.lang.reflect.Type
 
 
 /*
@@ -42,7 +38,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     lateinit var fab:RunFloatingActionButtons
     lateinit var splitContainer:SplitContainer
     lateinit var stateMachine:StateMachine
-    lateinit var splitViewModel:SplitViewModel
+    lateinit var runViewModel:RunViewModel
     lateinit var stepViewModel:StepViewModel
     lateinit var activity: RunActivity
 
@@ -73,11 +69,11 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         activity = this
 
         stepViewModel = ViewModelProvider(this).get(StepViewModel::class.java)
-        splitViewModel = ViewModelProvider(this).get(SplitViewModel::class.java)
-        stateMachine = StateMachine(this, splitViewModel, stepViewModel)
+        runViewModel = ViewModelProvider(this).get(RunViewModel::class.java)
+        stateMachine = StateMachine(this, runViewModel, stepViewModel)
 
         fab = RunFloatingActionButtons(this, stateMachine)
-        splitContainer = SplitContainer(this, stateMachine, stepViewModel, splitViewModel)
+        splitContainer = SplitContainer(this, stateMachine, stepViewModel, runViewModel)
 
         stepViewModel.steps.observe(this, Observer { steps ->
             steps?.let {
@@ -85,7 +81,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
             }
         })
 
-        splitViewModel.splits.observe(this, Observer { splits ->
+        runViewModel.splits.observe(this, Observer { splits ->
             // Update the cached copy of the words in the adapter.
             splits?.let {
                 onHandleLocationUpdate()

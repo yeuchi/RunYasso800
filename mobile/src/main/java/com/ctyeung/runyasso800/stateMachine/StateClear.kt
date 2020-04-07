@@ -1,20 +1,20 @@
 package com.ctyeung.runyasso800.stateMachine
 
-import com.ctyeung.runyasso800.viewModels.SplitViewModel
+import com.ctyeung.runyasso800.viewModels.RunViewModel
 import com.ctyeung.runyasso800.viewModels.StepViewModel
 import java.lang.reflect.Type
 
 class StateClear : StateAbstract, Iclear, Iidle {
 
     var stepViewModel: StepViewModel
-    var splitViewModel:SplitViewModel
+    var runViewModel:RunViewModel
 
     constructor(listener:IStateCallback,
-                splitViewModel: SplitViewModel,
+                runViewModel: RunViewModel,
                 stepViewModel: StepViewModel):super(listener)
     {
         this.stepViewModel = stepViewModel
-        this.splitViewModel = splitViewModel
+        this.runViewModel = runViewModel
     }
 
     override fun execute(previous:Type) {
@@ -22,7 +22,7 @@ class StateClear : StateAbstract, Iclear, Iidle {
         this.prevState = previous
 
         // things to perform in this state
-        splitViewModel.clear()
+        runViewModel.clear()
         stepViewModel.clear()
 
         goto()

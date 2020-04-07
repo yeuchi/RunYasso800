@@ -1,18 +1,16 @@
 package com.ctyeung.runyasso800.stateMachine
 
-import android.location.Location
 import com.ctyeung.runyasso800.viewModels.IRunStatsCallBack
 import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
-import com.ctyeung.runyasso800.viewModels.SplitViewModel
+import com.ctyeung.runyasso800.viewModels.RunViewModel
 import com.ctyeung.runyasso800.viewModels.StepViewModel
-import java.lang.reflect.Type
 
 class StateSprint : MotionState, Isprint, Ijog {
 
     constructor(listener:IStateCallback,
                 actListener: IRunStatsCallBack,
-                splitViewModel:SplitViewModel,
-                stepViewModel: StepViewModel):super(listener, actListener, splitViewModel, stepViewModel)
+                runViewModel:RunViewModel,
+                stepViewModel: StepViewModel):super(listener, actListener, runViewModel, stepViewModel)
     {
         FINISH_DISTANCE = SharedPrefUtility.getDistance(SharedPrefUtility.keySprintDis)
     }
@@ -34,6 +32,5 @@ class StateSprint : MotionState, Isprint, Ijog {
             listener.onChangeState(this.javaClass)
             return false
         }
-        return false
     }
 }

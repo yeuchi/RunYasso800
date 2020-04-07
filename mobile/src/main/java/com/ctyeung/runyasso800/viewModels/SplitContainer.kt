@@ -25,16 +25,16 @@ class SplitContainer {
     private var run:RunActivity
     private var stateMachine:StateMachine
     private var stepViewModel:StepViewModel
-    private var splitViewModel:SplitViewModel
+    private var runViewModel:RunViewModel
 
     constructor(activity: RunActivity,
                 stateMachine:StateMachine,
                 stepViewModel: StepViewModel,
-                splitViewModel: SplitViewModel) {
+                runViewModel: RunViewModel) {
         this.run = activity
         this.stateMachine = stateMachine
         this.stepViewModel = stepViewModel
-        this.splitViewModel = splitViewModel
+        this.runViewModel = runViewModel
 
         init()
     }
@@ -48,18 +48,18 @@ class SplitContainer {
         run.txtLong.text = stateMachine.prevLocation?.longitude.toString()
 
         // distance in current split
-        run.txtStepDistance.text = "Dis: ${splitViewModel.getLastSplitDistance().roundToInt()}m";
+        run.txtStepDistance.text = "Dis: ${runViewModel.getLastSplitDistance().roundToInt()}m";
         // distance total
-        run.txtTotalDistance.text = "Total: ${splitViewModel.getTotalDistance().roundToInt()}m"
+        run.txtTotalDistance.text = "Total: ${runViewModel.getTotalDistance().roundToInt()}m"
 
         // split index
-        run.txtSplitIndex.text =  "Split: ${(splitViewModel.getIndex()+1)}"
+        run.txtSplitIndex.text =  "Split: ${(runViewModel.getIndex()+1)}"
 
         updateType()
 
         // split time (sprint or jog)
-        run.txtSplitTime.text = "Time: ${TimeFormatter.printDateTime(splitViewModel.getLastSplitElapsedTime())}"
-        run.txtTotalTime.text = "Total: ${TimeFormatter.printDateTime(splitViewModel.getTotalElapsedTime())}"
+        run.txtSplitTime.text = "Time: ${TimeFormatter.printDateTime(runViewModel.getLastSplitElapsedTime())}"
+        run.txtTotalTime.text = "Total: ${TimeFormatter.printDateTime(runViewModel.getTotalElapsedTime())}"
     }
 
     fun updateType() {

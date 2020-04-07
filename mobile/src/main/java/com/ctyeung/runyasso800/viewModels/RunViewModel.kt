@@ -17,7 +17,7 @@ import kotlin.math.roundToLong
  * To do :
  * 1. refactor variables as getters / setters
  */
-class SplitViewModel (application: Application) : AndroidViewModel(application)
+class RunViewModel (application: Application) : AndroidViewModel(application)
 {
     var repository:SplitRepository
     var splits:LiveData<List<Split>>

@@ -4,36 +4,34 @@ import android.location.Location
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.steps.Step
 import com.ctyeung.runyasso800.viewModels.IRunStatsCallBack
-import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
-import com.ctyeung.runyasso800.viewModels.SplitViewModel
+import com.ctyeung.runyasso800.viewModels.RunViewModel
 import com.ctyeung.runyasso800.viewModels.StepViewModel
 import java.lang.reflect.Type
-import java.time.LocalTime
 
 abstract class MotionState  : StateAbstract {
 
     var actListener: IRunStatsCallBack
     var stepViewModel: StepViewModel
-    var splitViewModel:SplitViewModel
+    var runViewModel:RunViewModel
     var FINISH_DISTANCE = 800
     var split:Split?=null
     var hasNewLocation:Boolean = false
 
     constructor(listener:IStateCallback,
                 actListener: IRunStatsCallBack,
-                splitViewModel:SplitViewModel,
+                runViewModel:RunViewModel,
                 stepViewModel: StepViewModel) : super(listener)
     {
         this.actListener = actListener
         this.stepViewModel = stepViewModel
-        this.splitViewModel = splitViewModel
+        this.runViewModel = runViewModel
 
         /*
          * Refactor this ???!!!!
          * Don't want to reset if we are rotating phone !!!!
          */
         stepViewModel.reset()
-        splitViewModel.setIndex(0)
+        runViewModel.setIndex(0)
     }
 
     override fun execute(previous:Type) {
@@ -65,7 +63,7 @@ abstract class MotionState  : StateAbstract {
 
                 val runType = getRunType()
                 val step = Step(
-                    splitViewModel.getIndex(),
+                    runViewModel.getIndex(),
                     stepViewModel.getNextIndex(),
                     dis,
                     runType,
@@ -79,7 +77,7 @@ abstract class MotionState  : StateAbstract {
                 // initialize Split
                 if (split == null) {
                     split = Split(
-                        splitViewModel.getIndex(),
+                        runViewModel.getIndex(),
                         runType,
                         0.0,
                         timeNow,
@@ -90,7 +88,7 @@ abstract class MotionState  : StateAbstract {
                         location!!.longitude
                     )
                     stepViewModel.reset()
-                    splitViewModel.insert(split);
+                    runViewModel.insert(split);
                 } else {
                     split?.update(
                         stepViewModel.totalDistance(),
@@ -98,7 +96,7 @@ abstract class MotionState  : StateAbstract {
                         location!!.latitude,
                         location!!.longitude
                     )
-                    splitViewModel.update(split)
+                    runViewModel.update(split)
                     goto()
                 }
             }
@@ -119,8 +117,8 @@ abstract class MotionState  : StateAbstract {
 
     private fun incrementSplitIndex() {
         if (Split.RUN_TYPE_JOG == getRunType()) {
-            val i = splitViewModel.getIndex()+1
-            splitViewModel.setIndex(i)
+            val i = runViewModel.getIndex()+1
+            runViewModel.setIndex(i)
         }
     }
 

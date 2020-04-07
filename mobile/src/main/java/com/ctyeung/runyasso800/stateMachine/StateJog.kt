@@ -1,12 +1,10 @@
 package com.ctyeung.runyasso800.stateMachine
 
-import android.location.Location
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.viewModels.IRunStatsCallBack
 import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
-import com.ctyeung.runyasso800.viewModels.SplitViewModel
+import com.ctyeung.runyasso800.viewModels.RunViewModel
 import com.ctyeung.runyasso800.viewModels.StepViewModel
-import java.lang.reflect.Type
 
 class StateJog : MotionState, Ijog, Isprint, Idone {
 
@@ -14,8 +12,8 @@ class StateJog : MotionState, Ijog, Isprint, Idone {
 
     constructor(listener:IStateCallback,
                 actListener: IRunStatsCallBack,
-                splitViewModel: SplitViewModel,
-                stepViewModel: StepViewModel):super(listener, actListener, splitViewModel, stepViewModel)
+                runViewModel: RunViewModel,
+                stepViewModel: StepViewModel):super(listener, actListener, runViewModel, stepViewModel)
     {
         FINISH_DISTANCE = SharedPrefUtility.getDistance(SharedPrefUtility.keyJogDis)
         NUM_ITERATIONS = SharedPrefUtility.getNumIterations()
@@ -36,7 +34,6 @@ class StateJog : MotionState, Ijog, Isprint, Idone {
             listener.onChangeState(this.javaClass)
             return false
         }
-        return false
     }
 
     /*
@@ -45,7 +42,7 @@ class StateJog : MotionState, Ijog, Isprint, Idone {
      */
     fun changeState() {
 
-        if(splitViewModel.getIndex() >= NUM_ITERATIONS)  {
+        if(runViewModel.getIndex() >= NUM_ITERATIONS)  {
             // done with Yasso !
             listener.onChangeState(StateDone::class.java)
         }

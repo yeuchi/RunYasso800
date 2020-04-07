@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.ctyeung.runyasso800.databinding.ActivityPersistBinding
-import com.ctyeung.runyasso800.viewModels.SplitViewModel
+import com.ctyeung.runyasso800.viewModels.RunViewModel
 import com.ctyeung.runyasso800.viewModels.StepViewModel
 import androidx.lifecycle.Observer
 import com.ctyeung.runyasso800.room.splits.Split
@@ -33,7 +33,7 @@ import java.util.*
  * - option to delete entries in db
  */
 class PersistActivity : BaseActivity() {
-    lateinit var splitViewModel:SplitViewModel
+    lateinit var runViewModel:RunViewModel
     lateinit var stepViewModel:StepViewModel
     lateinit var binding:ActivityPersistBinding
     var totalRunTime:Long = 0
@@ -67,7 +67,7 @@ class PersistActivity : BaseActivity() {
         binding.listener = this
 
         stepViewModel = ViewModelProvider(this).get(StepViewModel::class.java)
-        splitViewModel = ViewModelProvider(this).get(SplitViewModel::class.java)
+        runViewModel = ViewModelProvider(this).get(RunViewModel::class.java)
 
         stepViewModel.steps.observe(this, Observer { steps ->
             steps?.let {
@@ -75,7 +75,7 @@ class PersistActivity : BaseActivity() {
             }
         })
 
-        splitViewModel.splits.observe(this, Observer { splits ->
+        runViewModel.splits.observe(this, Observer { splits ->
             // Update the cached copy of the words in the adapter.
             splits?.let {
                 hasSplits = true
@@ -150,7 +150,7 @@ class PersistActivity : BaseActivity() {
         totalRunDis = 0.0
         totalJogDis = 0.0
         var sb = StringBuilder()
-        val splits:List<Split>? = splitViewModel.splits.value
+        val splits:List<Split>? = runViewModel.splits.value
         if(null!=splits) {
             sb.appendln("{\"Performance\":[")
             val size = splits.size
@@ -179,7 +179,7 @@ class PersistActivity : BaseActivity() {
      */
     private fun getSplits():String {
         var sb = StringBuilder()
-        val splits:List<Split>? = splitViewModel.splits.value
+        val splits:List<Split>? = runViewModel.splits.value
         if(null!=splits) {
             sb.appendln("{\"Splits\":[")
             val size = splits.size
