@@ -12,7 +12,6 @@ import com.ctyeung.runyasso800.dialogs.NumberPickerFragment
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.utilities.LocationUtils
 import com.ctyeung.runyasso800.viewModels.MainViewModel
-import com.ctyeung.runyasso800.viewModels.YassoViewModel
 import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 
 /*

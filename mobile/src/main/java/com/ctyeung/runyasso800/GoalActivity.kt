@@ -10,13 +10,13 @@ import androidx.lifecycle.ViewModelProvider
 import com.ctyeung.runyasso800.databinding.ActivityGoalBinding
 import com.ctyeung.runyasso800.utilities.TimeFormatter
 import com.ctyeung.runyasso800.viewModels.GoalViewModel
-import com.ctyeung.runyasso800.viewModels.YassoViewModel
 import kotlinx.android.synthetic.main.activity_goal.*
 import java.util.*
 
 /*
  * To do:
  * 1. automatically navigate to run-activity ?
+ * 2. refactor handlers into viewModel ?
  *
  * Description:
  * Activity for naming this training event and selecting a race goal time.

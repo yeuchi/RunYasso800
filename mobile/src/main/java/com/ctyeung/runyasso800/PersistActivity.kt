@@ -16,6 +16,7 @@ import androidx.lifecycle.Observer
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.steps.Step
 import com.ctyeung.runyasso800.utilities.TimeFormatter
+import com.ctyeung.runyasso800.viewModels.PersistViewModel
 import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_persist.*
@@ -33,8 +34,7 @@ import java.util.*
  * - option to delete entries in db
  */
 class PersistActivity : BaseActivity() {
-    lateinit var runViewModel:RunViewModel
-    lateinit var stepViewModel:StepViewModel
+    lateinit var model:PersistViewModel
     lateinit var binding:ActivityPersistBinding
     var totalRunTime:Long = 0
     var totalJogTime:Long = 0
@@ -66,16 +66,15 @@ class PersistActivity : BaseActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_persist)
         binding.listener = this
 
-        stepViewModel = ViewModelProvider(this).get(StepViewModel::class.java)
-        runViewModel = ViewModelProvider(this).get(RunViewModel::class.java)
+        model = ViewModelProvider(this).get(PersistViewModel::class.java)
 
-        stepViewModel.steps.observe(this, Observer { steps ->
+        model.steps.observe(this, Observer { steps ->
             steps?.let {
                 hasSteps = true
             }
         })
 
-        runViewModel.splits.observe(this, Observer { splits ->
+        model.splits.observe(this, Observer { splits ->
             // Update the cached copy of the words in the adapter.
             splits?.let {
                 hasSplits = true
@@ -150,7 +149,7 @@ class PersistActivity : BaseActivity() {
         totalRunDis = 0.0
         totalJogDis = 0.0
         var sb = StringBuilder()
-        val splits:List<Split>? = runViewModel.splits.value
+        val splits:List<Split>? = model.splits.value
         if(null!=splits) {
             sb.appendln("{\"Performance\":[")
             val size = splits.size
@@ -179,7 +178,7 @@ class PersistActivity : BaseActivity() {
      */
     private fun getSplits():String {
         var sb = StringBuilder()
-        val splits:List<Split>? = runViewModel.splits.value
+        val splits:List<Split>? = model.splits.value
         if(null!=splits) {
             sb.appendln("{\"Splits\":[")
             val size = splits.size
@@ -203,7 +202,7 @@ class PersistActivity : BaseActivity() {
      */
     private fun getSteps():String {
         var sb = StringBuilder()
-        val steps:List<Step>? = stepViewModel.steps.value
+        val steps:List<Step>? = model.steps.value
         if(null!=steps) {
             sb.appendln("{\"Steps\":[")
             var size = steps.size

@@ -13,6 +13,7 @@ import com.ctyeung.runyasso800.databinding.ActivityResultBinding
 import com.ctyeung.runyasso800.dialogs.SplitDetailFragment
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.steps.Step
+import com.ctyeung.runyasso800.viewModels.ResultViewModel
 import com.ctyeung.runyasso800.viewModels.RunViewModel
 import com.ctyeung.runyasso800.viewModels.StepViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -39,8 +40,7 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
     private lateinit var binding:ActivityResultBinding
     private lateinit var activity: Activity
     private lateinit var mMap: GoogleMap
-    lateinit var runViewModel: RunViewModel
-    lateinit var stepViewModel: StepViewModel
+    lateinit var model: ResultViewModel
     var lines:ArrayList<Polyline> = ArrayList<Polyline>()
     var markerIndexes = HashMap<Marker, Int>()
 
@@ -79,17 +79,16 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
         if(shouldAskPermissions())
             askPermissions()
 
-        stepViewModel = ViewModelProvider(this).get(StepViewModel::class.java)
-        runViewModel = ViewModelProvider(this).get(RunViewModel::class.java)
+        model = ViewModelProvider(this).get(ResultViewModel::class.java)
 
-        stepViewModel.steps.observe(this, Observer { steps ->
+        model.steps.observe(this, Observer { steps ->
             steps?.let {
                 // 1st time only ?
                 drawSteps()
             }
         })
 
-        runViewModel.splits.observe(this, Observer { splits ->
+        model.splits.observe(this, Observer { splits ->
             // Update the cached copy of the words in the adapter.
             splits?.let {
                 // 1st time only ?
@@ -140,7 +139,7 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
      */
     private fun drawSplitMarkers() {
         val FONT_SIZE:Float = 80f
-        val splits:List<Split>? = runViewModel.splits.value
+        val splits:List<Split>? = model.splits.value
         if(null!=splits && splits.size>0) {
             var i = 0
             var builder:LatLngBounds.Builder = LatLngBounds.Builder()
@@ -218,7 +217,7 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
      */
     private fun drawSteps() {
         lines.clear()
-        val steps:List<Step>? = stepViewModel.steps.value
+        val steps:List<Step>? = model.steps.value
 
         if(null!=steps && steps.size > 1) {
             val max = steps.size -1
@@ -244,7 +243,7 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
     override fun onMarkerClick(p0: Marker?): Boolean {
         val INVALID_INDEX = -1
         val i:Int = markerIndexes[p0]?:INVALID_INDEX
-        val splits: List<Split>? = runViewModel.splits.value
+        val splits: List<Split>? = model.splits.value
 
         if(i>INVALID_INDEX && null!=splits) {
             val split = splits[i]
