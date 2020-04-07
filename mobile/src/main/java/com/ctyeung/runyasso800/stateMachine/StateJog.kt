@@ -8,48 +8,30 @@ import com.ctyeung.runyasso800.viewModels.StepViewModel
 
 class StateJog : MotionState, Ijog, Isprint, Idone {
 
-    var NUM_ITERATIONS:Int = Split.DEFAULT_SPLIT_ITERATIONS
-
     constructor(listener:IStateCallback,
                 actListener: IRunStatsCallBack,
                 runViewModel: RunViewModel,
                 stepViewModel: StepViewModel):super(listener, actListener, runViewModel, stepViewModel)
     {
         FINISH_DISTANCE = SharedPrefUtility.getDistance(SharedPrefUtility.keyJogDis)
-        NUM_ITERATIONS = SharedPrefUtility.getNumIterations()
     }
 
     /*
      * state change conditions
-     * - Jog, Sprint or Done
+     * - either in Sprint or Jog
      */
     override fun goto():Boolean {
         val retVal = super.goto()
+
         if(retVal) {
-            changeState()
+            listener.onChangeState(StateSprint::class.java)
+            actListener.onChangedSplit()
             return true
         }
-            // current state @ Jog !
         else {
+            // current state @ Jog !
             listener.onChangeState(this.javaClass)
             return false
         }
-    }
-
-    /*
-     * Check if we are on the 10th split -> DONE !
-     * - else, we have more iterations
-     */
-    fun changeState() {
-
-        if(runViewModel.getIndex() >= NUM_ITERATIONS)  {
-            // done with Yasso !
-            listener.onChangeState(StateDone::class.java)
-        }
-        else {
-            // go to sprint !
-            listener.onChangeState(StateSprint::class.java)
-        }
-        actListener.onChangedSplit()
     }
 }

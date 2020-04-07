@@ -19,6 +19,7 @@ import com.ctyeung.runyasso800.viewModels.*
  * 1. Use Dagger dependency injection !!!
  * 2. check availability of GPS
  * 3. refactor room split (no time, lat/long) and step
+ * 4. fix PAUSE .. not displayed currently.
  *
  * GPS noise is a big problem and need to be address before this can ever be of value.
  * There is a Kalman filter in C example to try; linear regression is an alternative.

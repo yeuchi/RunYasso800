@@ -72,13 +72,11 @@ class StateMachine : IStateCallback {
             StateIdle::class.java,
             StatePause::class.java,
             StateResume::class.java -> {
-                onChangeState(StateSprint::class.java)
+                onChangeState(StateJog::class.java)
                 actListener.onChangedSplit()
             }
             StateJog::class.java,
-            StateSprint::class.java -> {
-                // continue
-            }
+            StateSprint::class.java -> { /* continue */ }
             else -> {}
         }
     }

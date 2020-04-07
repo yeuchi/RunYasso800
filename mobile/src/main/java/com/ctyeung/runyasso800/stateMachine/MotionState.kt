@@ -116,7 +116,7 @@ abstract class MotionState  : StateAbstract {
     }
 
     private fun incrementSplitIndex() {
-        if (Split.RUN_TYPE_JOG == getRunType()) {
+        if (Split.RUN_TYPE_SPRINT == getRunType()) {
             val i = runViewModel.getIndex()+1
             runViewModel.setIndex(i)
         }
