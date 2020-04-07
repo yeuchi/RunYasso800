@@ -81,9 +81,9 @@ IDLE -> START -> SPRINT <-> JOG ->PAUSE\
 <img src="https://user-images.githubusercontent.com/1282659/77836547-acc78000-711c-11ea-9f49-dc592b8a3153.jpg" width="200"> 
 
 ### Result Activity
-- Geometric view of run and jog iterations onn map. 
-- Map markers defines split start location. [Run in green , Jog in cyan] 
-- Click on marker to reveal details.
+- Map view of sprint and jog iterations. 
+- Location markers defines split start position. [Sprint in green , Jog in cyan] 
+- Click on marker to reveal split detail.
 
 PLEASE INSERT YOUR GOOGLE MAP KEY in values/google_map_api.xml before running app.
 <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">!! MY_KEY_HERE !!</string>\
