@@ -115,23 +115,23 @@ This application has been tested on Samsung Galaxy9.
 Look forward to implementation.  Hope to implement watch <-> phone interface.
 
 # References
-1. How to do Yasso 800s, by Christine Luff, VeryWellFit, August 04, 2019
+1. How to do Yasso 800s, by Christine Luff, VeryWellFit, August 04, 2019\
 https://www.verywellfit.com/how-to-do-yasso-800s-2911888
 
-2. How to use Yasso 800 in your marathon training, by Jason Fitzgerald, Active.com, October 20, 2019
+2. How to use Yasso 800 in your marathon training, by Jason Fitzgerald, Active.com, October 20, 2019\
 https://www.active.com/running/articles/how-to-use-yasso-800s-in-your-marathon-training
 
-3. Distance icon credit to Freepike from Flaticon
+3. Distance icon credit to Freepike from Flaticon\
 https://www.flaticon.com/free-icon/distance-to-travel-between-two-points_55212#term=distance&page=1&position=4
 
-4. Android-Location Based services, GPSTracker, TutorialPoints, 2019
+4. Android-Location Based services, GPSTracker, TutorialPoints, 2019\
 https://www.tutorialspoint.com/android/android_location_based_services.htm
 
-5. Polylines and Polygons to Represent Routes and Areas, Android documentation
+5. Polylines and Polygons to Represent Routes and Areas, Android documentation\
 https://developers.google.com/maps/documentation/android-sdk/polygon-tutorial
 
-6. Reduce GPS data error on Android with Kalman filter and accelerometer, by Oleg Katkov, Mar 19, 2018
+6. Reduce GPS data error on Android with Kalman filter and accelerometer, by Oleg Katkov, Mar 19, 2018\
 https://blog.maddevs.io/reduce-gps-data-error-on-android-with-kalman-filter-and-accelerometer-43594faed19c
 
-7. Google Maps Markers, by Concept211, August 4, 2015
+7. Google Maps Markers, by Concept211, August 4, 2015\
 https://github.com/Concept211/Google-Maps-Markers
