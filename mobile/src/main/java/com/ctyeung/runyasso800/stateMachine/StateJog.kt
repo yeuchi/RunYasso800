@@ -45,7 +45,7 @@ class StateJog : MotionState, Ijog, Isprint, Idone {
      */
     fun changeState() {
 
-        if(splitViewModel.index >= NUM_ITERATIONS)  {
+        if(splitViewModel.getIndex() >= NUM_ITERATIONS)  {
             // done with Yasso !
             listener.onChangeState(StateDone::class.java)
         }

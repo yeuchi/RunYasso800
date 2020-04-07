@@ -20,10 +20,6 @@ class StepViewModel (application: Application) : AndroidViewModel(application)
 {
     var repository:StepRepository
     var steps:LiveData<List<Step>>
-    var startTime:Long = 0
-    var index:Int = 0
-    var totalDistance:Double = 0.0
-    var elapsedTime:Long = 0
 
     init {
         val stepDao = YassoDatabase.getDatabase(application, viewModelScope).stepDao()
@@ -32,16 +28,31 @@ class StepViewModel (application: Application) : AndroidViewModel(application)
     }
 
     fun insert(step: Step) = viewModelScope.launch {
-        totalDistance += step.dis
-        elapsedTime = calculateTimeElapsed(step.time)
+        val splitDistance = SharedPrefUtility.getSplitDistance() + step.dis
+        SharedPrefUtility.setSplitDistance(splitDistance)
         repository.insert(step)
+    }
+
+    fun totalDistance():Double {
+        return SharedPrefUtility.getSplitDistance()
+    }
+
+    fun reset() {
+        SharedPrefUtility.setSplitDistance(0.0)
+        SharedPrefUtility.setIndex(SharedPrefUtility.keyStepIndex,0)
+    }
+
+    fun getNextIndex():Int {
+        val i = SharedPrefUtility.getIndex(SharedPrefUtility.keyStepIndex)
+        SharedPrefUtility.setIndex(SharedPrefUtility.keyStepIndex,i+1)
+        return i
     }
 
     /*
      * calculate the total elapsed time since start
      * ** but what about 'PAUSE' ????
      */
-    private fun calculateTimeElapsed(seconds:Long):Long {
+ /*   private fun calculateTimeElapsed(seconds:Long):Long {
         val size = steps.value?.size?:0
         if(null != steps.value && size > 0) {
             return seconds - startTime
@@ -50,10 +61,9 @@ class StepViewModel (application: Application) : AndroidViewModel(application)
             startTime = seconds
             return 0
         }
-      }
+      } */
 
     fun clear() = viewModelScope.launch {
-        totalDistance = 0.0
         repository.clear()
     }
 }

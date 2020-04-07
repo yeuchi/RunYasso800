@@ -19,10 +19,6 @@ object SharedPrefUtility
 {
     val mypreference = "mypref"
     val keyImageUri = "imageUri"
-    val INTERVAL_DEFAULT:Int = 1
-    val keyInterval = "time"
-    val keyLatitude = "lat"
-    val keyLongitude = "long"
     val keySprintDis = "sprintDis"
     val keyJogDis = "jogDis"
     val keyNumIterations = "iterations"
@@ -30,7 +26,10 @@ object SharedPrefUtility
     val keyName = "name"
     val keySprintGoal = "sprintGoal"
     val keyRaceGoal = "raceGoal"
-    val LAT_LONG_DEFAULT:String = "0"
+    val keySplitDistance = "splitDistance"
+    val keyStepIndex = "stepIndex"
+    val keySplitIndex = "splitIndex"
+
 
     fun initDefaults() {
         setName(MainApplication.applicationContext().resources.getString(R.string.run_yasso_800))
@@ -75,6 +74,37 @@ object SharedPrefUtility
         editor.commit()
     }
 
+    // --- Run Activity -----
+
+    fun getIndex(key:String):Int
+    {
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
+        val i = sharedPreferences.getInt(key, 0)
+        return i
+    }
+
+    fun setIndex(key:String, i:Int)
+    {
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
+        val editor = sharedPreferences.edit()
+        editor.putInt(key, i)
+        editor.commit()
+    }
+
+    fun getSplitDistance():Double
+    {
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
+        val i = sharedPreferences.getFloat(keySplitDistance, 0f)
+        return i.toDouble()
+    }
+
+    fun setSplitDistance(meters:Double)
+    {
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
+        val editor = sharedPreferences.edit()
+        editor.putFloat(keySplitDistance, meters.toFloat())
+        editor.commit()
+    }
 
     fun getGPSsampleRate():Long
     {
@@ -118,53 +148,6 @@ object SharedPrefUtility
         val sharedPreferences = getSharedPref(MainApplication.applicationContext())
         val editor = sharedPreferences.edit()
         editor.putInt(key, distance)
-        editor.commit()
-    }
-
-    fun getLatitude():Double
-    {
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val str = sharedPreferences.getString(keyLatitude, LAT_LONG_DEFAULT)
-        return str.toDouble()
-    }
-
-    fun setLatitude(latitude:Double)
-    {
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val editor = sharedPreferences.edit()
-        editor.putString(keyLatitude, latitude.toString())
-        editor.commit()
-    }
-
-    fun getLongitude():Double
-    {
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val str = sharedPreferences.getString(keyLongitude, LAT_LONG_DEFAULT)
-        return str.toDouble()
-    }
-
-    fun setLongitude(longitude:Double)
-    {
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val editor = sharedPreferences.edit()
-        editor.putString(keyLongitude, longitude.toString())
-        editor.commit()
-    }
-
-    fun getInterval():Int
-    {
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        return sharedPreferences.getInt(
-            keyInterval,
-            INTERVAL_DEFAULT
-        )
-    }
-
-    fun setInterval(time:Int)
-    {
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val editor = sharedPreferences.edit()
-        editor.putInt(keyInterval, time)
         editor.commit()
     }
 

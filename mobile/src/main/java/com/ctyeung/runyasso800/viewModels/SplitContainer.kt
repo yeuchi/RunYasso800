@@ -48,18 +48,18 @@ class SplitContainer {
         run.txtLong.text = stateMachine.prevLocation?.longitude.toString()
 
         // distance in current split
-        run.txtStepDistance.text = "Step: ${stepViewModel.totalDistance.roundToInt()}m";
+        run.txtStepDistance.text = "Dis: ${splitViewModel.getLastSplitDistance().roundToInt()}m";
         // distance total
-        run.txtTotalDistance.text = "Total: ${splitViewModel.totalDistance.roundToInt()}m"
+        run.txtTotalDistance.text = "Total: ${splitViewModel.getTotalDistance().roundToInt()}m"
 
         // split index
-        run.txtSplitIndex.text =  "Split: ${(splitViewModel.index+1)}"
+        run.txtSplitIndex.text =  "Split: ${(splitViewModel.getIndex()+1)}"
 
         updateType()
 
         // split time (sprint or jog)
-        run.txtSplitTime.text = "Time: ${TimeFormatter.printDateTime(stepViewModel.elapsedTime)}"
-        run.txtTotalTime.text = "Total: ${TimeFormatter.printDateTime(splitViewModel.elapsedTime)}"
+        run.txtSplitTime.text = "Time: ${TimeFormatter.printDateTime(splitViewModel.getLastSplitElapsedTime())}"
+        run.txtTotalTime.text = "Total: ${TimeFormatter.printDateTime(splitViewModel.getTotalElapsedTime())}"
     }
 
     fun updateType() {
@@ -74,10 +74,8 @@ class SplitContainer {
         var id = R.string.idle
         when(type) {
             StateIdle::class.java -> {/*default*/}
-            StateJog::class.java,
-            StateSprint::class.java -> {
-                return splitViewModel.typeString
-            }
+            StateJog::class.java -> { id = R.string.jog }
+            StateSprint::class.java -> { id = R.string.sprint }
             StatePause::class.java -> {id = R.string.pause}
             StateDone::class.java -> {id = R.string.done}
             else -> {id = R.string.dunno}

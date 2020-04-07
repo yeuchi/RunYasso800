@@ -19,12 +19,8 @@ import kotlin.math.roundToLong
  */
 class SplitViewModel (application: Application) : AndroidViewModel(application)
 {
-    var index:Int = 0
     var repository:SplitRepository
     var splits:LiveData<List<Split>>
-    var totalDistance:Double = 0.0
-    var elapsedTime:Long = 0
-    var typeString:String = "Sprint / Jog"
 
     init {
         val splitDao = YassoDatabase.getDatabase(application, viewModelScope).splitDao()
@@ -32,42 +28,60 @@ class SplitViewModel (application: Application) : AndroidViewModel(application)
         splits = repository.splits
     }
 
+    fun getIndex():Int {
+       return SharedPrefUtility.getIndex(SharedPrefUtility.keySplitIndex)
+    }
+
+    fun setIndex(i:Int) {
+        SharedPrefUtility.setIndex(SharedPrefUtility.keySplitIndex, i)
+    }
+
+    fun getLastSplitElapsedTime():Long {
+        val size = splits.value?.size?:0
+        if(size>0){
+            var split = splits.value!![size-1]
+            val now = System.currentTimeMillis()
+            return (now - split.startTime)
+        }
+        return 0
+    }
+
+    fun getTotalElapsedTime():Long {
+        val list:List<Split>? = splits.value
+        val now = System.currentTimeMillis()
+        if(null!=list && list.size>0) {
+            return now - list[0].startTime
+        }
+        return 0
+    }
+
+    fun getTotalDistance():Double {
+        var dis:Double = 0.0
+        val list:List<Split>? = splits.value
+        if(null!=list && list.size>0) {
+            for (split in list) {
+                dis += split.dis
+            }
+        }
+        return dis
+    }
+
+    fun getLastSplitDistance():Double {
+        return SharedPrefUtility.getSplitDistance()
+    }
+
     fun insert(split: Split?) = viewModelScope.launch {
         if(null!=split) {
-            setProperties(split)
             repository.insert(split)
         }
     }
 
-    private fun setProperties(split:Split)
-    {
-        typeString = split.run_type.capitalize()
-        calculateTimeElapsed(split.endTime)
-    }
-
-    /*
-     * calculate the total elapsed time since start
-     * ** but what about 'PAUSE' ????
-     */
-    private fun calculateTimeElapsed(seconds:Long) {
-        val size = splits.value?.size?:0
-        if(null!=splits.value && size > 0)
-            elapsedTime = seconds - splits.value!![0].startTime
-
-        else
-            elapsedTime = 0
-    }
-
-
     fun clear() = viewModelScope.launch {
-        totalDistance = 0.0
-        elapsedTime = 0
         repository.clear()
     }
 
     fun update(split: Split?) = viewModelScope.launch {
         if(null!=split) {
-            setProperties(split)
             repository.update(split)
         }
     }

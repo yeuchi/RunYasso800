@@ -33,9 +33,9 @@
     <string name="location">Location</string>
     <string name="latitude">lat.</string>
     <string name="longitude">long.</string>
-    <string name="sprint">Sprints Number</string>
+    <string name="sprint">Sprint</string>
     <string name="sprint_time">Sprint Time</string>
-    <string name="jog">Jog Number</string>
+    <string name="jog">Jog</string>
     <string name="jog_time">Jog Time</string>
     <string name="done">Done</string>
     <string name="pause">Pause</string>
