@@ -84,7 +84,7 @@ IDLE -> START -> SPRINT <-> JOG ->PAUSE\
 - Map view of sprint and jog iterations. 
 - Location markers defines split start position. 
 - Click on marker to reveal split detail.\
-<img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_cyan2.png" width="15"> Jog \
+<img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_blue2.png" width="15"> Jog \
 <img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_green3.png" width="15"> Sprint (meets goal)\
 <img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red4.png" width="15"> Sprint (failed)
 
