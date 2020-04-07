@@ -5,24 +5,34 @@
 
 # Tutorial
 Run 16000 meters (9.94 miles) of equal jogs and sprints.\
-Yasso 800 is composed of 800 meter run followed by 800 jog for 10 times.\
+Yasso 800 is composed of 800 meter jog followed by 800 sprint for 10 times.\
 The total workout distance accomplished from Yasso800 is 16000 meters (9.94 miles).\
 Of that, sprint distance is 8000 meters (4.97 miles) and jog distance is also 8000 meters (4.97 miles).
 
+### How to Do a Yasso 800 Workout 
+"Take your marathon goal time in hours and minutes and convert this to minutes and seconds. \
+For example, if your marathon goal is 3 hours and 10 minutes then convert that to 3 minutes and 10 seconds.
+
+- First, this application's RunActivity starts with a jog.  You should warm up for the 1st 800 meters.
+- Next, try to sprint 800 meters (approximately 1/2 mile).
+- Recover after each 800 sprint by jogging or walking for the same distance.
+- Start with three or four repetitions per workout in the first week.
+- Don't forget to cool down with 5 minutes of easy running or walking, followed by stretching."<sup>[1]</sup>
+
 ## Measure of success
-It is a success workout if the sprint time total is less than sprint goal defined.
+It is a success workout if the sprint time total is under your sprint goal.
 
 # Introduction 
-This is a mobile phone implementation of Yasso800 in Kotlin for runners.  I intend to use this for my personal marathon training.  Hopefully, it is useful to you! (for those whom don't have a fancy running watch with this feature)
+This is a mobile phone implementation of Yasso800 in Kotlin for runners.  \
+I intend to use this for my personal marathon training (since I don't have a Garmin).\
+Any suggestion(s) and feedbacks are welcomed. 
 
 ## Workflow
 <img width="738" alt="workflow" src="https://user-images.githubusercontent.com/1282659/68631194-7790fd00-04af-11ea-9a5d-4ed80a8c9cd5.png">
 
-<img src="https://user-images.githubusercontent.com/1282659/68713828-4b838380-0564-11ea-97c9-b645e0fe66f6.jpg" width="200"> 
-
 ### Configure 
-Thinking out of the box ?  Want to rest (jog) less ?  
-You may adjust some configurable parameters under the menu.
+Start with less distance, iterations or want to less jog (rest) ?  
+You may customize configurable parameters under the menu.
 - Sprint and Jog distances are configured under menu selection : default 800 meters
 - Number of iterations (Sprint + Jog) pair : default 10
 
@@ -40,7 +50,7 @@ Activity provides the following functions.
 Activity manages the running portion of Yasso800.  For detail of Yasso800 workout, see below reference article.  
 Supported functions are as follow:
 - GPS location service
-- track/locate/time of 800 meter x 10 runs
+- track/locate/time of 800 meter x 10 sprints
 - track/locate/time of 800 meter x 10 jogs 
 
 #### Data
@@ -71,9 +81,9 @@ IDLE -> START -> SPRINT <-> JOG ->PAUSE\
 <img src="https://user-images.githubusercontent.com/1282659/77836547-acc78000-711c-11ea-9f49-dc592b8a3153.jpg" width="200"> 
 
 ### Result Activity
-- Geometric view of run and jog iterations onn map. 
-- Map markers defines split start location. [Run in green , Jog in cyan] 
-- Click on marker to reveal details.
+- Map view of sprint and jog iterations. 
+- Location markers defines split start position. [Sprint in green , Jog in cyan] 
+- Click on marker to reveal split detail.
 
 PLEASE INSERT YOUR GOOGLE MAP KEY in values/google_map_api.xml before running app.
 <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">!! MY_KEY_HERE !!</string>\
@@ -92,16 +102,6 @@ Activity provides persistence (share) methods to user.  They include the follow:
 ### Example Email received
 https://github.com/yeuchi/RunYasso800/tree/master/results \
 
-### How to Do a Yasso 800 Workout 
-"Take your marathon goal time in hours and minutes and convert this to minutes and seconds. 
-For example, if your marathon goal is 3 hours and 10 minutes then convert that to 3 minutes and 10 seconds.
-
-- First, do an easy warm-up of 5 to 10 minutes jogging and a few warm-up exercises.
-- Next, try to run 800 meters (approximately 1/2 mile) at your converted time (3:10 in this example).
-- Recover after each 800 by jogging or walking for the same amount of time (again, 3:10 in this example).
-- Start with three or four repetitions per workout in the first week.
-- Don't forget to cool down with 5 minutes of easy running or walking, followed by stretching."<sup>[1]</sup>
-
 ## Test
 This application has been tested on Samsung Galaxy9.
 
@@ -111,27 +111,27 @@ This application has been tested on Samsung Galaxy9.
 - JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
 - compileSdkVersion 28
 
-## Watch
-Look forward to implementation.
+## Wrist Watch
+Look forward to implementation.  Next to implement watch <-> phone interface.
 
 # References
-1. How to do Yasso 800s, by Christine Luff, VeryWellFit, August 04, 2019
+1. How to do Yasso 800s, by Christine Luff, VeryWellFit, August 04, 2019\
 https://www.verywellfit.com/how-to-do-yasso-800s-2911888
 
-2. How to use Yasso 800 in your marathon training, by Jason Fitzgerald, Active.com, October 20, 2019
+2. How to use Yasso 800 in your marathon training, by Jason Fitzgerald, Active.com, October 20, 2019\
 https://www.active.com/running/articles/how-to-use-yasso-800s-in-your-marathon-training
 
-3. Distance icon credit to Freepike from Flaticon
+3. Distance icon credit to Freepike from Flaticon\
 https://www.flaticon.com/free-icon/distance-to-travel-between-two-points_55212#term=distance&page=1&position=4
 
-4. Android-Location Based services, GPSTracker, TutorialPoints, 2019
+4. Android-Location Based services, GPSTracker, TutorialPoints, 2019\
 https://www.tutorialspoint.com/android/android_location_based_services.htm
 
-5. Polylines and Polygons to Represent Routes and Areas, Android documentation
+5. Polylines and Polygons to Represent Routes and Areas, Android documentation\
 https://developers.google.com/maps/documentation/android-sdk/polygon-tutorial
 
-6. Reduce GPS data error on Android with Kalman filter and accelerometer, by Oleg Katkov, Mar 19, 2018
+6. Reduce GPS data error on Android with Kalman filter and accelerometer, by Oleg Katkov, Mar 19, 2018\
 https://blog.maddevs.io/reduce-gps-data-error-on-android-with-kalman-filter-and-accelerometer-43594faed19c
 
-7. Google Maps Markers, by Concept211, August 4, 2015
+7. Google Maps Markers, by Concept211, August 4, 2015\
 https://github.com/Concept211/Google-Maps-Markers
