@@ -19,7 +19,6 @@ For example, if your marathon goal is 3 hours and 10 minutes then convert that t
 - Start with three or four repetitions per workout in the first week.
 - Don't forget to cool down with 5 minutes of easy running or walking, followed by stretching."<sup>[1]</sup>
 
-
 ## Measure of success
 It is a success workout if the sprint time total is under your sprint goal.
 
@@ -113,7 +112,7 @@ This application has been tested on Samsung Galaxy9.
 - compileSdkVersion 28
 
 ## Watch
-Look forward to implementation.
+Look forward to implementation.  Hope to implement watch <-> phone interface.
 
 # References
 1. How to do Yasso 800s, by Christine Luff, VeryWellFit, August 04, 2019
