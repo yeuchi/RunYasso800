@@ -115,8 +115,8 @@ This application has been tested on Samsung Galaxy9.
 Look forward to implementation.  Next to implement watch <-> phone interface.
 
 ## Known Issues (Opportunities)
-Civilian GPS resolution is 4 meter RMS (7.8 meter 95% Confidence Interval).
-Without data processing (such as Kalman filter), current result can look choppy like this recording below.
+Civilian GPS resolution is 4 meter RMS (7.8 meter 95% Confidence Interval).\
+Without data processing (such as Kalman filter), current result can look choppy like this recording below.\
 <img src="https://user-images.githubusercontent.com/1282659/78703757-60c0cc00-78d0-11ea-8248-b3cdc4cd251d.jpg" width="400">
 
 # References
