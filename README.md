@@ -30,8 +30,8 @@ This is a mobile phone implementation of Yasso800 in Kotlin for runners.  I inte
 <img width="738" alt="workflow" src="https://user-images.githubusercontent.com/1282659/68631194-7790fd00-04af-11ea-9a5d-4ed80a8c9cd5.png">
 
 ### Configure 
-Thinking out of the box ?  Want to rest (jog) less ?  
-You may adjust some configurable parameters under the menu.
+Start with less distance, iterations or want to less jog (rest) ?  
+You may customize configurable parameters under the menu.
 - Sprint and Jog distances are configured under menu selection : default 800 meters
 - Number of iterations (Sprint + Jog) pair : default 10
 
