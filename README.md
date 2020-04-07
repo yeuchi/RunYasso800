@@ -111,8 +111,8 @@ This application has been tested on Samsung Galaxy9.
 - JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
 - compileSdkVersion 28
 
-## Watch
-Look forward to implementation.  Hope to implement watch <-> phone interface.
+## Wrist Watch
+Look forward to implementation.  Next to implement watch <-> phone interface.
 
 # References
 1. How to do Yasso 800s, by Christine Luff, VeryWellFit, August 04, 2019\
