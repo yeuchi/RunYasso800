@@ -82,12 +82,11 @@ IDLE -> START -> SPRINT <-> JOG ->PAUSE\
 
 ### Result Activity
 - Map view of sprint and jog iterations. 
-- Location markers defines split start position. [Sprint in green , Jog in cyan] 
+- Location markers defines split start position. 
 - Click on marker to reveal split detail.
-
-<img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red1.png" width="10"> 
-<img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_green1.png" width="10"> 
-<img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_blue1.png" width="10"> 
+Jog <img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_blue1.png" width="20"> \
+Sprint (meet goal)<img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_green1.png" width="20"> \
+Sprint (failed to meet goal)<img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red1.png" width="20"> \
 
 PLEASE INSERT YOUR GOOGLE MAP KEY in values/google_map_api.xml before running app.
 <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">!! MY_KEY_HERE !!</string>\
