@@ -9,6 +9,17 @@ Yasso 800 is composed of 800 meter run followed by 800 jog for 10 times.\
 The total workout distance accomplished from Yasso800 is 16000 meters (9.94 miles).\
 Of that, sprint distance is 8000 meters (4.97 miles) and jog distance is also 8000 meters (4.97 miles).
 
+### How to Do a Yasso 800 Workout 
+"Take your marathon goal time in hours and minutes and convert this to minutes and seconds. 
+For example, if your marathon goal is 3 hours and 10 minutes then convert that to 3 minutes and 10 seconds.
+
+- First, this application's RunActivity starts with a jog.  You should warm up for the 1st 800 meters.
+- Next, try to sprint 800 meters (approximately 1/2 mile).
+- Recover after each 800 sprint by jogging or walking for the same amount of time.
+- Start with three or four repetitions per workout in the first week.
+- Don't forget to cool down with 5 minutes of easy running or walking, followed by stretching."<sup>[1]</sup>
+
+
 ## Measure of success
 It is a success workout if the sprint time total is less than sprint goal defined.
 
@@ -91,16 +102,6 @@ Activity provides persistence (share) methods to user.  They include the follow:
 
 ### Example Email received
 https://github.com/yeuchi/RunYasso800/tree/master/results \
-
-### How to Do a Yasso 800 Workout 
-"Take your marathon goal time in hours and minutes and convert this to minutes and seconds. 
-For example, if your marathon goal is 3 hours and 10 minutes then convert that to 3 minutes and 10 seconds.
-
-- First, do an easy warm-up of 5 to 10 minutes jogging and a few warm-up exercises.
-- Next, try to run 800 meters (approximately 1/2 mile) at your converted time (3:10 in this example).
-- Recover after each 800 by jogging or walking for the same amount of time (again, 3:10 in this example).
-- Start with three or four repetitions per workout in the first week.
-- Don't forget to cool down with 5 minutes of easy running or walking, followed by stretching."<sup>[1]</sup>
 
 ## Test
 This application has been tested on Samsung Galaxy9.
