@@ -15,7 +15,7 @@ For example, if your marathon goal is 3 hours and 10 minutes then convert that t
 
 - First, this application's RunActivity starts with a jog.  You should warm up for the 1st 800 meters.
 - Next, try to sprint 800 meters (approximately 1/2 mile).
-- Recover after each 800 sprint by jogging or walking for the same amount of time.
+- Recover after each 800 sprint by jogging or walking for the same distance.
 - Start with three or four repetitions per workout in the first week.
 - Don't forget to cool down with 5 minutes of easy running or walking, followed by stretching."<sup>[1]</sup>
 
