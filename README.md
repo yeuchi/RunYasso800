@@ -24,7 +24,9 @@ For example, if your marathon goal is 3 hours and 10 minutes then convert that t
 It is a success workout if the sprint time total is under your sprint goal.
 
 # Introduction 
-This is a mobile phone implementation of Yasso800 in Kotlin for runners.  I intend to use this for my personal marathon training.  Hopefully, it is useful to you! (for those whom don't have a fancy running watch with this feature)
+This is a mobile phone implementation of Yasso800 in Kotlin for runners.  
+I intend to use this for my personal marathon training (since I don't have a Garmin)
+Let me know if you have suggestions to improve this application. 
 
 ## Workflow
 <img width="738" alt="workflow" src="https://user-images.githubusercontent.com/1282659/68631194-7790fd00-04af-11ea-9a5d-4ed80a8c9cd5.png">
