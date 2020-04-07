@@ -85,6 +85,10 @@ IDLE -> START -> SPRINT <-> JOG ->PAUSE\
 - Location markers defines split start position. [Sprint in green , Jog in cyan] 
 - Click on marker to reveal split detail.
 
+<img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red1.png" width="10"> 
+<img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_green1.png" width="10"> 
+<img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_blue1.png" width="10"> 
+
 PLEASE INSERT YOUR GOOGLE MAP KEY in values/google_map_api.xml before running app.
 <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">!! MY_KEY_HERE !!</string>\
 <img src="https://user-images.githubusercontent.com/1282659/78513888-3a861980-7774-11ea-97d9-f8be36a69eb3.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/78513892-3c4fdd00-7774-11ea-9442-430302512b54.jpg" width="200"> 
