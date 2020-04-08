@@ -99,7 +99,7 @@ Activity provides persistence (share) methods to user.  They include the follow:
 - Drive - xml files
 - database management - delete 
 
-<img src="https://user-images.githubusercontent.com/1282659/78503756-36370d80-772e-11ea-894b-a6f0fd39b6b0.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/68807590-b482fe00-062d-11ea-947b-2c4ea054e054.jpg" width="200"> 
+<img src="https://user-images.githubusercontent.com/1282659/78736600-275d8000-7913-11ea-8463-8c2329d8766c.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/68807590-b482fe00-062d-11ea-947b-2c4ea054e054.jpg" width="200"> 
  <img src="https://user-images.githubusercontent.com/1282659/77836627-6d4d6380-711d-11ea-90b5-d4c449cb2657.jpg" width="200">
 
 ### Example Email received
