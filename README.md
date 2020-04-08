@@ -150,3 +150,6 @@ https://blog.maddevs.io/reduce-gps-data-error-on-android-with-kalman-filter-and-
 
 7. Google Maps Markers, by Concept211, August 4, 2015\
 https://github.com/Concept211/Google-Maps-Markers
+
+8. Android Asset Studio - Launcher icon generator
+https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html
