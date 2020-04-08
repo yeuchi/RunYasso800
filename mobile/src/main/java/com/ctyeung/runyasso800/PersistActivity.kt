@@ -70,14 +70,16 @@ class PersistActivity : BaseActivity() {
 
         model.steps.observe(this, Observer { steps ->
             steps?.let {
-                hasSteps = true
+                if(null!=steps && steps.size>0)
+                    hasSteps = true
             }
         })
 
         model.splits.observe(this, Observer { splits ->
             // Update the cached copy of the words in the adapter.
             splits?.let {
-                hasSplits = true
+                if(null!=splits && splits.size>0)
+                    hasSplits = true
             }
         })
     }
