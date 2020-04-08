@@ -55,7 +55,7 @@ Supported functions are as follow:
 
 #### Data
 http://erdraw.com/graphs/487344524370/edit \
-<img width="583" src="https://user-images.githubusercontent.com/1282659/78603291-7cb76580-781d-11ea-813e-68308d531cb8.png">
+<img width="583" src="https://user-images.githubusercontent.com/1282659/78720941-3d0b7f00-78ec-11ea-87cb-ba8875fb142e.png">
 
 A Yasso800 Entity is composed of 10 splits.\
 Each split is composed of 2 collections, jog steps and sprint steps.\
@@ -82,8 +82,11 @@ IDLE -> START -> SPRINT <-> JOG ->PAUSE\
 
 ### Result Activity
 - Map view of sprint and jog iterations. 
-- Location markers defines split start position. [Sprint in green , Jog in cyan] 
-- Click on marker to reveal split detail.
+- Location markers defines split start position. 
+- Click on marker to reveal split detail.\
+<img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_blue2.png" width="15"> Jog \
+<img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_green3.png" width="15"> Sprint (meets goal)\
+<img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red4.png" width="15"> Sprint (failed)
 
 PLEASE INSERT YOUR GOOGLE MAP KEY in values/google_map_api.xml before running app.
 <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">!! MY_KEY_HERE !!</string>\
