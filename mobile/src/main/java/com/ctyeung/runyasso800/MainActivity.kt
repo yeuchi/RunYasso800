@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListene
                 value = model.getSampleRate().toInt()
                 id= this.resources.getString(R.string.id_gps)
                 title = this.resources.getString(R.string.gps_sample_rate)
-                max = LocationUtils.DEFAULT_SAMPLE_RATE.toInt()
+                max = LocationUtils.MAX_SAMPLE_RATE.toInt()
                 min = LocationUtils.MIN_SAMPLE_RATE.toInt()
             }
             this.resources.getString(R.string.factory_reset) -> {
