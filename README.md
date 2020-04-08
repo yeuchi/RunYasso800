@@ -1,8 +1,6 @@
 # RunYasso800 <img src="https://user-images.githubusercontent.com/1282659/78828831-f0d34400-79aa-11ea-81fc-9f8e5c32ed59.png" width="40"> 
 "Yasso 800s are a popular workout among runners who are trying to achieve a specific marathon goal."<sup>[1]</sup>
 
-# !!!!!! WORK-IN-PROGRESS !!!!!
-
 # Tutorial
 Run 16,000 meters (9.94 miles) of equal jogs and sprints.\
 Yasso800 is composed of 800 meter jog followed by 800 sprint for 10 times.\
@@ -35,7 +33,7 @@ Start with less distance, iterations or want to less jog (rest) ?
 You may customize configurable parameters under the menu.
 - Jog and Sprint distances can be reduced from 800 meter. 
 - Number of iterations (Sprint + Jog) pair : default 10
-- GPS sampling rate @ 5 seconds
+- GPS sampling rate @ 5,000 milliseconds (5 seconds)
 - Factory Reset will return above values to default.
 
 <img src="https://user-images.githubusercontent.com/1282659/78736596-262c5300-7913-11ea-9e97-7c91d86dd25b.jpg" width="200"> <img src="https://user-images.githubusercontent.com/1282659/76635445-7c28f900-6515-11ea-8c4a-2b43c893b1f3.jpg" width="200">
