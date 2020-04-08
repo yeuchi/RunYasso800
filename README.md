@@ -33,7 +33,7 @@ Start with less distance, iterations or want to less jog (rest) ?
 You may customize configurable parameters under the menu.
 - Jog and Sprint distances can be reduced from 800 meter. 
 - Number of iterations (Sprint + Jog) pair : default 10
-- GPS sampling rate @ 5 seconds
+- GPS sampling rate @ 5,000 milliseconds (5 seconds)
 - Factory Reset will return above values to default.
 
 <img src="https://user-images.githubusercontent.com/1282659/78736596-262c5300-7913-11ea-9e97-7c91d86dd25b.jpg" width="200"> <img src="https://user-images.githubusercontent.com/1282659/76635445-7c28f900-6515-11ea-8c4a-2b43c893b1f3.jpg" width="200">
