@@ -1,4 +1,4 @@
-# RunYasso800
+# RunYasso800 <img src="https://user-images.githubusercontent.com/1282659/78741718-b53f6800-791f-11ea-8588-44f11f4f7784.png" width="40"> 
 "Yasso 800s are a popular workout among runners who are trying to achieve a specific marathon goal."<sup>[1]</sup>
 
 # !!!!!! WORK-IN-PROGRESS !!!!!
@@ -151,5 +151,5 @@ https://blog.maddevs.io/reduce-gps-data-error-on-android-with-kalman-filter-and-
 7. Google Maps Markers, by Concept211, August 4, 2015\
 https://github.com/Concept211/Google-Maps-Markers
 
-8. Android Asset Studio - Launcher icon generator
+8. Android Asset Studio - Launcher icon generator\
 https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html
