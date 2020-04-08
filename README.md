@@ -1,8 +1,6 @@
 # RunYasso800 <img src="https://user-images.githubusercontent.com/1282659/78828831-f0d34400-79aa-11ea-81fc-9f8e5c32ed59.png" width="40"> 
 "Yasso 800s are a popular workout among runners who are trying to achieve a specific marathon goal."<sup>[1]</sup>
 
-# !!!!!! WORK-IN-PROGRESS !!!!!
-
 # Tutorial
 Run 16,000 meters (9.94 miles) of equal jogs and sprints.\
 Yasso800 is composed of 800 meter jog followed by 800 sprint for 10 times.\
