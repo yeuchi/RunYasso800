@@ -13,7 +13,7 @@ abstract class MotionState  : StateAbstract {
     var actListener: IRunStatsCallBack
     var stepViewModel: StepViewModel
     var runViewModel:RunViewModel
-    var FINISH_DISTANCE = 800
+    var FINISH_DISTANCE = Split.DEFAULT_SPLIT_DISTANCE
     var split:Split?=null
     var hasNewLocation:Boolean = false
 

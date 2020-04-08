@@ -139,7 +139,7 @@ object SharedPrefUtility
     fun getDistance(key:String):Int
     {
         val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val i = sharedPreferences.getInt(key, Split.DEFAULT_SPLIT_ITERATIONS.toInt())
+        val i = sharedPreferences.getInt(key, Split.DEFAULT_SPLIT_DISTANCE.toInt())
         return i
     }
 

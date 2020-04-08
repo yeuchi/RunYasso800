@@ -31,7 +31,7 @@ data class Split(val splitIndex:Int=0,  // 0 - 9 : total of 10
 {
     companion object{
         const val DEFAULT_SPLIT_DISTANCE:Double = 800.0
-        const val DEFAULT_SPLIT_ITERATIONS:Int = 20
+        const val DEFAULT_SPLIT_ITERATIONS:Int = 10
         const val UNIT_SCALER:Double = 1000.0
         const val RUN_TYPE_SPRINT:String = "sprint"
         const val RUN_TYPE_JOG:String = "jog"

@@ -13,7 +13,7 @@ class StateJog : MotionState, Ijog, Isprint, Idone {
                 runViewModel: RunViewModel,
                 stepViewModel: StepViewModel):super(listener, actListener, runViewModel, stepViewModel)
     {
-        FINISH_DISTANCE = SharedPrefUtility.getDistance(SharedPrefUtility.keyJogDis)
+        FINISH_DISTANCE = SharedPrefUtility.getDistance(SharedPrefUtility.keyJogDis).toDouble()
     }
 
     /*

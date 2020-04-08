@@ -2,6 +2,8 @@ package com.ctyeung.runyasso800.viewModels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import com.ctyeung.runyasso800.room.splits.Split
+import com.ctyeung.runyasso800.utilities.LocationUtils
 
 class MainViewModel (application: Application) : AndroidViewModel(application){
     fun getSprintDistance():Int {
@@ -34,5 +36,12 @@ class MainViewModel (application: Application) : AndroidViewModel(application){
 
     fun getSampleRate():Long {
         return SharedPrefUtility.getGPSsampleRate()
+    }
+
+    fun factoryReset() {
+        setSprintDistance(Split.DEFAULT_SPLIT_DISTANCE.toInt())
+        setJogDistance(Split.DEFAULT_SPLIT_DISTANCE.toInt())
+        setIterations(Split.DEFAULT_SPLIT_ITERATIONS)
+        setSampleRate(LocationUtils.DEFAULT_SAMPLE_RATE)
     }
 }

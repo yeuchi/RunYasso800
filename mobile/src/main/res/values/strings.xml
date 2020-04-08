@@ -71,11 +71,12 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_result">Map</string>
 
-    <!-- Distance Fragment -->
+    <!-- menu -->
     <string name="sprint_distance">Sprint Distance</string>
     <string name="jog_distance">Jog Distance</string>
     <string name="num_iterations">Num Iterations</string>
     <string name="gps_sample_rate">GPS Sample Rate</string>
+    <string name="factory_reset">Factory Reset</string>
 
     <!-- number picker dialog -->
     <string name="choose_number">Choose Number</string>

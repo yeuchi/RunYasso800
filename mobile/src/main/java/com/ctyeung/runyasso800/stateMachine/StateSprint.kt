@@ -14,11 +14,9 @@ class StateSprint : MotionState, Isprint, Ijog {
                 runViewModel:RunViewModel,
                 stepViewModel: StepViewModel):super(listener, actListener, runViewModel, stepViewModel)
     {
-        FINISH_DISTANCE = SharedPrefUtility.getDistance(SharedPrefUtility.keySprintDis)
+        FINISH_DISTANCE = SharedPrefUtility.getDistance(SharedPrefUtility.keySprintDis).toDouble()
         NUM_ITERATIONS = SharedPrefUtility.getNumIterations()
     }
-
-
 
     /*
      * state change conditions

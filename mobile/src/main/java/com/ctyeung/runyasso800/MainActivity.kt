@@ -120,6 +120,10 @@ class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListene
                 max = LocationUtils.DEFAULT_SAMPLE_RATE.toInt()
                 min = LocationUtils.MIN_SAMPLE_RATE.toInt()
             }
+            this.resources.getString(R.string.factory_reset) -> {
+                model.factoryReset()
+                return true
+            }
             else -> return false
         }
         dlg.setParams(this, id, min, max, value)
