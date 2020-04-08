@@ -33,10 +33,12 @@ Any suggestion(s) and feedbacks are welcomed.
 ### Configure 
 Start with less distance, iterations or want to less jog (rest) ?  
 You may customize configurable parameters under the menu.
-- Sprint and Jog distances are configured under menu selection : default 800 meters
+- Jog and Sprint distances can be reduced from 800 meter. 
 - Number of iterations (Sprint + Jog) pair : default 10
+- GPS sampling rate @ 5 seconds
+- Factory Reset will return above values to default.
 
-<img src="https://user-images.githubusercontent.com/1282659/76650050-d3d45e00-652f-11ea-81d2-3023eaefa023.jpg" width="200"> <img src="https://user-images.githubusercontent.com/1282659/76635445-7c28f900-6515-11ea-8c4a-2b43c893b1f3.jpg" width="200">
+<img src="https://user-images.githubusercontent.com/1282659/78736596-262c5300-7913-11ea-9e97-7c91d86dd25b.jpg" width="200"> <img src="https://user-images.githubusercontent.com/1282659/76635445-7c28f900-6515-11ea-8c4a-2b43c893b1f3.jpg" width="200">
 
 ### Goal (run time) Activity
 Activity provides the following functions.
@@ -99,7 +101,7 @@ Activity provides persistence (share) methods to user.  They include the follow:
 - Drive - xml files
 - database management - delete 
 
-<img src="https://user-images.githubusercontent.com/1282659/78503756-36370d80-772e-11ea-894b-a6f0fd39b6b0.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/68807590-b482fe00-062d-11ea-947b-2c4ea054e054.jpg" width="200"> 
+<img src="https://user-images.githubusercontent.com/1282659/78736600-275d8000-7913-11ea-8463-8c2329d8766c.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/68807590-b482fe00-062d-11ea-947b-2c4ea054e054.jpg" width="200"> 
  <img src="https://user-images.githubusercontent.com/1282659/77836627-6d4d6380-711d-11ea-90b5-d4c449cb2657.jpg" width="200">
 
 ### Example Email received
