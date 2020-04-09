@@ -103,7 +103,7 @@ Activity provides persistence (share) methods to user.  They include the follow:
  <img src="https://user-images.githubusercontent.com/1282659/77836627-6d4d6380-711d-11ea-90b5-d4c449cb2657.jpg" width="200">
 
 ### Example Email received
-https://github.com/yeuchi/RunYasso800/tree/master/results \
+https://github.com/yeuchi/RunYasso800/tree/master/results 
 
 ## Tests
 
@@ -124,7 +124,7 @@ Look forward to implementation.  Next to implement watch <-> phone interface.
 
 ## Known Issues (Opportunities)
 1. Civilian GPS resolution is 4 meter RMS (7.8 meter 95% Confidence Interval).\
-Without data processing (such as Kalman filter), current result can look choppy like this recording below.\
+Without data processing (such as Kalman filter), current result can look choppy like this recording below. \
 <img src="https://user-images.githubusercontent.com/1282659/78793671-578b3a00-7978-11ea-84e7-882177eb0506.jpg" width="400">
 
 2. Database table/data Normalization: remove duplications.
