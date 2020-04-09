@@ -27,7 +27,6 @@ import java.util.*
  * To do:
  * 1. send image(s) from Result ?
  * 2. user can delete all data
- * 3. Use Dagger for models loading between states and activity ?
  *
  * Description:
  * - Persist (share) data to facebook, email or drive
@@ -36,10 +35,6 @@ import java.util.*
 class PersistActivity : BaseActivity() {
     lateinit var model:PersistViewModel
     lateinit var binding:ActivityPersistBinding
-    var totalRunTime:Long = 0
-    var totalJogTime:Long = 0
-    var totalRunDis:Double = 0.0
-    var totalJogDis:Double = 0.0
 
     companion object : ICompanion {
         private var hasSteps:Boolean = false
@@ -70,7 +65,7 @@ class PersistActivity : BaseActivity() {
 
         model.steps.observe(this, Observer { steps ->
             steps?.let {
-                if(null!=steps && steps.size>0)
+                if(steps.size>0)
                     hasSteps = true
             }
         })
@@ -78,148 +73,10 @@ class PersistActivity : BaseActivity() {
         model.splits.observe(this, Observer { splits ->
             // Update the cached copy of the words in the adapter.
             splits?.let {
-                if(null!=splits && splits.size>0)
+                if(splits.size>0)
                     hasSplits = true
             }
         })
-    }
-
-    /*
-     * print a summary of marathon training
-     */
-    private fun buildYassoMsg():String {
-        var sb = StringBuilder()
-        sb.appendln(txtHeader.text)
-        sb.appendln()
-
-        sb.appendln(getRaceGoal())
-        sb.appendln()
-
-        sb.appendln(getSprintGoal())
-        sb.appendln()
-
-        val str = getPerformance()
-        sb.appendln("${resources.getString(R.string.total_sprint_dis)} ${totalRunDis}m time: ${TimeFormatter.printTime(totalRunTime/1000)}")
-        sb.appendln("${resources.getString(R.string.total_jog_dis)} ${totalJogDis}m time: ${TimeFormatter.printTime(totalJogTime/1000)}")
-        sb.appendln()
-
-        sb.appendln(str)
-        sb.appendln()
-
-        sb.appendln(getSplits())
-        sb.appendln()
-
-        sb.append(getSteps())
-        sb.appendln()
-
-        sb.appendln(txtFooter.text)
-        return sb.toString()
-    }
-
-    fun getRaceGoal():String {
-        val seconds = SharedPrefUtility.getGoal(SharedPrefUtility.keyRaceGoal)
-        val str = TimeFormatter.printTime(seconds)
-        return resources.getString(R.string.race_goal) + str
-    }
-
-    fun getSprintGoal():String {
-        val seconds = SharedPrefUtility.getGoal(SharedPrefUtility.keySprintGoal)
-        val str = TimeFormatter.printTime(seconds)
-        return resources.getString(R.string.sprint_goal) + str
-    }
-
-    private fun incrementTime(type:String, time:Long, dis:Double) {
-        when(type) {
-            Split.RUN_TYPE_SPRINT -> {
-                totalRunTime += time
-                totalRunDis += dis
-            }
-
-            Split.RUN_TYPE_JOG -> {
-                totalJogTime += time
-                totalJogDis += dis
-            }
-        }
-    }
-
-    /*
-     * Build a summary of distances, time-elapsed on splits
-     */
-    private fun getPerformance():String {
-        totalRunTime = 0
-        totalJogTime = 0
-        totalRunDis = 0.0
-        totalJogDis = 0.0
-        var sb = StringBuilder()
-        val splits:List<Split>? = model.splits.value
-        if(null!=splits) {
-            sb.appendln("{\"Performance\":[")
-            val size = splits.size
-            var i = 0
-            for (split in splits) {
-                sb.append( "{\"split\": "+ split.splitIndex +", ")
-                sb.append( "{\"type\": \""+ split.run_type +"\", ")
-                sb.append("\"distance\":"+split.dis +", ")
-                val timeDiff:Long = split.endTime - split.startTime
-                incrementTime(split.run_type, timeDiff, split.dis)
-
-                val str = TimeFormatter.printTime(timeDiff/1000)
-                sb.append("\"elapsed\":\""+str+"\"}")
-
-                if(++i >= size)
-                    sb.appendln("]")
-                else
-                    sb.appendln(", ")
-            }
-        }
-        return sb.toString()
-    }
-
-    /*
-     * Raw split data dump
-     */
-    private fun getSplits():String {
-        var sb = StringBuilder()
-        val splits:List<Split>? = model.splits.value
-        if(null!=splits) {
-            sb.appendln("{\"Splits\":[")
-            val size = splits.size
-            var gson = Gson()
-            var i = 0
-            for (split in splits) {
-                val str = gson.toJson(split)
-                i++
-
-                if(i >= size)
-                    sb.appendln(str +"]")
-                else
-                    sb.appendln(str + ", ")
-            }
-        }
-        return sb.toString()
-    }
-
-    /*
-     * Raw step data dump
-     */
-    private fun getSteps():String {
-        var sb = StringBuilder()
-        val steps:List<Step>? = model.steps.value
-        if(null!=steps) {
-            sb.appendln("{\"Steps\":[")
-            var size = steps.size
-            var gson = Gson()
-            var i = 0
-            for(step in steps) {
-                val str = gson.toJson(step)
-                i++
-                if(i >= size)
-                    sb.appendln(str +"]")
-                else
-                    sb.appendln(str + ", ")
-            }
-        }
-        return sb.toString()
     }
 
     /*
@@ -242,37 +99,7 @@ class PersistActivity : BaseActivity() {
 
     fun sendEmail() {
         try {
-            val builder = StrictMode.VmPolicy.Builder()
-            StrictMode.setVmPolicy(builder.build())
-
-            //val uriRight = SharedPrefUtility.getImageUri(this.applicationContext)
-
-            val uris = ArrayList<Uri>()
-         //   uris.add(uriRight)
-
-            val emailIntent = Intent(Intent.ACTION_SEND_MULTIPLE)
-            emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-
-            emailIntent.type = "image/*"
-
-            /*
-            if (null == mTuple) {
-                Toast.makeText(
-                    this,
-                    "some failure message",
-                    Toast.LENGTH_SHORT
-                ).show()
-                return
-            }*/
-
-            // Subject
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, SharedPrefUtility.getName())
-
-            // need to insert image in the middle ...
-            emailIntent.putExtra(Intent.EXTRA_TEXT, buildYassoMsg())
-
-            // load image
-       //     emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris)
+            val emailIntent = model.buildIntent(txtHeader.text.toString(), txtFooter.text.toString())
 
             if (emailIntent.resolveActivity(MainApplication.applicationContext().getPackageManager()) != null) {
                 val send_title = "some title"
