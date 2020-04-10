@@ -72,6 +72,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         stepViewModel = ViewModelProvider(this).get(StepViewModel::class.java)
         runViewModel = ViewModelProvider(this).get(RunViewModel::class.java)
         stateMachine = StateMachine(this, runViewModel, stepViewModel)
+        runViewModel.setStateMachine(stateMachine)
 
         fab = RunFloatingActionButtons(this, stateMachine)
         splitContainer = SplitContainer(this, stateMachine, stepViewModel, runViewModel)
@@ -100,7 +101,8 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     // State machine callback
     override fun onHandleYassoDone() {
         isDone = true
-        splitContainer.updateType()
+        runViewModel.updateType()
+        binding.invalidateAll()
         fab.changeState(StateDone::class.java)
     }
 
@@ -111,7 +113,8 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
 
     // State machine callback -- data update
     override fun onHandleLocationUpdate() {
-        splitContainer.updateData()
+        runViewModel.updateData()
+        binding.invalidateAll()
     }
 
     /*

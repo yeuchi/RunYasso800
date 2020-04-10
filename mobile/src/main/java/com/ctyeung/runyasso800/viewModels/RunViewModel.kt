@@ -4,12 +4,16 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.ctyeung.runyasso800.MainApplication
+import com.ctyeung.runyasso800.R
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.YassoDatabase
 import com.ctyeung.runyasso800.room.splits.SplitRepository
+import com.ctyeung.runyasso800.stateMachine.*
 import com.ctyeung.runyasso800.utilities.TimeFormatter
 import kotlinx.android.synthetic.main.activity_run.*
 import kotlinx.coroutines.launch
+import java.lang.reflect.Type
 import kotlin.math.roundToInt
 import kotlin.math.roundToLong
 
@@ -21,11 +25,72 @@ class RunViewModel (application: Application) : AndroidViewModel(application)
 {
     var repository:SplitRepository
     var splits:LiveData<List<Split>>
+    private var stateMachine:StateMachine?=null
 
     init {
         val splitDao = YassoDatabase.getDatabase(application, viewModelScope).splitDao()
         repository = SplitRepository(splitDao)
         splits = repository.splits
+    }
+
+    var txtLat:String = ""
+    var txtLong:String = ""
+    var txtStepDistance:String = "Step: 0m"
+    var txtTotalDistance:String = "Total:800m"
+    var txtSplitIndex:String = "Split: 1"
+    var txtSplitTime:String = "Time: 00:00"
+    var txtTotalTime:String = "Total: 00:00"
+    var txtSplitType:String = "Sprint/Jog"
+    var txtTotalSplits:String = "Total: 10"
+
+    fun init() {
+        txtTotalSplits = "${MainApplication.applicationContext().resources.getString(R.string.total)}: ${SharedPrefUtility.getNumIterations()}"
+    }
+
+    fun updateData() {
+        txtLat = stateMachine!!.prevLocation?.latitude.toString()
+        txtLong = stateMachine!!.prevLocation?.longitude.toString()
+
+        // distance in current split
+        txtStepDistance = "Dis: ${getLastSplitDistance().roundToInt()}m";
+        // distance total
+        txtTotalDistance = "Total: ${getTotalDistance().roundToInt()}m"
+
+        // split index
+        txtSplitIndex =  "Split: ${(getIndex()+1)}"
+
+        updateType()
+
+        // split time (sprint or jog)
+        txtSplitTime = "Time: ${TimeFormatter.printDateTime(getLastSplitElapsedTime())}"
+        txtTotalTime = "Total: ${TimeFormatter.printDateTime(getTotalElapsedTime())}"
+
+    }
+
+    // refactor with dagger !!!!
+    fun setStateMachine(stateMachine: StateMachine){
+        this.stateMachine = stateMachine
+    }
+
+    fun updateType() {
+        /*
+         * Use a hash here to reduce the code
+         */
+        val str = getString(stateMachine!!.current)
+        txtSplitType = str
+    }
+
+    private fun getString(type: Type):String {
+        var id = R.string.idle
+        when(type) {
+            StateIdle::class.java -> {/*default*/}
+            StateJog::class.java -> { id = R.string.jog }
+            StateSprint::class.java -> { id = R.string.sprint }
+            StatePause::class.java -> {id = R.string.pause}
+            StateDone::class.java -> {id = R.string.done}
+            else -> {id = R.string.dunno}
+        }
+        return MainApplication.applicationContext().resources.getString(id)
     }
 
     fun getIndex():Int {

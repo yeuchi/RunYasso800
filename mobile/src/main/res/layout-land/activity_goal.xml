@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <variable name="listener"
+        <variable name="goal"
             type="com.ctyeung.runyasso800.GoalActivity"/>
     </data>
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -41,7 +41,7 @@
                     android:layout_width="@dimen/value_wid"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/common_margin"
-                    android:text="@string/enter_name"
+                    android:text="@{goal.model.name}"
                     android:id="@+id/txtRunName"/>
 
             </LinearLayout>
@@ -68,8 +68,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/common_margin"
                     android:textAllCaps="false"
-                    android:onClick="@{()-> listener.onClickTime()}"
-                    android:text="@string/enter_time" />
+                    android:onClick="@{()-> goal.onClickTime()}"
+                    android:text="@{goal.model.raceGoal}" />
 
             </LinearLayout>
 
@@ -101,7 +101,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:text="@string/calculating" />
+                        android:text="@{goal.model.sprintGoal}" />
 
                 </LinearLayout>
 
@@ -120,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/common_margin"
-                android:onClick="@{()-> listener.onClickNext()}"
+                android:onClick="@{()-> goal.onClickNext()}"
                 android:src="@drawable/ic_navigate_next"
                 app:backgroundTint="#8888FF" />
 

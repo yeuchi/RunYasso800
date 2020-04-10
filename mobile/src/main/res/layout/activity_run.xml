@@ -39,7 +39,7 @@
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="@string/unknown"
+                android:text="@{run.runViewModel.txtLat}"
                 android:id="@+id/txtLat"/>
 
             <TextView
@@ -52,7 +52,7 @@
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="@string/unknown"
+                android:text="@{run.runViewModel.txtLong}"
                 android:id="@+id/txtLong"/>
 
         </LinearLayout>
@@ -85,14 +85,14 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Split:1" />
+                    android:text="@{run.runViewModel.txtSplitIndex}" />
 
                 <TextView
                     android:id="@+id/txtTotalSplits"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Total: 10" />
+                    android:text="@{run.runViewModel.txtTotalSplits}" />
 
             </LinearLayout>
 
@@ -114,7 +114,7 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Sprint / Jog" />
+                    android:text="@{run.runViewModel.txtSplitType}" />
 
             </LinearLayout>
 
@@ -136,14 +136,14 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Time: 00:00" />
+                    android:text="@{run.runViewModel.txtSplitTime}" />
 
                 <TextView
                     android:id="@+id/txtTotalTime"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Total: 00:00" />
+                    android:text="@{run.runViewModel.txtTotalTime}" />
 
             </LinearLayout>
 
@@ -165,14 +165,14 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Step: 0m" />
+                    android:text="@{run.runViewModel.txtStepDistance}" />
 
                 <TextView
                     android:id="@+id/txtTotalDistance"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Total: 600m" />
+                    android:text="@{run.runViewModel.txtTotalDistance}" />
 
             </LinearLayout>
 

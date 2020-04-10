@@ -36,51 +36,8 @@ class SplitContainer {
         this.stepViewModel = stepViewModel
         this.runViewModel = runViewModel
 
-        init()
-    }
-
-    fun init() {
-        run.txtTotalSplits.text = "${MainApplication.applicationContext().resources.getString(R.string.total)}: ${SharedPrefUtility.getNumIterations()}"
-    }
-
-    fun updateData() {
-        run.txtLat.text = stateMachine.prevLocation?.latitude.toString()
-        run.txtLong.text = stateMachine.prevLocation?.longitude.toString()
-
-        // distance in current split
-        run.txtStepDistance.text = "Dis: ${runViewModel.getLastSplitDistance().roundToInt()}m";
-        // distance total
-        run.txtTotalDistance.text = "Total: ${runViewModel.getTotalDistance().roundToInt()}m"
-
-        // split index
-        run.txtSplitIndex.text =  "Split: ${(runViewModel.getIndex()+1)}"
-
-        updateType()
-
-        // split time (sprint or jog)
-        run.txtSplitTime.text = "Time: ${TimeFormatter.printDateTime(runViewModel.getLastSplitElapsedTime())}"
-        run.txtTotalTime.text = "Total: ${TimeFormatter.printDateTime(runViewModel.getTotalElapsedTime())}"
-    }
-
-    fun updateType() {
-        /*
-         * Use a hash here to reduce the code
-         */
-        val str = getString(stateMachine.current)
-        run.txtSplitType.text = str
-    }
-
-    private fun getString(type:Type):String {
-        var id = R.string.idle
-        when(type) {
-            StateIdle::class.java -> {/*default*/}
-            StateJog::class.java -> { id = R.string.jog }
-            StateSprint::class.java -> { id = R.string.sprint }
-            StatePause::class.java -> {id = R.string.pause}
-            StateDone::class.java -> {id = R.string.done}
-            else -> {id = R.string.dunno}
-        }
-        return MainApplication.applicationContext().resources.getString(id)
+        run.runViewModel.init()
+        run.binding.invalidateAll()
     }
 
     /*
