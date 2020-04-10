@@ -9,7 +9,6 @@ import android.widget.Toast
 
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import com.ctyeung.runyasso800.databinding.ActivityPersistBinding
 import com.ctyeung.runyasso800.viewModels.RunViewModel
 import com.ctyeung.runyasso800.viewModels.StepViewModel
 import androidx.lifecycle.Observer
@@ -22,6 +21,7 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_persist.*
 import java.lang.StringBuilder
 import java.util.*
+import com.ctyeung.runyasso800.databinding.ActivityPersistBinding
 
 /*
  * To do:

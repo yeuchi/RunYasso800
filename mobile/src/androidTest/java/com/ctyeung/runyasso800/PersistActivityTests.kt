@@ -17,6 +17,13 @@ class PersistActivityTests {
     )
 
     @Test
+    fun onCreate() {
+        val title = mActivityRule.activity.title
+        val expected = MainApplication.applicationContext().resources.getString(R.string.app_name)
+        assertEquals(title, expected)
+    }
+
+    @Test
     fun getSplits() {
 
     }
@@ -36,18 +43,5 @@ class PersistActivityTests {
 
     }
 
-    @Test
-    fun getSprintGoal() {
-        SharedPrefUtility.setGoal(SharedPrefUtility.keySprintGoal, 100)
-        val sprintGoal = mActivityRule.activity.getSprintGoal()
-        assertEquals(sprintGoal, "Sprint Goal:0hours 1minutes 40seconds")
-    }
-
-    @Test
-    fun getRaceGoal() {
-        SharedPrefUtility.setGoal(SharedPrefUtility.keyRaceGoal, 100)
-        val raceGoal = mActivityRule.activity.getRaceGoal()
-        assertEquals(raceGoal, "Race Goal:0hours 1minutes 40seconds")
-    }
 }
 
