@@ -20,6 +20,9 @@ open class BaseActivity : AppCompatActivity() {
         getSupportActionBar()?.title = getActionBarTitle()
     }
 
+    /*
+     * Common code -- refactor !!!
+     */
     fun getActionBarTitle():String {
         val name = SharedPrefUtility.getName()
         val time = SharedPrefUtility.getGoal(SharedPrefUtility.keySprintGoal)

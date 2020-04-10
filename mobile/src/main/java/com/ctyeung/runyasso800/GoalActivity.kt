@@ -49,10 +49,10 @@ class GoalActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_goal)
-        binding.listener = this
+        binding.goal = this
 
         model = ViewModelProvider(this).get(GoalViewModel::class.java)
-
+        model.setInitValues()
         handleTextChange()
     }
 
@@ -70,7 +70,7 @@ class GoalActivity : BaseActivity() {
                     name = resources.getString(R.string.run_yasso_800)
                 }
 
-                model.setName(name)
+                model.persistName(name)
                 initActionBar()
 
                 // go to next activity automatically
@@ -106,16 +106,9 @@ class GoalActivity : BaseActivity() {
 
         val timePickerDialog = TimePickerDialog(this@GoalActivity,
             TimePickerDialog.OnTimeSetListener{ view, hourOfDay, minute ->
-
-                // marathon goal
-                val raceInSeconds = TimeFormatter.convertHHmmss(hourOfDay, minute, 0)
-                btn_race_goal.text = TimeFormatter.printTime(raceInSeconds)
-                model.setRaceGoal(raceInSeconds)
-
-                // sprint goal
-                val sprintInSeconds = TimeFormatter.convertHHmmss(0, hourOfDay, minute)
-                txt_sprint_goal.text = TimeFormatter.printTime(sprintInSeconds)
-                model.setSprintGoal(sprintInSeconds)
+                model.setRaceGoal(hourOfDay, minute)
+                model.setSprintGoal(hourOfDay, minute)
+                binding.invalidateAll()
 
                 if(validateRaceGoal(hourOfDay, minute))
                     initActionBar()
