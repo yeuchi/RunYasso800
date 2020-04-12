@@ -143,6 +143,8 @@ class RunViewModel (application: Application) : AndroidViewModel(application)
 
     fun clear() = viewModelScope.launch {
         repository.clear()
+        SharedPrefUtility.setSplitDistance(0.0)
+        SharedPrefUtility.setIndex(SharedPrefUtility.keySplitIndex, 0)
     }
 
     fun update(split: Split?) = viewModelScope.launch {

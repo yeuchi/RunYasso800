@@ -49,5 +49,7 @@ class StepViewModel (application: Application) : AndroidViewModel(application)
 
     fun clear() = viewModelScope.launch {
         repository.clear()
+        SharedPrefUtility.setIndex(SharedPrefUtility.keyStepIndex, 0)
+        reset()
     }
 }
