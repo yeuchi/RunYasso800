@@ -127,7 +127,7 @@ Look forward to implementation.  Next to implement watch <-> phone interface.
 Without data processing (such as Kalman filter), current result can look choppy like this recording below. \
 <img src="https://user-images.githubusercontent.com/1282659/78793671-578b3a00-7978-11ea-84e7-882177eb0506.jpg" width="400">
 
-2. Database table/data Normalization: remove duplications.
+2. Database table/data/SharePref Normalization: remove duplications.
 3. Landscape Layout support: RunActivity - state machine requires refactoring.
 4. Dagger dependency injection.
 
@@ -136,8 +136,10 @@ Without data processing (such as Kalman filter), current result can look choppy 
 2. April 12, 2020: available on Google Play.
    a. Refactored viewModels. 
    b. Fixed: PersistActivity no longer renders partial data when there are no splits.
-3. April 12, 2020: submited for Google review. 
+3. April 12, 2020: available on Google Play. 
    a. Fixed: RunActivity PAUSE / RESUME.
+4. April 12, 2020: submitted for Google review.
+   a. Fixed: RunActivity CLEAR. 
    
 # References
 1. How to do Yasso 800s, by Christine Luff, VeryWellFit, August 04, 2019\
