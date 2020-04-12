@@ -133,11 +133,13 @@ Without data processing (such as Kalman filter), current result can look choppy 
 5. PAUSE is not displayed.
 
 # Google Play Versions
-1. April 11, 2020: 1st available on Google Play; functionally tested by self.
-2. April 11, 2020: submitted for Google review.
-   a. Refactored viewModels, 
-   b. fixed: PersistActivity no longer renders partial data when there are no splits.
-
+1. April 11, 2020: 1st available on Google Play; functionally tested by 1 self run work-out.
+2. April 12, 2020: available on Google Play.
+   a. Refactored viewModels. 
+   b. Fixed: PersistActivity no longer renders partial data when there are no splits.
+3. April 12, 2020: submited for Google review. 
+   a. Fixed: RunActivity PAUSE / RESUME.
+   
 # References
 1. How to do Yasso 800s, by Christine Luff, VeryWellFit, August 04, 2019\
 https://www.verywellfit.com/how-to-do-yasso-800s-2911888
