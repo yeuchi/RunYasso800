@@ -75,7 +75,7 @@ In an example with Sprint Goal= 40 minutes, there would be 960 steps.\
 <img width="495" alt="Screen Shot 2020-02-15 at 3 30 04 PM" src="https://user-images.githubusercontent.com/1282659/78703407-b5177c00-78cf-11ea-81c2-fda1fd8716bb.png">
 
 IDLE -> START -> SPRINT <-> JOG ->PAUSE\
-<img src="https://user-images.githubusercontent.com/1282659/77359501-a8b0f200-6d19-11ea-9efb-68c7dfc4da21.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77270817-fcb8c980-6c7a-11ea-8966-92d5229db13c.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77270830-07735e80-6c7b-11ea-9230-108e3fbfbfd9.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77334281-966f8d80-6cf2-11ea-8b46-2455e2a7d501.jpg" width="200"> 
+<img src="https://user-images.githubusercontent.com/1282659/77359501-a8b0f200-6d19-11ea-9efb-68c7dfc4da21.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77270817-fcb8c980-6c7a-11ea-8966-92d5229db13c.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77270830-07735e80-6c7b-11ea-9230-108e3fbfbfd9.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/79081035-4d9e6980-7cdf-11ea-984a-60c3c6e112ca.jpg" width="200"> 
 
 -> DONE\
 <img src="https://user-images.githubusercontent.com/1282659/77836547-acc78000-711c-11ea-9f49-dc592b8a3153.jpg" width="200"> 
