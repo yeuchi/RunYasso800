@@ -34,7 +34,7 @@ class StateMachine : IStateCallback {
         stateMap.put(StateDone::class.java, StateDone(this, actListener))
         stateMap.put(StateClear::class.java, StateClear(this, runViewModel, stepViewModel))
         stateMap.put(StatePause::class.java, StatePause(this, actListener))
-        stateMap.put(StateResume::class.java, StateResume(this))
+        stateMap.put(StateResume::class.java, StateResume(this, actListener))
         stateMap.put(StateIdle::class.java, StateIdle(this, actListener))
 
         current = StateIdle::class.java
@@ -98,7 +98,7 @@ class StateMachine : IStateCallback {
         when(current) {
             StateSprint::class.java,
             StateJog::class.java -> {
-                stateMap[StatePause::class.java]?.execute((previous))
+                stateMap[StatePause::class.java]?.execute((current))
             }
 
             //if we were at pause, then resume !

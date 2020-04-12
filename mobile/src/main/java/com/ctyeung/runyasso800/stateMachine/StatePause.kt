@@ -12,30 +12,17 @@ class StatePause : StateAbstract, Ipause, Iresume, Iclear {
         this.actListener = actListener
     }
 
-    override fun execute(previous:Type) {
-
-        this.prevState = previous
-        // things to perform in this state
+    override fun execute(state:Type) {
         goto()
-
-        if(previous != this.javaClass)
-            actListener.onChangedSplit()
+        actListener.onChangedSplit()
     }
 
     override fun goto():Boolean {
         /*
          * we are stuck in this state
-         * (except if user CLEAR
+         * except if user CLEAR or START
          */
-        when(prevState){
-            StatePause::class.java -> {
-                listener.onChangeState(StateResume::class.java)
-                return true
-            }
-            else -> {
-                listener.onChangeState(StatePause::class.java)
-                return false
-            }
-        }
+        listener.onChangeState(StatePause::class.java)
+        return false
     }
 }

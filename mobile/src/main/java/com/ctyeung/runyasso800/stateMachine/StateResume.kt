@@ -1,20 +1,23 @@
 package com.ctyeung.runyasso800.stateMachine
 
+import com.ctyeung.runyasso800.viewModels.IRunStatsCallBack
 import java.lang.reflect.Type
 
 class StateResume : StateAbstract, Iresume, Isprint, Ijog {
+    private var actListener: IRunStatsCallBack
 
-    constructor(listener:IStateCallback):super(listener)
+    constructor(listener:IStateCallback,
+                actListener: IRunStatsCallBack):super(listener)
     {
-
+        this.actListener = actListener
     }
 
     override fun execute(previous:Type) {
 
         this.prevState = previous
         // things to perform in this state
-
         goto()
+        actListener.onChangedSplit()
     }
 
     override fun goto():Boolean {

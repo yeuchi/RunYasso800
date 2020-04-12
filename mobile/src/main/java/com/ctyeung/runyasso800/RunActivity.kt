@@ -109,6 +109,8 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     // State machine callback -- background update, vibrate, beep
     override fun onChangedSplit() {
         splitContainer.updateSupport()
+        runViewModel.updateType()
+        binding.invalidateAll()
     }
 
     // State machine callback -- data update
