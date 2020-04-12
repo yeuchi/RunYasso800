@@ -130,7 +130,6 @@ Without data processing (such as Kalman filter), current result can look choppy 
 2. Database table/data Normalization: remove duplications.
 3. Landscape Layout support: RunActivity - state machine requires refactoring.
 4. Dagger dependency injection.
-5. PAUSE is not displayed.
 
 # Google Play Versions
 1. April 11, 2020: 1st available on Google Play; functionally tested by 1 self run work-out.
