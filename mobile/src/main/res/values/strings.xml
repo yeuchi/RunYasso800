@@ -89,8 +89,8 @@
     <!-- SplitDetailFragment -->
     <string name="detail_split">Split:</string>
     <string name="detail_type">Type:</string>
-    <string name="detail_duration">Duration:</string>
-    <string name="detail_distance">Distance:</string>
+    <string name="detail_duration">Time:</string>
+    <string name="detail_distance">Span:</string>
 
 
 </resources>
