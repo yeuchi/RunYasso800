@@ -132,14 +132,14 @@ Without data processing (such as Kalman filter), current result can look choppy 
 4. Dagger dependency injection.
 
 # Google Play Versions
-1. April 11, 2020: 1st available on Google Play; functionally tested by 1 self run work-out.
-2. April 12, 2020: available on Google Play.
-   a. Refactored viewModels. 
-   b. Fixed: PersistActivity no longer renders partial data when there are no splits.
-3. April 12, 2020: available on Google Play. 
-   a. Fixed: RunActivity PAUSE / RESUME.
-4. April 12, 2020: submitted for Google review.
-   a. Fixed: RunActivity CLEAR. 
+1. April 11, 2020: 1st available on Google Play; functionally tested by 1 self run work-out.\
+2. April 12, 2020: available on Google Play.\
+   a. Refactored viewModels. \
+   b. Fixed: PersistActivity no longer renders partial data when there are no splits.\
+3. April 12, 2020: available on Google Play. \
+   a. Fixed: RunActivity PAUSE / RESUME.\
+4. April 12, 2020: submitted for Google review.\
+   a. Fixed: RunActivity CLEAR. \
    
 # References
 1. How to do Yasso 800s, by Christine Luff, VeryWellFit, August 04, 2019\
