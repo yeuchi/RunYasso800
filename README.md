@@ -132,6 +132,12 @@ Without data processing (such as Kalman filter), current result can look choppy 
 4. Dagger dependency injection.
 5. PAUSE is not displayed.
 
+# Google Play Versions
+1. April 11, 2020: 1st available on Google Play; functionally tested by self.
+2. April 11, 2020: submitted for Google review.
+   a. Refactored viewModels, 
+   b. fixed: PersistActivity no longer renders partial data when there are no splits.
+
 # References
 1. How to do Yasso 800s, by Christine Luff, VeryWellFit, August 04, 2019\
 https://www.verywellfit.com/how-to-do-yasso-800s-2911888
