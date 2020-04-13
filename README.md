@@ -65,12 +65,12 @@ In an example with Sprint Goal= 40 minutes, there would be 960 steps.\
 
 #### State machine 
 - IDLE : Starting point, nothing is happening.
-- START : button (->) begin session with a jog for 800 meters. (no time constraint)
+- START : button <img src="https://user-images.githubusercontent.com/1282659/79134254-03ff5e80-7d73-11ea-97eb-0da899e0403d.png" width="30"> begin session with a jog for 800 meters. (no time constraint)
 - JOG -> SPRINT : iterate for 10 times. 
 - DONE : Yasso800 completed; button (>) to ResultActivity. 
-- PAUSE : button (||) puts session on temporary suspension.
-- RESUME : button (->) to resume jog or sprint.
-- CLEAR : button (X) to delete all and return to IDLE state.
+- PAUSE : button <img src="https://user-images.githubusercontent.com/1282659/79134259-05c92200-7d73-11ea-8e5b-4c24bee74d15.png" width="30"> puts session on temporary suspension.
+- RESUME : button <img src="https://user-images.githubusercontent.com/1282659/79134254-03ff5e80-7d73-11ea-97eb-0da899e0403d.png" width="30"> to resume jog or sprint.
+- CLEAR : button <img src="https://user-images.githubusercontent.com/1282659/79134266-0792e580-7d73-11ea-8efd-5bfe352d7e4f.png" width="30"> to delete all and return to IDLE state.
 - ERROR : unexpected conditions (Examples: GPS fails or Phone dies)
 
 <img width="495" alt="Screen Shot 2020-02-15 at 3 30 04 PM" src="https://user-images.githubusercontent.com/1282659/78703407-b5177c00-78cf-11ea-81c2-fda1fd8716bb.png">
