@@ -36,7 +36,8 @@ You may customize configurable parameters under the menu.
 - GPS sampling rate @ 5,000 milliseconds (5 seconds)
 - About dialog to select Factory Reset will return above default values.
 
-MENU -> CONFIGURATION        menu -> ABOUT -> FACTORY RESET\
+MENU -> CONFIGURATION        
+menu -> ABOUT -> FACTORY RESET\
 <img src="https://user-images.githubusercontent.com/1282659/79158436-f6120380-7d9b-11ea-9973-2de91ad84a34.jpg" width="200"> <img src="https://user-images.githubusercontent.com/1282659/76635445-7c28f900-6515-11ea-8c4a-2b43c893b1f3.jpg" width="200">
 <img src="https://user-images.githubusercontent.com/1282659/79158422-ef838c00-7d9b-11ea-9e85-efe89751fb1b.jpg" width="200">
 
