@@ -64,13 +64,14 @@ In an example with Sprint Goal= 40 minutes, there would be 960 steps.\
 ( 40 minutes (sprint) + 40 minutes (jog) )  * 60 seconds / 5 seconds = 960 samples
 
 #### State machine 
-- IDLE - Activity intialization or CLEAR by user
-- START - transition to SPRINT
-- SPRINT <-> JOG - loop for 10X 
-- DONE - Yasso800 completed successfully.
-- PAUSE - User put the porgram on temporary suspension.
-- RESUME - User de-selects PAUSE button; program resumes.
-- ERROR - unexpected conditions (Examples: GPS fails or Phone dies)
+- IDLE : Starting point, nothing is happening.
+- START : button <img src="https://user-images.githubusercontent.com/1282659/79134254-03ff5e80-7d73-11ea-97eb-0da899e0403d.png" width="20"> begin session with a jog for 800 meters. (no time constraint)
+- JOG -> SPRINT : iterate for 10 times. 
+- DONE : Yasso800 completed; button (>) to ResultActivity. 
+- PAUSE : button <img src="https://user-images.githubusercontent.com/1282659/79134259-05c92200-7d73-11ea-8e5b-4c24bee74d15.png" width="20"> puts session on temporary suspension.
+- RESUME : button <img src="https://user-images.githubusercontent.com/1282659/79134254-03ff5e80-7d73-11ea-97eb-0da899e0403d.png" width="20"> to resume jog or sprint.
+- CLEAR : button <img src="https://user-images.githubusercontent.com/1282659/79134266-0792e580-7d73-11ea-8efd-5bfe352d7e4f.png" width="20"> to delete all and return to IDLE state.
+- ERROR : unexpected conditions (Examples: GPS fails or Phone dies)
 
 <img width="495" alt="Screen Shot 2020-02-15 at 3 30 04 PM" src="https://user-images.githubusercontent.com/1282659/78703407-b5177c00-78cf-11ea-81c2-fda1fd8716bb.png">
 
@@ -127,17 +128,19 @@ Look forward to implementation.  Next to implement watch <-> phone interface.
 Without data processing (such as Kalman filter), current result can look choppy like this recording below. \
 <img src="https://user-images.githubusercontent.com/1282659/78793671-578b3a00-7978-11ea-84e7-882177eb0506.jpg" width="400">
 
-2. Database table/data Normalization: remove duplications.
+2. Database table/data/SharePref Normalization: remove duplications.
 3. Landscape Layout support: RunActivity - state machine requires refactoring.
 4. Dagger dependency injection.
 
 # Google Play Versions
 1. April 11, 2020: 1st available on Google Play; functionally tested by 1 self run work-out.
-2. April 12, 2020: available on Google Play.
-   a. Refactored viewModels. 
+2. April 12, 2020: available on Google Play.\
+   a. Refactored viewModels. \
    b. Fixed: PersistActivity no longer renders partial data when there are no splits.
-3. April 12, 2020: submited for Google review. 
+3. April 12, 2020: available on Google Play. \
    a. Fixed: RunActivity PAUSE / RESUME.
+4. April 12, 2020: available on Google Play.\
+   a. Fixed: RunActivity CLEAR. 
    
 # References
 1. How to do Yasso 800s, by Christine Luff, VeryWellFit, August 04, 2019\
