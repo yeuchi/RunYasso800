@@ -22,8 +22,8 @@
         android:title="@string/gps_sample_rate" />
 
     <item
-        android:id="@+id/factory_reset"
+        android:id="@+id/about"
         android:orderInCategory="5"
-        android:title="@string/factory_reset" />
+        android:title="@string/about" />
 
 </menu>

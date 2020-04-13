@@ -37,11 +37,4 @@ class MainViewModel (application: Application) : AndroidViewModel(application){
     fun getSampleRate():Long {
         return SharedPrefUtility.getGPSsampleRate()
     }
-
-    fun factoryReset() {
-        setSprintDistance(Split.DEFAULT_SPLIT_DISTANCE.toInt())
-        setJogDistance(Split.DEFAULT_SPLIT_DISTANCE.toInt())
-        setIterations(Split.DEFAULT_SPLIT_ITERATIONS)
-        setSampleRate(LocationUtils.DEFAULT_SAMPLE_RATE)
-    }
 }

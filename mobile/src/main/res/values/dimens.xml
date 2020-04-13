@@ -14,5 +14,7 @@
     <dimen name="detail_margin">7dp</dimen>
     <dimen name="detail_txt_width">120dp</dimen>
 
+    <!-- About dialog -->
+    <dimen name="about_txt_width">120dp</dimen>
 
 </resources>

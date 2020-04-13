@@ -76,7 +76,7 @@
     <string name="jog_distance">Jog Distance</string>
     <string name="num_iterations">Num Iterations</string>
     <string name="gps_sample_rate">GPS Sample Rate</string>
-    <string name="factory_reset">Factory Reset</string>
+    <string name="about">About</string>
 
     <!-- number picker dialog -->
     <string name="choose_number">Choose Number</string>
@@ -92,5 +92,12 @@
     <string name="detail_duration">Time:</string>
     <string name="detail_distance">Span:</string>
 
+    <!-- About dialog -->
+    <string name="about_sample_rate">Sample Rate:</string>
+    <string name="about_loops">Loops:</string>
+    <string name="about_sprint_distance">Sprint:</string>
+    <string name="about_jog_distance">Jog:</string>
+    <string name="about_factory_reset">Factory Reset</string>
+    <string name="about_version">Version:</string>
 
 </resources>

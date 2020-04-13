@@ -30,7 +30,7 @@
                 android:layout_width="@dimen/detail_txt_width"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Split:1" />
+                android:text="@{detail.model.txtIndex}" />
 
         </LinearLayout>
 
@@ -52,7 +52,7 @@
                 android:layout_width="@dimen/detail_txt_width"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Sprint / Jog" />
+                android:text="@{detail.model.txtType}" />
 
         </LinearLayout>
 
@@ -74,7 +74,7 @@
                 android:layout_width="@dimen/detail_txt_width"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Time: 00:00" />
+                android:text="@{detail.model.txtTime}" />
 
         </LinearLayout>
 
@@ -96,7 +96,7 @@
                 android:layout_width="@dimen/detail_txt_width"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Distance: 0m" />
+                android:text="@{detail.model.txtDistance}" />
 
         </LinearLayout>
 

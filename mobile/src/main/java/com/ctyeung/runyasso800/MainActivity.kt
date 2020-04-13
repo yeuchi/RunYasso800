@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.ctyeung.runyasso800.databinding.ActivityMainBinding
+import com.ctyeung.runyasso800.dialogs.AboutDialogFragment
 import com.ctyeung.runyasso800.dialogs.NumberPickerFragment
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.utilities.LocationUtils
@@ -120,8 +121,9 @@ class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListene
                 max = LocationUtils.MAX_SAMPLE_RATE.toInt()
                 min = LocationUtils.MIN_SAMPLE_RATE.toInt()
             }
-            this.resources.getString(R.string.factory_reset) -> {
-                model.factoryReset()
+            this.resources.getString(R.string.about) -> {
+                val dlg = AboutDialogFragment()
+                dlg?.show(supportFragmentManager, "About")
                 return true
             }
             else -> return false

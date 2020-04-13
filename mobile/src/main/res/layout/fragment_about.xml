@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="about"
+            type="com.ctyeung.runyasso800.dialogs.AboutDialogFragment"/>
+    </data>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="400dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#DDDDDD"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/detail_margin"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/detail_margin"
+                android:src="@drawable/ic_jog" />
+
+            <TextView
+                android:layout_width="@dimen/about_txt_width"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/about_jog_distance" />
+
+            <TextView
+                android:id="@+id/txtAboutJog"
+                android:layout_width="@dimen/about_txt_width"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@{about.model.jogDistance}" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/detail_margin"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/detail_margin"
+                android:src="@drawable/ic_run" />
+
+            <TextView
+                android:layout_width="@dimen/about_txt_width"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/about_sprint_distance" />
+
+            <TextView
+                android:id="@+id/txtAboutSprint"
+                android:layout_width="@dimen/about_txt_width"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@{about.model.sprintDistance}" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/detail_margin"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/detail_margin"
+                android:src="@drawable/ic_replay" />
+
+            <TextView
+                android:layout_width="@dimen/about_txt_width"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/about_loops" />
+
+            <TextView
+                android:id="@+id/txtAboutLoops"
+                android:layout_width="@dimen/about_txt_width"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@{about.model.loops}" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/detail_margin"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/detail_margin"
+                android:src="@drawable/ic_input" />
+
+            <TextView
+                android:layout_width="@dimen/about_txt_width"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/about_sample_rate" />
+
+            <TextView
+                android:id="@+id/txtAboutSampleRate"
+                android:layout_width="@dimen/about_txt_width"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@{about.model.sampleRate}" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/detail_margin"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/detail_margin"
+                android:src="@mipmap/ic_launcher_icon" />
+
+            <TextView
+                android:layout_width="@dimen/about_txt_width"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/about_version" />
+
+            <TextView
+                android:id="@+id/txtAboutVersion"
+                android:layout_width="@dimen/about_txt_width"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@{about.model.version}" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/detail_margin"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_factory_reset"
+                android:onClick="@{()-> about.onClickFactoryReset()}"
+                android:id="@+id/btn_factory_reset"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ok"
+                android:onClick="@{()-> about.onClickOk()}"
+                android:id="@+id/btn_ok"/>
+
+        </LinearLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>
