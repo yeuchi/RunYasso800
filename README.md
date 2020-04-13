@@ -64,13 +64,14 @@ In an example with Sprint Goal= 40 minutes, there would be 960 steps.\
 ( 40 minutes (sprint) + 40 minutes (jog) )  * 60 seconds / 5 seconds = 960 samples
 
 #### State machine 
-- IDLE - Activity intialization or CLEAR by user
-- START - transition to SPRINT
-- SPRINT <-> JOG - loop for 10X 
-- DONE - Yasso800 completed successfully.
-- PAUSE - User put the porgram on temporary suspension.
-- RESUME - User de-selects PAUSE button; program resumes.
-- ERROR - unexpected conditions (Examples: GPS fails or Phone dies)
+- IDLE : Starting point, nothing is happening.
+- START : button (->) begin session with a jog for 800 meters. (no time constraint)
+- JOG -> SPRINT : iterate for 10 times. 
+- DONE : Yasso800 completed; button (>) to ResultActivity. 
+- PAUSE : button (||) puts session on temporary suspension.
+- RESUME : button (->) to resume jog or sprint.
+- CLEAR : button (X) to delete all and return to IDLE state.
+- ERROR : unexpected conditions (Examples: GPS fails or Phone dies)
 
 <img width="495" alt="Screen Shot 2020-02-15 at 3 30 04 PM" src="https://user-images.githubusercontent.com/1282659/78703407-b5177c00-78cf-11ea-81c2-fda1fd8716bb.png">
 
