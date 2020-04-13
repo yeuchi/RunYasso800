@@ -138,7 +138,7 @@ Without data processing (such as Kalman filter), current result can look choppy 
    b. Fixed: PersistActivity no longer renders partial data when there are no splits.
 3. April 12, 2020: available on Google Play. \
    a. Fixed: RunActivity PAUSE / RESUME.
-4. April 12, 2020: submitted for Google review.\
+4. April 12, 2020: available on Google Play.\
    a. Fixed: RunActivity CLEAR. 
    
 # References
