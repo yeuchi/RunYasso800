@@ -37,7 +37,7 @@ You may customize configurable parameters under the menu.
 - About dialog to select Factory Reset will return above default values.
 
 MENU -> CONFIGURATION        
-menu -> ABOUT -> FACTORY RESET\
+MENU -> ABOUT -> FACTORY RESET\
 <img src="https://user-images.githubusercontent.com/1282659/79158436-f6120380-7d9b-11ea-9973-2de91ad84a34.jpg" width="200"> <img src="https://user-images.githubusercontent.com/1282659/76635445-7c28f900-6515-11ea-8c4a-2b43c893b1f3.jpg" width="200">
 <img src="https://user-images.githubusercontent.com/1282659/79158422-ef838c00-7d9b-11ea-9e85-efe89751fb1b.jpg" width="200">
 
@@ -144,6 +144,9 @@ Without data processing (such as Kalman filter), current result can look choppy 
    a. Fixed: RunActivity PAUSE / RESUME.
 4. April 12, 2020: available on Google Play.\
    a. Fixed: RunActivity CLEAR. 
+5. April 13, 2020: available on Google Play.\
+   a. About Dialog with factory reset.
+   b. Refactored SplitDetailDialogFragment viewModel / databinding.
    
 # References
 1. How to do Yasso 800s, by Christine Luff, VeryWellFit, August 04, 2019\
