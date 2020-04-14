@@ -144,7 +144,7 @@ Without data processing (such as Kalman filter), current result can look choppy 
    a. Fixed: RunActivity PAUSE / RESUME.
 4. April 12, 2020: available on Google Play.\
    a. Fixed: RunActivity CLEAR. 
-5. April 13, 2020: available on Google Play.\
+5. April 14, 2020: available on Google Play.\
    a. About Dialog with factory reset.
    b. Refactored SplitDetailDialogFragment viewModel / databinding.
    
