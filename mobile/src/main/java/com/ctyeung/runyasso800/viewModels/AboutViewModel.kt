@@ -5,6 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import com.ctyeung.runyasso800.MainApplication
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.utilities.LocationUtils
+import java.text.NumberFormat
+import java.util.*
 
 class AboutViewModel : AndroidViewModel{
 
@@ -18,7 +20,7 @@ class AboutViewModel : AndroidViewModel{
         sprintDistance = "${SharedPrefUtility.getDistance(SharedPrefUtility.keySprintDis)} m"
         jogDistance = "${SharedPrefUtility.getDistance(SharedPrefUtility.keyJogDis)} m"
         loops = "${SharedPrefUtility.getNumIterations().toString()} X"
-        sampleRate = "${SharedPrefUtility.getGPSsampleRate().toString()} ms"
+        sampleRate = "${formatLargeNumber(SharedPrefUtility.getGPSsampleRate()).toString()} ms"
         val context = MainApplication.applicationContext()
         version = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode.toString()
     }
@@ -28,5 +30,9 @@ class AboutViewModel : AndroidViewModel{
         SharedPrefUtility.setDistance(SharedPrefUtility.keyJogDis, Split.DEFAULT_SPLIT_DISTANCE.toInt())
         SharedPrefUtility.setGPSsampleRate(LocationUtils.DEFAULT_SAMPLE_RATE)
         SharedPrefUtility.setNumIterations(Split.DEFAULT_SPLIT_ITERATIONS)
+    }
+
+    fun formatLargeNumber(num:Long):String {
+        return NumberFormat.getNumberInstance(Locale.getDefault()).format(num)
     }
 }

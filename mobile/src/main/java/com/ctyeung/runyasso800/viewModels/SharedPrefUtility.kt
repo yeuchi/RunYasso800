@@ -41,7 +41,11 @@ object SharedPrefUtility
     {
         val sharedPreferences = getSharedPref(MainApplication.applicationContext())
         val defaultName = MainApplication.applicationContext().resources.getString(R.string.run_yasso_800)
-        return sharedPreferences.getString(keyName, defaultName)
+        val name = sharedPreferences.getString(keyName, defaultName)
+        if(name!=null && name.length>0)
+            return name
+
+        return defaultName
     }
 
     fun setName(str:String)

@@ -2,25 +2,37 @@ package com.ctyeung.runyasso800.room.splits
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.ctyeung.runyasso800.MainApplication
+import com.ctyeung.runyasso800.room.OneTimeObserver
 import com.ctyeung.runyasso800.room.YassoDatabase
+import com.ctyeung.runyasso800.room.observeOnce
+import com.ctyeung.runyasso800.room.steps.StepDao
 import junit.framework.Assert
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-
-@RunWith(AndroidJUnit4::class)
+/*
+ * Reference:
+ * https://alediaferia.com/2018/12/17/testing-livedata-room-android/
+ */
+@RunWith(AndroidJUnit4ClassRunner::class)
 open class SplitDaoTests {
 
-    @Rule
+    @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     private lateinit var splitDao:SplitDao
+    private lateinit var stepDao:StepDao
     private lateinit var db:YassoDatabase
 
     @Before
@@ -29,6 +41,8 @@ open class SplitDaoTests {
         val context = MainApplication.applicationContext()
         db = Room.inMemoryDatabaseBuilder(context, YassoDatabase::class.java).build()
         splitDao = db.splitDao()
+        stepDao = db.stepDao()
+        CoroutineScope(Dispatchers.IO).launch {db.populate(splitDao, stepDao)}
     }
 
     @After
@@ -39,27 +53,16 @@ open class SplitDaoTests {
 
     @Test
     //@Throws(Exception::class)
-    suspend fun writeAndRead() {
+    fun getAll() {
+        splitDao.getAll().observeOnce {
+            if(it.size>0)
+                onHandleSplits(it)
+        }
+    }
+
+    fun onHandleSplits(splits:List<Split>) {
         val now = System.currentTimeMillis()
         val end = now + 100
-        val split:Split = Split(0,
-                                Split.RUN_TYPE_JOG,
-                                10.0,
-                                now,
-                                0.0,
-                                0.1,
-                                end,
-                                1.0,
-                                1.1,
-                                false)
-
-        splitDao.insert(split)
-        var result: LiveData<List<Split>> = splitDao.getAll()
-
-        if(null==result)
-            throw java.lang.Exception("result null")
-
-        var splits:List<Split>? = result.value
 
         if(null==splits)
             throw java.lang.Exception("splits null")

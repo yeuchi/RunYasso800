@@ -67,46 +67,43 @@ public abstract class YassoDatabase : RoomDatabase ()
                 }
             }
         }
+    }
 
-        /**
-         * Populate the database in a new coroutine.
-         * If you want to start with more words, just add them.
-         */
-        suspend fun populateDatabase(splitDao: SplitDao,
-                                     stepDao:StepDao) {
-            // Start the app with a clean database every time.
-            // Not needed if you only populate on creation.
-            splitDao.deleteAll()
-            stepDao.deleteAll()
+    /**
+     * Populate the database in a new coroutine.
+     * If you want to start with more words, just add them.
+     */
+    suspend fun populate(splitDao: SplitDao,
+                                 stepDao:StepDao) {
+        // Start the app with a clean database every time.
+        // Not needed if you only populate on creation.
+        splitDao.deleteAll()
+        stepDao.deleteAll()
+        val now = System.currentTimeMillis()
+        val end = now + 100
 
-            var split = Split(0,
-                    Split.RUN_TYPE_SPRINT,
-                    800.0,
-                    java.lang.System.currentTimeMillis(),
-                    0.0,
-                    0.0,
-                    java.lang.System.currentTimeMillis()+ 100,
-                0.0,
-                0.0)
-            splitDao.insert(split)
+        val split = Split(0,
+            Split.RUN_TYPE_JOG,
+            10.0,
+            now,
+            0.0,
+            0.1,
+            end,
+            1.0,
+            1.1,
+            false)
+        splitDao.insert(split)
 
-            stepDao.deleteAll()
-            var step = Step(0,
-                            0,
-                            0.0,
-                            Split.RUN_TYPE_SPRINT,
-                            java.lang.System.currentTimeMillis(),
-                            0.0,
-                            0.0)
+        stepDao.deleteAll()
+        var step = Step(0,
+            0,
+            0.0,
+            Split.RUN_TYPE_SPRINT,
+            java.lang.System.currentTimeMillis(),
+            0.0,
+            0.0)
 
-            stepDao.insert(step)
-
-            /*
-             * Always a fresh empty instance for now.
-             */
-            splitDao.deleteAll()
-            stepDao.deleteAll()
-        }
+        stepDao.insert(step)
     }
 
     /*
