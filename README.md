@@ -32,11 +32,14 @@ Any suggestion(s) and feedbacks are welcomed.
 Start with less distance, iterations or want to less jog (rest) ?  
 You may customize configurable parameters under the menu.
 - Jog and Sprint distances can be reduced from 800 meter. 
-- Number of iterations (Sprint + Jog) pair : default 10
+- Number of iterations (Sprint + Jog)  : default 10 X
 - GPS sampling rate @ 5,000 milliseconds (5 seconds)
-- Factory Reset will return above values to default.
+- About dialog to select Factory Reset will return above default values.
 
-<img src="https://user-images.githubusercontent.com/1282659/78736596-262c5300-7913-11ea-9e97-7c91d86dd25b.jpg" width="200"> <img src="https://user-images.githubusercontent.com/1282659/76635445-7c28f900-6515-11ea-8c4a-2b43c893b1f3.jpg" width="200">
+MENU -> CONFIGURATION        
+MENU -> ABOUT -> FACTORY RESET\
+<img src="https://user-images.githubusercontent.com/1282659/79158436-f6120380-7d9b-11ea-9973-2de91ad84a34.jpg" width="200"> <img src="https://user-images.githubusercontent.com/1282659/76635445-7c28f900-6515-11ea-8c4a-2b43c893b1f3.jpg" width="200">
+<img src="https://user-images.githubusercontent.com/1282659/79158422-ef838c00-7d9b-11ea-9e85-efe89751fb1b.jpg" width="200">
 
 ### Goal (run time) Activity
 Activity provides the following functions.
@@ -91,7 +94,7 @@ IDLE -> START -> JOG <-> SPRINT -> PAUSE\
 
 PLEASE INSERT YOUR GOOGLE MAP KEY in values/google_map_api.xml before running app.
 <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">!! MY_KEY_HERE !!</string>\
-<img src="https://user-images.githubusercontent.com/1282659/78513888-3a861980-7774-11ea-97d9-f8be36a69eb3.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/78513892-3c4fdd00-7774-11ea-9442-430302512b54.jpg" width="200"> 
+<img src="https://user-images.githubusercontent.com/1282659/78513888-3a861980-7774-11ea-97d9-f8be36a69eb3.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/79158438-f7433080-7d9b-11ea-9de9-c89f53b14438.jpg" width="200"> 
 
 ### Persist (Share) Activity
 Activity provides persistence (share) methods to user.  They include the follow:
@@ -141,6 +144,9 @@ Without data processing (such as Kalman filter), current result can look choppy 
    a. Fixed: RunActivity PAUSE / RESUME.
 4. April 12, 2020: available on Google Play.\
    a. Fixed: RunActivity CLEAR. 
+5. April 14, 2020: available on Google Play.\
+   a. About Dialog with factory reset.
+   b. Refactored SplitDetailDialogFragment viewModel / databinding.
    
 # References
 1. How to do Yasso 800s, by Christine Luff, VeryWellFit, August 04, 2019\
