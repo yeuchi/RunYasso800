@@ -29,9 +29,9 @@ Any suggestion(s) and feedbacks are welcomed.
 
 This application is composed of 5 distint activities:  
 1. Goal - set session name and race goal to determine qualifying sprint time. 
-2. Run - jog and sprint 10x to complete a training session. 
+2. Run - jog and sprint 10x to complete a Yasso800 training session. 
 3. Result - review your run on Google Play with details for qualifying sprints. 
-4. Persist - save results via email, Google Drive, and other available on your phone. 
+4. Persist - save results via email, Google Drive, or other available on your phone. 
 
 ### Configure 
 Start with less distance, iterations or want to less jog (rest) ?  
