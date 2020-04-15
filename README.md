@@ -173,7 +173,7 @@ https://github.com/Concept211/Google-Maps-Markers
 8. Android Asset Studio - Launcher icon generator\
 https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html
 
-9. LiveDataExtension, by Rafa Vázquez, February 6, 2018
+9. LiveDataExtension, by Rafa Vázquez, February 6, 2018\
 https://gist.github.com/Sloy/7a267237f7bc27a2057be744209c1c61
 
 10. Testing LiveData on Android, Ale's MainThread, by Alessandro Diaferia, December 17, 2018
