@@ -97,11 +97,11 @@ public abstract class YassoDatabase : RoomDatabase ()
         stepDao.deleteAll()
         var step = Step(0,
             0,
-            0.0,
+            10.0,
             Split.RUN_TYPE_SPRINT,
             java.lang.System.currentTimeMillis(),
-            0.0,
-            0.0)
+            1.0,
+            1.1)
 
         stepDao.insert(step)
     }

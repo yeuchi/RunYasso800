@@ -5,6 +5,10 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import androidx.lifecycle.Observer
 
+/*
+ * Reference:
+ * https://alediaferia.com/2018/12/17/testing-livedata-room-android/
+ */
 class OneTimeObserver<T>(private val handler: (T) -> Unit) : Observer<T>, LifecycleOwner {
     private val lifecycle = LifecycleRegistry(this)
     init {
