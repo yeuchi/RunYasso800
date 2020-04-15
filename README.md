@@ -38,9 +38,9 @@ This application is composed of 5 distint activities:
 Start with less distance, iterations or want to less jog (rest) ?  
 You may customize configurable parameters under the menu.
 - Jog and Sprint distances can be reduced from 800 meter. 
-- Number of iterations (Sprint + Jog)  : default 10 X
-- GPS sampling rate @ 5,000 milliseconds (5 seconds)
-- About dialog to select Factory Reset will return above default values.
+- Number of iterations (Jog + Sprint) can be reduced from 10 X
+- GPS sampling rate can be increased or decreased from @ 5,000 milliseconds (5 seconds).
+- Factory Reset for above default values is available in 'About' dialog box.
 
 MENU -> CONFIGURATION        
 MENU -> ABOUT -> FACTORY RESET\
