@@ -26,12 +26,12 @@ I intend to use this for my personal marathon training (since I don't have a Gar
 Any suggestion(s) and feedbacks are welcomed. 
 
 ## Workflow
-<img width="738" alt="workflow" src="https://user-images.githubusercontent.com/1282659/68631194-7790fd00-04af-11ea-9a5d-4ed80a8c9cd5.png"> \
-This application is composed of 5 distint activities:  \
-1. Goal - set session name and race goal to determine qualifying sprint time. \
-2. Run - jog and sprint 10x to complete a training session. \
-3. Result - review your run on Google Play with details for qualifying sprints. \
-4. Persist - save results via email, Google Drive, and other available on your phone. \
+<img width="738" alt="workflow" src="https://user-images.githubusercontent.com/1282659/68631194-7790fd00-04af-11ea-9a5d-4ed80a8c9cd5.png"> 
+This application is composed of 5 distint activities:  
+1. Goal - set session name and race goal to determine qualifying sprint time. 
+2. Run - jog and sprint 10x to complete a training session. 
+3. Result - review your run on Google Play with details for qualifying sprints. 
+4. Persist - save results via email, Google Drive, and other available on your phone. 
 
 ### Configure 
 Start with less distance, iterations or want to less jog (rest) ?  
