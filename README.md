@@ -25,7 +25,7 @@ This is a mobile phone implementation of Yasso800 in Kotlin for runners.  I am d
 Any suggestion(s) and feedbacks are welcomed. 
 
 ## Workflow
-<img width="738" alt="workflow" src="https://user-images.githubusercontent.com/1282659/68631194-7790fd00-04af-11ea-9a5d-4ed80a8c9cd5.png">
+<img width="738" alt="workflow" src="https://user-images.githubusercontent.com/1282659/79381139-1d490c00-7f27-11ea-88d8-a05552fbd9cb.png">
 
 This application is composed of 5 distint activities:  
 1. Goal - set session name and race goal to determine qualifying sprint time. 
