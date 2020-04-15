@@ -35,7 +35,7 @@ This application is composed of 5 distint activities:
 
 ### Configure 
 Start with less distance, iterations or want to less jog (rest) ?  
-You may customize configurable parameters under the menu.
+Customizable configuration is available under the menu selections.
 - Jog and Sprint distances can be reduced from 800 meter. 
 - Number of iterations (Jog + Sprint) can be reduced from 10 X
 - GPS sampling rate can be increased or decreased from @ 5,000 milliseconds (5 seconds).
