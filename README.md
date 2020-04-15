@@ -22,7 +22,8 @@ It is a successful workout if each sprint time is under your sprint goal.
 
 # Introduction 
 This is a mobile phone implementation of Yasso800 in Kotlin for runners.  \
-I intend to use this for my personal marathon training (since I don't have a Garmin).\
+I am developing this for my personal marathon training with a polar wrist watch. 
+It is my understanding that certain Garmin running watches have this feature already.\
 Any suggestion(s) and feedbacks are welcomed. 
 
 ## Workflow
