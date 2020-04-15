@@ -112,7 +112,7 @@ https://github.com/yeuchi/RunYasso800/tree/master/results
 ## Tests
 
 #### Manual
-This application has been tested on Samsung Galaxy9.
+This application has been tested on Samsung Galaxy S9 phone.
 
 #### Espresso 
 https://github.com/yeuchi/RunYasso800/tree/master/mobile/src/androidTest/java/com/ctyeung/runyasso800
