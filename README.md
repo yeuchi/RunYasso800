@@ -11,37 +11,42 @@ Of that, total sprint distance is 8,000 meters (4.97 miles) and total jog distan
 "Take your marathon goal time in hours and minutes and convert this to minutes and seconds. \
 For example, if your marathon goal is 3 hours and 10 minutes then convert that to 3 minutes and 10 seconds.
 
-- First, this application's RunActivity starts with a jog.  You should warm up for the 1st 800 meters.
+- First, starts with a jog.  You should warm up for the 1st 800 meters.
 - Next, try to sprint 800 meters (approximately 1/2 mile).
 - Recover after each 800 sprint by jogging or walking for the same distance.
 - Start with three or four repetitions per workout in the first week.
 - Don't forget to cool down with 5 minutes of easy running or walking, followed by stretching."<sup>[1]</sup>
 
-## Measure of success
-It is a success workout if each sprint time is under your sprint goal.
+### Measure of success
+It is a successful workout if each sprint time is under your sprint goal.
 
 # Introduction 
-This is a mobile phone implementation of Yasso800 in Kotlin for runners.  \
-I intend to use this for my personal marathon training (since I don't have a Garmin).\
+This is a mobile phone implementation of Yasso800 in Kotlin for runners.  I am developing this for my personal marathon training with a polar wrist watch. It is my understanding that certain Garmin running watches have this feature already.\
 Any suggestion(s) and feedbacks are welcomed. 
 
 ## Workflow
-<img width="738" alt="workflow" src="https://user-images.githubusercontent.com/1282659/68631194-7790fd00-04af-11ea-9a5d-4ed80a8c9cd5.png">
+<img width="738" alt="workflow" src="https://user-images.githubusercontent.com/1282659/79381139-1d490c00-7f27-11ea-88d8-a05552fbd9cb.png">
+
+This application is composed of 5 distint activities:  
+1. Goal - set session name and race goal to determine qualifying sprint time. 
+2. Run - jog and sprint 10x to complete a Yasso800 training session. 
+3. Result - review your run on Google Play with details for qualifying sprints. 
+4. Persist - save results via email, Google Drive, or other available on your phone. 
 
 ### Configure 
 Start with less distance, iterations or want to less jog (rest) ?  
-You may customize configurable parameters under the menu.
+Customizable configuration is available under the menu selections.
 - Jog and Sprint distances can be reduced from 800 meter. 
-- Number of iterations (Sprint + Jog)  : default 10 X
-- GPS sampling rate @ 5,000 milliseconds (5 seconds)
-- About dialog to select Factory Reset will return above default values.
+- Number of iterations (Jog + Sprint) can be reduced from 10 X
+- GPS sampling rate can be increased or decreased from @ 5,000 milliseconds (5 seconds).
+- Factory Reset for above default values is available in 'About' dialog box.
 
 MENU -> CONFIGURATION        
 MENU -> ABOUT -> FACTORY RESET\
 <img src="https://user-images.githubusercontent.com/1282659/79158436-f6120380-7d9b-11ea-9973-2de91ad84a34.jpg" width="200"> <img src="https://user-images.githubusercontent.com/1282659/76635445-7c28f900-6515-11ea-8c4a-2b43c893b1f3.jpg" width="200">
 <img src="https://user-images.githubusercontent.com/1282659/79158422-ef838c00-7d9b-11ea-9e85-efe89751fb1b.jpg" width="200">
 
-### Goal (run time) Activity
+### Goal Activity
 Activity provides the following functions.
 - Name this run.
 - Select user Marathon goal (run-time) in Hours:Minutes.
@@ -145,7 +150,7 @@ Without data processing (such as Kalman filter), current result can look choppy 
 4. April 12, 2020: available on Google Play.\
    a. Fixed: RunActivity CLEAR. 
 5. April 14, 2020: available on Google Play.\
-   a. About Dialog with factory reset.
+   a. About Dialog with factory reset.\
    b. Refactored SplitDetailDialogFragment viewModel / databinding.
    
 # References
