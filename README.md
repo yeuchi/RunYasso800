@@ -129,7 +129,7 @@ https://github.com/yeuchi/RunYasso800/tree/master/mobile/src/androidTest/java/co
 - compileSdkVersion 28
 
 ### Skills Practiced
-JetPack Architecture MVVM, Databinding, LiveData, Extension method, Room persistence, Location API, Google Map, EmailIntent, Espresso tests, Co-routine, State-machine, Gson/JSON.
+JetPack Architecture MVVM, Databinding, LiveData, Extension method, Room persistence, Location API, Google Map, EmailIntent, Espresso tests, Co-routine, State-machine, Gson/JSON, Vibration, Alarm-beep.
 
 ## Wrist Watch
 Look forward to implementation.  Next to implement watch <-> phone interface.
