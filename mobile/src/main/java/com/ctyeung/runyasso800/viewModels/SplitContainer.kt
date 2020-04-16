@@ -82,7 +82,7 @@ class SplitContainer {
                 duration = 1000
             }
             StateJog::class.java -> {
-                duration = 500
+                duration = 1000
             }
         }
 
@@ -104,11 +104,11 @@ class SplitContainer {
 
         when(state) {
             StateSprint::class.java -> {
-                tone = ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD
-                duration = 2000
+                tone = ToneGenerator.TONE_CDMA_CALL_SIGNAL_ISDN_NORMAL
+                duration = 1500
             }
             StateJog::class.java -> {
-                tone = ToneGenerator.TONE_CDMA_CALL_SIGNAL_ISDN_NORMAL
+                tone = ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD
                 duration = 1000
             }
         }

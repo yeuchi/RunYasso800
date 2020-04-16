@@ -87,7 +87,6 @@ abstract class MotionState  : StateAbstract {
                         location!!.latitude,
                         location!!.longitude
                     )
-                    stepViewModel.reset()
                     runViewModel.insert(split);
                 } else {
                     split?.update(
@@ -108,6 +107,7 @@ abstract class MotionState  : StateAbstract {
      */
     override fun goto():Boolean {
         if(stepViewModel.totalDistance() >= FINISH_DISTANCE) {
+            stepViewModel.reset()
             incrementSplitIndex()
             split = null
             return true
