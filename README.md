@@ -155,9 +155,9 @@ Without data processing (such as Kalman filter), current result can look choppy 
 5. April 14, 2020: available on Google Play.\
    a. About Dialog with factory reset.\
    b. Refactored SplitDetailDialogFragment viewModel / databinding.
-6. April 16, 2020: available on Google Play.\
-   a. Fixed: Steps for sprint are sometimes registered as jog.
-   b. Fixed: Jog before Sprint order for menu.
+6. April 16, 2020: submitted for Google approval.\
+   a. Fixed: Steps for sprint are sometimes registered as jog.\
+   b. Fixed: Jog before Sprint order for menu.\
    c. Fixed: Sprint's 'meet-goal' unit in milli-seconds, not seconds.
    
 # References
