@@ -2,6 +2,7 @@ package com.ctyeung.runyasso800.viewModels
 
 import android.app.Application
 import android.graphics.*
+import android.widget.Toast
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -17,6 +18,7 @@ import com.google.android.gms.maps.CameraUpdate
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.*
+import java.lang.Exception
 
 /*
  * Yasso Session data
@@ -44,20 +46,23 @@ class ResultViewModel  (application: Application) : AndroidViewModel(application
     * Draw marker for each sprint and jog segment
     */
     fun drawSplitMarkers(mMap: GoogleMap):CameraUpdate {
-        val FONT_SIZE:Float = 80f
-        val list:List<Split>? = splits.value
+        val FONT_SIZE: Float = 80f
+        val list: List<Split>? = splits.value
         var builder: LatLngBounds.Builder = LatLngBounds.Builder()
-        val max = list!!.size-1
-        for(i in 0..max){
-            val split = list[i]
-            val s = LatLng(split.startLat, split.startLong)
-            builder.include(s)
 
-            val id = getMarkerId(split.run_type, split.meetGoal)
-            val bmp: Bitmap = drawTextToBitmap(id, FONT_SIZE, split.splitIndex)
-            val markerOption = createMarker(s, bmp, split.run_type)
-            val marker = mMap.addMarker(markerOption)
-            markerIndexes.put(marker, i)
+        if(null!=list && list.size>0) {
+            val max = list!!.size - 1
+            for (i in 0..max) {
+                val split = list[i]
+                val s = LatLng(split.startLat, split.startLong)
+                builder.include(s)
+
+                val id = getMarkerId(split.run_type, split.meetGoal)
+                val bmp: Bitmap = drawTextToBitmap(id, FONT_SIZE, split.splitIndex)
+                val markerOption = createMarker(s, bmp, split.run_type)
+                val marker = mMap.addMarker(markerOption)
+                markerIndexes.put(marker, i)
+            }
         }
         return zoomCamera(builder)
     }
@@ -122,20 +127,23 @@ class ResultViewModel  (application: Application) : AndroidViewModel(application
      */
     fun drawSteps(mMap: GoogleMap) {
         lines.clear()
-        val list:List<Step>? = steps.value
-        val max = list!!.size -1
-        for(i in 1..max) {
+        val list: List<Step>? = steps.value
+        if(null!=list && list.size>0) {
+            val max = list!!.size - 1
+            for (i in 1..max) {
 
-            val stt = LatLng(list[i-1].latitude, list[i-1].longitude)
-            val end = LatLng(list[i].latitude, list[i].longitude)
-            val line: Polyline = mMap.addPolyline(
-                PolylineOptions()
-                    .add(stt, end)
-                    .width(5f)
-                    .color(Color.RED))
-            lines.add(line)
+                val stt = LatLng(list[i - 1].latitude, list[i - 1].longitude)
+                val end = LatLng(list[i].latitude, list[i].longitude)
+                val line: Polyline = mMap.addPolyline(
+                    PolylineOptions()
+                        .add(stt, end)
+                        .width(5f)
+                        .color(Color.RED)
+                )
+                lines.add(line)
+            }
+            val stt = LatLng(list[0].latitude, list[0].longitude)
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(stt, 14.0f))
         }
-        val stt = LatLng(list[0].latitude, list[0].longitude)
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(stt, 14.0f))
     }
 }

@@ -3,6 +3,7 @@ package com.ctyeung.runyasso800
 import android.app.Activity
 import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -15,6 +16,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import java.lang.Exception
 
 
 /*
@@ -76,9 +78,14 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
             steps?.let {
                 // 1st time only ?
                 if(steps.size > 1) {
-                    model.drawSteps(mMap)
-                    if(model.lines.size>0)
-                        hasRendered = true
+                    try {
+                        model.drawSteps(mMap)
+                        if (model.lines.size > 0)
+                            hasRendered = true
+                    }
+                    catch (ex:Exception){
+                        displayErrorMsg(ex.toString())
+                    }
                 }
             }
         })
@@ -88,12 +95,21 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
             splits?.let {
                 // 1st time only ?
                 if(splits.size>0) {
-                    val cu = model.drawSplitMarkers(mMap)
-                    mMap.animateCamera(cu)
-                    mMap.setOnMarkerClickListener(this)
+                    try {
+                        val cu = model.drawSplitMarkers(mMap)
+                        mMap.animateCamera(cu)
+                        mMap.setOnMarkerClickListener(this)
+                    }
+                    catch (ex:Exception){
+                        displayErrorMsg(ex.toString())
+                    }
                 }
             }
         })
+    }
+
+    fun displayErrorMsg(str:String) {
+        Toast.makeText(this.getApplication(), str, Toast.LENGTH_LONG).show()
     }
 
     protected fun shouldAskPermissions(): Boolean {
