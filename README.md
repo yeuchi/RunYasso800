@@ -128,6 +128,9 @@ https://github.com/yeuchi/RunYasso800/tree/master/mobile/src/androidTest/java/co
 - JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
 - compileSdkVersion 28
 
+### Skills Practiced
+JetPack Architecture MVVM, Databinding, LiveData, Extension method, Room persistence, Location API, Google Map, EmailIntent, Espresso tests, Co-routine, State-machine, Gson/JSON, Vibration, Alarm-beep.
+
 ## Wrist Watch
 Look forward to implementation.  Next to implement watch <-> phone interface.
 
@@ -152,6 +155,10 @@ Without data processing (such as Kalman filter), current result can look choppy 
 5. April 14, 2020: available on Google Play.\
    a. About Dialog with factory reset.\
    b. Refactored SplitDetailDialogFragment viewModel / databinding.
+6. April 16, 2020: available on Google Play.\
+   a. Fixed: Steps for sprint are sometimes registered as jog.\
+   b. Fixed: Jog before Sprint order for menu.\
+   c. Fixed: Sprint's 'meet-goal' unit in milli-seconds, not seconds.
    
 # References
 1. How to do Yasso 800s, by Christine Luff, VeryWellFit, August 04, 2019\
