@@ -158,7 +158,7 @@ Add data processing (such as Kalman filter) to enhance distance calculation. \
    a. Fixed: Steps for sprint are sometimes registered as jog.\
    b. Fixed: Jog before Sprint order for menu.\
    c. Fixed: Sprint's 'meet-goal' unit in milli-seconds, not seconds.
-7. April 18, 2020: submitted for Google Approval.\
+7. April 18, 2020: available on Google Play.\
    a. Added: ResultActivity Toast if exception is thrown.\
    b. Fixed: Ooops! version 6 was missing GoogleMap key; hence unable to render.
    
