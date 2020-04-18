@@ -136,8 +136,7 @@ Look forward to implementation.  Next to implement watch <-> phone interface.
 
 ## Known Issues (Opportunities)
 1. Civilian GPS resolution is 4 meter RMS (7.8 meter 95% Confidence Interval).\
-Without data processing (such as Kalman filter), current result can look choppy like this recording below. \
-<img src="https://user-images.githubusercontent.com/1282659/78793671-578b3a00-7978-11ea-84e7-882177eb0506.jpg" width="400">
+Add data processing (such as Kalman filter) to enhance distance calculation. \
 
 2. Database table/data/SharePref Normalization: remove duplications.
 3. Landscape Layout support: RunActivity - state machine requires refactoring.
@@ -160,7 +159,7 @@ Without data processing (such as Kalman filter), current result can look choppy 
    b. Fixed: Jog before Sprint order for menu.\
    c. Fixed: Sprint's 'meet-goal' unit in milli-seconds, not seconds.
 7. April 18, 2020: submitted for Google Approval.\
-   a. Added: ResultActivity Toast if exception is thrown.
+   a. Added: ResultActivity Toast if exception is thrown.\
    b. Fixed: Ooops! version 6 was missing GoogleMap key; hence unable to render.
    
 # References
