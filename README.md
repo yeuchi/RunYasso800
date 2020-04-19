@@ -161,7 +161,7 @@ Add data processing (such as Kalman filter) to enhance distance calculation. \
 7. April 18, 2020: available on Google Play.\
    a. Added: ResultActivity Toast if exception is thrown.\
    b. Fixed: Ooops! version 6 was missing GoogleMap key; hence unable to render.
-8. April 18, 2020: submitted for Google approval.\
+8. April 18, 2020: available on Google Play.\
    a. Added: removed name & goal reset in Main.\
    b. Added: wake-lock during a run.
    
