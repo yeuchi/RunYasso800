@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.ctyeung.runyasso800.databinding.ActivityGoalBinding
 import com.ctyeung.runyasso800.utilities.TimeFormatter
 import com.ctyeung.runyasso800.viewModels.GoalViewModel
+import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 import kotlinx.android.synthetic.main.activity_goal.*
 import java.util.*
 
@@ -28,8 +29,6 @@ class GoalActivity : BaseActivity() {
     lateinit var model:GoalViewModel
 
     companion object : ICompanion {
-        var hasName: Boolean = false
-        var hasRaceGoal: Boolean = false
 
         override fun isAvailable(): Boolean {
             return true
@@ -39,7 +38,8 @@ class GoalActivity : BaseActivity() {
          * Are we completed here ?
          */
         override fun isCompleted():Boolean {
-            if(hasName && hasRaceGoal)
+            val goal = SharedPrefUtility.getGoal(SharedPrefUtility.keyRaceGoal)
+            if(goal > 0)
                 return true
 
             return false
@@ -65,7 +65,7 @@ class GoalActivity : BaseActivity() {
             override fun afterTextChanged(s: Editable)
             {
                 var name = s.toString()
-                if(!validateName(name)) {
+                if(null==name || 0==name.length) {
                     // use default if invalid
                     name = resources.getString(R.string.run_yasso_800)
                 }
@@ -83,18 +83,6 @@ class GoalActivity : BaseActivity() {
     }
 
     /*
-     * Qualify name
-     */
-    private fun validateName(str:String?):Boolean {
-        if(null!=str && str.length>0)
-            hasName = true
-        else
-            hasName = false
-
-        return hasName
-    }
-
-    /*
      * Select Race Goal time in hours and minutes
      */
     fun onClickTime()
@@ -109,9 +97,10 @@ class GoalActivity : BaseActivity() {
                 model.setRaceGoal(hourOfDay, minute)
                 model.setSprintGoal(hourOfDay, minute)
                 binding.invalidateAll()
+                initActionBar()
 
-                if(validateRaceGoal(hourOfDay, minute))
-                    initActionBar()
+                if(0==hourOfDay)
+                    Toast.makeText(this, resources.getString(R.string.goal_unreal), Toast.LENGTH_LONG).show()
 
                 // go to next activity automatically
                 //if(hasName && hasRaceGoal)
@@ -123,24 +112,11 @@ class GoalActivity : BaseActivity() {
     }
 
     /*
-     * Qualify race goal time
-     */
-    private fun validateRaceGoal(hours:Int, minutes:Int):Boolean {
-        // no human can run marathon under an hour yet..
-        if(hours > 0)
-            hasRaceGoal = true
-        else
-            hasRaceGoal = false
-
-        return hasRaceGoal
-    }
-
-    /*
      * Next -> RunActivity
      */
     fun onClickNext()
     {
-        if(hasName && hasRaceGoal)
+        if(isCompleted())
             gotoActivity(RunActivity::class.java)
 
         else

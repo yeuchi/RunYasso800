@@ -3,6 +3,7 @@ package com.ctyeung.runyasso800.viewModels
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.ctyeung.runyasso800.MainApplication
+import com.ctyeung.runyasso800.R
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.utilities.LocationUtils
 import java.text.NumberFormat
@@ -30,6 +31,9 @@ class AboutViewModel : AndroidViewModel{
         SharedPrefUtility.setDistance(SharedPrefUtility.keyJogDis, Split.DEFAULT_SPLIT_DISTANCE.toInt())
         SharedPrefUtility.setGPSsampleRate(LocationUtils.DEFAULT_SAMPLE_RATE)
         SharedPrefUtility.setNumIterations(Split.DEFAULT_SPLIT_ITERATIONS)
+        SharedPrefUtility.setGoal(SharedPrefUtility.keyRaceGoal, 0)
+        SharedPrefUtility.setGoal(SharedPrefUtility.keySprintGoal, 0)
+        SharedPrefUtility.setName(MainApplication.applicationContext().resources.getString(R.string.run_yasso_800))
     }
 
     fun formatLargeNumber(num:Long):String {

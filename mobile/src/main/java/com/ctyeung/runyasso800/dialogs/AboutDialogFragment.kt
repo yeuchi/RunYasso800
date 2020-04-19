@@ -13,9 +13,18 @@ class AboutDialogFragment : DialogFragment() {
 
     lateinit var binding:FragmentAboutBinding
     lateinit var model:AboutViewModel
+    private var listener:FactoryResetListener? = null
+
+    interface FactoryResetListener{
+        fun onFactoryReset()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+    }
+
+    fun setParams(listener:FactoryResetListener){
+        this.listener = listener
     }
 
     override fun onCreateView(
@@ -36,5 +45,6 @@ class AboutDialogFragment : DialogFragment() {
     fun onClickFactoryReset() {
         model.factoryReset()
         this.dismiss()
+        listener?.onFactoryReset()
     }
 }

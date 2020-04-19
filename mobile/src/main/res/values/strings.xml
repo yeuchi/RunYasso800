@@ -28,6 +28,7 @@
     <string name="enter_time">Enter Time</string>
     <string name="calculating">Calculating...</string>
     <string name="missing_data">Missing name or race goal</string>
+    <string name="goal_unreal">Goal is too low</string>
 
     <!-- Run Activity -->
     <string name="location">Location</string>

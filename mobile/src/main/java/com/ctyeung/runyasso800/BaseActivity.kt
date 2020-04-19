@@ -16,8 +16,10 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     fun initActionBar() {
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
         getSupportActionBar()?.title = getActionBarTitle()
+
+        if(this::class.java != MainActivity::class.java)
+            getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
     }
 
     /*

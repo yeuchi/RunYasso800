@@ -15,6 +15,11 @@ import androidx.lifecycle.MutableLiveData
 import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 import com.google.android.gms.location.*
 
+/*
+ * tutorial on fusedLocationProviderClient
+ * https://medium.com/@droidbyme/get-current-location-using-fusedlocationproviderclient-in-android-cb7ebf5ab88e
+ *
+ */
 object LocationUtils
 {
     var locationRequest:LocationRequest ?= null

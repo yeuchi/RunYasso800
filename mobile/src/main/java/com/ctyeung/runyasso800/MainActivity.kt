@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -18,25 +19,10 @@ import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 /*
  * To do:
  * 1. enable/disable selection base on data already entered.
- * 2. layout landscape mode ?
  * 3. create a separate IntentService (thread) to manage db access instead of Split/Step ViewModels ?
  * 4. unit tests for all
  * 5. refactor database tables; use join instead of duplicate time, lat/long
- *
- * https://www.verywellfit.com/how-to-do-yasso-800s-2911888
- *
- * 1. Take your marathon goal time in hours and minutes and convert this to minutes and seconds. For example, if your marathon goal is 3 hours and 10 minutes then convert that to 3 minutes and 10 seconds.
- *
- * 2. First, do an easy warm-up of 5 to 10 minutes jogging and a few warm-up exercises.
- *
- * 3. Next, try to run 800 meters (approximately 1/2 mile) at your converted time (3:10 in this example).
- *
- * 4. Recover after each 800 by jogging or walking for the same amount of time (again, 3:10 in this example).
- *
- * 5. Repeat #3 10 times: Start with three or four repetitions per workout in the first week.
- *
- * 6. Don't forget to cool down with 5 minutes of easy running or walking, followed by stretching.
- *
+
  * Description:
  * Main Activity
  * 1. sub-activities : goal, run, result, persist
@@ -46,12 +32,11 @@ import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
  *                               GPS sampling rate    // default 10 seconds
  *
  */
-class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListener {
+class MainActivity : BaseActivity(), NumberPickerFragment.OnDialogOKListener, AboutDialogFragment.FactoryResetListener {
     lateinit var binding: ActivityMainBinding
     lateinit var model:MainViewModel
 
     private var dlg:NumberPickerFragment=NumberPickerFragment()
-
 
     override fun onNumberDialogOKClick(id: String, value: Int) {
         dlg.dismiss()
@@ -74,7 +59,6 @@ class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListene
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        SharedPrefUtility.initDefaults()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.listener = this
 
@@ -123,6 +107,7 @@ class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListene
             }
             this.resources.getString(R.string.about) -> {
                 val dlg = AboutDialogFragment()
+                dlg.setParams(this)
                 dlg?.show(supportFragmentManager, "About")
                 return true
             }
@@ -131,6 +116,14 @@ class MainActivity : AppCompatActivity(), NumberPickerFragment.OnDialogOKListene
         dlg.setParams(this, id, min, max, value)
         dlg.show(getSupportFragmentManager(), title)
         return true
+    }
+
+    /*
+     * call back from Factory reset
+     */
+    override fun onFactoryReset() {
+        initActionBar()
+        binding.invalidateAll()
     }
 
     fun onClickGoal()

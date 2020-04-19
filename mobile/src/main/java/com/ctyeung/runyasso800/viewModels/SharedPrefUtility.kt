@@ -30,13 +30,6 @@ object SharedPrefUtility
     val keyStepIndex = "stepIndex"
     val keySplitIndex = "splitIndex"
 
-
-    fun initDefaults() {
-        setName(MainApplication.applicationContext().resources.getString(R.string.run_yasso_800))
-        setGoal(keyRaceGoal, 0)
-        setGoal(keySprintGoal, 0)
-    }
-
     fun getName():String
     {
         val sharedPreferences = getSharedPref(MainApplication.applicationContext())
@@ -60,9 +53,7 @@ object SharedPrefUtility
     {
         var defaultSeconds:Long = 0
         when(key) {
-            keySprintGoal -> {
-                defaultSeconds /= 60
-            }
+            keySprintGoal,
             keyRaceGoal -> { /* default */ }
         }
         val sharedPreferences = getSharedPref(MainApplication.applicationContext())

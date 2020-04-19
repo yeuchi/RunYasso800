@@ -1,8 +1,8 @@
 package com.ctyeung.runyasso800
-
-
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.os.PowerManager
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -19,16 +19,13 @@ import com.ctyeung.runyasso800.viewModels.*
  * 1. Use Dagger dependency injection !!!
  * 2. check availability of GPS
  * 3. refactor room split (no time, lat/long) and step
- * 4. fix PAUSE .. not displayed currently.
+ * 4. persist state so we can leave and return to this activity.
  *
  * GPS noise is a big problem and need to be address before this can ever be of value.
  * There is a Kalman filter in C example to try; linear regression is an alternative.
  *
  * Distance icon credit to Freepike from Flaticon
  * https://www.flaticon.com/free-icon/distance-to-travel-between-two-points_55212#term=distance&page=1&position=4
- *
- * tutorial on fusedLocationProviderClient
- * https://medium.com/@droidbyme/get-current-location-using-fusedlocationproviderclient-in-android-cb7ebf5ab88e
  *
  * Description:
  * User performs sprint, jog in this activity.
@@ -42,11 +39,19 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     lateinit var runViewModel:RunViewModel
     lateinit var stepViewModel:StepViewModel
     lateinit var activity: RunActivity
+    lateinit var wakeLock:PowerManager.WakeLock
 
     companion object : ICompanion {
         private var isDone:Boolean = false
 
         override fun isAvailable(): Boolean {
+           /*
+            val goal = SharedPrefUtility.getGoal(SharedPrefUtility.keySprintGoal)
+            if(goal>0)
+                return true
+
+            return false
+            */
             return true
         }
 
@@ -94,8 +99,23 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         stateMachine.interruptClear()
         isDone = false
 
+        initWakeLock()
+
         if (shouldAskPermissions())
             askPermissions()
+    }
+
+    /*
+     * wake lock to keep activity from sleeping.
+     */
+    fun initWakeLock() {
+        val powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
+        wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "myapp:MyWakelockTag")
+    }
+
+    fun releaseWakeLock() {
+        if(wakeLock.isHeld)
+            wakeLock.release()
     }
 
     // State machine callback
@@ -104,6 +124,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         runViewModel.updateType()
         binding.invalidateAll()
         fab.changeState(StateDone::class.java)
+        releaseWakeLock()
     }
 
     // State machine callback -- background update, vibrate, beep
@@ -125,9 +146,6 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
      */
     override fun onStop() {
         super.onStop()
-
-       // SharedPrefUtility.setLatitude(activity, prevLocation.latitude)
-       // SharedPrefUtility.setLongitude(activity, prevLocation.longitude)
     }
 
     protected fun shouldAskPermissions(): Boolean {
@@ -139,7 +157,8 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
             "android.permission.READ_EXTERNAL_STORAGE",
             "android.permission.WRITE_EXTERNAL_STORAGE",
             "android.permission.ACCESS_FINE_LOCATION",
-            "android.permission.ACCESS_COARSE_LOCATION"
+            "android.permission.ACCESS_COARSE_LOCATION",
+            "android.permission.WAKE_LOCK"
         )
         val requestCode = 200
         requestPermissions(permissions, requestCode)
@@ -191,6 +210,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
                 fab.changeState(StateResume::class.java)
             }
         }
+        wakeLock.acquire()
     }
 
     /*
@@ -210,6 +230,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
             }
             else -> {}
         }
+        releaseWakeLock()
     }
 
     /*
