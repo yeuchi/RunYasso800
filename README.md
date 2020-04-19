@@ -142,28 +142,8 @@ Add data processing (such as Kalman filter) to enhance distance calculation. \
 3. Landscape Layout support: RunActivity - state machine requires refactoring.
 4. Dagger dependency injection.
 
-# Google Play Versions
-1. April 11, 2020: 1st available on Google Play; functionally tested by 1 self run work-out.
-2. April 12, 2020: available on Google Play.\
-   a. Refactored viewModels. \
-   b. Fixed: PersistActivity no longer renders partial data when there are no splits.
-3. April 12, 2020: available on Google Play. \
-   a. Fixed: RunActivity PAUSE / RESUME.
-4. April 12, 2020: available on Google Play.\
-   a. Fixed: RunActivity CLEAR. 
-5. April 14, 2020: available on Google Play.\
-   a. About Dialog with factory reset.\
-   b. Refactored SplitDetailDialogFragment viewModel / databinding.
-6. April 16, 2020: available on Google Play.\
-   a. Fixed: Steps for sprint are sometimes registered as jog.\
-   b. Fixed: Jog before Sprint order for menu.\
-   c. Fixed: Sprint's 'meet-goal' unit in milli-seconds, not seconds.
-7. April 18, 2020: available on Google Play.\
-   a. Added: ResultActivity Toast if exception is thrown.\
-   b. Fixed: Ooops! version 6 was missing GoogleMap key; hence unable to render.
-8. April 18, 2020: available on Google Play.\
-   a. Added: removed name & goal reset in Main.\
-   b. Added: wake-lock during a run.
+### Google Play Versions
+../results/GooglePlayVersions.txt
    
 # References
 1. How to do Yasso 800s, by Christine Luff, VeryWellFit, August 04, 2019\
