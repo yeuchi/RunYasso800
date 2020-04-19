@@ -161,6 +161,9 @@ Add data processing (such as Kalman filter) to enhance distance calculation. \
 7. April 18, 2020: available on Google Play.\
    a. Added: ResultActivity Toast if exception is thrown.\
    b. Fixed: Ooops! version 6 was missing GoogleMap key; hence unable to render.
+8. April 18, 2020: submitted for Google approval.\
+   a. Added: removed name & goal reset in Main.\
+   b. Added: wake-lock during a run.
    
 # References
 1. How to do Yasso 800s, by Christine Luff, VeryWellFit, August 04, 2019\
