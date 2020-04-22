@@ -176,5 +176,5 @@ https://gist.github.com/Sloy/7a267237f7bc27a2057be744209c1c61
 10. Testing LiveData on Android, Ale's MainThread, by Alessandro Diaferia, December 17, 2018
 https://alediaferia.com/2018/12/17/testing-livedata-room-android/
 
-11. Google Foreground Location service code example, Jeremy Walker, March 19, 2019
+11. Google Foreground Location service code example, Jeremy Walker, March 19, 2019 \
 https://github.com/android/location-samples/blob/master/LocationUpdatesForegroundService/app/src/main/java/com/google/android/gms/location/sample/locationupdatesforegroundservice/MainActivity.java
