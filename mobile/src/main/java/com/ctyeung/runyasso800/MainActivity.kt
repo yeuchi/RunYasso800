@@ -4,17 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.ctyeung.runyasso800.databinding.ActivityMainBinding
 import com.ctyeung.runyasso800.dialogs.AboutDialogFragment
 import com.ctyeung.runyasso800.dialogs.NumberPickerFragment
 import com.ctyeung.runyasso800.room.splits.Split
-import com.ctyeung.runyasso800.utilities.LocationUtils
+import com.ctyeung.runyasso800.utilities.LocationUpdateService
 import com.ctyeung.runyasso800.viewModels.MainViewModel
-import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 
 /*
  * To do:
@@ -32,7 +29,9 @@ import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
  *                               GPS sampling rate    // default 10 seconds
  *
  */
-class MainActivity : BaseActivity(), NumberPickerFragment.OnDialogOKListener, AboutDialogFragment.FactoryResetListener {
+class MainActivity : BaseActivity(),
+                        NumberPickerFragment.INumberPickerListener,
+                        AboutDialogFragment.IFactoryResetListener {
     lateinit var binding: ActivityMainBinding
     lateinit var model:MainViewModel
 
@@ -102,8 +101,8 @@ class MainActivity : BaseActivity(), NumberPickerFragment.OnDialogOKListener, Ab
                 value = model.getSampleRate().toInt()
                 id= this.resources.getString(R.string.id_gps)
                 title = this.resources.getString(R.string.gps_sample_rate)
-                max = LocationUtils.MAX_SAMPLE_RATE.toInt()
-                min = LocationUtils.MIN_SAMPLE_RATE.toInt()
+                max = LocationUpdateService.MAX_SAMPLE_RATE.toInt()
+                min = LocationUpdateService.MIN_SAMPLE_RATE.toInt()
             }
             this.resources.getString(R.string.about) -> {
                 val dlg = AboutDialogFragment()

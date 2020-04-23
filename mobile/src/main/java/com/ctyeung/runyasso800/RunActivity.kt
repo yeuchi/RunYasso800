@@ -1,7 +1,8 @@
 package com.ctyeung.runyasso800
-import android.content.Context
+import android.content.*
 import android.os.Build
 import android.os.Bundle
+import android.os.IBinder
 import android.os.PowerManager
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
@@ -10,7 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.ctyeung.runyasso800.databinding.ActivityRunBinding
 import com.ctyeung.runyasso800.stateMachine.*
-import com.ctyeung.runyasso800.utilities.LocationUtils
+import com.ctyeung.runyasso800.utilities.LocationUpdateService
 import com.ctyeung.runyasso800.viewModels.*
 
 
@@ -20,9 +21,6 @@ import com.ctyeung.runyasso800.viewModels.*
  * 2. check availability of GPS
  * 3. refactor room split (no time, lat/long) and step
  * 4. persist state so we can leave and return to this activity.
- *
- * GPS noise is a big problem and need to be address before this can ever be of value.
- * There is a Kalman filter in C example to try; linear regression is an alternative.
  *
  * Distance icon credit to Freepike from Flaticon
  * https://www.flaticon.com/free-icon/distance-to-travel-between-two-points_55212#term=distance&page=1&position=4
@@ -35,7 +33,6 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     lateinit var binding:ActivityRunBinding
     lateinit var fab:RunFloatingActionButtons
     lateinit var splitContainer:SplitContainer
-    lateinit var stateMachine:StateMachine
     lateinit var runViewModel:RunViewModel
     lateinit var stepViewModel:StepViewModel
     lateinit var activity: RunActivity
@@ -76,11 +73,10 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
 
         stepViewModel = ViewModelProvider(this).get(StepViewModel::class.java)
         runViewModel = ViewModelProvider(this).get(RunViewModel::class.java)
-        stateMachine = StateMachine(this, runViewModel, stepViewModel)
-        runViewModel.setStateMachine(stateMachine)
+        StateMachine.initialize(this)
 
-        fab = RunFloatingActionButtons(this, stateMachine)
-        splitContainer = SplitContainer(this, stateMachine, stepViewModel, runViewModel)
+        fab = RunFloatingActionButtons(this)
+        splitContainer = SplitContainer(this, stepViewModel, runViewModel)
 
         stepViewModel.steps.observe(this, Observer { steps ->
             steps?.let {
@@ -96,24 +92,101 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         })
 
         // start with a clean slate
-        stateMachine.interruptClear()
+        StateMachine.interruptClear()
         isDone = false
-
-        initWakeLock()
 
         if (shouldAskPermissions())
             askPermissions()
     }
 
-    /*
-     * wake lock to keep activity from sleeping.
-     */
-    fun initWakeLock() {
-        val powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
-        wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "myapp:MyWakelockTag")
+    // The BroadcastReceiver used to listen from broadcasts from the service.
+   // private val myReceiver: MyReceiver? = null
+
+    // A reference to the service used to get location updates.
+    private var mService: LocationUpdateService? = null
+
+    // Tracks the bound state of the service.
+    private var mBound = false
+
+    // Monitors the state of the connection to the service.
+    private val mServiceConnection: ServiceConnection = object : ServiceConnection {
+        override fun onServiceConnected(name: ComponentName, service: IBinder) {
+            val binder: LocationUpdateService.LocalBinder = service as LocationUpdateService.LocalBinder
+            mService = binder.getService()
+
+            if(isPermitted)
+                mService!!.requestLocationUpdates()
+
+            mBound = true
+        }
+
+        override fun onServiceDisconnected(name: ComponentName) {
+            mService = null
+            mBound = false
+        }
     }
 
-    fun releaseWakeLock() {
+    /**
+     * Receiver for broadcasts sent by [LocationUpdatesService].
+     */
+  /*  private class MyReceiver : BroadcastReceiver() {
+        override fun onReceive(
+            context: Context,
+            intent: Intent
+        ) {
+
+                // receive message here !
+        }
+    }*/
+
+    override fun onStart() {
+        super.onStart()
+        val powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
+        wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "myapp:MyWakelockTag")
+        wakeLock.acquire()
+
+        // Bind to the service. If the service is in foreground mode, this signals to the service
+        // that since this activity is in the foreground, the service can exit foreground mode.
+
+        // Bind to the service. If the service is in foreground mode, this signals to the service
+        // that since this activity is in the foreground, the service can exit foreground mode.
+        bindService(
+            Intent(this, LocationUpdateService::class.java), mServiceConnection,
+            Context.BIND_AUTO_CREATE
+        )
+    }
+
+    /*
+     * To DO:
+     * Return message from StateMachine
+     */
+    override fun onResume() {
+        super.onResume()
+      /*  LocalBroadcastManager.getInstance(this).registerReceiver(
+            myReceiver!!,
+            IntentFilter(LocationUpdatesService.ACTION_BROADCAST)
+        )*/
+    }
+
+    override fun onPause() {
+     //   LocalBroadcastManager.getInstance(this).unregisterReceiver(myReceiver!!)
+        super.onPause()
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        if(mService!=null)
+            mService!!.removeLocationUpdates()
+
+        if (mBound) {
+            // Unbind from the service. This signals to the service that this activity is no longer
+            // in the foreground, and the service can respond by promoting itself to a foreground
+            // service.
+            unbindService(mServiceConnection)
+            mBound = false
+        }
+
         if(wakeLock.isHeld)
             wakeLock.release()
     }
@@ -124,7 +197,6 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         runViewModel.updateType()
         binding.invalidateAll()
         fab.changeState(StateDone::class.java)
-        releaseWakeLock()
     }
 
     // State machine callback -- background update, vibrate, beep
@@ -138,14 +210,6 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     override fun onHandleLocationUpdate() {
         runViewModel.updateData()
         binding.invalidateAll()
-    }
-
-    /*
-     * Stop by Android; user kills app; error
-     * - do we persist data ?
-     */
-    override fun onStop() {
-        super.onStop()
     }
 
     protected fun shouldAskPermissions(): Boolean {
@@ -164,6 +228,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         requestPermissions(permissions, requestCode)
     }
 
+    var isPermitted:Boolean = false
     /*
      * User permission request -> result
      */
@@ -181,13 +246,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
                 return
             }
         }
-        startLocationService()
-    }
-
-    fun startLocationService()
-    {
-        LocationUtils.getInstance(activity)
-        stateMachine.observe(this)
+        isPermitted = true
     }
 
     /*
@@ -199,18 +258,20 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
      */
     fun onClickStart()
     {
-        when(stateMachine.current){
+        if(mService != null)
+            mService!!.requestLocationUpdates()
+
+        when(StateMachine.current){
             StateIdle::class.java -> {
-                stateMachine.interruptStart()
+                StateMachine.interruptStart()
                 fab.changeState(StateResume::class.java)
             }
 
             StatePause::class.java -> {
-                stateMachine.interruptPause()
+                StateMachine.interruptPause()
                 fab.changeState(StateResume::class.java)
             }
         }
-        wakeLock.acquire()
     }
 
     /*
@@ -222,15 +283,14 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     fun onClickPause()
     {
         // must be sprint / jog
-        when(stateMachine.current){
+        when(StateMachine.current){
             StateJog::class.java,
             StateSprint::class.java -> {
-                stateMachine.interruptPause()
+                StateMachine.interruptPause()
                 fab.changeState(StatePause::class.java)
             }
             else -> {}
         }
-        releaseWakeLock()
     }
 
     /*
@@ -240,12 +300,12 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     fun onClickClear()
     {
         // must be paused / error / done
-        when(stateMachine.current){
+        when(StateMachine.current){
             StateIdle::class.java,
             StatePause::class.java,
             StateError::class.java,
             StateDone::class.java -> {
-                stateMachine.interruptClear()
+                StateMachine.interruptClear()
                 fab.changeState(StateClear::class.java)
                 splitContainer.updateBackgroundColor()
             }
@@ -262,7 +322,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
      */
     fun onClickNext()
     {
-        when(stateMachine.current){
+        when(StateMachine.current){
             StateDone::class.java,
             StatePause::class.java -> {
                 gotoActivity(ResultActivity::class.java)

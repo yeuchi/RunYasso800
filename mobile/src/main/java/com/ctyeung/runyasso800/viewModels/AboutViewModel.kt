@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import com.ctyeung.runyasso800.MainApplication
 import com.ctyeung.runyasso800.R
 import com.ctyeung.runyasso800.room.splits.Split
-import com.ctyeung.runyasso800.utilities.LocationUtils
+import com.ctyeung.runyasso800.utilities.LocationUpdateService
 import java.text.NumberFormat
 import java.util.*
 
@@ -29,7 +29,7 @@ class AboutViewModel : AndroidViewModel{
     fun factoryReset() {
         SharedPrefUtility.setDistance(SharedPrefUtility.keySprintDis, Split.DEFAULT_SPLIT_DISTANCE.toInt())
         SharedPrefUtility.setDistance(SharedPrefUtility.keyJogDis, Split.DEFAULT_SPLIT_DISTANCE.toInt())
-        SharedPrefUtility.setGPSsampleRate(LocationUtils.DEFAULT_SAMPLE_RATE)
+        SharedPrefUtility.setGPSsampleRate(LocationUpdateService.DEFAULT_SAMPLE_RATE)
         SharedPrefUtility.setNumIterations(Split.DEFAULT_SPLIT_ITERATIONS)
         SharedPrefUtility.setGoal(SharedPrefUtility.keyRaceGoal, 0)
         SharedPrefUtility.setGoal(SharedPrefUtility.keySprintGoal, 0)

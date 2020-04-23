@@ -50,6 +50,21 @@ public abstract class YassoDatabase : RoomDatabase ()
                 instance
             }
         }
+
+        fun getDatabase(context: Context): YassoDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    YassoDatabase::class.java,
+                    "yasso_database"
+                ).allowMainThreadQueries()
+                    .build()
+
+                INSTANCE = instance
+                // return instance
+                instance
+            }
+        }
     }
 
     private class SplitDatabaseCallback(

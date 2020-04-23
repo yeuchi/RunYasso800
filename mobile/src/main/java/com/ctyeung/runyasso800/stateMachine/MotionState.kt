@@ -1,40 +1,54 @@
 package com.ctyeung.runyasso800.stateMachine
 
 import android.location.Location
+import androidx.lifecycle.viewModelScope
+import com.ctyeung.runyasso800.MainApplication
+import com.ctyeung.runyasso800.room.YassoDatabase
 import com.ctyeung.runyasso800.room.splits.Split
+import com.ctyeung.runyasso800.room.splits.SplitRepository
 import com.ctyeung.runyasso800.room.steps.Step
+import com.ctyeung.runyasso800.room.steps.StepRepository
 import com.ctyeung.runyasso800.viewModels.IRunStatsCallBack
 import com.ctyeung.runyasso800.viewModels.RunViewModel
+import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 import com.ctyeung.runyasso800.viewModels.StepViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.lang.reflect.Type
 
 abstract class MotionState  : StateAbstract {
+    var splitRepos: SplitRepository
+    var stepRepos: StepRepository
 
     var actListener: IRunStatsCallBack
-    var stepViewModel: StepViewModel
-    var runViewModel:RunViewModel
     var FINISH_DISTANCE = Split.DEFAULT_SPLIT_DISTANCE
     var split:Split?=null
     var hasNewLocation:Boolean = false
 
     constructor(listener:IStateCallback,
-                actListener: IRunStatsCallBack,
-                runViewModel:RunViewModel,
-                stepViewModel: StepViewModel) : super(listener)
+                actListener: IRunStatsCallBack) : super(listener)
     {
         this.actListener = actListener
-        this.stepViewModel = stepViewModel
-        this.runViewModel = runViewModel
 
         /*
          * Refactor this ???!!!!
          * Don't want to reset if we are rotating phone !!!!
          */
-        stepViewModel.reset()
-        runViewModel.setIndex(0)
     }
 
-    override fun execute(previous:Type) {
+    init {
+        var context = MainApplication.applicationContext()
+        val splitDao = YassoDatabase.getDatabase(context).splitDao()
+        splitRepos = SplitRepository(splitDao)
+        setSplitIndex(0)
+
+        val stepDao = YassoDatabase.getDatabase(context).stepDao()
+        stepRepos = StepRepository(stepDao)
+        resetStep()
+    }
+
+        override fun execute(previous:Type) {
         if(hasNewLocation) {
             this.prevState = previous
             update()
@@ -63,8 +77,8 @@ abstract class MotionState  : StateAbstract {
 
                 val runType = getRunType()
                 val step = Step(
-                    runViewModel.getIndex(),
-                    stepViewModel.getNextIndex(),
+                    getSplitIndex(),
+                    getNextStepIndex(),
                     dis,
                     runType,
                     timeNow,
@@ -72,12 +86,12 @@ abstract class MotionState  : StateAbstract {
                     location!!.longitude
                 )
 
-                stepViewModel.insert(step)
+                insertStep(step)
 
                 // initialize Split
                 if (split == null) {
                     split = Split(
-                        runViewModel.getIndex(),
+                        getSplitIndex(),
                         runType,
                         0.0,
                         timeNow,
@@ -87,15 +101,15 @@ abstract class MotionState  : StateAbstract {
                         location!!.latitude,
                         location!!.longitude
                     )
-                    runViewModel.insert(split);
+                    insertSplit(split);
                 } else {
                     split?.update(
-                        stepViewModel.totalDistance(),
+                        getTotalStepDistance(),
                         timeNow,
                         location!!.latitude,
                         location!!.longitude
                     )
-                    runViewModel.update(split)
+                    updateSplit(split)
                     goto()
                 }
             }
@@ -106,8 +120,8 @@ abstract class MotionState  : StateAbstract {
      * Return true if state change should occur
      */
     override fun goto():Boolean {
-        if(stepViewModel.totalDistance() >= FINISH_DISTANCE) {
-            stepViewModel.reset()
+        if(getTotalStepDistance() >= FINISH_DISTANCE) {
+            resetStep()
             incrementSplitIndex()
             split = null
             return true
@@ -117,8 +131,8 @@ abstract class MotionState  : StateAbstract {
 
     private fun incrementSplitIndex() {
         if (Split.RUN_TYPE_SPRINT == getRunType()) {
-            val i = runViewModel.getIndex()+1
-            runViewModel.setIndex(i)
+            val i = getSplitIndex()+1
+            setSplitIndex(i)
         }
     }
 
@@ -129,5 +143,44 @@ abstract class MotionState  : StateAbstract {
 
         else
             return Split.RUN_TYPE_JOG
+    }
+
+    fun getSplitIndex():Int {
+        return SharedPrefUtility.getIndex(SharedPrefUtility.keySplitIndex)
+    }
+
+    fun setSplitIndex(i:Int) {
+        SharedPrefUtility.setIndex(SharedPrefUtility.keySplitIndex, i)
+    }
+
+    fun insertSplit(split:Split?) {
+        if(split!=null)
+            CoroutineScope(Dispatchers.IO).launch {splitRepos.insert(split)}
+    }
+
+    fun updateSplit(split:Split?) {
+        if(split!=null)
+            CoroutineScope(Dispatchers.IO).launch {splitRepos.update(split)}
+    }
+
+    fun resetStep() {
+        SharedPrefUtility.setSplitDistance(0.0)
+        SharedPrefUtility.setIndex(SharedPrefUtility.keyStepIndex,0)
+    }
+
+    fun getNextStepIndex():Int {
+        val i = SharedPrefUtility.getIndex(SharedPrefUtility.keyStepIndex)
+        SharedPrefUtility.setIndex(SharedPrefUtility.keyStepIndex,i+1)
+        return i
+    }
+
+    fun getTotalStepDistance():Double {
+        return SharedPrefUtility.getSplitDistance()
+    }
+
+    fun insertStep(step:Step) {
+        val splitDistance = SharedPrefUtility.getSplitDistance() + step.dis
+        SharedPrefUtility.setSplitDistance(splitDistance)
+        CoroutineScope(Dispatchers.IO).launch {stepRepos.insert(step)}
     }
 }

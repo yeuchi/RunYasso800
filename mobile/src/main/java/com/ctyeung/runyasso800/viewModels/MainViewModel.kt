@@ -2,8 +2,6 @@ package com.ctyeung.runyasso800.viewModels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import com.ctyeung.runyasso800.room.splits.Split
-import com.ctyeung.runyasso800.utilities.LocationUtils
 
 class MainViewModel (application: Application) : AndroidViewModel(application){
     fun getSprintDistance():Int {

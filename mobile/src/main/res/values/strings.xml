@@ -101,4 +101,9 @@
     <string name="about_factory_reset">Factory Reset</string>
     <string name="about_version">Version:</string>
 
+    <!-- Util -->
+    <string name="location_updated">Location Updated: %1$s</string>
+    <string name="launch_activity">Launch activity</string>
+    <string name="remove_location_updates">Remove location updates</string>
+
 </resources>

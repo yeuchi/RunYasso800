@@ -14,7 +14,7 @@ import java.lang.reflect.Type
 
 class NumberPickerFragment : DialogFragment() {
     private var valueChangeListener: OnValueChangeListener? = null
-    private var mListener: OnDialogOKListener? = null
+    private var mListener: INumberPickerListener? = null
     private var numberPicker: NumberPicker? = null
     private var id:String = "Jog"
     private var mMin = 20
@@ -24,7 +24,7 @@ class NumberPickerFragment : DialogFragment() {
     /*
      * parent call back listener
      */
-    interface OnDialogOKListener {
+    interface INumberPickerListener {
         fun onNumberDialogOKClick(id:String, value: Int)
     }
 
@@ -68,7 +68,7 @@ class NumberPickerFragment : DialogFragment() {
     }
 
     fun setParams(
-        listener: OnDialogOKListener?,
+        listener: INumberPickerListener?,
         id: String,
         min: Int,
         max: Int,
@@ -81,14 +81,5 @@ class NumberPickerFragment : DialogFragment() {
         mValue = value
 
         setNumberValues()
-    }
-
-    fun getValueChangeListener(): OnValueChangeListener? {
-        mListener!!.onNumberDialogOKClick(id, numberPicker!!.value)
-        return valueChangeListener
-    }
-
-    fun setValueChangeListener(valueChangeListener: OnValueChangeListener?) {
-        this.valueChangeListener = valueChangeListener
     }
 }

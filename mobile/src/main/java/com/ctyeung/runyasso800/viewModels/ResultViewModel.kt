@@ -51,7 +51,7 @@ class ResultViewModel  (application: Application) : AndroidViewModel(application
         var builder: LatLngBounds.Builder = LatLngBounds.Builder()
 
         if(null!=list && list.size>0) {
-            val max = list!!.size - 1
+            val max = list.size - 1
             for (i in 0..max) {
                 val split = list[i]
                 val s = LatLng(split.startLat, split.startLong)
@@ -129,7 +129,7 @@ class ResultViewModel  (application: Application) : AndroidViewModel(application
         lines.clear()
         val list: List<Step>? = steps.value
         if(null!=list && list.size>0) {
-            val max = list!!.size - 1
+            val max = list.size - 1
             for (i in 1..max) {
 
                 val stt = LatLng(list[i - 1].latitude, list[i - 1].longitude)

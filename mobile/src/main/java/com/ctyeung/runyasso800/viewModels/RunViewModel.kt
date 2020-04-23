@@ -25,7 +25,6 @@ class RunViewModel (application: Application) : AndroidViewModel(application)
 {
     var repository:SplitRepository
     var splits:LiveData<List<Split>>
-    private var stateMachine:StateMachine?=null
 
     init {
         val splitDao = YassoDatabase.getDatabase(application, viewModelScope).splitDao()
@@ -48,14 +47,13 @@ class RunViewModel (application: Application) : AndroidViewModel(application)
     }
 
     fun updateData() {
-        txtLat = stateMachine!!.prevLocation?.latitude.toString()
-        txtLong = stateMachine!!.prevLocation?.longitude.toString()
+        txtLat = StateMachine.prevLocation?.latitude.toString()
+        txtLong = StateMachine.prevLocation?.longitude.toString()
 
         // distance in current split
         txtStepDistance = "Dis: ${getLastSplitDistance().roundToInt()}m";
         // distance total
         txtTotalDistance = "Total: ${getTotalDistance().roundToInt()}m"
-
         // split index
         txtSplitIndex =  "Split: ${(getIndex()+1)}"
 
@@ -64,19 +62,13 @@ class RunViewModel (application: Application) : AndroidViewModel(application)
         // split time (sprint or jog)
         txtSplitTime = "Time: ${TimeFormatter.printDateTime(getLastSplitElapsedTime())}"
         txtTotalTime = "Total: ${TimeFormatter.printDateTime(getTotalElapsedTime())}"
-
-    }
-
-    // refactor with dagger !!!!
-    fun setStateMachine(stateMachine: StateMachine){
-        this.stateMachine = stateMachine
     }
 
     fun updateType() {
         /*
          * Use a hash here to reduce the code
          */
-        val str = getString(stateMachine!!.current)
+        val str = getString(StateMachine.current)
         txtSplitType = str
     }
 

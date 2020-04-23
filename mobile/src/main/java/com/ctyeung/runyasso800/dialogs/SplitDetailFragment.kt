@@ -43,6 +43,4 @@ public class SplitDetailFragment : DialogFragment {
     fun onClickOk() {
         this.dismiss()
     }
-
-
 }

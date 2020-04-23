@@ -10,9 +10,7 @@ class StateSprint : MotionState, Isprint, Ijog {
     var NUM_ITERATIONS:Int = Split.DEFAULT_SPLIT_ITERATIONS
 
     constructor(listener:IStateCallback,
-                actListener: IRunStatsCallBack,
-                runViewModel:RunViewModel,
-                stepViewModel: StepViewModel):super(listener, actListener, runViewModel, stepViewModel)
+                actListener: IRunStatsCallBack):super(listener, actListener)
     {
         FINISH_DISTANCE = SharedPrefUtility.getDistance(SharedPrefUtility.keySprintDis).toDouble()
         NUM_ITERATIONS = SharedPrefUtility.getNumIterations()
@@ -41,7 +39,7 @@ class StateSprint : MotionState, Isprint, Ijog {
      */
     fun changeState() {
 
-        if(runViewModel.getIndex() >= NUM_ITERATIONS)  {
+        if(getSplitIndex() >= NUM_ITERATIONS)  {
             // done with Yasso !
             listener.onChangeState(StateDone::class.java)
         }

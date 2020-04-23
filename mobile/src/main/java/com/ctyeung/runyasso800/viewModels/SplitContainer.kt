@@ -23,16 +23,13 @@ import kotlin.math.roundToInt
  */
 class SplitContainer {
     private var run:RunActivity
-    private var stateMachine:StateMachine
     private var stepViewModel:StepViewModel
     private var runViewModel:RunViewModel
 
     constructor(activity: RunActivity,
-                stateMachine:StateMachine,
                 stepViewModel: StepViewModel,
                 runViewModel: RunViewModel) {
         this.run = activity
-        this.stateMachine = stateMachine
         this.stepViewModel = stepViewModel
         this.runViewModel = runViewModel
 
@@ -44,13 +41,13 @@ class SplitContainer {
      * update background, vibrate, beep
      */
     fun updateSupport() {
-        val type = stateMachine.current
+        val type = StateMachine.current
         updateBackgroundColor(type)
         vibrate(type)
         beep(type)
     }
 
-    fun updateBackgroundColor(type:Type = stateMachine.current) {
+    fun updateBackgroundColor(type:Type = StateMachine.current) {
         run.dataContainer.background = getViewBackground(type)
     }
 

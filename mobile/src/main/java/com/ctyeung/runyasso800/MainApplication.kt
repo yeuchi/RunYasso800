@@ -11,7 +11,7 @@ class MainApplication : Application() {
     }
 
     companion object {
-        open var lastSubActivity:Type = MainActivity::class.java
+        var lastSubActivity:Type = MainActivity::class.java
         private var instance: MainApplication? = null
 
         fun applicationContext() : Context {
@@ -22,9 +22,5 @@ class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         // initialize for any
-
-        // Use ApplicationContext.
-        // example: SharedPreferences etc...
-        val context: Context = MainApplication.applicationContext()
     }
 }

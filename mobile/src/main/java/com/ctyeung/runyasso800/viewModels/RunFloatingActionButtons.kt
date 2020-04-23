@@ -14,13 +14,9 @@ import java.lang.reflect.Type
 class RunFloatingActionButtons {
 
     private var run:RunActivity
-    private var stateMachine:StateMachine
 
-    constructor(activity:RunActivity,
-                stateMachine: StateMachine) {
+    constructor(activity:RunActivity) {
         this.run = activity
-        this.stateMachine = stateMachine
-
         init()
     }
 

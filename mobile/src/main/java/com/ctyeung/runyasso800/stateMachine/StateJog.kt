@@ -9,9 +9,7 @@ import com.ctyeung.runyasso800.viewModels.StepViewModel
 class StateJog : MotionState, Ijog, Isprint, Idone {
 
     constructor(listener:IStateCallback,
-                actListener: IRunStatsCallBack,
-                runViewModel: RunViewModel,
-                stepViewModel: StepViewModel):super(listener, actListener, runViewModel, stepViewModel)
+                actListener: IRunStatsCallBack):super(listener, actListener)
     {
         FINISH_DISTANCE = SharedPrefUtility.getDistance(SharedPrefUtility.keyJogDis).toDouble()
     }

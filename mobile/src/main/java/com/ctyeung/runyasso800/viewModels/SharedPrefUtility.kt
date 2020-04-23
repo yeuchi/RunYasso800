@@ -2,14 +2,12 @@ package com.ctyeung.runyasso800.viewModels
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.graphics.Color
 import android.net.Uri
 import androidx.core.content.FileProvider
-import com.ctyeung.runyasso800.MainActivity
 import com.ctyeung.runyasso800.MainApplication
 import com.ctyeung.runyasso800.R
 import com.ctyeung.runyasso800.room.splits.Split
-import com.ctyeung.runyasso800.utilities.LocationUtils
+import com.ctyeung.runyasso800.utilities.LocationUpdateService
 import java.io.File
 
 /*
@@ -104,7 +102,7 @@ object SharedPrefUtility
     fun getGPSsampleRate():Long
     {
         val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val i = sharedPreferences.getLong(keyGPSsampleRate, LocationUtils.DEFAULT_SAMPLE_RATE)
+        val i = sharedPreferences.getLong(keyGPSsampleRate, LocationUpdateService.DEFAULT_SAMPLE_RATE)
         return i
     }
 
