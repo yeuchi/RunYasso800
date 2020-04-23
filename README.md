@@ -142,25 +142,8 @@ Add data processing (such as Kalman filter) to enhance distance calculation. \
 3. Landscape Layout support: RunActivity - state machine requires refactoring.
 4. Dagger dependency injection.
 
-# Google Play Versions
-1. April 11, 2020: 1st available on Google Play; functionally tested by 1 self run work-out.
-2. April 12, 2020: available on Google Play.\
-   a. Refactored viewModels. \
-   b. Fixed: PersistActivity no longer renders partial data when there are no splits.
-3. April 12, 2020: available on Google Play. \
-   a. Fixed: RunActivity PAUSE / RESUME.
-4. April 12, 2020: available on Google Play.\
-   a. Fixed: RunActivity CLEAR. 
-5. April 14, 2020: available on Google Play.\
-   a. About Dialog with factory reset.\
-   b. Refactored SplitDetailDialogFragment viewModel / databinding.
-6. April 16, 2020: available on Google Play.\
-   a. Fixed: Steps for sprint are sometimes registered as jog.\
-   b. Fixed: Jog before Sprint order for menu.\
-   c. Fixed: Sprint's 'meet-goal' unit in milli-seconds, not seconds.
-7. April 18, 2020: available on Google Play.\
-   a. Added: ResultActivity Toast if exception is thrown.\
-   b. Fixed: Ooops! version 6 was missing GoogleMap key; hence unable to render.
+### Google Play Versions
+../results/GooglePlayVersions.txt
    
 # References
 1. How to do Yasso 800s, by Christine Luff, VeryWellFit, August 04, 2019\
@@ -192,3 +175,6 @@ https://gist.github.com/Sloy/7a267237f7bc27a2057be744209c1c61
 
 10. Testing LiveData on Android, Ale's MainThread, by Alessandro Diaferia, December 17, 2018
 https://alediaferia.com/2018/12/17/testing-livedata-room-android/
+
+11. Google Foreground Location service code example, Jeremy Walker, March 19, 2019 \
+https://github.com/android/location-samples/blob/master/LocationUpdatesForegroundService/app/src/main/java/com/google/android/gms/location/sample/locationupdatesforegroundservice/MainActivity.java
