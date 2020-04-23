@@ -20,7 +20,7 @@ import com.ctyeung.runyasso800.viewModels.*
  * 1. Use Dagger dependency injection !!!
  * 2. check availability of GPS
  * 3. refactor room split (no time, lat/long) and step
- * 4. persist state so we can leave and return to this activity.
+ * 4. persist state so we can leave and return to this activity when PAUSED.
  *
  * Distance icon credit to Freepike from Flaticon
  * https://www.flaticon.com/free-icon/distance-to-travel-between-two-points_55212#term=distance&page=1&position=4
@@ -41,6 +41,9 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     companion object : ICompanion {
         private var isDone:Boolean = false
 
+        /*
+         * For MainActivity
+         */
         override fun isAvailable(): Boolean {
            /*
             val goal = SharedPrefUtility.getGoal(SharedPrefUtility.keySprintGoal)
@@ -158,7 +161,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
 
     /*
      * To DO:
-     * Return message from StateMachine
+     * Return message from LocationService StateMachine
      */
     override fun onResume() {
         super.onResume()

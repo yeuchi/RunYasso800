@@ -8,7 +8,6 @@ import java.lang.reflect.Type
 
 /*
  * To do:
- * 1. add a hash table for type -> state
  * 2. refactor execute and update logic for coherence and simplification
  */
 object StateMachine : IStateCallback {
@@ -21,8 +20,8 @@ object StateMachine : IStateCallback {
 
     /*
      * TO DO :
-     * Replace actListener with Intent broadcast and receiver
-     * Remove viewModels
+     * Replace actListener with callback to Service
+     * Then use Intent broadcast and receiver to communicate with Activity
      */
     fun initialize(actListener: IRunStatsCallBack)
     {
