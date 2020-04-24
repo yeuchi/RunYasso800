@@ -146,7 +146,6 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         super.onStart()
         val powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
         wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "myapp:MyWakelockTag")
-        wakeLock.acquire()
 
         // Bind to the service. If the service is in foreground mode, this signals to the service
         // that since this activity is in the foreground, the service can exit foreground mode.
@@ -179,9 +178,6 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     override fun onStop() {
         super.onStop()
 
-        if(mService!=null)
-            mService!!.removeLocationUpdates()
-
         if (mBound) {
             // Unbind from the service. This signals to the service that this activity is no longer
             // in the foreground, and the service can respond by promoting itself to a foreground
@@ -189,6 +185,11 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
             unbindService(mServiceConnection)
             mBound = false
         }
+    }
+
+    private fun RemoveLocation() {
+        if(mService!=null)
+            mService!!.removeLocationUpdates()
 
         if(wakeLock.isHeld)
             wakeLock.release()
@@ -200,6 +201,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         runViewModel.updateType()
         binding.invalidateAll()
         fab.changeState(StateDone::class.java)
+        RemoveLocation()
     }
 
     // State machine callback -- background update, vibrate, beep
@@ -261,6 +263,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
      */
     fun onClickStart()
     {
+        wakeLock.acquire()
         if(mService != null)
             mService!!.requestLocationUpdates()
 
@@ -294,6 +297,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
             }
             else -> {}
         }
+        RemoveLocation()
     }
 
     /*
