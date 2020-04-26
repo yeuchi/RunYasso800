@@ -90,7 +90,10 @@ IDLE -> START -> JOG <-> SPRINT -> PAUSE\
 <img src="https://user-images.githubusercontent.com/1282659/77836547-acc78000-711c-11ea-9f49-dc592b8a3153.jpg" width="200"> 
 
 #### Running while sleep
-During your jogs and sprints, location service will continue recording your GPS coordinates even while your phone is locked and display is off.  Upon reaching each 800 meter interval, alarm will sound with vibration for 1.5 second (sprint) or 1 second (jog) or 3 seconds (done).  Each alarm pattern is unique to help runner recognize, dissert the transition type.\
+During your jogs and sprints, Google location service will continue to record your GPS coordinates even while your phone is locked and display is off.  Upon reaching each 800 meter interval, alarm will sound with vibration as follows. Each alarm pattern is unique to help runner recognize, dissert the transition type.\
+- Sprint : 1.5 second 
+- Jog : 1 second
+- Done : 3 seconds  
 <img src="https://user-images.githubusercontent.com/1282659/80294833-7e948a80-8732-11ea-92f9-8aa77fee9585.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/80294834-805e4e00-8732-11ea-9903-30fe6e1fb434.jpg" width="200"> 
 
 ### Result Activity
