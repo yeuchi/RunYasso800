@@ -39,11 +39,12 @@ abstract class MotionState  : StateAbstract {
 
     init {
         var context = MainApplication.applicationContext()
-        val splitDao = YassoDatabase.getDatabase(context).splitDao()
+        val scope:CoroutineScope = CoroutineScope(Dispatchers.IO)
+        val splitDao = YassoDatabase.getDatabase(context, scope).splitDao()
         splitRepos = SplitRepository(splitDao)
         setSplitIndex(0)
 
-        val stepDao = YassoDatabase.getDatabase(context).stepDao()
+        val stepDao = YassoDatabase.getDatabase(context, scope).stepDao()
         stepRepos = StepRepository(stepDao)
         resetStep()
     }

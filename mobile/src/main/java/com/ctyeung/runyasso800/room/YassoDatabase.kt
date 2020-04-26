@@ -50,21 +50,6 @@ public abstract class YassoDatabase : RoomDatabase ()
                 instance
             }
         }
-
-        fun getDatabase(context: Context): YassoDatabase {
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    YassoDatabase::class.java,
-                    "yasso_database"
-                ).allowMainThreadQueries()
-                    .build()
-
-                INSTANCE = instance
-                // return instance
-                instance
-            }
-        }
     }
 
     private class SplitDatabaseCallback(
@@ -75,9 +60,6 @@ public abstract class YassoDatabase : RoomDatabase ()
             super.onOpen(db)
             INSTANCE?.let { database ->
                 scope.launch(Dispatchers.IO) {
-                    /*
-                     * Refactor !!! Use factory pattern here !
-                     */
                     //populateDatabase(database.splitDao(), database.stepDao())
                 }
             }

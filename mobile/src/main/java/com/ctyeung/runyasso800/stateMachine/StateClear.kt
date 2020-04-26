@@ -21,10 +21,11 @@ class StateClear : StateAbstract, Iclear, Iidle {
     constructor(listener:IStateCallback):super(listener)
     {
         var context = MainApplication.applicationContext()
-        val splitDao = YassoDatabase.getDatabase(context).splitDao()
+        val scope:CoroutineScope = CoroutineScope(Dispatchers.IO)
+        val splitDao = YassoDatabase.getDatabase(context, scope).splitDao()
         splitRepos = SplitRepository(splitDao)
 
-        val stepDao = YassoDatabase.getDatabase(context).stepDao()
+        val stepDao = YassoDatabase.getDatabase(context, scope).stepDao()
         stepRepos = StepRepository(stepDao)
     }
 
