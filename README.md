@@ -98,8 +98,8 @@ During your jogs and sprints, location service will continue recording your GPS 
 - Location markers defines split start position. 
 - Click on marker to reveal split detail.\
 <img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_blue2.png" width="15"> Jog \
-<img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_green3.png" width="15"> Sprint (meets goal)\
-<img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red4.png" width="15"> Sprint (failed)
+<img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_green3.png" width="15"> Sprint (meets sprint goal)\
+<img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red4.png" width="15"> Sprint (duration beyond goal)
 
 PLEASE INSERT YOUR GOOGLE MAP KEY in values/google_map_api.xml before running app.
 <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">!! MY_KEY_HERE !!</string>\
