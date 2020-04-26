@@ -37,29 +37,8 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
     lateinit var model: ResultViewModel
     private lateinit var mMap: GoogleMap
 
-    companion object : ICompanion {
-        private var hasRendered:Boolean = false
-        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
-
-        override fun isAvailable(): Boolean {
-            // need to check db for available data
-            return true
-        }
-
-        /*
-         * Are we completed rendering here ?
-         */
-        override fun isCompleted():Boolean {
-            if(hasRendered)
-                return true
-
-            return false
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        hasRendered = false
         binding = DataBindingUtil.setContentView(this, R.layout.activity_result)
         binding.res = this
 
@@ -80,8 +59,6 @@ class ResultActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
                 if(steps.size > 1) {
                     try {
                         model.drawSteps(mMap)
-                        if (model.lines.size > 0)
-                            hasRendered = true
                     }
                     catch (ex:Exception){
                         displayErrorMsg(ex.toString())

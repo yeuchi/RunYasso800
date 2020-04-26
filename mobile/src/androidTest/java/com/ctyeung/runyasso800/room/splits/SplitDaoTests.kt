@@ -15,6 +15,7 @@ import junit.framework.Assert
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -36,7 +37,7 @@ open class SplitDaoTests {
     private lateinit var db:YassoDatabase
 
     @Before
-    fun createDb() {
+    fun createDb() = runBlocking<Unit> {
         //val context = ApplicationProvider.getApplicationContext<Context>()
         val context = MainApplication.applicationContext()
         db = Room.inMemoryDatabaseBuilder(context, YassoDatabase::class.java).build()

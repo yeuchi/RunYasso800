@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.ctyeung.runyasso800.databinding.ActivityRunBinding
 import com.ctyeung.runyasso800.stateMachine.*
 import com.ctyeung.runyasso800.utilities.LocationUpdateService
@@ -37,34 +38,6 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     lateinit var stepViewModel:StepViewModel
     lateinit var activity: RunActivity
     lateinit var wakeLock:PowerManager.WakeLock
-
-    companion object : ICompanion {
-        private var isDone:Boolean = false
-
-        /*
-         * For MainActivity
-         */
-        override fun isAvailable(): Boolean {
-           /*
-            val goal = SharedPrefUtility.getGoal(SharedPrefUtility.keySprintGoal)
-            if(goal>0)
-                return true
-
-            return false
-            */
-            return true
-        }
-
-        /*
-         * Are we completed here ?
-         */
-        override fun isCompleted():Boolean {
-            if(isDone)
-                return true
-
-            return false
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,7 +69,6 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
 
         // start with a clean slate
         StateMachine.interruptClear()
-        isDone = false
 
         if (shouldAskPermissions())
             askPermissions()
@@ -132,15 +104,12 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     /**
      * Receiver for broadcasts sent by [LocationUpdatesService].
      */
-  /*  private class MyReceiver : BroadcastReceiver() {
-        override fun onReceive(
-            context: Context,
-            intent: Intent
-        ) {
+    private class MyReceiver : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
 
                 // receive message here !
         }
-    }*/
+    }
 
     override fun onStart() {
         super.onStart()
@@ -164,14 +133,14 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
      */
     override fun onResume() {
         super.onResume()
-      /*  LocalBroadcastManager.getInstance(this).registerReceiver(
+       /* LocalBroadcastManager.getInstance(this).registerReceiver(
             myReceiver!!,
-            IntentFilter(LocationUpdatesService.ACTION_BROADCAST)
+            IntentFilter(LocationUpdateService.ACTION_BROADCAST)
         )*/
     }
 
     override fun onPause() {
-     //   LocalBroadcastManager.getInstance(this).unregisterReceiver(myReceiver!!)
+        //LocalBroadcastManager.getInstance(this).unregisterReceiver(myReceiver!!)
         super.onPause()
     }
 
@@ -197,7 +166,6 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
 
     // State machine callback
     override fun onHandleYassoDone() {
-        isDone = true
         runViewModel.updateType()
         binding.invalidateAll()
         fab.changeState(StateDone::class.java)
@@ -320,7 +288,6 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
                 // error condition
             }
         }
-        isDone = false
     }
 
     /*

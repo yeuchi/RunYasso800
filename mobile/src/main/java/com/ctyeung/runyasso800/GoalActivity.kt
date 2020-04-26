@@ -64,13 +64,13 @@ class GoalActivity : BaseActivity() {
 
             override fun afterTextChanged(s: Editable)
             {
-                var name = s.toString()
+                var name:String? = s.toString()
                 if(null==name || 0==name.length) {
                     // use default if invalid
                     name = resources.getString(R.string.run_yasso_800)
                 }
 
-                model.persistName(name)
+                model.persistName(name!!)
                 initActionBar()
 
                 // go to next activity automatically

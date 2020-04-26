@@ -36,27 +36,11 @@ class PersistActivity : BaseActivity() {
     lateinit var model:PersistViewModel
     lateinit var binding:ActivityPersistBinding
 
-    companion object : ICompanion {
-        private var hasSteps:Boolean = false
-        private var hasSplits:Boolean = false
-        private var hasSendEmail:Boolean = false
-        // Check if images and data is available for sending
-        override fun isAvailable(): Boolean {
-            // need to check db for available data
-            return true
-        }
-
-        override fun isCompleted():Boolean {
-            if(hasSendEmail)
-                return true
-
-            return false
-        }
-    }
+    private var hasSteps:Boolean = false
+    private var hasSplits:Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        hasSendEmail = false
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_persist)
         binding.listener = this
@@ -105,7 +89,6 @@ class PersistActivity : BaseActivity() {
                 val send_title = "some title"
                 startActivity(Intent.createChooser(emailIntent, send_title))
             }
-            hasSendEmail = true
         }
         catch (e: Exception) {
             val msg = "some failure msg"

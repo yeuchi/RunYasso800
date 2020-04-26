@@ -132,23 +132,17 @@ class MainActivity : BaseActivity(),
 
     fun onClickRun()
     {
-        if(RunActivity.isAvailable()) {
-            navigate2Activity(RunActivity::class.java)
-        }
+        navigate2Activity(RunActivity::class.java)
     }
 
     fun onClickResult()
     {
-        if(ResultActivity.isAvailable()) {
-            navigate2Activity(ResultActivity::class.java)
-        }
+        navigate2Activity(ResultActivity::class.java)
     }
 
     fun onClickPersist()
     {
-        if(PersistActivity.isAvailable()) {
-            navigate2Activity(PersistActivity::class.java)
-        }
+        navigate2Activity(PersistActivity::class.java)
     }
 
     fun navigate2Activity(classType:Class<*>)

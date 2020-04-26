@@ -385,13 +385,9 @@ class LocationUpdateService : Service() {
          * The name of the channel for notifications.
          */
         private const val CHANNEL_ID = "channel_01"
-        const val ACTION_BROADCAST =
-            "$PACKAGE_NAME.broadcast"
-        const val EXTRA_LOCATION =
-            "$PACKAGE_NAME.location"
-        private const val EXTRA_STARTED_FROM_NOTIFICATION =
-            PACKAGE_NAME +
-                    ".started_from_notification"
+        const val ACTION_BROADCAST = "$PACKAGE_NAME.broadcast"
+        const val EXTRA_LOCATION = "$PACKAGE_NAME.location"
+        private const val EXTRA_STARTED_FROM_NOTIFICATION = PACKAGE_NAME + ".started_from_notification"
 
         val MAX_SAMPLE_RATE:Long = 40000
         val DEFAULT_SAMPLE_RATE:Long = 10000

@@ -15,18 +15,18 @@ import java.io.File
  */
 object SharedPrefUtility
 {
-    val mypreference = "mypref"
-    val keyImageUri = "imageUri"
-    val keySprintDis = "sprintDis"
-    val keyJogDis = "jogDis"
-    val keyNumIterations = "iterations"
-    val keyGPSsampleRate = "gps"
-    val keyName = "name"
-    val keySprintGoal = "sprintGoal"
-    val keyRaceGoal = "raceGoal"
-    val keySplitDistance = "splitDistance"
-    val keyStepIndex = "stepIndex"
-    val keySplitIndex = "splitIndex"
+    const val mypreference = "mypref"
+    const val keyImageUri = "imageUri"
+    const val keySprintDis = "sprintDis"
+    const val keyJogDis = "jogDis"
+    const val keyNumIterations = "iterations"
+    const val keyGPSsampleRate = "gps"
+    const val keyName = "name"
+    const val keySprintGoal = "sprintGoal"
+    const val keyRaceGoal = "raceGoal"
+    const val keySplitDistance = "splitDistance"
+    const val keyStepIndex = "stepIndex"
+    const val keySplitIndex = "splitIndex"
 
     fun getName():String
     {
