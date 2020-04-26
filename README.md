@@ -89,17 +89,22 @@ IDLE -> START -> JOG <-> SPRINT -> PAUSE\
 -> DONE\
 <img src="https://user-images.githubusercontent.com/1282659/77836547-acc78000-711c-11ea-9f49-dc592b8a3153.jpg" width="200"> 
 
+#### Running while sleep
+During your jogs and sprints, location service will continue recording your GPS coordinates even while your phone is locked and display is off.  Upon reaching each 800 meter interval, alarm will sound with vibration for 1.5 second (sprint) or 1 second (jog) or 3 seconds (done).  Each alarm pattern is unique to help runner recognize, dissert the transition type.\
+<img src="https://user-images.githubusercontent.com/1282659/80294833-7e948a80-8732-11ea-92f9-8aa77fee9585.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/80294834-805e4e00-8732-11ea-9903-30fe6e1fb434.jpg" width="200"> 
+
 ### Result Activity
 - Map view of sprint and jog iterations. 
 - Location markers defines split start position. 
 - Click on marker to reveal split detail.\
 <img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_blue2.png" width="15"> Jog \
-<img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_green3.png" width="15"> Sprint (meets goal)\
-<img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red4.png" width="15"> Sprint (failed)
+<img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_green3.png" width="15"> Sprint (meets sprint goal)\
+<img src="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red4.png" width="15"> Sprint (duration beyond goal)
 
 PLEASE INSERT YOUR GOOGLE MAP KEY in values/google_map_api.xml before running app.
 <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">!! MY_KEY_HERE !!</string>\
-<img src="https://user-images.githubusercontent.com/1282659/78513888-3a861980-7774-11ea-97d9-f8be36a69eb3.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/79158438-f7433080-7d9b-11ea-9de9-c89f53b14438.jpg" width="200"> 
+
+<img src="https://user-images.githubusercontent.com/1282659/80295008-74738b80-8734-11ea-97a1-8bb76f8d7541.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/78513888-3a861980-7774-11ea-97d9-f8be36a69eb3.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/79158438-f7433080-7d9b-11ea-9de9-c89f53b14438.jpg" width="200"> 
 
 ### Persist (Share) Activity
 Activity provides persistence (share) methods to user.  They include the follow:
