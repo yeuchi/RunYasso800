@@ -134,17 +134,13 @@ open class SplitDaoTests {
 
             split.meetGoal = true
             splitDao.update(split)
+
+            val data = splitDao.getAll()
+            val list = data.value
+            Assert.assertEquals(list!![0].meetGoal, true)
         }
 
-        var count = 0
-        splitDao.getAll().observeOnce {
-            count ++
 
-            if(count == 2) {
-                val s = it[0]
-                Assert.assertEquals(s.meetGoal, true)
-            }
-        }
     }
 
     @Test
@@ -153,15 +149,10 @@ open class SplitDaoTests {
         CoroutineScope(Dispatchers.IO).launch {
             db.populate(splitDao, stepDao)
             splitDao.deleteAll()
-        }
 
-        var count = 0
-        splitDao.getAll().observeOnce {
-            count++
-
-            if (count == 2) {
-                Assert.assertEquals(it.size, 0)
-            }
+            val data = splitDao.getAll()
+            val list = data.value
+            Assert.assertEquals(list!!.size, 0)
         }
     }
 }
