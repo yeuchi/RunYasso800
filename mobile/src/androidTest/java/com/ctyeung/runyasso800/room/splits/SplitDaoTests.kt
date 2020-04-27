@@ -37,13 +37,12 @@ open class SplitDaoTests {
     private lateinit var db:YassoDatabase
 
     @Before
-    fun createDb() = runBlocking<Unit> {
+    fun createDb() {
         //val context = ApplicationProvider.getApplicationContext<Context>()
         val context = MainApplication.applicationContext()
         db = Room.inMemoryDatabaseBuilder(context, YassoDatabase::class.java).build()
         splitDao = db.splitDao()
         stepDao = db.stepDao()
-        CoroutineScope(Dispatchers.IO).launch {db.populate(splitDao, stepDao)}
     }
 
     @After
@@ -58,6 +57,10 @@ open class SplitDaoTests {
     @Test
     //@Throws(Exception::class)
     fun getAll() {
+        CoroutineScope(Dispatchers.IO).launch {
+            db.populate(splitDao, stepDao)
+        }
+
         splitDao.getAll().observeOnce {
             if(it.size>0)
                 onHandleInsertedSplits(it)
@@ -84,5 +87,81 @@ open class SplitDaoTests {
         Assert.assertEquals(s.endLat, 1.0)
         Assert.assertEquals(s.endLong, 1.1)
         Assert.assertEquals(s.meetGoal, false)
+    }
+
+    @Test
+    fun insert() {
+        val now = System.currentTimeMillis()
+        val end = now + 100
+        val split = Split(0,
+            Split.RUN_TYPE_JOG,
+            10.0,
+            now,
+            0.0,
+            0.1,
+            end,
+            1.0,
+            1.1,
+            false)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            splitDao.insert(split)
+        }
+
+        splitDao.getAll().observeOnce {
+            if(it.size>0)
+                onHandleInsertedSplits(it)
+        }
+    }
+
+    @Test
+    fun update() {
+        val now = System.currentTimeMillis()
+        val end = now + 100
+        val split = Split(0,
+            Split.RUN_TYPE_JOG,
+            10.0,
+            now,
+            0.0,
+            0.1,
+            end,
+            1.0,
+            1.1,
+            false)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            splitDao.insert(split)
+
+            split.meetGoal = true
+            splitDao.update(split)
+        }
+
+        var count = 0
+        splitDao.getAll().observeOnce {
+            count ++
+
+            if(count == 2) {
+                val s = it[0]
+                Assert.assertEquals(s.meetGoal, true)
+            }
+        }
+    }
+
+    @Test
+    fun deleteAll() {
+
+        CoroutineScope(Dispatchers.IO).launch {
+            db.populate(splitDao, stepDao)
+            splitDao.deleteAll()
+        }
+
+        var count = 0
+        splitDao.getAll().observeOnce {
+            count++
+
+            if (count == 2) {
+                Assert.assertEquals(it.size, 0)
+            }
+        }
     }
 }
