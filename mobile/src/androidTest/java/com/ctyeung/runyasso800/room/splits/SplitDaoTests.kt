@@ -116,6 +116,16 @@ open class SplitDaoTests {
 
     @Test
     fun update() {
+        runUpdate()
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val data = splitDao.getAll()
+            val list = data.value
+            Assert.assertEquals(list!![0].meetGoal, true)
+        }
+    }
+
+    fun runUpdate() = runBlocking {
         val now = System.currentTimeMillis()
         val end = now + 100
         val split = Split(0,
@@ -129,18 +139,13 @@ open class SplitDaoTests {
             1.1,
             false)
 
-        CoroutineScope(Dispatchers.IO).launch {
+        val job = CoroutineScope(Dispatchers.IO).launch {
             splitDao.insert(split)
 
             split.meetGoal = true
             splitDao.update(split)
-
-            val data = splitDao.getAll()
-            val list = data.value
-            Assert.assertEquals(list!![0].meetGoal, true)
         }
-
-
+        job.join()
     }
 
     @Test
