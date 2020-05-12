@@ -387,8 +387,8 @@ class LocationUpdateService : Service() {
         const val EXTRA_LOCATION = "$PACKAGE_NAME.location"
         private const val EXTRA_STARTED_FROM_NOTIFICATION = PACKAGE_NAME + ".started_from_notification"
 
-        val MAX_SAMPLE_RATE:Long = 40000
-        val DEFAULT_SAMPLE_RATE:Long = 10000
+        val MAX_SAMPLE_RATE:Long = 80000
+        val DEFAULT_SAMPLE_RATE:Long = 20000
         val MIN_SAMPLE_RATE:Long = 3000
 
         /**
