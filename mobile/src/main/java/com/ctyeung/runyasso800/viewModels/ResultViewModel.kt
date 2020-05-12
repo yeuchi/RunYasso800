@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.ctyeung.runyasso800.MainApplication
 import com.ctyeung.runyasso800.R
+import com.ctyeung.runyasso800.dagger.DaggerRepositoryComponent
 import com.ctyeung.runyasso800.room.YassoDatabase
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.splits.SplitRepository
@@ -19,27 +20,27 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.*
 import java.lang.Exception
+import javax.inject.Inject
+import javax.inject.Named
 
 /*
  * Yasso Session data
  */
 class ResultViewModel  (application: Application) : AndroidViewModel(application){
-    var splitRepository: SplitRepository
-    var splits: LiveData<List<Split>>
+    @Inject
+    @field:Named("split") lateinit var splitRepos:SplitRepository
+    @Inject
+    @field:Named("step") lateinit var stepRepos:StepRepository
 
-    var stepRepository: StepRepository
+    var splits: LiveData<List<Split>>
     var steps:LiveData<List<Step>>
     var markerIndexes = HashMap<Marker, Int>()
     var lines:ArrayList<Polyline> = ArrayList<Polyline>()
 
     init {
-        val splitDao = YassoDatabase.getDatabase(application, viewModelScope).splitDao()
-        splitRepository = SplitRepository(splitDao)
-        splits = splitRepository.splits
-
-        val stepDao = YassoDatabase.getDatabase(application, viewModelScope).stepDao()
-        stepRepository = StepRepository(stepDao)
-        steps = stepRepository.steps
+        DaggerRepositoryComponent.create().injectResultViewModelRepository(this)
+        splits = splitRepos.splits
+        steps = stepRepos.steps
     }
 
     /*

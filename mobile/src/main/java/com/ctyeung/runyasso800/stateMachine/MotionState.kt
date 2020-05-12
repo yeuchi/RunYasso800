@@ -3,6 +3,7 @@ package com.ctyeung.runyasso800.stateMachine
 import android.location.Location
 import androidx.lifecycle.viewModelScope
 import com.ctyeung.runyasso800.MainApplication
+import com.ctyeung.runyasso800.dagger.DaggerRepositoryComponent
 import com.ctyeung.runyasso800.room.YassoDatabase
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.splits.SplitRepository
@@ -16,10 +17,15 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.reflect.Type
+import javax.inject.Inject
+import javax.inject.Named
 
 abstract class MotionState  : StateAbstract {
-    var splitRepos: SplitRepository
-    var stepRepos: StepRepository
+    @Inject
+    @field:Named("split") lateinit var splitRepos:SplitRepository
+    @Inject
+    @field:Named("step") lateinit var stepRepos:StepRepository
+
 
     var actListener: IRunStatsCallBack
     var FINISH_DISTANCE = Split.DEFAULT_SPLIT_DISTANCE
@@ -38,14 +44,8 @@ abstract class MotionState  : StateAbstract {
     }
 
     init {
-        var context = MainApplication.applicationContext()
-        val scope:CoroutineScope = CoroutineScope(Dispatchers.IO)
-        val splitDao = YassoDatabase.getDatabase(context, scope).splitDao()
-        splitRepos = SplitRepository(splitDao)
+        DaggerRepositoryComponent.create().injectMotionStateRepository(this)
         setSplitIndex(0)
-
-        val stepDao = YassoDatabase.getDatabase(context, scope).stepDao()
-        stepRepos = StepRepository(stepDao)
         resetStep()
     }
 

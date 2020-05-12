@@ -16,6 +16,7 @@ package com.ctyeung.runyasso800.utilities
  * limitations under the License.
  */
 // package com.google.android.gms.location.sample.locationupdatesforegroundservice;
+
 import android.app.*
 import android.content.Context
 import android.content.Intent
@@ -24,12 +25,13 @@ import android.location.Location
 import android.os.*
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.ctyeung.runyasso800.MainActivity
 import com.ctyeung.runyasso800.R
 import com.ctyeung.runyasso800.stateMachine.StateMachine
-import com.ctyeung.runyasso800.stateMachine.StateMachine.update
 import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 import com.google.android.gms.location.*
+
 
 /**
  * A bound and started service that is promoted to a foreground service when location updates have
@@ -179,7 +181,7 @@ class LocationUpdateService : Service() {
             )
             startForeground(
                 NOTIFICATION_ID,
-                notification
+                getNotification()
             )
         }
         return true // Ensures onRebind() is called when a client re-binds.
@@ -247,58 +249,6 @@ class LocationUpdateService : Service() {
 
     // Set the Channel ID for Android O.
 
-    /**
-     * Returns the [NotificationCompat] used as part of the foreground service.
-     */
-    private val notification: Notification
-        private get() {
-            val intent =
-                Intent(this, LocationUpdateService::class.java)
-            val text: CharSequence =
-                Utils.getLocationText(mLocation)
-
-            // Extra to help us figure out if we arrived in onStartCommand via the notification or not.
-            intent.putExtra(
-                EXTRA_STARTED_FROM_NOTIFICATION,
-                true
-            )
-
-            // The PendingIntent that leads to a call to onStartCommand() in this service.
-            val servicePendingIntent = PendingIntent.getService(
-                this, 0, intent,
-                PendingIntent.FLAG_UPDATE_CURRENT
-            )
-
-            // The PendingIntent to launch activity.
-            val activityPendingIntent = PendingIntent.getActivity(
-                this, 0,
-                Intent(this, MainActivity::class.java), 0
-            )
-            val builder =
-                NotificationCompat.Builder(this)
-                    .addAction(
-                        R.drawable.ic_launch, getString(R.string.launch_activity),
-                        activityPendingIntent
-                    )
-                    .addAction(
-                        R.drawable.ic_cancel, getString(R.string.remove_location_updates),
-                        servicePendingIntent
-                    )
-                    .setContentText(text)
-                    .setContentTitle(Utils.getLocationTitle(this))
-                    .setOngoing(true)
-                    .setPriority(Notification.PRIORITY_HIGH)
-                    .setSmallIcon(R.mipmap.ic_launcher)
-                    .setTicker(text)
-                    .setWhen(System.currentTimeMillis())
-
-            // Set the Channel ID for Android O.
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                builder.setChannelId(CHANNEL_ID) // Channel ID
-            }
-            return builder.build()
-        }
-
     private val lastLocation: Location?
         private get() {
             try {
@@ -325,14 +275,62 @@ class LocationUpdateService : Service() {
         StateMachine.update(location)
 
         // Notify anyone listening for broadcasts about the new location.
-        /*   Intent intent = new Intent(ACTION_BROADCAST);
+        var intent:Intent = Intent(ACTION_BROADCAST);
         intent.putExtra(EXTRA_LOCATION, location);
         LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
 
         // Update notification content if running as a foreground service.
         if (serviceIsRunningInForeground(this)) {
-            mNotificationManager.notify(NOTIFICATION_ID, getNotification());
-        }*/
+            if(mNotificationManager != null)
+            mNotificationManager!!.notify(NOTIFICATION_ID, getNotification());
+        }
+    }
+
+    /**
+     * Returns the [NotificationCompat] used as part of the foreground service.
+     */
+     fun getNotification(): Notification {
+        val intent = Intent(this, LocationUpdateService::class.java)
+        val text: CharSequence =
+            Utils.getLocationText(mLocation)
+
+        // Extra to help us figure out if we arrived in onStartCommand via the notification or not.
+        intent.putExtra(EXTRA_STARTED_FROM_NOTIFICATION, true)
+
+        // The PendingIntent that leads to a call to onStartCommand() in this service.
+        val servicePendingIntent = PendingIntent.getService(
+            this, 0, intent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        // The PendingIntent to launch activity.
+        val activityPendingIntent = PendingIntent.getActivity(
+            this, 0,
+            Intent(this, MainActivity::class.java), 0
+        )
+        val builder =
+            NotificationCompat.Builder(this)
+                .addAction(
+                    R.drawable.ic_launch, getString(R.string.launch_activity),
+                    activityPendingIntent
+                )
+                .addAction(
+                    R.drawable.ic_cancel, getString(R.string.remove_location_updates),
+                    servicePendingIntent
+                )
+                .setContentText(text)
+                .setContentTitle(Utils.getLocationTitle(this))
+                .setOngoing(true)
+                .setPriority(Notification.PRIORITY_HIGH)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setTicker(text)
+                .setWhen(System.currentTimeMillis())
+
+        // Set the Channel ID for Android O.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            builder.setChannelId(CHANNEL_ID) // Channel ID
+        }
+        return builder.build()
     }
 
     /**

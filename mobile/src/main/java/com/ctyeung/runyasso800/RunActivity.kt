@@ -30,7 +30,7 @@ import com.ctyeung.runyasso800.viewModels.*
  * User performs sprint, jog in this activity.
  * Collect performance data with GPS and persist in db.
  */
-class RunActivity : BaseActivity(), IRunStatsCallBack {
+class RunActivity : BaseActivity(),IRunStatsCallBack {
     lateinit var binding:ActivityRunBinding
     lateinit var fab:RunFloatingActionButtons
     lateinit var splitContainer:SplitContainer
@@ -75,7 +75,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     }
 
     // The BroadcastReceiver used to listen from broadcasts from the service.
-   // private val myReceiver: MyReceiver? = null
+    private var myReceiver: MyReceiver? = null
 
     // A reference to the service used to get location updates.
     private var mService: LocationUpdateService? = null
@@ -133,14 +133,15 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
      */
     override fun onResume() {
         super.onResume()
-       /* LocalBroadcastManager.getInstance(this).registerReceiver(
+        myReceiver = MyReceiver()
+        LocalBroadcastManager.getInstance(this).registerReceiver(
             myReceiver!!,
             IntentFilter(LocationUpdateService.ACTION_BROADCAST)
-        )*/
+        )
     }
 
     override fun onPause() {
-        //LocalBroadcastManager.getInstance(this).unregisterReceiver(myReceiver!!)
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(myReceiver!!)
         super.onPause()
     }
 
@@ -163,6 +164,11 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         if(wakeLock.isHeld)
             wakeLock.release()
     }
+
+    /*
+     * Need to Change this to use Intent and Receiver
+     * Use Coroutine to execute in viewModel directly.
+     */
 
     // State machine callback
     override fun onHandleYassoDone() {

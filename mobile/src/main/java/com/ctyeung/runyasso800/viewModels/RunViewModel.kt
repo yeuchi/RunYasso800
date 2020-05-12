@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.ctyeung.runyasso800.MainApplication
 import com.ctyeung.runyasso800.R
+import com.ctyeung.runyasso800.dagger.DaggerRepositoryComponent
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.YassoDatabase
 import com.ctyeung.runyasso800.room.splits.SplitRepository
@@ -14,6 +15,8 @@ import com.ctyeung.runyasso800.utilities.TimeFormatter
 import kotlinx.android.synthetic.main.activity_run.*
 import kotlinx.coroutines.launch
 import java.lang.reflect.Type
+import javax.inject.Inject
+import javax.inject.Named
 import kotlin.math.roundToInt
 import kotlin.math.roundToLong
 
@@ -23,12 +26,11 @@ import kotlin.math.roundToLong
  */
 class RunViewModel (application: Application) : AndroidViewModel(application)
 {
-    var repository:SplitRepository
+    @Inject @field:Named("split") lateinit var repository:SplitRepository
     var splits:LiveData<List<Split>>
 
     init {
-        val splitDao = YassoDatabase.getDatabase(application, viewModelScope).splitDao()
-        repository = SplitRepository(splitDao)
+        DaggerRepositoryComponent.create().injectRunViewModelRepository(this)
         splits = repository.splits
     }
 

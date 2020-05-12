@@ -31,6 +31,10 @@ android {
     packagingOptions {
         exclude 'META-INF/atomicfu.kotlin_module'
     }
+
+    kapt {
+        generateStubs = true
+    }
 }
 
 dependencies {
@@ -50,12 +54,12 @@ dependencies {
     kapt "androidx.room:room-compiler:$rootProject.roomVersion"
     androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
 
-// Lifecycle components
+    // Lifecycle components
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.archLifecycleVersion"
     kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"
     androidTestImplementation "androidx.arch.core:core-testing:$rootProject.androidxArchVersion"
 
-// ViewModel Kotlin support
+    // ViewModel Kotlin support
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.archLifecycleVersion"
 
     // Coroutines
@@ -77,8 +81,9 @@ dependencies {
     implementation 'com.google.android.gms:play-services-wearable:+'
     implementation 'com.google.code.gson:gson:2.8.5'
 
-    //implementation 'com.google.dagger:dagger:2.13'
-    kapt 'com.google.dagger:dagger-compiler:2.13'
+    // dagger
+    implementation 'com.google.dagger:dagger:2.5'
+    kapt 'com.google.dagger:dagger-compiler:2.5'
 
     // location api background
     implementation 'com.google.android.gms:play-services-location:16.0.0'
