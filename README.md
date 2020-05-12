@@ -188,3 +188,6 @@ https://alediaferia.com/2018/12/17/testing-livedata-room-android/
 
 11. Google Foreground Location service code example, Jeremy Walker, March 19, 2019 \
 https://github.com/android/location-samples/blob/master/LocationUpdatesForegroundService/app/src/main/java/com/google/android/gms/location/sample/locationupdatesforegroundservice/MainActivity.java
+
+12. Dagger 2 for Dummies in Kotlin by Elye, Feb 8, 2018
+https://medium.com/@elye.project/dagger-2-for-dummies-in-kotlin-with-one-page-simple-code-project-618a5f9f2fe8
