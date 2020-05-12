@@ -38,8 +38,7 @@ Start with less distance, iterations or want to less jog (rest) ?
 Customizable configuration is available under the menu selections.
 - Jog and Sprint distances can be reduced from 800 meter. 
 - Number of iterations (Jog + Sprint) can be reduced from 10 X
-- GPS sampling rate can be modified in the range of 5,000 - 80,000 milliseconds, default @ 20,000 milliseconds or 20 seconds.
-  Less samples is generally better for storage and precision reason.
+- GPS sampling rate can be increased or decreased from @ 5,000 milliseconds (5 seconds).
 - Factory Reset for above default values is available in 'About' dialog box.
 
 MENU -> CONFIGURATION        
@@ -139,7 +138,7 @@ https://github.com/yeuchi/RunYasso800/tree/master/mobile/src/androidTest/java/co
 - compileSdkVersion 28
 
 ### Skills Practiced
-JetPack Architecture MVVM, Databinding, LiveData, Extension method, Room persistence, Location API, Google Map, EmailIntent, Espresso tests, Co-routine, State-machine, Gson/JSON, Vibration, Alarm-beep, Dagger dependency-inversion.
+JetPack Architecture MVVM, Databinding, LiveData, Extension method, Room persistence, Location API, Google Map, EmailIntent, Espresso tests, Co-routine, State-machine, Gson/JSON, Vibration, Alarm-beep.
 
 ## Wrist Watch
 Look forward to implementation.  Next to implement watch <-> phone interface.
@@ -189,6 +188,3 @@ https://alediaferia.com/2018/12/17/testing-livedata-room-android/
 
 11. Google Foreground Location service code example, Jeremy Walker, March 19, 2019 \
 https://github.com/android/location-samples/blob/master/LocationUpdatesForegroundService/app/src/main/java/com/google/android/gms/location/sample/locationupdatesforegroundservice/MainActivity.java
-
-12. Dagger 2 for Dummies in Kotlin by Elye, Feb 8, 2018
-https://medium.com/@elye.project/dagger-2-for-dummies-in-kotlin-with-one-page-simple-code-project-618a5f9f2fe8
