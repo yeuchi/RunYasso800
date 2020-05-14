@@ -149,8 +149,7 @@ Add data processing (such as Kalman filter) to enhance distance calculation. \
 
 2. Database table/data/SharePref Normalization: remove duplications.
 3. Landscape Layout support: RunActivity - state machine requires refactoring.
-4. Dagger dependency injection.
-5. Service - RunActivity communication : Intent and Receiver
+4. Service - RunActivity communication : Intent and Receiver
 
 ### Google Play Versions
 ../results/GooglePlayVersions.txt
