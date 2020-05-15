@@ -138,7 +138,7 @@ https://github.com/yeuchi/RunYasso800/tree/master/mobile/src/androidTest/java/co
 - compileSdkVersion 28
 
 ### Skills Practiced
-JetPack Architecture MVVM, Databinding, LiveData, Extension method, Room persistence, Location API, Google Map, EmailIntent, Espresso tests, Co-routine, State-machine, Gson/JSON, Vibration, Alarm-beep.
+JetPack Architecture MVVM, Databinding, LiveData, Extension method, Room persistence, Location API, Google Map, EmailIntent, Espresso tests, Co-routine, State-machine, Gson/JSON, Vibration, Alarm-beep, Dagger dependency-injection.
 
 ## Wrist Watch
 Look forward to implementation.  Next to implement watch <-> phone interface.
@@ -149,8 +149,7 @@ Add data processing (such as Kalman filter) to enhance distance calculation. \
 
 2. Database table/data/SharePref Normalization: remove duplications.
 3. Landscape Layout support: RunActivity - state machine requires refactoring.
-4. Dagger dependency injection.
-5. Service - RunActivity communication : Intent and Receiver
+4. Service - RunActivity communication : Intent and Receiver
 
 ### Google Play Versions
 ../results/GooglePlayVersions.txt
@@ -188,3 +187,6 @@ https://alediaferia.com/2018/12/17/testing-livedata-room-android/
 
 11. Google Foreground Location service code example, Jeremy Walker, March 19, 2019 \
 https://github.com/android/location-samples/blob/master/LocationUpdatesForegroundService/app/src/main/java/com/google/android/gms/location/sample/locationupdatesforegroundservice/MainActivity.java
+
+12. Dagger 2 for Dummies in Kotlin by Elye, Feb 8, 2018 
+https://medium.com/@elye.project/dagger-2-for-dummies-in-kotlin-with-one-page-simple-code-project-618a5f9f2fe8
