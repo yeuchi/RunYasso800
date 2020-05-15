@@ -23,8 +23,7 @@ object StateMachine : IStateCallback {
      * Replace actListener with callback to Service
      * Then use Intent broadcast and receiver to communicate with Activity
      */
-    fun initialize(actListener: IRunStatsCallBack)
-    {
+    fun initialize(actListener: IRunStatsCallBack) {
         this.actListener = actListener
         stateMap.clear()
         stateMap.put(StateSprint::class.java, StateSprint(this, actListener))

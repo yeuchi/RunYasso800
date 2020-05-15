@@ -107,7 +107,7 @@ class MainActivity : BaseActivity(),
             this.resources.getString(R.string.about) -> {
                 val dlg = AboutDialogFragment()
                 dlg.setParams(this)
-                dlg?.show(supportFragmentManager, "About")
+                dlg.show(supportFragmentManager, "About")
                 return true
             }
             else -> return false

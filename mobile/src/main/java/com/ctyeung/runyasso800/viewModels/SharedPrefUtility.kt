@@ -11,7 +11,7 @@ import com.ctyeung.runyasso800.utilities.LocationUpdateService
 import java.io.File
 
 /*
- * The only data persistence of this app for now
+ * TODO: Refactor invocation with inline methods
  */
 object SharedPrefUtility
 {

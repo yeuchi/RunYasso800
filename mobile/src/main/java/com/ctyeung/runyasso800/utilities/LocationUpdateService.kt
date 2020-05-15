@@ -30,6 +30,7 @@ import com.ctyeung.runyasso800.MainActivity
 import com.ctyeung.runyasso800.R
 import com.ctyeung.runyasso800.stateMachine.StateMachine
 import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
+import com.ctyeung.runyasso800.viewModels.UpdateCode
 import com.google.android.gms.location.*
 
 
@@ -266,6 +267,13 @@ class LocationUpdateService : Service() {
             return mLocation
         }
 
+    fun onCallBack(msg:UpdateCode) {
+        // Notify anyone listening for broadcasts about the new location.
+        var intent:Intent = Intent(ACTION_BROADCAST);
+        intent.putExtra(EXTRA_UPDATE_CODE, msg);
+        LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
+    }
+
     private fun onNewLocation(location: Location) {
         Log.i(
             TAG,
@@ -273,11 +281,6 @@ class LocationUpdateService : Service() {
         )
         mLocation = location
         StateMachine.update(location)
-
-        // Notify anyone listening for broadcasts about the new location.
-        var intent:Intent = Intent(ACTION_BROADCAST);
-        intent.putExtra(EXTRA_LOCATION, location);
-        LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
 
         // Update notification content if running as a foreground service.
         if (serviceIsRunningInForeground(this)) {
@@ -295,7 +298,7 @@ class LocationUpdateService : Service() {
             Utils.getLocationText(mLocation)
 
         // Extra to help us figure out if we arrived in onStartCommand via the notification or not.
-        intent.putExtra(EXTRA_STARTED_FROM_NOTIFICATION, true)
+        intent.putExtra(EXTRA_UPDATE_CODE, true)
 
         // The PendingIntent that leads to a call to onStartCommand() in this service.
         val servicePendingIntent = PendingIntent.getService(
@@ -385,7 +388,8 @@ class LocationUpdateService : Service() {
         private const val CHANNEL_ID = "channel_01"
         const val ACTION_BROADCAST = "$PACKAGE_NAME.broadcast"
         const val EXTRA_LOCATION = "$PACKAGE_NAME.location"
-        private const val EXTRA_STARTED_FROM_NOTIFICATION = PACKAGE_NAME + ".started_from_notification"
+        const val EXTRA_STARTED_FROM_NOTIFICATION = PACKAGE_NAME + ".started_from_notification"
+        const val EXTRA_UPDATE_CODE = "updateCode"
 
         val MAX_SAMPLE_RATE:Long = 80000
         val DEFAULT_SAMPLE_RATE:Long = 20000

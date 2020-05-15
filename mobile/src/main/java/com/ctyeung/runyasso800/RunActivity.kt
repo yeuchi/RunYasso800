@@ -30,7 +30,7 @@ import com.ctyeung.runyasso800.viewModels.*
  * User performs sprint, jog in this activity.
  * Collect performance data with GPS and persist in db.
  */
-class RunActivity : BaseActivity(),IRunStatsCallBack {
+class RunActivity : BaseActivity(), IRunStatsCallBack {
     lateinit var binding:ActivityRunBinding
     lateinit var fab:RunFloatingActionButtons
     lateinit var splitContainer:SplitContainer
@@ -39,7 +39,12 @@ class RunActivity : BaseActivity(),IRunStatsCallBack {
     lateinit var activity: RunActivity
     lateinit var wakeLock:PowerManager.WakeLock
 
+    companion object {
+        var self:RunActivity? = null
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        self = this
         super.onCreate(savedInstanceState)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
@@ -75,7 +80,7 @@ class RunActivity : BaseActivity(),IRunStatsCallBack {
     }
 
     // The BroadcastReceiver used to listen from broadcasts from the service.
-    private var myReceiver: MyReceiver? = null
+    //private var myReceiver: MyReceiver? = null
 
     // A reference to the service used to get location updates.
     private var mService: LocationUpdateService? = null
@@ -104,12 +109,27 @@ class RunActivity : BaseActivity(),IRunStatsCallBack {
     /**
      * Receiver for broadcasts sent by [LocationUpdatesService].
      */
-    private class MyReceiver : BroadcastReceiver() {
+ /*   private class MyReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
+            val code = intent.getStringExtra(LocationUpdateService.EXTRA_UPDATE_CODE) as UpdateCode
+            if(self!=null) {
 
-                // receive message here !
+                when (code) {
+                    UpdateCode.CHANGE_SPLIT -> {
+                        self!!.onChangedSplit()
+                    }
+
+                    UpdateCode.DONE -> {
+                        self!!.onHandleYassoDone()
+                    }
+
+                    UpdateCode.LOCATION_UPDATE -> {
+                        self!!.onHandleLocationUpdate()
+                    }
+                }
+            }
         }
-    }
+    }*/
 
     override fun onStart() {
         super.onStart()
@@ -133,15 +153,15 @@ class RunActivity : BaseActivity(),IRunStatsCallBack {
      */
     override fun onResume() {
         super.onResume()
-        myReceiver = MyReceiver()
+       /* myReceiver = MyReceiver()
         LocalBroadcastManager.getInstance(this).registerReceiver(
             myReceiver!!,
             IntentFilter(LocationUpdateService.ACTION_BROADCAST)
-        )
+        )*/
     }
 
     override fun onPause() {
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(myReceiver!!)
+       // LocalBroadcastManager.getInstance(this).unregisterReceiver(myReceiver!!)
         super.onPause()
     }
 
