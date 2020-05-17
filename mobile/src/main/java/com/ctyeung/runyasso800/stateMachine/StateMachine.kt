@@ -13,6 +13,7 @@ import javax.inject.Inject
  * TODO:
  *  1. Common 'Enter' and 'Exit' for states
  *  2. refactor execute and update logic for coherence and simplification
+ *  3. Pause should be a persisted data structure as step type
  */
 class StateMachine : IStateCallback {
     var prevLocation:Location ?= null

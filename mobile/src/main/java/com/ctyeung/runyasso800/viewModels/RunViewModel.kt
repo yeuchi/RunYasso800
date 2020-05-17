@@ -23,8 +23,9 @@ import kotlin.math.roundToInt
 import kotlin.math.roundToLong
 
 /*
- * To do :
- * 1) Magic strings need to be consolidated into string.xml
+ * TODO:
+ *  1. Magic strings need to be consolidated into string.xml
+ *  2. update time fields at every second interval.
  */
 class RunViewModel (application: Application) : AndroidViewModel(application)
 {

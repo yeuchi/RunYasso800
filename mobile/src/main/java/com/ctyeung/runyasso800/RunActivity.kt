@@ -23,8 +23,10 @@ import javax.inject.Named
 
 /*
  * TODO:
- * 2. check availability of GPS
- * 4. persist state so we can leave and return to this activity when PAUSED.
+ *  1. support Landscape rotation
+ *  2. check availability of GPS
+ *  3. improve handling of 'Pause'
+ *  4. persist state so we can leave and return to this activity when PAUSED.
  *
  * Distance icon credit to Freepike from Flaticon
  * https://www.flaticon.com/free-icon/distance-to-travel-between-two-points_55212#term=distance&page=1&position=4
