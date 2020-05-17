@@ -138,7 +138,7 @@ https://github.com/yeuchi/RunYasso800/tree/master/mobile/src/androidTest/java/co
 - compileSdkVersion 28
 
 ### Skills Practiced
-JetPack Architecture MVVM, Databinding, LiveData, Extension method, Room persistence, Location API, Google Map, EmailIntent, Espresso tests, Co-routine, State-machine, Gson/JSON, Vibration, Alarm-beep.
+JetPack Architecture MVVM, Databinding, LiveData, Extension method, Room persistence, Location API, Service, Google Map, EmailIntent, Espresso tests, Co-routine, State-machine, Gson/JSON, Vibration, Alarm-beep, inline function with reified type.
 
 ## Wrist Watch
 Look forward to implementation.  Next to implement watch <-> phone interface.
@@ -149,8 +149,7 @@ Add data processing (such as Kalman filter) to enhance distance calculation. \
 
 2. Database table/data/SharePref Normalization: remove duplications.
 3. Landscape Layout support: RunActivity - state machine requires refactoring.
-4. Dagger dependency injection.
-5. Service - RunActivity communication : Intent and Receiver
+4. PAUSE should be persisted as a step type; need to improve its handling.
 
 ### Google Play Versions
 ../results/GooglePlayVersions.txt
