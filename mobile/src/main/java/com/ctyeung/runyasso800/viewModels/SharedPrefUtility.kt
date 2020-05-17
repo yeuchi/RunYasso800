@@ -7,11 +7,14 @@ import androidx.core.content.FileProvider
 import com.ctyeung.runyasso800.MainApplication
 import com.ctyeung.runyasso800.R
 import com.ctyeung.runyasso800.room.splits.Split
+import com.ctyeung.runyasso800.stateMachine.StateError
 import com.ctyeung.runyasso800.utilities.LocationUpdateService
 import java.io.File
+import java.lang.Exception
+import java.lang.reflect.Type
 
 /*
- * TODO: Refactor invocation with inline methods
+ * TODO: Refactor with inline and Reified functions
  */
 object SharedPrefUtility
 {
@@ -27,6 +30,48 @@ object SharedPrefUtility
     const val keySplitDistance = "splitDistance"
     const val keyStepIndex = "stepIndex"
     const val keySplitIndex = "splitIndex"
+    const val keyRunState = "runstate"
+    const val keyLastLatitutde = "lastLatitude"
+    const val keyLastLongitude = "lastLongitude"
+
+    fun getLastLocation(key:String):String
+    {
+        var defaultLocation:String = "--"
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
+        val str = sharedPreferences.getString(key, defaultLocation)
+        return str
+    }
+
+    fun setLastLocation(key:String, location:Double)
+    {
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
+        val editor = sharedPreferences.edit()
+        editor.putString(key, location.toString())
+        editor.commit()
+    }
+
+    fun getRunState():Type
+    {
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
+        val stateString = sharedPreferences.getString(keyRunState, "")
+        if(stateString!=null && stateString.length>0) {
+            try{
+                return Class.forName(stateString)
+            }
+            catch (ex:Exception){
+                return StateError::class.java
+            }
+        }
+        return StateError::class.java
+    }
+
+    fun setRunState(stateClass:Type)
+    {
+        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
+        val editor = sharedPreferences.edit()
+        editor.putString(keyRunState, stateClass.toString().removePrefix("class "))
+        editor.commit()
+    }
 
     fun getName():String
     {

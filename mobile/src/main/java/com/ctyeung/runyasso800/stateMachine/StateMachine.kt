@@ -3,17 +3,18 @@ package com.ctyeung.runyasso800.stateMachine
 import android.location.Location
 import com.ctyeung.runyasso800.viewModels.IRunStatsCallBack
 import com.ctyeung.runyasso800.viewModels.RunViewModel
+import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 import com.ctyeung.runyasso800.viewModels.StepViewModel
 import java.lang.reflect.Type
+import javax.inject.Inject
 
 /*
  * To do:
  * 2. refactor execute and update logic for coherence and simplification
  */
-object StateMachine : IStateCallback {
+class StateMachine : IStateCallback {
     var prevLocation:Location ?= null
-    var current:Type = StateIdle::class.java
-    var previous:Type = StateIdle::class.java
+    private var previous:Type = StateIdle::class.java
 
     var actListener:IRunStatsCallBack?=null
     var stateMap = HashMap<Type, StateAbstract>()
@@ -23,7 +24,7 @@ object StateMachine : IStateCallback {
      * Replace actListener with callback to Service
      * Then use Intent broadcast and receiver to communicate with Activity
      */
-    fun initialize(actListener: IRunStatsCallBack) {
+    constructor(actListener: IRunStatsCallBack) {
         this.actListener = actListener
         stateMap.clear()
         stateMap.put(StateSprint::class.java, StateSprint(this, actListener))
@@ -35,16 +36,16 @@ object StateMachine : IStateCallback {
         stateMap.put(StateResume::class.java, StateResume(this, actListener))
         stateMap.put(StateIdle::class.java, StateIdle(this, actListener))
 
-        current = StateIdle::class.java
         previous = StateIdle::class.java
+        SharedPrefUtility.setRunState(StateIdle::class.java)
     }
 
     /*
      * state has been updated
      */
-    override fun onChangeState(type:Type) {
-        previous = current
-        current = type
+    override fun onChangeState(current:Type) {
+        previous = SharedPrefUtility.getRunState()
+        SharedPrefUtility.setRunState(current)
 
         when(current){
             StateSprint::class.java,
@@ -65,7 +66,7 @@ object StateMachine : IStateCallback {
      * -> When DONE -> callback Activity
      */
     fun interruptStart() {
-
+        val current = SharedPrefUtility.getRunState()
         when(current) {
             StateIdle::class.java,
             StatePause::class.java,
@@ -93,6 +94,7 @@ object StateMachine : IStateCallback {
          * previous state is sprint or jog
          * - we wish to return to that state on resume
          */
+        val current = SharedPrefUtility.getRunState()
         when(current) {
             StateSprint::class.java,
             StateJog::class.java -> {
@@ -115,7 +117,7 @@ object StateMachine : IStateCallback {
      * -> goto CLEAR -> IDLE
      */
     fun interruptClear() {
-
+        val current = SharedPrefUtility.getRunState()
         when(current) {
             StateIdle::class.java,
             StatePause::class.java,
@@ -139,6 +141,7 @@ object StateMachine : IStateCallback {
      */
     fun update(location: Location) {
         if(null!=prevLocation) {
+            val current = SharedPrefUtility.getRunState()
             when (current) {
                 StateSprint::class.java,
                 StateJog::class.java -> {
@@ -150,5 +153,7 @@ object StateMachine : IStateCallback {
             }
         }
         prevLocation = location
+        SharedPrefUtility.setLastLocation(SharedPrefUtility.keyLastLatitutde, location.latitude)
+        SharedPrefUtility.setLastLocation(SharedPrefUtility.keyLastLongitude, location.longitude)
     }
 }

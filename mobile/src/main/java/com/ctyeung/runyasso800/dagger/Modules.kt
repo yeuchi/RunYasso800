@@ -4,6 +4,7 @@ import com.ctyeung.runyasso800.MainApplication
 import com.ctyeung.runyasso800.room.YassoDatabase
 import com.ctyeung.runyasso800.room.splits.SplitRepository
 import com.ctyeung.runyasso800.room.steps.StepRepository
+import com.ctyeung.runyasso800.stateMachine.StateMachine
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineScope

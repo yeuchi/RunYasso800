@@ -3,7 +3,7 @@ package com.ctyeung.runyasso800.stateMachine
 import android.location.Location
 import androidx.lifecycle.viewModelScope
 import com.ctyeung.runyasso800.MainApplication
-import com.ctyeung.runyasso800.dagger.DaggerRepositoryComponent
+import com.ctyeung.runyasso800.dagger.DaggerComponent
 import com.ctyeung.runyasso800.room.YassoDatabase
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.splits.SplitRepository
@@ -44,7 +44,7 @@ abstract class MotionState  : StateAbstract {
     }
 
     init {
-        DaggerRepositoryComponent.create().injectMotionStateRepository(this)
+        DaggerComponent.create().injectMotionState(this)
         setSplitIndex(0)
         resetStep()
     }

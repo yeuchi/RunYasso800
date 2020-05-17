@@ -1,9 +1,7 @@
 package com.ctyeung.runyasso800.viewModels
 
-import com.ctyeung.runyasso800.R
 import com.ctyeung.runyasso800.RunActivity
 import com.ctyeung.runyasso800.stateMachine.*
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_run.*
 import java.lang.reflect.Type
 

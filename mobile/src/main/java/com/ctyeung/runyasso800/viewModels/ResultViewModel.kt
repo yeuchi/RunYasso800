@@ -9,7 +9,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.ctyeung.runyasso800.MainApplication
 import com.ctyeung.runyasso800.R
-import com.ctyeung.runyasso800.dagger.DaggerRepositoryComponent
+import com.ctyeung.runyasso800.dagger.DaggerComponent
 import com.ctyeung.runyasso800.room.YassoDatabase
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.splits.SplitRepository
@@ -38,7 +38,7 @@ class ResultViewModel  (application: Application) : AndroidViewModel(application
     var lines:ArrayList<Polyline> = ArrayList<Polyline>()
 
     init {
-        DaggerRepositoryComponent.create().injectResultViewModelRepository(this)
+        DaggerComponent.create().injectResultViewModel(this)
         splits = splitRepos.splits
         steps = stepRepos.steps
     }

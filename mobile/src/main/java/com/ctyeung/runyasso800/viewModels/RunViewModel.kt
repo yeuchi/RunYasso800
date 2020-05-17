@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.ctyeung.runyasso800.MainApplication
 import com.ctyeung.runyasso800.R
-import com.ctyeung.runyasso800.dagger.DaggerRepositoryComponent
+import com.ctyeung.runyasso800.dagger.DaggerComponent
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.YassoDatabase
 import com.ctyeung.runyasso800.room.splits.SplitRepository
@@ -22,7 +22,7 @@ import kotlin.math.roundToLong
 
 /*
  * To do :
- * 1. refactor variables as getters / setters
+ * 1) Magic strings need to be consolidated into string.xml
  */
 class RunViewModel (application: Application) : AndroidViewModel(application)
 {
@@ -30,7 +30,7 @@ class RunViewModel (application: Application) : AndroidViewModel(application)
     var splits:LiveData<List<Split>>
 
     init {
-        DaggerRepositoryComponent.create().injectRunViewModelRepository(this)
+        DaggerComponent.create().injectRunViewModel(this)
         splits = repository.splits
     }
 
@@ -49,8 +49,8 @@ class RunViewModel (application: Application) : AndroidViewModel(application)
     }
 
     fun updateData() {
-        txtLat = StateMachine.prevLocation?.latitude.toString()
-        txtLong = StateMachine.prevLocation?.longitude.toString()
+        txtLat = SharedPrefUtility.getLastLocation(SharedPrefUtility.keyLastLatitutde)
+        txtLong = SharedPrefUtility.getLastLocation(SharedPrefUtility.keyLastLongitude)
 
         // distance in current split
         txtStepDistance = "Dis: ${getLastSplitDistance().roundToInt()}m";
@@ -70,7 +70,8 @@ class RunViewModel (application: Application) : AndroidViewModel(application)
         /*
          * Use a hash here to reduce the code
          */
-        val str = getString(StateMachine.current)
+        val runState = SharedPrefUtility.getRunState()
+        val str = getString(runState)
         txtSplitType = str
     }
 

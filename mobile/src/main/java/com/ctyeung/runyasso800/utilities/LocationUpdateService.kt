@@ -28,10 +28,14 @@ import androidx.core.app.NotificationCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.ctyeung.runyasso800.MainActivity
 import com.ctyeung.runyasso800.R
+import com.ctyeung.runyasso800.dagger.DaggerComponent
 import com.ctyeung.runyasso800.stateMachine.StateMachine
+import com.ctyeung.runyasso800.viewModels.IRunStatsCallBack
 import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 import com.ctyeung.runyasso800.viewModels.UpdateCode
 import com.google.android.gms.location.*
+import javax.inject.Inject
+import javax.inject.Named
 
 
 /**
@@ -48,7 +52,7 @@ import com.google.android.gms.location.*
  * continue. When the activity comes back to the foreground, the foreground service stops, and the
  * notification associated with that service is removed.
  */
-class LocationUpdateService : Service() {
+class LocationUpdateService : Service(), IRunStatsCallBack {
     private val mBinder: IBinder = LocalBinder()
 
     /**
@@ -79,9 +83,15 @@ class LocationUpdateService : Service() {
      * The current location.
      */
     private var mLocation: Location? = null
+    private lateinit var stateMachine:StateMachine
 
     override fun onCreate() {
         instance = this
+        stateMachine = StateMachine(this)
+
+        // start with a clean slate
+        stateMachine.interruptClear()
+
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         mLocationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
@@ -90,13 +100,10 @@ class LocationUpdateService : Service() {
             }
         }
         createLocationRequest()
-        lastLocation
-        val handlerThread =
-            HandlerThread(TAG)
+        val handlerThread = HandlerThread(TAG)
         handlerThread.start()
         mServiceHandler = Handler(handlerThread.looper)
-        mNotificationManager =
-            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        mNotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         // Android O requires a Notification Channel.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -114,14 +121,8 @@ class LocationUpdateService : Service() {
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
-        Log.i(
-            TAG,
-            "Service started"
-        )
-        val startedFromNotification = intent.getBooleanExtra(
-            EXTRA_STARTED_FROM_NOTIFICATION,
-            false
-        )
+        Log.i(TAG, "Service started")
+        val startedFromNotification = intent.getBooleanExtra(EXTRA_STARTED_FROM_NOTIFICATION, false)
 
         // We got here because the user decided to remove location updates from the notification.
         if (startedFromNotification) {
@@ -141,10 +142,7 @@ class LocationUpdateService : Service() {
         // Called when a client (MainActivity in case of this sample) comes to the foreground
         // and binds with this service. The service should cease to be a foreground service
         // when that happens.
-        Log.i(
-            TAG,
-            "in onBind()"
-        )
+        Log.i(TAG, "in onBind()")
         stopForeground(true)
         mChangingConfiguration = false
         return mBinder
@@ -154,10 +152,7 @@ class LocationUpdateService : Service() {
         // Called when a client (MainActivity in case of this sample) returns to the foreground
         // and binds once again with this service. The service should cease to be a foreground
         // service when that happens.
-        Log.i(
-            TAG,
-            "in onRebind()"
-        )
+        Log.i(TAG, "in onRebind()")
         stopForeground(true)
         mChangingConfiguration = false
         super.onRebind(intent)
@@ -190,6 +185,18 @@ class LocationUpdateService : Service() {
 
     override fun onDestroy() {
         mServiceHandler!!.removeCallbacksAndMessages(null)
+    }
+
+    fun runStart() {
+        stateMachine.interruptStart()
+    }
+
+    fun runPause() {
+        stateMachine.interruptPause()
+    }
+
+    fun runClear() {
+        stateMachine.interruptClear()
     }
 
     /**
@@ -267,11 +274,26 @@ class LocationUpdateService : Service() {
             return mLocation
         }
 
-    fun onCallBack(msg:UpdateCode) {
+    fun broadcast2RunActivity(msg:UpdateCode) {
         // Notify anyone listening for broadcasts about the new location.
         var intent:Intent = Intent(ACTION_BROADCAST);
         intent.putExtra(EXTRA_UPDATE_CODE, msg);
         LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
+    }
+
+    // State machine callback -- data update
+    override fun onHandleLocationUpdate() {
+        broadcast2RunActivity(UpdateCode.LOCATION_UPDATE)
+    }
+
+    // State machine callback -- background update, vibrate, beep
+    override fun onChangedSplit() {
+        broadcast2RunActivity(UpdateCode.CHANGE_SPLIT)
+    }
+
+    // State machine callback
+    override fun onHandleYassoDone() {
+        broadcast2RunActivity(UpdateCode.DONE)
     }
 
     private fun onNewLocation(location: Location) {
@@ -280,7 +302,7 @@ class LocationUpdateService : Service() {
             "New location: $location"
         )
         mLocation = location
-        StateMachine.update(location)
+        stateMachine.update(location)
 
         // Update notification content if running as a foreground service.
         if (serviceIsRunningInForeground(this)) {
@@ -400,6 +422,5 @@ class LocationUpdateService : Service() {
          */
         private const val NOTIFICATION_ID = 12345678
         var instance:LocationUpdateService?=null
-
     }
 }

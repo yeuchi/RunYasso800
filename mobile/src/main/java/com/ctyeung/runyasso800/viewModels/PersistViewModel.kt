@@ -9,7 +9,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.ctyeung.runyasso800.MainApplication
 import com.ctyeung.runyasso800.R
-import com.ctyeung.runyasso800.dagger.DaggerRepositoryComponent
+import com.ctyeung.runyasso800.dagger.DaggerComponent
 import com.ctyeung.runyasso800.room.YassoDatabase
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.splits.SplitRepository
@@ -38,7 +38,7 @@ class PersistViewModel (application: Application) : AndroidViewModel(application
     var totalJogDis:Double = 0.0
 
     init {
-        DaggerRepositoryComponent.create().injectPersistViewModelRepository(this)
+        DaggerComponent.create().injectPersistViewModel(this)
         splits = splitRepos.splits
         steps = stepRepos.steps
     }

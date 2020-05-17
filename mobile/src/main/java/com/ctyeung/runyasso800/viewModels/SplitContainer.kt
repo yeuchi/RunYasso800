@@ -41,13 +41,13 @@ class SplitContainer {
      * update background, vibrate, beep
      */
     fun updateSupport() {
-        val type = StateMachine.current
-        updateBackgroundColor(type)
-        vibrate(type)
-        beep(type)
+        val runState = SharedPrefUtility.getRunState()
+        updateBackgroundColor(runState)
+        vibrate(runState)
+        beep(runState)
     }
 
-    fun updateBackgroundColor(type:Type = StateMachine.current) {
+    fun updateBackgroundColor(type:Type = SharedPrefUtility.getRunState()) {
         run.dataContainer.background = getViewBackground(type)
     }
 

@@ -10,10 +10,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.ctyeung.runyasso800.dagger.DaggerComponent
 import com.ctyeung.runyasso800.databinding.ActivityRunBinding
 import com.ctyeung.runyasso800.stateMachine.*
 import com.ctyeung.runyasso800.utilities.LocationUpdateService
 import com.ctyeung.runyasso800.viewModels.*
+import javax.inject.Inject
+import javax.inject.Named
 
 
 /*
@@ -38,15 +41,20 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     lateinit var stepViewModel:StepViewModel
     lateinit var activity: RunActivity
     lateinit var wakeLock:PowerManager.WakeLock
+   // @Inject @field:Named("runState") lateinit var stateMachine:StateMachine
 
     companion object {
         var self:RunActivity? = null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        self = this
         super.onCreate(savedInstanceState)
+        self = this
+
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+
+        //DaggerComponent.create().injectRunActivity(this)
+       // stateMachine.initialize(this)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_run)
         binding.run = this
@@ -54,7 +62,6 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
 
         stepViewModel = ViewModelProvider(this).get(StepViewModel::class.java)
         runViewModel = ViewModelProvider(this).get(RunViewModel::class.java)
-        StateMachine.initialize(this)
 
         fab = RunFloatingActionButtons(this)
         splitContainer = SplitContainer(this, stepViewModel, runViewModel)
@@ -73,14 +80,14 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         })
 
         // start with a clean slate
-        StateMachine.interruptClear()
+        //stateMachine.interruptClear()
 
         if (shouldAskPermissions())
             askPermissions()
     }
 
     // The BroadcastReceiver used to listen from broadcasts from the service.
-    //private var myReceiver: MyReceiver? = null
+    private var myReceiver: MyReceiver? = null
 
     // A reference to the service used to get location updates.
     private var mService: LocationUpdateService? = null
@@ -109,9 +116,9 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     /**
      * Receiver for broadcasts sent by [LocationUpdatesService].
      */
- /*   private class MyReceiver : BroadcastReceiver() {
+    private class MyReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            val code = intent.getStringExtra(LocationUpdateService.EXTRA_UPDATE_CODE) as UpdateCode
+            val code = intent.extras.get(LocationUpdateService.EXTRA_UPDATE_CODE) as UpdateCode
             if(self!=null) {
 
                 when (code) {
@@ -129,7 +136,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
                 }
             }
         }
-    }*/
+    }
 
     override fun onStart() {
         super.onStart()
@@ -153,15 +160,15 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
      */
     override fun onResume() {
         super.onResume()
-       /* myReceiver = MyReceiver()
+        myReceiver = MyReceiver()
         LocalBroadcastManager.getInstance(this).registerReceiver(
             myReceiver!!,
             IntentFilter(LocationUpdateService.ACTION_BROADCAST)
-        )*/
+        )
     }
 
     override fun onPause() {
-       // LocalBroadcastManager.getInstance(this).unregisterReceiver(myReceiver!!)
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(myReceiver!!)
         super.onPause()
     }
 
@@ -258,18 +265,22 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     fun onClickStart()
     {
         wakeLock.acquire()
-        if(mService != null)
+        if(mService != null) {
             mService!!.requestLocationUpdates()
 
-        when(StateMachine.current){
-            StateIdle::class.java -> {
-                StateMachine.interruptStart()
-                fab.changeState(StateResume::class.java)
-            }
+            val runState = SharedPrefUtility.getRunState()
+            when (runState) {
+                StateIdle::class.java -> {
+                    //stateMachine.interruptStart()
+                    mService!!.runStart()
+                    fab.changeState(StateResume::class.java)
+                }
 
-            StatePause::class.java -> {
-                StateMachine.interruptPause()
-                fab.changeState(StateResume::class.java)
+                StatePause::class.java -> {
+                    //stateMachine.interruptPause()
+                    mService!!.runPause()
+                    fab.changeState(StateResume::class.java)
+                }
             }
         }
     }
@@ -282,16 +293,22 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
      */
     fun onClickPause()
     {
-        // must be sprint / jog
-        when(StateMachine.current){
-            StateJog::class.java,
-            StateSprint::class.java -> {
-                StateMachine.interruptPause()
-                fab.changeState(StatePause::class.java)
+        if(mService != null) {
+
+            // must be sprint / jog
+            val runState = SharedPrefUtility.getRunState()
+            when (runState) {
+                StateJog::class.java,
+                StateSprint::class.java -> {
+                    //stateMachine.interruptPause()
+                    mService!!.runPause()
+                    fab.changeState(StatePause::class.java)
+                }
+                else -> {
+                }
             }
-            else -> {}
+            RemoveLocation()
         }
-        RemoveLocation()
     }
 
     /*
@@ -300,18 +317,23 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
      */
     fun onClickClear()
     {
-        // must be paused / error / done
-        when(StateMachine.current){
-            StateIdle::class.java,
-            StatePause::class.java,
-            StateError::class.java,
-            StateDone::class.java -> {
-                StateMachine.interruptClear()
-                fab.changeState(StateClear::class.java)
-                splitContainer.updateBackgroundColor()
-            }
-            else -> {
-                // error condition
+        if(mService != null) {
+
+            // must be paused / error / done
+            val runState = SharedPrefUtility.getRunState()
+            when (runState) {
+                StateIdle::class.java,
+                StatePause::class.java,
+                StateError::class.java,
+                StateDone::class.java -> {
+                    //stateMachine.interruptClear()
+                    mService!!.runClear()
+                    fab.changeState(StateClear::class.java)
+                    splitContainer.updateBackgroundColor()
+                }
+                else -> {
+                    // error condition
+                }
             }
         }
     }
@@ -322,7 +344,8 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
      */
     fun onClickNext()
     {
-        when(StateMachine.current){
+        val runState = SharedPrefUtility.getRunState()
+        when(runState){
             StateDone::class.java,
             StatePause::class.java -> {
                 gotoActivity(ResultActivity::class.java)
