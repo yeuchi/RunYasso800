@@ -24,7 +24,7 @@ import java.util.*
 import com.ctyeung.runyasso800.databinding.ActivityPersistBinding
 
 /*
- * To do:
+ * TODO:
  * 1. send image(s) from Result ?
  * 2. user can delete all data
  *

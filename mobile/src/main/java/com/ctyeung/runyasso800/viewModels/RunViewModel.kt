@@ -1,11 +1,13 @@
 package com.ctyeung.runyasso800.viewModels
 
 import android.app.Application
+import android.content.SharedPreferences
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.ctyeung.runyasso800.MainApplication
 import com.ctyeung.runyasso800.R
+import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 import com.ctyeung.runyasso800.dagger.DaggerComponent
 import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.room.YassoDatabase
@@ -43,14 +45,17 @@ class RunViewModel (application: Application) : AndroidViewModel(application)
     var txtTotalTime:String = "Total: 00:00"
     var txtSplitType:String = "Sprint/Jog"
     var txtTotalSplits:String = "Total: 10"
+    val defaultValue = "--"
 
     fun init() {
-        txtTotalSplits = "${MainApplication.applicationContext().resources.getString(R.string.total)}: ${SharedPrefUtility.getNumIterations()}"
+        txtTotalSplits = "${MainApplication.applicationContext().resources.getString(R.string.total)}: ${SharedPrefUtility.get(SharedPrefUtility.keyNumIterations, Split.DEFAULT_SPLIT_ITERATIONS)}"
+        SharedPrefUtility.set(SharedPrefUtility.keyLastLatitutde, defaultValue)
+        SharedPrefUtility.set(SharedPrefUtility.keyLastLongitude, defaultValue)
     }
 
     fun updateData() {
-        txtLat = SharedPrefUtility.getLastLocation(SharedPrefUtility.keyLastLatitutde)
-        txtLong = SharedPrefUtility.getLastLocation(SharedPrefUtility.keyLastLongitude)
+        txtLat = SharedPrefUtility.get(SharedPrefUtility.keyLastLatitutde, defaultValue)
+        txtLong = SharedPrefUtility.get(SharedPrefUtility.keyLastLongitude, defaultValue)
 
         // distance in current split
         txtStepDistance = "Dis: ${getLastSplitDistance().roundToInt()}m";
@@ -67,10 +72,7 @@ class RunViewModel (application: Application) : AndroidViewModel(application)
     }
 
     fun updateType() {
-        /*
-         * Use a hash here to reduce the code
-         */
-        val runState = SharedPrefUtility.getRunState()
+        val runState = SharedPrefUtility.get(SharedPrefUtility.keyRunState, StateError::class.java)
         val str = getString(runState)
         txtSplitType = str
     }
@@ -89,11 +91,11 @@ class RunViewModel (application: Application) : AndroidViewModel(application)
     }
 
     fun getIndex():Int {
-       return SharedPrefUtility.getIndex(SharedPrefUtility.keySplitIndex)
+       return SharedPrefUtility.get(SharedPrefUtility.keySplitIndex, 0)
     }
 
     fun setIndex(i:Int) {
-        SharedPrefUtility.setIndex(SharedPrefUtility.keySplitIndex, i)
+        SharedPrefUtility.set(SharedPrefUtility.keySplitIndex, i)
     }
 
     fun getLastSplitElapsedTime():Long {
@@ -127,7 +129,7 @@ class RunViewModel (application: Application) : AndroidViewModel(application)
     }
 
     fun getLastSplitDistance():Double {
-        return SharedPrefUtility.getSplitDistance()
+        return SharedPrefUtility.get(SharedPrefUtility.keySplitDistance, 0f).toDouble()
     }
 
     fun insert(split: Split?) = viewModelScope.launch {
@@ -138,8 +140,8 @@ class RunViewModel (application: Application) : AndroidViewModel(application)
 
     fun clear() = viewModelScope.launch {
         repository.clear()
-        SharedPrefUtility.setSplitDistance(0.0)
-        SharedPrefUtility.setIndex(SharedPrefUtility.keySplitIndex, 0)
+        SharedPrefUtility.set(SharedPrefUtility.keySplitDistance, 0f)
+        SharedPrefUtility.set(SharedPrefUtility.keySplitIndex, 0)
     }
 
     fun update(split: Split?) = viewModelScope.launch {

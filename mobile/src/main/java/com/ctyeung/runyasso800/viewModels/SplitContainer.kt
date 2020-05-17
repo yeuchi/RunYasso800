@@ -17,8 +17,7 @@ import com.ctyeung.runyasso800.utilities.TimeFormatter
 import kotlin.math.roundToInt
 
 /*
- * To do:
- * 1. use dagger for dependencies
+ * TODO:
  * 2. use hash to reduce code complexity
  */
 class SplitContainer {
@@ -41,15 +40,19 @@ class SplitContainer {
      * update background, vibrate, beep
      */
     fun updateSupport() {
-        val runState = SharedPrefUtility.getRunState()
         updateBackgroundColor(runState)
         vibrate(runState)
         beep(runState)
     }
 
-    fun updateBackgroundColor(type:Type = SharedPrefUtility.getRunState()) {
-        run.dataContainer.background = getViewBackground(type)
+    fun updateBackgroundColor(state:Type = runState) {
+        run.dataContainer.background = getViewBackground(state)
     }
+
+    private val runState:Type
+        get() {
+            return SharedPrefUtility.get(SharedPrefUtility.keyRunState, StateError::class.java)
+        }
 
     private fun getViewBackground(state: Type): Drawable {
         var id:Int = R.drawable.round_corners

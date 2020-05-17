@@ -41,15 +41,15 @@ class StateClear : StateAbstract, Iclear, Iidle {
 
     fun clearStep() {
         CoroutineScope(Dispatchers.IO).launch {stepRepos.clear()}
-        SharedPrefUtility.setIndex(SharedPrefUtility.keyStepIndex, 0)
-        SharedPrefUtility.setSplitDistance(0.0)
-        SharedPrefUtility.setIndex(SharedPrefUtility.keyStepIndex,0)
+        SharedPrefUtility.set(SharedPrefUtility.keyStepIndex, 0)
+        SharedPrefUtility.set(SharedPrefUtility.keySplitDistance, 0f)
+        SharedPrefUtility.set(SharedPrefUtility.keyStepIndex,0)
     }
 
     fun clearSplit() {
         CoroutineScope(Dispatchers.IO).launch {splitRepos.clear()}
-        SharedPrefUtility.setSplitDistance(0.0)
-        SharedPrefUtility.setIndex(SharedPrefUtility.keySplitIndex, 0)
+        SharedPrefUtility.set(SharedPrefUtility.keySplitDistance, 0f)
+        SharedPrefUtility.set(SharedPrefUtility.keySplitIndex, 0)
     }
 
     /*

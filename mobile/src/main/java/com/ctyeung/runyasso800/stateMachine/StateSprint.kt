@@ -5,6 +5,7 @@ import com.ctyeung.runyasso800.viewModels.IRunStatsCallBack
 import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
 import com.ctyeung.runyasso800.viewModels.RunViewModel
 import com.ctyeung.runyasso800.viewModels.StepViewModel
+import java.lang.reflect.Type
 
 class StateSprint : MotionState, Isprint, Ijog {
     var NUM_ITERATIONS:Int = Split.DEFAULT_SPLIT_ITERATIONS
@@ -12,8 +13,8 @@ class StateSprint : MotionState, Isprint, Ijog {
     constructor(listener:IStateCallback,
                 actListener: IRunStatsCallBack):super(listener, actListener)
     {
-        FINISH_DISTANCE = SharedPrefUtility.getDistance(SharedPrefUtility.keySprintDis).toDouble()
-        NUM_ITERATIONS = SharedPrefUtility.getNumIterations()
+        FINISH_DISTANCE = SharedPrefUtility.get(SharedPrefUtility.keySprintDis, Split.DEFAULT_SPLIT_DISTANCE.toInt()).toDouble()
+        NUM_ITERATIONS = SharedPrefUtility.get(SharedPrefUtility.keyNumIterations, Split.DEFAULT_SPLIT_ITERATIONS)
     }
 
     /*
@@ -38,15 +39,15 @@ class StateSprint : MotionState, Isprint, Ijog {
      * - else, we have more iterations
      */
     fun changeState() {
+        // go to Jog !
+        var stateType:Type = StateJog::class.java
 
         if(getSplitIndex() >= NUM_ITERATIONS)  {
             // done with Yasso !
-            listener.onChangeState(StateDone::class.java)
+            stateType = StateDone::class.java
         }
-        else {
-            // go to Jog !
-            listener.onChangeState(StateJog::class.java)
-        }
+
+        listener.onChangeState(stateType)
         actListener.onChangedSplit()
     }
 }

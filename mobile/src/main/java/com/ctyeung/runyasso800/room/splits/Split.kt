@@ -48,7 +48,7 @@ data class Split(val splitIndex:Int=0,  // 0 - 9 : total of 10
 
         if(run_type == RUN_TYPE_SPRINT) {
             val timeElapsed = endTime - startTime
-            if (timeElapsed > SharedPrefUtility.getGoal(SharedPrefUtility.keySprintGoal)*1000)
+            if (timeElapsed > SharedPrefUtility.get(SharedPrefUtility.keySprintGoal, 0L)*1000)
                 this.meetGoal = false
         }
     }

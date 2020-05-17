@@ -1,6 +1,7 @@
 package com.ctyeung.runyasso800.stateMachine
 
 import android.location.Location
+import android.util.Log
 import com.ctyeung.runyasso800.viewModels.IRunStatsCallBack
 import com.ctyeung.runyasso800.viewModels.RunViewModel
 import com.ctyeung.runyasso800.viewModels.SharedPrefUtility
@@ -9,8 +10,9 @@ import java.lang.reflect.Type
 import javax.inject.Inject
 
 /*
- * To do:
- * 2. refactor execute and update logic for coherence and simplification
+ * TODO:
+ *  1. Common 'Enter' and 'Exit' for states
+ *  2. refactor execute and update logic for coherence and simplification
  */
 class StateMachine : IStateCallback {
     var prevLocation:Location ?= null
@@ -37,15 +39,15 @@ class StateMachine : IStateCallback {
         stateMap.put(StateIdle::class.java, StateIdle(this, actListener))
 
         previous = StateIdle::class.java
-        SharedPrefUtility.setRunState(StateIdle::class.java)
+        SharedPrefUtility.set(SharedPrefUtility.keyRunState, StateIdle::class.java)
     }
 
     /*
      * state has been updated
      */
     override fun onChangeState(current:Type) {
-        previous = SharedPrefUtility.getRunState()
-        SharedPrefUtility.setRunState(current)
+        previous = currentState
+        SharedPrefUtility.set(SharedPrefUtility.keyRunState, current)
 
         when(current){
             StateSprint::class.java,
@@ -66,8 +68,7 @@ class StateMachine : IStateCallback {
      * -> When DONE -> callback Activity
      */
     fun interruptStart() {
-        val current = SharedPrefUtility.getRunState()
-        when(current) {
+        when(currentState) {
             StateIdle::class.java,
             StatePause::class.java,
             StateResume::class.java -> {
@@ -94,11 +95,10 @@ class StateMachine : IStateCallback {
          * previous state is sprint or jog
          * - we wish to return to that state on resume
          */
-        val current = SharedPrefUtility.getRunState()
-        when(current) {
+        when(currentState) {
             StateSprint::class.java,
             StateJog::class.java -> {
-                stateMap[StatePause::class.java]?.execute((current))
+                stateMap[StatePause::class.java]?.execute((currentState))
             }
 
             //if we were at pause, then resume !
@@ -117,13 +117,12 @@ class StateMachine : IStateCallback {
      * -> goto CLEAR -> IDLE
      */
     fun interruptClear() {
-        val current = SharedPrefUtility.getRunState()
-        when(current) {
+        when(currentState) {
             StateIdle::class.java,
             StatePause::class.java,
             StateError::class.java,
             StateDone::class.java -> {
-                stateMap[StateClear::class.java]?.execute(current)
+                stateMap[StateClear::class.java]?.execute(currentState)
             }
 
             else -> {
@@ -141,19 +140,23 @@ class StateMachine : IStateCallback {
      */
     fun update(location: Location) {
         if(null!=prevLocation) {
-            val current = SharedPrefUtility.getRunState()
-            when (current) {
+            when (currentState) {
                 StateSprint::class.java,
                 StateJog::class.java -> {
-                    var state = stateMap[current] as MotionState
+                    var state = stateMap[currentState] as MotionState
                     state.setLocation(prevLocation, location)
-                    onChangeState(current)
+                    onChangeState(currentState)
                 }
                 else -> {}
             }
         }
         prevLocation = location
-        SharedPrefUtility.setLastLocation(SharedPrefUtility.keyLastLatitutde, location.latitude)
-        SharedPrefUtility.setLastLocation(SharedPrefUtility.keyLastLongitude, location.longitude)
+        SharedPrefUtility.set(SharedPrefUtility.keyLastLatitutde, location.latitude.toString())
+        SharedPrefUtility.set(SharedPrefUtility.keyLastLongitude, location.longitude.toString())
+    }
+
+    private val currentState:Type
+    get() {
+        return SharedPrefUtility.get(SharedPrefUtility.keyRunState, StateError::class.java)
     }
 }

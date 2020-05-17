@@ -29,7 +29,7 @@ class GoalActivityTests {
 
     @Test
     fun getModelSprintGoal() {
-        SharedPrefUtility.setGoal(SharedPrefUtility.keySprintGoal, 100)
+        SharedPrefUtility.set(SharedPrefUtility.keySprintGoal, 100L)
         mActivityRule.activity.model.setInitValues()
         val sprintGoal = mActivityRule.activity.model.sprintGoal
         assertEquals(sprintGoal, "00:01:40")
@@ -37,7 +37,7 @@ class GoalActivityTests {
 
     @Test
     fun getModelRaceGoal() {
-        SharedPrefUtility.setGoal(SharedPrefUtility.keyRaceGoal, 100)
+        SharedPrefUtility.set(SharedPrefUtility.keyRaceGoal, 100L)
         mActivityRule.activity.model.setInitValues()
         val raceGoal = mActivityRule.activity.model.raceGoal
         assertEquals(raceGoal, "00:01:40")
@@ -47,8 +47,8 @@ class GoalActivityTests {
     fun getModelPersistName() {
         // test default value
         mActivityRule.activity.model.persistName("")
-        val name = SharedPrefUtility.getName()
         val expected = MainApplication.applicationContext().resources.getString(R.string.run_yasso_800)
+        val name = SharedPrefUtility.get(SharedPrefUtility.keyName, "bad name")
         assertEquals(name, expected)
     }
 }

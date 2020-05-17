@@ -15,9 +15,8 @@ import kotlinx.android.synthetic.main.activity_goal.*
 import java.util.*
 
 /*
- * To do:
+ * TODO:
  * 1. automatically navigate to run-activity ?
- * 2. refactor handlers into viewModel ?
  *
  * Description:
  * Activity for naming this training event and selecting a race goal time.
@@ -38,7 +37,7 @@ class GoalActivity : BaseActivity() {
          * Are we completed here ?
          */
         override fun isCompleted():Boolean {
-            val goal = SharedPrefUtility.getGoal(SharedPrefUtility.keyRaceGoal)
+            val goal = SharedPrefUtility.get(SharedPrefUtility.keyRaceGoal, 0L)
             if(goal > 0)
                 return true
 

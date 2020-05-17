@@ -147,11 +147,11 @@ abstract class MotionState  : StateAbstract {
     }
 
     fun getSplitIndex():Int {
-        return SharedPrefUtility.getIndex(SharedPrefUtility.keySplitIndex)
+        return SharedPrefUtility.get(SharedPrefUtility.keySplitIndex, 0)
     }
 
     fun setSplitIndex(i:Int) {
-        SharedPrefUtility.setIndex(SharedPrefUtility.keySplitIndex, i)
+        SharedPrefUtility.set(SharedPrefUtility.keySplitIndex, i)
     }
 
     fun insertSplit(split:Split?) {
@@ -165,23 +165,23 @@ abstract class MotionState  : StateAbstract {
     }
 
     fun resetStep() {
-        SharedPrefUtility.setSplitDistance(0.0)
-        SharedPrefUtility.setIndex(SharedPrefUtility.keyStepIndex,0)
+        SharedPrefUtility.set(SharedPrefUtility.keySplitDistance, 0f)
+        SharedPrefUtility.set(SharedPrefUtility.keyStepIndex,0)
     }
 
     fun getNextStepIndex():Int {
-        val i = SharedPrefUtility.getIndex(SharedPrefUtility.keyStepIndex)
-        SharedPrefUtility.setIndex(SharedPrefUtility.keyStepIndex,i+1)
+        val i = SharedPrefUtility.get(SharedPrefUtility.keyStepIndex, 0)
+        SharedPrefUtility.set(SharedPrefUtility.keyStepIndex,i+1)
         return i
     }
 
     fun getTotalStepDistance():Double {
-        return SharedPrefUtility.getSplitDistance()
+        return SharedPrefUtility.get(SharedPrefUtility.keySplitDistance, 0f).toDouble()
     }
 
     fun insertStep(step:Step) {
-        val splitDistance = SharedPrefUtility.getSplitDistance() + step.dis
-        SharedPrefUtility.setSplitDistance(splitDistance)
+        val splitDistance = getTotalStepDistance() + step.dis
+        SharedPrefUtility.set(SharedPrefUtility.keySplitDistance, splitDistance.toFloat())
         CoroutineScope(Dispatchers.IO).launch {stepRepos.insert(step)}
     }
 }

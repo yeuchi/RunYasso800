@@ -18,22 +18,23 @@ class AboutViewModel : AndroidViewModel{
     var version:String
 
     constructor(application: Application):super(application){
-        sprintDistance = "${SharedPrefUtility.getDistance(SharedPrefUtility.keySprintDis)} m"
-        jogDistance = "${SharedPrefUtility.getDistance(SharedPrefUtility.keyJogDis)} m"
-        loops = "${SharedPrefUtility.getNumIterations().toString()} X"
-        sampleRate = "${formatLargeNumber(SharedPrefUtility.getGPSsampleRate()).toString()} ms"
+        sprintDistance = "${SharedPrefUtility.get(SharedPrefUtility.keySprintDis, Split.DEFAULT_SPLIT_DISTANCE.toInt())} m"
+        jogDistance = "${SharedPrefUtility.get(SharedPrefUtility.keyJogDis, Split.DEFAULT_SPLIT_DISTANCE.toInt())} m"
+        loops = "${SharedPrefUtility.get(SharedPrefUtility.keyNumIterations, Split.DEFAULT_SPLIT_ITERATIONS).toString()} X"
+        val rate = SharedPrefUtility.get(SharedPrefUtility.keyGPSsampleRate, LocationUpdateService.DEFAULT_SAMPLE_RATE)
+        sampleRate = "${formatLargeNumber(rate).toString()} ms"
         val context = MainApplication.applicationContext()
         version = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode.toString()
     }
 
     fun factoryReset() {
-        SharedPrefUtility.setDistance(SharedPrefUtility.keySprintDis, Split.DEFAULT_SPLIT_DISTANCE.toInt())
-        SharedPrefUtility.setDistance(SharedPrefUtility.keyJogDis, Split.DEFAULT_SPLIT_DISTANCE.toInt())
-        SharedPrefUtility.setGPSsampleRate(LocationUpdateService.DEFAULT_SAMPLE_RATE)
-        SharedPrefUtility.setNumIterations(Split.DEFAULT_SPLIT_ITERATIONS)
-        SharedPrefUtility.setGoal(SharedPrefUtility.keyRaceGoal, 0)
-        SharedPrefUtility.setGoal(SharedPrefUtility.keySprintGoal, 0)
-        SharedPrefUtility.setName(MainApplication.applicationContext().resources.getString(R.string.run_yasso_800))
+        SharedPrefUtility.set(SharedPrefUtility.keySprintDis, Split.DEFAULT_SPLIT_DISTANCE.toInt())
+        SharedPrefUtility.set(SharedPrefUtility.keyJogDis, Split.DEFAULT_SPLIT_DISTANCE.toInt())
+        SharedPrefUtility.set(SharedPrefUtility.keyGPSsampleRate, LocationUpdateService.DEFAULT_SAMPLE_RATE)
+        SharedPrefUtility.set(SharedPrefUtility.keyNumIterations, Split.DEFAULT_SPLIT_ITERATIONS)
+        SharedPrefUtility.set(SharedPrefUtility.keyRaceGoal, 0L)
+        SharedPrefUtility.set(SharedPrefUtility.keySprintGoal, 0L)
+        SharedPrefUtility.set(SharedPrefUtility.keyName, MainApplication.applicationContext().resources.getString(R.string.run_yasso_800))
     }
 
     fun formatLargeNumber(num:Long):String {

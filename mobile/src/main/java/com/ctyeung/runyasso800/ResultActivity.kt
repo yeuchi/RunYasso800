@@ -20,10 +20,9 @@ import java.lang.Exception
 
 
 /*
- * To do:
+ * TODO:
  * 4. screenshots and store as image files for persist-activity
  * 7. check availability of map
- * 8. new viewModel with join entries
  *
  * Description:
  * Display performance result as follows

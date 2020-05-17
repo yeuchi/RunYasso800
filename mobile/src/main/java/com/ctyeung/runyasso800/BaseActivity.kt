@@ -26,8 +26,8 @@ open class BaseActivity : AppCompatActivity() {
      * Common code -- refactor !!!
      */
     fun getActionBarTitle():String {
-        val name = SharedPrefUtility.getName()
-        val time = SharedPrefUtility.getGoal(SharedPrefUtility.keySprintGoal)
+        val name = SharedPrefUtility.get(SharedPrefUtility.keyName, MainApplication.applicationContext().resources.getString(R.string.run_yasso_800))
+        val time:Long = SharedPrefUtility.get(SharedPrefUtility.keySprintGoal, 0L)
 
         if(time>0) {
             val goal = resources.getString(R.string.split_goal)

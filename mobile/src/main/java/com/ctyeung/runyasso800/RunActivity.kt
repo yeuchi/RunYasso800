@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.IBinder
 import android.os.PowerManager
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -15,15 +16,14 @@ import com.ctyeung.runyasso800.databinding.ActivityRunBinding
 import com.ctyeung.runyasso800.stateMachine.*
 import com.ctyeung.runyasso800.utilities.LocationUpdateService
 import com.ctyeung.runyasso800.viewModels.*
+import java.lang.reflect.Type
 import javax.inject.Inject
 import javax.inject.Named
 
 
 /*
- * To do:
- * 1. Use Dagger dependency injection !!!
+ * TODO:
  * 2. check availability of GPS
- * 3. refactor room split (no time, lat/long) and step
  * 4. persist state so we can leave and return to this activity when PAUSED.
  *
  * Distance icon credit to Freepike from Flaticon
@@ -118,6 +118,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
      */
     private class MyReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
+
             val code = intent.extras.get(LocationUpdateService.EXTRA_UPDATE_CODE) as UpdateCode
             if(self!=null) {
 
@@ -268,7 +269,6 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         if(mService != null) {
             mService!!.requestLocationUpdates()
 
-            val runState = SharedPrefUtility.getRunState()
             when (runState) {
                 StateIdle::class.java -> {
                     //stateMachine.interruptStart()
@@ -281,6 +281,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
                     mService!!.runPause()
                     fab.changeState(StateResume::class.java)
                 }
+                else -> toastErrorState(runState)
             }
         }
     }
@@ -296,7 +297,6 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         if(mService != null) {
 
             // must be sprint / jog
-            val runState = SharedPrefUtility.getRunState()
             when (runState) {
                 StateJog::class.java,
                 StateSprint::class.java -> {
@@ -304,8 +304,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
                     mService!!.runPause()
                     fab.changeState(StatePause::class.java)
                 }
-                else -> {
-                }
+                else -> toastErrorState(runState)
             }
             RemoveLocation()
         }
@@ -320,7 +319,6 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         if(mService != null) {
 
             // must be paused / error / done
-            val runState = SharedPrefUtility.getRunState()
             when (runState) {
                 StateIdle::class.java,
                 StatePause::class.java,
@@ -331,9 +329,8 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
                     fab.changeState(StateClear::class.java)
                     splitContainer.updateBackgroundColor()
                 }
-                else -> {
-                    // error condition
-                }
+
+                else -> toastErrorState(runState)
             }
         }
     }
@@ -344,12 +341,22 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
      */
     fun onClickNext()
     {
-        val runState = SharedPrefUtility.getRunState()
         when(runState){
             StateDone::class.java,
             StatePause::class.java -> {
                 gotoActivity(ResultActivity::class.java)
             }
+
+            else -> toastErrorState(runState)
         }
+    }
+
+    private val runState:Type
+     get() {
+        return SharedPrefUtility.get(SharedPrefUtility.keyRunState, StateError::class.java)
+    }
+
+    private fun toastErrorState(type:Type=StateError::class.java) {
+        Toast.makeText(this, "ErrState:${type}", Toast.LENGTH_LONG).show()
     }
 }

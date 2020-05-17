@@ -80,13 +80,13 @@ class PersistViewModel (application: Application) : AndroidViewModel(application
     }
 
     fun getRaceGoal():String {
-        val seconds = SharedPrefUtility.getGoal(SharedPrefUtility.keyRaceGoal)
+        val seconds:Long = SharedPrefUtility.get(SharedPrefUtility.keyRaceGoal, 0L)
         val str = TimeFormatter.printTime(seconds)
         return getResource(R.string.race_goal) + str
     }
 
     fun getSprintGoal():String {
-        val seconds = SharedPrefUtility.getGoal(SharedPrefUtility.keySprintGoal)
+        val seconds:Long = SharedPrefUtility.get(SharedPrefUtility.keySprintGoal, 0L)
         val str = TimeFormatter.printTime(seconds)
         return getResource(R.string.sprint_goal) + str
     }
@@ -191,7 +191,7 @@ class PersistViewModel (application: Application) : AndroidViewModel(application
 
         //val uriRight = SharedPrefUtility.getImageUri(this.applicationContext)
 
-        val uris = ArrayList<Uri>()
+       // val uris = ArrayList<Uri>()
         //   uris.add(uriRight)
 
         val emailIntent = Intent(Intent.ACTION_SEND_MULTIPLE)
@@ -210,7 +210,8 @@ class PersistViewModel (application: Application) : AndroidViewModel(application
         }*/
 
         // Subject
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, SharedPrefUtility.getName())
+        val name = SharedPrefUtility.get(SharedPrefUtility.keyName, MainApplication.applicationContext().resources.getString(R.string.run_yasso_800))
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, name)
 
         // need to insert image in the middle ...
         emailIntent.putExtra(Intent.EXTRA_TEXT, buildYassoMsg(header, footer))

@@ -10,183 +10,96 @@ import com.ctyeung.runyasso800.room.splits.Split
 import com.ctyeung.runyasso800.stateMachine.StateError
 import com.ctyeung.runyasso800.utilities.LocationUpdateService
 import java.io.File
-import java.lang.Exception
 import java.lang.reflect.Type
 
 /*
- * TODO: Refactor with inline and Reified functions
+ * TODO:
+ *  1. Improve type safety
+ *
+ * Description: Exercise using inline and reified type.
+ * However, I am sacrificing the type safety of kotlin language.
  */
 object SharedPrefUtility
 {
-    const val mypreference = "mypref"
-    const val keyImageUri = "imageUri"
-    const val keySprintDis = "sprintDis"
-    const val keyJogDis = "jogDis"
-    const val keyNumIterations = "iterations"
-    const val keyGPSsampleRate = "gps"
-    const val keyName = "name"
-    const val keySprintGoal = "sprintGoal"
-    const val keyRaceGoal = "raceGoal"
-    const val keySplitDistance = "splitDistance"
-    const val keyStepIndex = "stepIndex"
-    const val keySplitIndex = "splitIndex"
-    const val keyRunState = "runstate"
-    const val keyLastLatitutde = "lastLatitude"
-    const val keyLastLongitude = "lastLongitude"
+        const val mypreference = "mypref"
+        const val keyImageUri = "imageUri"
+        const val keySprintDis = "sprintDis"
+        const val keyJogDis = "jogDis"
+        const val keyNumIterations = "iterations"
+        const val keyGPSsampleRate = "gps"
+        const val keyName = "name"
+        const val keySprintGoal = "sprintGoal"
+        const val keyRaceGoal = "raceGoal"
+        const val keySplitDistance = "splitDistance"
+        const val keyStepIndex = "stepIndex"
+        const val keySplitIndex = "splitIndex"
+        const val keyRunState = "runstate"
+        const val keyLastLatitutde = "lastLatitude"
+        const val keyLastLongitude = "lastLongitude"
 
-    fun getLastLocation(key:String):String
-    {
-        var defaultLocation:String = "--"
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val str = sharedPreferences.getString(key, defaultLocation)
-        return str
-    }
+    inline fun<reified T> get(key:String, defValue:T):T {
+        val pref = getSharedPref()
 
-    fun setLastLocation(key:String, location:Double)
-    {
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val editor = sharedPreferences.edit()
-        editor.putString(key, location.toString())
-        editor.commit()
-    }
-
-    fun getRunState():Type
-    {
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val stateString = sharedPreferences.getString(keyRunState, "")
-        if(stateString!=null && stateString.length>0) {
-            try{
-                return Class.forName(stateString)
-            }
-            catch (ex:Exception){
-                return StateError::class.java
-            }
-        }
-        return StateError::class.java
-    }
-
-    fun setRunState(stateClass:Type)
-    {
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val editor = sharedPreferences.edit()
-        editor.putString(keyRunState, stateClass.toString().removePrefix("class "))
-        editor.commit()
-    }
-
-    fun getName():String
-    {
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val defaultName = MainApplication.applicationContext().resources.getString(R.string.run_yasso_800)
-        val name = sharedPreferences.getString(keyName, defaultName)
-        if(name!=null && name.length>0)
-            return name
-
-        return defaultName
-    }
-
-    fun setName(str:String)
-    {
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val editor = sharedPreferences.edit()
-        editor.putString(keyName, str)
-        editor.commit()
-    }
-
-    fun getGoal(key:String):Long
-    {
-        var defaultSeconds:Long = 0
-        when(key) {
+        val k = key
+        when (key) {
+            keySprintDis,
+            keyJogDis,
+            keyNumIterations,
+            keySplitIndex,
+            keyStepIndex -> return pref.getInt(k, defValue as Int) as T
+            keyGPSsampleRate,
             keySprintGoal,
-            keyRaceGoal -> { /* default */ }
+            keyRaceGoal -> return pref.getLong(k, defValue as Long) as T
+            keyName,
+            keyLastLongitude,
+            keyLastLatitutde -> return pref.getString(k, defValue as String) as T
+            keySplitDistance -> return pref.getFloat(k, defValue as Float) as T
+            keyRunState -> {
+                val def = type2String(defValue as Type)
+                var str = pref.getString(k, def)
+                if(str==null)
+                    str = type2String(StateError::class.java)
+
+                return Class.forName(str) as T
+            }
+            else -> return 0 as T
         }
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val seconds = sharedPreferences.getLong(key, defaultSeconds)
-        return seconds
     }
 
-    fun setGoal(key:String, seconds:Long)
+    inline fun<reified T> set(key:String, value:T)
     {
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val editor = sharedPreferences.edit()
-        editor.putLong(key, seconds)
+        val pref = getSharedPref()
+        val editor = pref.edit()
+
+        val k = key
+        when (key) {
+            keySprintDis,
+            keyJogDis,
+            keyNumIterations,
+            keySplitIndex,
+            keyStepIndex -> editor.putInt(k, value as Int)
+            keyGPSsampleRate,
+            keySprintGoal,
+            keyRaceGoal -> editor.putLong(k, value as Long)
+            keyName,
+            keyLastLongitude,
+            keyLastLatitutde -> editor.putString(k, value as String)
+            keySplitDistance -> editor.putFloat(k, value as Float)
+            keyRunState -> {
+                val str = type2String(value as Type)
+                editor.putString(k, str)
+            }
+        }
         editor.commit()
     }
 
-    // --- Run Activity -----
-
-    fun getIndex(key:String):Int
-    {
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val i = sharedPreferences.getInt(key, 0)
-        return i
+    fun type2String(type:Type):String {
+        return type.toString().removePrefix("class ")
     }
 
-    fun setIndex(key:String, i:Int)
+    fun getSharedPref(context:Context = MainApplication.applicationContext()):SharedPreferences
     {
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val editor = sharedPreferences.edit()
-        editor.putInt(key, i)
-        editor.commit()
-    }
-
-    fun getSplitDistance():Double
-    {
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val i = sharedPreferences.getFloat(keySplitDistance, 0f)
-        return i.toDouble()
-    }
-
-    fun setSplitDistance(meters:Double)
-    {
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val editor = sharedPreferences.edit()
-        editor.putFloat(keySplitDistance, meters.toFloat())
-        editor.commit()
-    }
-
-    fun getGPSsampleRate():Long
-    {
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val i = sharedPreferences.getLong(keyGPSsampleRate, LocationUpdateService.DEFAULT_SAMPLE_RATE)
-        return i
-    }
-
-    fun setGPSsampleRate(rate:Long)
-    {
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val editor = sharedPreferences.edit()
-        editor.putLong(keyGPSsampleRate, rate)
-        editor.commit()
-    }
-
-    fun getNumIterations():Int
-    {
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val i = sharedPreferences.getInt(keyNumIterations, Split.DEFAULT_SPLIT_ITERATIONS)
-        return i
-    }
-
-    fun setNumIterations(num:Int)
-    {
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val editor = sharedPreferences.edit()
-        editor.putInt(keyNumIterations, num)
-        editor.commit()
-    }
-
-    fun getDistance(key:String):Int
-    {
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val i = sharedPreferences.getInt(key, Split.DEFAULT_SPLIT_DISTANCE.toInt())
-        return i
-    }
-
-    fun setDistance(key:String, distance:Int)
-    {
-        val sharedPreferences = getSharedPref(MainApplication.applicationContext())
-        val editor = sharedPreferences.edit()
-        editor.putInt(key, distance)
-        editor.commit()
+        return context.getSharedPreferences(mypreference, Context.MODE_PRIVATE)
     }
 
     /*
@@ -203,10 +116,5 @@ object SharedPrefUtility
             "com.example.ctyeung.runyasso800.fileprovider",
             file
         )
-    }
-
-    private fun getSharedPref(context:Context):SharedPreferences
-    {
-        return context.getSharedPreferences(mypreference, Context.MODE_PRIVATE)
     }
 }

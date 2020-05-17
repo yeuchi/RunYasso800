@@ -27,19 +27,20 @@ class StepViewModel (application: Application) : AndroidViewModel(application)
     }
 
     fun insert(step: Step) = viewModelScope.launch {
-        val splitDistance = SharedPrefUtility.getSplitDistance() + step.dis
-        SharedPrefUtility.setSplitDistance(splitDistance)
+        val dis = SharedPrefUtility.get(SharedPrefUtility.keySplitDistance, 0f)
+        val splitDistance = dis + step.dis
+        SharedPrefUtility.set(SharedPrefUtility.keySplitDistance, splitDistance.toFloat())
         repository.insert(step)
     }
 
     fun reset() {
-        SharedPrefUtility.setSplitDistance(0.0)
-        SharedPrefUtility.setIndex(SharedPrefUtility.keyStepIndex,0)
+        SharedPrefUtility.set(SharedPrefUtility.keySplitDistance, 0f)
+        SharedPrefUtility.set(SharedPrefUtility.keyStepIndex,0)
     }
 
     fun clear() = viewModelScope.launch {
         repository.clear()
-        SharedPrefUtility.setIndex(SharedPrefUtility.keyStepIndex, 0)
+        SharedPrefUtility.set(SharedPrefUtility.keyStepIndex, 0)
         reset()
     }
 }

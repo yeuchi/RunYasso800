@@ -1,5 +1,5 @@
 package com.ctyeung.runyasso800.stateMachine
 
-interface Ijog {
+interface Ijog: IState {
 
 }

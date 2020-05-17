@@ -362,7 +362,7 @@ class LocationUpdateService : Service(), IRunStatsCallBack {
      * Sets the location request parameters.
      */
     private fun createLocationRequest() {
-        val interval = SharedPrefUtility.getGPSsampleRate()
+        val interval = SharedPrefUtility.get(SharedPrefUtility.keyGPSsampleRate, DEFAULT_SAMPLE_RATE)
         mLocationRequest = LocationRequest()
         mLocationRequest!!.interval = interval
         mLocationRequest!!.fastestInterval = interval / 2

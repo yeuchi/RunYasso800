@@ -2,6 +2,7 @@ package com.ctyeung.runyasso800.viewModels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import com.ctyeung.runyasso800.MainApplication
 import com.ctyeung.runyasso800.R
 import com.ctyeung.runyasso800.utilities.TimeFormatter
 import kotlinx.android.synthetic.main.activity_goal.*
@@ -13,28 +14,28 @@ class GoalViewModel (application: Application) : AndroidViewModel(application){
     var raceGoal:String = ""
 
     fun setInitValues(){
-        name = SharedPrefUtility.getName()
-        val sprintInSeconds = SharedPrefUtility.getGoal(SharedPrefUtility.keySprintGoal)
+        name = SharedPrefUtility.get(SharedPrefUtility.keyName, MainApplication.applicationContext().resources.getString(R.string.run_yasso_800))
+        val sprintInSeconds:Long = SharedPrefUtility.get(SharedPrefUtility.keySprintGoal, 0L)
         sprintGoal = TimeFormatter.printTime(sprintInSeconds)
 
-        val raceInSeconds = SharedPrefUtility.getGoal(SharedPrefUtility.keyRaceGoal)
+        val raceInSeconds:Long = SharedPrefUtility.get(SharedPrefUtility.keyRaceGoal, 0L)
         raceGoal = TimeFormatter.printTime(raceInSeconds)
     }
 
     fun persistName(str:String) {
-        SharedPrefUtility.setName(str)
+        SharedPrefUtility.set(SharedPrefUtility.keyName, str)
         name = str
     }
 
     fun setSprintGoal(hourOfDay:Int, minute:Int) {
         val sprintInSeconds = TimeFormatter.convertHHmmss(0, hourOfDay, minute)
-        SharedPrefUtility.setGoal(SharedPrefUtility.keySprintGoal, sprintInSeconds)
+        SharedPrefUtility.set(SharedPrefUtility.keySprintGoal, sprintInSeconds)
         sprintGoal = TimeFormatter.printTime(sprintInSeconds)
     }
 
     fun setRaceGoal(hourOfDay:Int, minute:Int) {
         val raceInSeconds = TimeFormatter.convertHHmmss(hourOfDay, minute, 0)
-        SharedPrefUtility.setGoal(SharedPrefUtility.keyRaceGoal, raceInSeconds)
+        SharedPrefUtility.set(SharedPrefUtility.keyRaceGoal, raceInSeconds)
         raceGoal = TimeFormatter.printTime(raceInSeconds)
     }
 }

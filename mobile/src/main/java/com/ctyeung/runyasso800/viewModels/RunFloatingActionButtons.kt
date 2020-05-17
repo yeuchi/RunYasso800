@@ -7,7 +7,7 @@ import java.lang.reflect.Type
 
 /*
  * To do:
- * 1. use Dagger dependency injection
+ * 1. belong in a view model
  */
 class RunFloatingActionButtons {
 
