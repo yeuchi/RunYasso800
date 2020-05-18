@@ -147,9 +147,10 @@ Look forward to implementation.  Next to implement watch <-> phone interface.
 1. Civilian GPS resolution is 4 meter RMS (7.8 meter 95% Confidence Interval).\
 Add data processing (such as Kalman filter) to enhance distance calculation. \
 
-2. Database table/data/SharePref Normalization: remove duplications.
+2. Database table/data/SharePref Normalization : should be more compact (use SQL instead of SharedPref temp store)
 3. Landscape Layout support: RunActivity - state machine requires refactoring.
 4. PAUSE should be persisted as a step type; need to improve its handling.
+5. UI update more frequent (?); only updates at sampleRate interval to save battery.
 
 ### Google Play Versions
 ../results/GooglePlayVersions.txt
