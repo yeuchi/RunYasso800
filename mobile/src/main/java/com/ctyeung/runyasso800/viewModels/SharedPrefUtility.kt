@@ -22,28 +22,28 @@ import java.lang.reflect.Type
 object SharedPrefUtility
 {
         const val mypreference = "mypref"
-        const val keyImageUri = "imageUri"
-        const val keySprintDis = "sprintDis"
-        const val keyJogDis = "jogDis"
-        const val keyNumIterations = "iterations"
-        const val keyGPSsampleRate = "gps"
-        const val keyName = "name"
-        const val keySprintGoal = "sprintGoal"
-        const val keyRaceGoal = "raceGoal"
-        const val keySplitDistance = "splitDistance"
-        const val keyStepIndex = "stepIndex"
-        const val keySplitIndex = "splitIndex"
-        const val keyRunState = "runstate"
-        const val keyLastLatitutde = "lastLatitude"
-        const val keyLastLongitude = "lastLongitude"
+        const val keyImageUri = "imageUri"                  // not used -- image uri
+        const val keySprintLength = "sprintLength"          // 800 meter default
+        const val keyJogLength = "jogLength"                // 800 meter default
+        const val keyNumIterations = "iterations"           // 10 splits default
+        const val keyGPSsampleRate = "gps"                  // 20 seconds default
+        const val keyName = "name"                          // Yasso800 default
+        const val keySprintGoal = "sprintGoal"              // 0 no default
+        const val keyRaceGoal = "raceGoal"                  // 0 no default
+        const val keySplitDistance = "splitDistance"        // temp storage of distance run in this split/jog or sprint
+        const val keyStepIndex = "stepIndex"                // auto incrementer for step row
+        const val keySplitIndex = "splitIndex"              // split index
+        const val keyRunState = "runstate"                  // State Machine -- current run state
+        const val keyLastLatitutde = "lastLatitude"         // last known latitude
+        const val keyLastLongitude = "lastLongitude"        // last know longitude
 
     inline fun<reified T> get(key:String, defValue:T):T {
         val pref = getSharedPref()
 
         val k = key
         when (key) {
-            keySprintDis,
-            keyJogDis,
+            keySprintLength,
+            keyJogLength,
             keyNumIterations,
             keySplitIndex,
             keyStepIndex -> return pref.getInt(k, defValue as Int) as T
@@ -73,8 +73,8 @@ object SharedPrefUtility
 
         val k = key
         when (key) {
-            keySprintDis,
-            keyJogDis,
+            keySprintLength,
+            keyJogLength,
             keyNumIterations,
             keySplitIndex,
             keyStepIndex -> editor.putInt(k, value as Int)

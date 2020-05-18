@@ -43,7 +43,6 @@ class StateClear : StateAbstract, Iclear, Iidle {
         CoroutineScope(Dispatchers.IO).launch {stepRepos.clear()}
         SharedPrefUtility.set(SharedPrefUtility.keyStepIndex, 0)
         SharedPrefUtility.set(SharedPrefUtility.keySplitDistance, 0f)
-        SharedPrefUtility.set(SharedPrefUtility.keyStepIndex,0)
     }
 
     fun clearSplit() {

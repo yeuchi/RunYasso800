@@ -13,7 +13,7 @@ class StateSprint : MotionState, Isprint, Ijog {
     constructor(listener:IStateCallback,
                 actListener: IRunStatsCallBack):super(listener, actListener)
     {
-        FINISH_DISTANCE = SharedPrefUtility.get(SharedPrefUtility.keySprintDis, Split.DEFAULT_SPLIT_DISTANCE.toInt()).toDouble()
+        FINISH_DISTANCE = SharedPrefUtility.get(SharedPrefUtility.keySprintLength, Split.DEFAULT_SPLIT_DISTANCE.toInt()).toDouble()
         NUM_ITERATIONS = SharedPrefUtility.get(SharedPrefUtility.keyNumIterations, Split.DEFAULT_SPLIT_ITERATIONS)
     }
 

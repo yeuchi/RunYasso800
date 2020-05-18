@@ -22,4 +22,7 @@ interface SplitDao
 
     @Query("DELETE FROM split_table")
     suspend fun deleteAll()
+
+    @Query("SELECT SUM(dis) FROM split_table")
+    fun getTotalDistanceRun():Double
 }

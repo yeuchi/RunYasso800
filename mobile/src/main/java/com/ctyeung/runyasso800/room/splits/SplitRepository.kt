@@ -25,6 +25,10 @@ class SplitRepository @Inject constructor(private val splitDao: SplitDao)
     {
         splitDao.update(split)
     }
+
+    suspend fun getTotalDistanceRun():Double {
+        return splitDao.getTotalDistanceRun()
+    }
 }
 
 

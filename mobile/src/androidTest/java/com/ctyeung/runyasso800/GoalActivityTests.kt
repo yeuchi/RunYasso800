@@ -46,8 +46,8 @@ class GoalActivityTests {
     @Test
     fun getModelPersistName() {
         // test default value
-        mActivityRule.activity.model.persistName("")
         val expected = MainApplication.applicationContext().resources.getString(R.string.run_yasso_800)
+        mActivityRule.activity.model.persistName(expected)
         val name = SharedPrefUtility.get(SharedPrefUtility.keyName, "bad name")
         assertEquals(name, expected)
     }

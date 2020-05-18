@@ -15,7 +15,7 @@ import com.ctyeung.runyasso800.room.splits.SplitRepository
 import com.ctyeung.runyasso800.stateMachine.*
 import com.ctyeung.runyasso800.utilities.TimeFormatter
 import kotlinx.android.synthetic.main.activity_run.*
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.lang.reflect.Type
 import javax.inject.Inject
 import javax.inject.Named
@@ -54,14 +54,20 @@ class RunViewModel (application: Application) : AndroidViewModel(application)
         SharedPrefUtility.set(SharedPrefUtility.keyLastLongitude, defaultValue)
     }
 
-    fun updateData() {
+    fun updateData() = runBlocking {
         txtLat = SharedPrefUtility.get(SharedPrefUtility.keyLastLatitutde, defaultValue)
         txtLong = SharedPrefUtility.get(SharedPrefUtility.keyLastLongitude, defaultValue)
 
         // distance in current split
         txtStepDistance = "Dis: ${getLastSplitDistance().roundToInt()}m";
-        // distance total
-        txtTotalDistance = "Total: ${getTotalDistance().roundToInt()}m"
+
+        val job = CoroutineScope(Dispatchers.IO).launch {
+            // distance total
+            val totalDistanceRun = repository.getTotalDistanceRun()
+            txtTotalDistance = "Total: ${totalDistanceRun.roundToInt()}m"
+        }
+        job.join()
+
         // split index
         txtSplitIndex =  "Split: ${(getIndex()+1)}"
 
@@ -95,10 +101,6 @@ class RunViewModel (application: Application) : AndroidViewModel(application)
        return SharedPrefUtility.get(SharedPrefUtility.keySplitIndex, 0)
     }
 
-    fun setIndex(i:Int) {
-        SharedPrefUtility.set(SharedPrefUtility.keySplitIndex, i)
-    }
-
     fun getLastSplitElapsedTime():Long {
         val size = splits.value?.size?:0
         if(size>0){
@@ -116,17 +118,6 @@ class RunViewModel (application: Application) : AndroidViewModel(application)
             return now - list[0].startTime
         }
         return 0
-    }
-
-    fun getTotalDistance():Double {
-        var dis:Double = 0.0
-        val list:List<Split>? = splits.value
-        if(null!=list && list.size>0) {
-            for (split in list) {
-                dis += split.dis
-            }
-        }
-        return dis
     }
 
     fun getLastSplitDistance():Double {

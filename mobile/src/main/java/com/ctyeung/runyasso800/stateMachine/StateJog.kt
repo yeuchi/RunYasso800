@@ -11,7 +11,7 @@ class StateJog : MotionState, Ijog, Isprint, Idone {
     constructor(listener:IStateCallback,
                 actListener: IRunStatsCallBack):super(listener, actListener)
     {
-        FINISH_DISTANCE = SharedPrefUtility.get(SharedPrefUtility.keyJogDis, Split.DEFAULT_SPLIT_DISTANCE.toInt()).toDouble()
+        FINISH_DISTANCE = SharedPrefUtility.get(SharedPrefUtility.keyJogLength, Split.DEFAULT_SPLIT_DISTANCE.toInt()).toDouble()
     }
 
     /*

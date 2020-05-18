@@ -94,8 +94,8 @@ public abstract class YassoDatabase : RoomDatabase ()
         stepDao.deleteAll()
         var step = Step(0,
             0,
-            10.0,
             Split.RUN_TYPE_SPRINT,
+        10.0,
             java.lang.System.currentTimeMillis(),
             1.0,
             1.1)

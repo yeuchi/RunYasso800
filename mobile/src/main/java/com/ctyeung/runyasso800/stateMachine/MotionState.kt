@@ -1,6 +1,7 @@
 package com.ctyeung.runyasso800.stateMachine
 
 import android.location.Location
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.ctyeung.runyasso800.MainApplication
 import com.ctyeung.runyasso800.dagger.DaggerComponent
@@ -46,7 +47,6 @@ abstract class MotionState  : StateAbstract {
     init {
         DaggerComponent.create().injectMotionState(this)
         setSplitIndex(0)
-        resetStep()
     }
 
         override fun execute(previous:Type) {
@@ -72,6 +72,8 @@ abstract class MotionState  : StateAbstract {
         if(null!=prevLocation && null!=location) {
             // insert db new data points & distance when user move more than unit of 1
             val dis: Double = location!!.distanceTo(prevLocation).toDouble()
+            Log.d("MotionState.update()","dis:${dis} prev:(${prevLocation?.latitude},${prevLocation?.longitude}) loc:(${location?.latitude},${location?.longitude})")
+
             if (dis > 0) {
                 // these values should be initialized from database -- not sharedPreference !!!!
                 val timeNow = System.currentTimeMillis()
@@ -80,8 +82,8 @@ abstract class MotionState  : StateAbstract {
                 val step = Step(
                     getSplitIndex(),
                     getNextStepIndex(),
-                    dis,
                     runType,
+                    dis,
                     timeNow,
                     location!!.latitude,
                     location!!.longitude
@@ -122,19 +124,21 @@ abstract class MotionState  : StateAbstract {
      */
     override fun goto():Boolean {
         if(getTotalStepDistance() >= FINISH_DISTANCE) {
-            resetStep()
-            incrementSplitIndex()
-            split = null
+            SharedPrefUtility.set(SharedPrefUtility.keySplitDistance, 0f)
+
+            if (Split.RUN_TYPE_SPRINT == getRunType()) {
+                SharedPrefUtility.set(SharedPrefUtility.keyStepIndex,0)
+                incrementSplitIndex()
+                split = null
+            }
             return true
         }
         return false
     }
 
     private fun incrementSplitIndex() {
-        if (Split.RUN_TYPE_SPRINT == getRunType()) {
-            val i = getSplitIndex()+1
-            setSplitIndex(i)
-        }
+        val i = getSplitIndex()+1
+        setSplitIndex(i)
     }
 
     private fun getRunType():String
@@ -164,11 +168,6 @@ abstract class MotionState  : StateAbstract {
             CoroutineScope(Dispatchers.IO).launch {splitRepos.update(split)}
     }
 
-    fun resetStep() {
-        SharedPrefUtility.set(SharedPrefUtility.keySplitDistance, 0f)
-        SharedPrefUtility.set(SharedPrefUtility.keyStepIndex,0)
-    }
-
     fun getNextStepIndex():Int {
         val i = SharedPrefUtility.get(SharedPrefUtility.keyStepIndex, 0)
         SharedPrefUtility.set(SharedPrefUtility.keyStepIndex,i+1)
@@ -182,6 +181,7 @@ abstract class MotionState  : StateAbstract {
     fun insertStep(step:Step) {
         val splitDistance = getTotalStepDistance() + step.dis
         SharedPrefUtility.set(SharedPrefUtility.keySplitDistance, splitDistance.toFloat())
+        Log.d("MotionState.insertStep()","splitIndex:${step.splitIndex} stepIndex:${step.stepIndex} type:${step.run_type} step:${step.dis} total:${splitDistance}")
         CoroutineScope(Dispatchers.IO).launch {stepRepos.insert(step)}
     }
 }

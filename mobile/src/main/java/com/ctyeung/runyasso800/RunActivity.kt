@@ -43,7 +43,8 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     lateinit var stepViewModel:StepViewModel
     lateinit var activity: RunActivity
     lateinit var wakeLock:PowerManager.WakeLock
-   // @Inject @field:Named("runState") lateinit var stateMachine:StateMachine
+
+    val refresh : () -> Unit = {binding?.invalidateAll()}
 
     companion object {
         var self:RunActivity? = null
@@ -54,9 +55,6 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         self = this
 
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-
-        //DaggerComponent.create().injectRunActivity(this)
-       // stateMachine.initialize(this)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_run)
         binding.run = this
@@ -80,9 +78,6 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
                 onHandleLocationUpdate()
             }
         })
-
-        // start with a clean slate
-        //stateMachine.interruptClear()
 
         if (shouldAskPermissions())
             askPermissions()
@@ -203,7 +198,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     // State machine callback
     override fun onHandleYassoDone() {
         runViewModel.updateType()
-        binding.invalidateAll()
+        refresh()
         fab.changeState(StateDone::class.java)
         RemoveLocation()
     }
@@ -212,13 +207,13 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     override fun onChangedSplit() {
         splitContainer.updateSupport()
         runViewModel.updateType()
-        binding.invalidateAll()
+        refresh()
     }
 
     // State machine callback -- data update
     override fun onHandleLocationUpdate() {
         runViewModel.updateData()
-        binding.invalidateAll()
+        refresh()
     }
 
     protected fun shouldAskPermissions(): Boolean {

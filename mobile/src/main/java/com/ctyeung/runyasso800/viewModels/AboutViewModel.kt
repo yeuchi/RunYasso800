@@ -18,8 +18,8 @@ class AboutViewModel : AndroidViewModel{
     var version:String
 
     constructor(application: Application):super(application){
-        sprintDistance = "${SharedPrefUtility.get(SharedPrefUtility.keySprintDis, Split.DEFAULT_SPLIT_DISTANCE.toInt())} m"
-        jogDistance = "${SharedPrefUtility.get(SharedPrefUtility.keyJogDis, Split.DEFAULT_SPLIT_DISTANCE.toInt())} m"
+        sprintDistance = "${SharedPrefUtility.get(SharedPrefUtility.keySprintLength, Split.DEFAULT_SPLIT_DISTANCE.toInt())} m"
+        jogDistance = "${SharedPrefUtility.get(SharedPrefUtility.keyJogLength, Split.DEFAULT_SPLIT_DISTANCE.toInt())} m"
         loops = "${SharedPrefUtility.get(SharedPrefUtility.keyNumIterations, Split.DEFAULT_SPLIT_ITERATIONS).toString()} X"
         val rate = SharedPrefUtility.get(SharedPrefUtility.keyGPSsampleRate, LocationUpdateService.DEFAULT_SAMPLE_RATE)
         sampleRate = "${formatLargeNumber(rate).toString()} ms"
@@ -28,8 +28,8 @@ class AboutViewModel : AndroidViewModel{
     }
 
     fun factoryReset() {
-        SharedPrefUtility.set(SharedPrefUtility.keySprintDis, Split.DEFAULT_SPLIT_DISTANCE.toInt())
-        SharedPrefUtility.set(SharedPrefUtility.keyJogDis, Split.DEFAULT_SPLIT_DISTANCE.toInt())
+        SharedPrefUtility.set(SharedPrefUtility.keySprintLength, Split.DEFAULT_SPLIT_DISTANCE.toInt())
+        SharedPrefUtility.set(SharedPrefUtility.keyJogLength, Split.DEFAULT_SPLIT_DISTANCE.toInt())
         SharedPrefUtility.set(SharedPrefUtility.keyGPSsampleRate, LocationUpdateService.DEFAULT_SAMPLE_RATE)
         SharedPrefUtility.set(SharedPrefUtility.keyNumIterations, Split.DEFAULT_SPLIT_ITERATIONS)
         SharedPrefUtility.set(SharedPrefUtility.keyRaceGoal, 0L)
