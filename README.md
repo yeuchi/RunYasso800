@@ -88,7 +88,7 @@ IDLE -> START -> JOG <-> SPRINT -> PAUSE\
 -> DONE\
 <img src="https://user-images.githubusercontent.com/1282659/77836547-acc78000-711c-11ea-9f49-dc592b8a3153.jpg" width="200"> 
 
-#### Running while sleep
+#### Running in sleep mode
 During your jogs and sprints, Google location service will continue to record your GPS coordinates even while your phone is locked and display is off.  Upon reaching each 800 meter interval, alarm will sound with vibration as follows. Each alarm pattern is unique to help runner recognize, dissert the transition type.
 - Jog : 1 second TONE_CDMA_ALERT_CALL_GUARD
 - Sprint : 1.5 second TONE_CDMA_CALL_SIGNAL_ISDN_NORMAL (high pitch)
