@@ -88,6 +88,10 @@ class SharedPrefUtilityTest {
         assertEquals(expected, len)
     }
 
+    /*
+     * Test string types
+     */
+
     @Test
     fun Name() {
         val expected = "Run Test"
@@ -98,6 +102,7 @@ class SharedPrefUtilityTest {
 
     @Test
     fun LastLatitude() {
+        // string for view
         val expected = "44.9178902"
         SharedPrefUtility.set(SharedPrefUtility.keyLastLatitutde, expected)
         val len = SharedPrefUtility.get(SharedPrefUtility.keyLastLatitutde, "")
@@ -106,11 +111,16 @@ class SharedPrefUtilityTest {
 
     @Test
     fun LastLongitude() {
+        // string for view
         val expected = "-93.3162731"
         SharedPrefUtility.set(SharedPrefUtility.keyLastLongitude, expected)
         val len = SharedPrefUtility.get(SharedPrefUtility.keyLastLongitude, "")
         assertEquals(expected, len)
     }
+
+    /*
+     * Test float type
+     */
 
     @Test
     fun SplitDistance() {
@@ -119,6 +129,10 @@ class SharedPrefUtilityTest {
         val len = SharedPrefUtility.get(SharedPrefUtility.keySplitDistance, 0f)
         assertEquals(expected, len)
     }
+
+    /*
+     * Test State class types
+     */
 
     @Test
     fun RunState() {

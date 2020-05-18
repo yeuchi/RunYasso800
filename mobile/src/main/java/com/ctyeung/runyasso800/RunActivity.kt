@@ -102,6 +102,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
                 mService!!.requestLocationUpdates()
 
             mBound = true
+            registerReceiver()
         }
 
         override fun onServiceDisconnected(name: ComponentName) {
@@ -152,12 +153,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         )
     }
 
-    /*
-     * To DO:
-     * Return message from LocationService StateMachine
-     */
-    override fun onResume() {
-        super.onResume()
+    private fun registerReceiver() {
         myReceiver = MyReceiver()
         LocalBroadcastManager.getInstance(this).registerReceiver(
             myReceiver!!,
@@ -165,25 +161,12 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         )
     }
 
-    override fun onPause() {
-        super.onPause()
-    }
-
-    override fun onStop() {
-        super.onStop()
-
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(myReceiver!!)
-
-        if (mBound) {
-            // Unbind from the service. This signals to the service that this activity is no longer
-            // in the foreground, and the service can respond by promoting itself to a foreground
-            // service.
-            unbindService(mServiceConnection)
-            mBound = false
-        }
-    }
-
     private fun RemoveLocation() {
+        //LocalBroadcastManager.getInstance(this).unregisterReceiver(myReceiver!!)
+        /*if (mBound) {
+            unbindService(mServiceConnection)
+        }*/
+
         if(mService!=null)
             mService!!.removeLocationUpdates()
 
@@ -341,11 +324,12 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     {
         when(runState){
             StateDone::class.java,
+            StateIdle::class.java,
             StatePause::class.java -> {
                 gotoActivity(ResultActivity::class.java)
             }
 
-            else -> toastErrorState(runState)
+            else -> {}
         }
     }
 
