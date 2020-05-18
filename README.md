@@ -145,7 +145,7 @@ Look forward to implementation.  Next to implement watch <-> phone interface.
 
 ## Known Issues (Opportunities)
 1. Civilian GPS resolution is 4 meter RMS (7.8 meter 95% Confidence Interval).\
-Add data processing (such as Kalman filter) to enhance distance calculation. \
+Add data processing (such as Kalman filter) to enhance distance calculation. 
 
 2. Database table/data/SharePref Normalization : should be more compact (use SQL instead of SharedPref temp store)
 3. Landscape Layout support: RunActivity - state machine requires refactoring.
