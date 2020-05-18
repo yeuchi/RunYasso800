@@ -4,12 +4,11 @@
 # Tutorial
 Run 16,000 meters (9.94 miles) of equal jogs and sprints.\
 Yasso800 is composed of 800 meter jog followed by 800 sprint for 10 times.\
-The total workout distance accomplished from Yasso800 is 16,000 meters (9.94 miles).\
 Of that, total sprint distance is 8,000 meters (4.97 miles) and total jog distance is also 8,000 meters (4.97 miles).
 
 ### How to Do a Yasso 800 Workout 
 "Take your marathon goal time in hours and minutes and convert this to minutes and seconds. \
-For example, if your marathon goal is 3 hours and 10 minutes then convert that to 3 minutes and 10 seconds.
+For example, if your marathon goal is 3 hours and 10 minutes, convert that to 3 minutes and 10 seconds per sprint.
 
 - First, starts with a jog.  You should warm up for the 1st 800 meters.
 - Next, try to sprint 800 meters (approximately 1/2 mile).
@@ -21,8 +20,8 @@ For example, if your marathon goal is 3 hours and 10 minutes then convert that t
 It is a successful workout if each sprint time is under your sprint goal.
 
 # Introduction 
-This is a mobile phone implementation of Yasso800 in Kotlin for runners.  I am developing this for my personal marathon training with a polar wrist watch. It is my understanding that certain Garmin running watches have this feature already.\
-Any suggestion(s) and feedbacks are welcomed. 
+This is a mobile phone implementation of Yasso800 in Kotlin for runners.  I am developing this for my personal marathon training. It is my understanding that certain Garmin running watches have this feature already.\
+Any suggestion(s) and feedback(s) are welcomed. 
 
 ## Workflow
 <img width="738" alt="workflow" src="https://user-images.githubusercontent.com/1282659/79381139-1d490c00-7f27-11ea-88d8-a05552fbd9cb.png">
@@ -31,14 +30,14 @@ This application is composed of 5 distint activities:
 1. Goal - set session name and race goal to determine qualifying sprint time. 
 2. Run - jog and sprint 10x to complete a Yasso800 training session. 
 3. Result - review your run on Google Play with details for qualifying sprints. 
-4. Persist - save results via email, Google Drive, or other available on your phone. 
+4. Persist - save results via email, Google Drive, or those supported on your device. 
 
 ### Configure 
 Start with less distance, iterations or want to less jog (rest) ?  
 Customizable configuration is available under the menu selections.
 - Jog and Sprint distances can be reduced from 800 meter. 
 - Number of iterations (Jog + Sprint) can be reduced from 10 X
-- GPS sampling rate can be increased or decreased from @ 5,000 milliseconds (5 seconds).
+- GPS sampling rate can be modified within (3,000 - 80,000 milliseconds), default @ 20,000 milliseconds (20 seconds).
 - Factory Reset for above default values is available in 'About' dialog box.
 
 MENU -> CONFIGURATION        
@@ -89,7 +88,7 @@ IDLE -> START -> JOG <-> SPRINT -> PAUSE\
 -> DONE\
 <img src="https://user-images.githubusercontent.com/1282659/77836547-acc78000-711c-11ea-9f49-dc592b8a3153.jpg" width="200"> 
 
-#### Running while sleep
+#### Running in sleep mode
 During your jogs and sprints, Google location service will continue to record your GPS coordinates even while your phone is locked and display is off.  Upon reaching each 800 meter interval, alarm will sound with vibration as follows. Each alarm pattern is unique to help runner recognize, dissert the transition type.
 - Jog : 1 second TONE_CDMA_ALERT_CALL_GUARD
 - Sprint : 1.5 second TONE_CDMA_CALL_SIGNAL_ISDN_NORMAL (high pitch)
@@ -138,14 +137,14 @@ https://github.com/yeuchi/RunYasso800/tree/master/mobile/src/androidTest/java/co
 - compileSdkVersion 28
 
 ### Skills Practiced
-JetPack Architecture MVVM, Databinding, LiveData, Extension method, Room persistence, Location API, Service, Google Map, EmailIntent, Espresso tests, Co-routine, State-machine, Gson/JSON, Vibration, Alarm-beep, inline function with reified type.
+JetPack Architecture MVVM, Databinding, LiveData, Extension method, Room persistence, Location API, Service, Google Map, EmailIntent, IntentReceiver, Espresso tests, Co-routine, State-machine, Gson/JSON, Vibration, Alarm-beep, Inline function with Reified type, Lambda anonymous function.
 
 ## Wrist Watch
 Look forward to implementation.  Next to implement watch <-> phone interface.
 
 ## Known Issues (Opportunities)
 1. Civilian GPS resolution is 4 meter RMS (7.8 meter 95% Confidence Interval).\
-Add data processing (such as Kalman filter) to enhance distance calculation. \
+Add data processing (such as Kalman filter) to enhance distance calculation. 
 
 2. Database table/data/SharePref Normalization : should be more compact (use SQL instead of SharedPref temp store)
 3. Landscape Layout support: RunActivity - state machine requires refactoring.
