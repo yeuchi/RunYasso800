@@ -54,7 +54,7 @@ class RunViewModel (application: Application) : AndroidViewModel(application)
         SharedPrefUtility.set(SharedPrefUtility.keyLastLongitude, defaultValue)
     }
 
-    fun updateData() = runBlocking {
+    fun updateData(refresh:()->Unit) {
         txtLat = SharedPrefUtility.get(SharedPrefUtility.keyLastLatitutde, defaultValue)
         txtLong = SharedPrefUtility.get(SharedPrefUtility.keyLastLongitude, defaultValue)
 
@@ -65,8 +65,8 @@ class RunViewModel (application: Application) : AndroidViewModel(application)
             // distance total
             val totalDistanceRun = repository.getTotalDistanceRun()
             txtTotalDistance = "Total: ${totalDistanceRun.roundToInt()}m"
+            refresh()
         }
-        job.join()
 
         // split index
         txtSplitIndex =  "Split: ${(getIndex()+1)}"

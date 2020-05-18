@@ -166,12 +166,13 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     }
 
     override fun onPause() {
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(myReceiver!!)
         super.onPause()
     }
 
     override fun onStop() {
         super.onStop()
+
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(myReceiver!!)
 
         if (mBound) {
             // Unbind from the service. This signals to the service that this activity is no longer
@@ -212,7 +213,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
 
     // State machine callback -- data update
     override fun onHandleLocationUpdate() {
-        runViewModel.updateData()
+        runViewModel.updateData(refresh)
         refresh()
     }
 
