@@ -8,7 +8,7 @@ Of that, total sprint distance is 8,000 meters (4.97 miles) and total jog distan
 
 ### How to Do a Yasso 800 Workout 
 "Take your marathon goal time in hours and minutes and convert this to minutes and seconds. \
-For example, if your marathon goal is 3 hours and 10 minutes then convert that to 3 minutes and 10 seconds.
+For example, if your marathon goal is 3 hours and 10 minutes; convert that to 3 minutes and 10 seconds per sprint.
 
 - First, starts with a jog.  You should warm up for the 1st 800 meters.
 - Next, try to sprint 800 meters (approximately 1/2 mile).
