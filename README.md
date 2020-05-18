@@ -37,7 +37,7 @@ Start with less distance, iterations or want to less jog (rest) ?
 Customizable configuration is available under the menu selections.
 - Jog and Sprint distances can be reduced from 800 meter. 
 - Number of iterations (Jog + Sprint) can be reduced from 10 X
-- GPS sampling rate can be increased or decreased from @ 5,000 milliseconds (5 seconds).
+- GPS sampling rate can be modified within (3,000 - 80,000 milliseconds), default @ 20,000 milliseconds (20 seconds).
 - Factory Reset for above default values is available in 'About' dialog box.
 
 MENU -> CONFIGURATION        
