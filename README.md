@@ -20,7 +20,7 @@ For example, if your marathon goal is 3 hours and 10 minutes, convert that to 3 
 It is a successful workout if each sprint time is under your sprint goal.
 
 # Introduction 
-This is a mobile phone implementation of Yasso800 in Kotlin for runners.  I am developing this for my personal marathon training with a polar wrist watch. It is my understanding that certain Garmin running watches have this feature already.\
+This is a mobile phone implementation of Yasso800 in Kotlin for runners.  I am developing this for my personal marathon training. It is my understanding that certain Garmin running watches have this feature already.\
 Any suggestion(s) and feedbacks are welcomed. 
 
 ## Workflow
