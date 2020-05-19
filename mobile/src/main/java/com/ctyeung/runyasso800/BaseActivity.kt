@@ -39,7 +39,7 @@ open class BaseActivity : AppCompatActivity() {
     /*
      * Navigate to XXX Activity
      */
-    fun gotoActivity(classType:Class<*>) {
+    open fun gotoActivity(classType:Class<*>) {
         val intent = Intent(this.applicationContext, classType)
         startActivity(intent)
     }

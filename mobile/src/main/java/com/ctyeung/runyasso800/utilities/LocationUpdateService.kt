@@ -87,10 +87,6 @@ class LocationUpdateService : Service(), IRunStatsCallBack {
 
     override fun onCreate() {
         instance = this
-        stateMachine = StateMachine(this)
-
-        // start with a clean slate
-        stateMachine.interruptClear()
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         mLocationCallback = object : LocationCallback() {
@@ -99,7 +95,6 @@ class LocationUpdateService : Service(), IRunStatsCallBack {
                 onNewLocation(locationResult.lastLocation)
             }
         }
-        createLocationRequest()
         val handlerThread = HandlerThread(TAG)
         handlerThread.start()
         mServiceHandler = Handler(handlerThread.looper)
@@ -118,6 +113,14 @@ class LocationUpdateService : Service(), IRunStatsCallBack {
             // Set the Notification Channel for the Notification Manager.
             mNotificationManager!!.createNotificationChannel(mChannel)
         }
+    }
+
+    fun startStateMachine() {
+        stateMachine = StateMachine(this)
+
+        // start with a clean slate
+        stateMachine.interruptClear()
+        createLocationRequest()
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {

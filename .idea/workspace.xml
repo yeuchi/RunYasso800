@@ -25,7 +25,6 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/build.gradle" afterDir="false" />
@@ -34,9 +33,9 @@
       <change beforePath="$PROJECT_DIR$/mobile/release/mobile-release.apks" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/release/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/release/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/release/wear-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/release/wear-release.apk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile/src/androidTest/java/com/ctyeung/runyasso800/viewModels/SharedPrefUtilityTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/androidTest/java/com/ctyeung/runyasso800/viewModels/SharedPrefUtilityTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/BaseActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/BaseActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/GooglePlayVersions.rtf" beforeDir="false" afterPath="$PROJECT_DIR$/results/GooglePlayVersions.rtf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/utilities/LocationUpdateService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/utilities/LocationUpdateService.kt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -556,18 +555,8 @@
         </line-breakpoint>
         <line-breakpoint type="kotlin-line">
           <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/utilities/LocationUpdateService.kt</url>
-          <line>210</line>
+          <line>213</line>
           <option name="timeStamp" value="179" />
-        </line-breakpoint>
-        <line-breakpoint type="kotlin-line">
-          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt</url>
-          <line>97</line>
-          <option name="timeStamp" value="181" />
-        </line-breakpoint>
-        <line-breakpoint type="kotlin-line">
-          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt</url>
-          <line>100</line>
-          <option name="timeStamp" value="183" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/mobile/src/androidTest/java/com/ctyeung/runyasso800/room/splits/SplitDaoTests.kt</url>
@@ -576,7 +565,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/utilities/LocationUpdateService.kt</url>
-          <line>285</line>
+          <line>288</line>
           <option name="timeStamp" value="216" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
@@ -596,18 +585,38 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt</url>
-          <line>264</line>
+          <line>275</line>
           <option name="timeStamp" value="261" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt</url>
-          <line>287</line>
+          <line>298</line>
           <option name="timeStamp" value="262" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt</url>
-          <line>313</line>
+          <line>324</line>
           <option name="timeStamp" value="263" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt</url>
+          <line>53</line>
+          <option name="timeStamp" value="268" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt</url>
+          <line>176</line>
+          <option name="timeStamp" value="269" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/utilities/LocationUpdateService.kt</url>
+          <line>88</line>
+          <option name="timeStamp" value="270" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/utilities/LocationUpdateService.kt</url>
+          <line>118</line>
+          <option name="timeStamp" value="273" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

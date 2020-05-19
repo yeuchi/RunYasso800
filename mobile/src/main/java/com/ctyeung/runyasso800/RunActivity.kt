@@ -97,9 +97,10 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         override fun onServiceConnected(name: ComponentName, service: IBinder) {
             val binder: LocationUpdateService.LocalBinder = service as LocationUpdateService.LocalBinder
             mService = binder.getService()
+            mService?.startStateMachine()
 
             if(isPermitted)
-                mService!!.requestLocationUpdates()
+                mService?.requestLocationUpdates()
 
             mBound = true
             registerReceiver()
@@ -161,12 +162,22 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         )
     }
 
-    private fun RemoveLocation() {
-        //LocalBroadcastManager.getInstance(this).unregisterReceiver(myReceiver!!)
-        /*if (mBound) {
+    private fun unregisterReceiver() {
+        if(myReceiver != null) {
+            LocalBroadcastManager.getInstance(this).unregisterReceiver(myReceiver!!)
+            myReceiver = null
+            /*if (mBound) {
             unbindService(mServiceConnection)
         }*/
+        }
+    }
 
+    override fun gotoActivity(classType:Class<*>) {
+        unregisterReceiver()
+        super.gotoActivity(classType)
+    }
+
+    private fun RemoveLocation() {
         if(mService!=null)
             mService!!.removeLocationUpdates()
 
