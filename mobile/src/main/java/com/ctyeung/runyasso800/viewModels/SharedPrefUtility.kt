@@ -3,6 +3,7 @@ package com.ctyeung.runyasso800.viewModels
 import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
+import android.util.Log
 import androidx.core.content.FileProvider
 import com.ctyeung.runyasso800.MainApplication
 import com.ctyeung.runyasso800.R
@@ -39,31 +40,52 @@ object SharedPrefUtility
 
     inline fun<reified T> get(key:String, defValue:T):T {
         val pref = getSharedPref()
-
         val k = key
-        when (key) {
-            keySprintLength,
-            keyJogLength,
-            keyNumIterations,
-            keySplitIndex,
-            keyStepIndex -> return pref.getInt(k, defValue as Int) as T
-            keyGPSsampleRate,
-            keySprintGoal,
-            keyRaceGoal -> return pref.getLong(k, defValue as Long) as T
-            keyName,
-            keyLastLongitude,
-            keyLastLatitutde -> return pref.getString(k, defValue as String) as T
-            keySplitDistance -> return pref.getFloat(k, defValue as Float) as T
-            keyRunState -> {
-                val def = type2String(defValue as Type)
-                var str = pref.getString(k, def)
-                if(str==null)
-                    str = type2String(StateError::class.java)
-
-                return Class.forName(str) as T
+        when (defValue) {
+            is Int -> {
+                if(k == keySprintLength ||
+                    k == keyJogLength ||
+                    k == keyNumIterations ||
+                    k == keySplitIndex ||
+                    k == keyStepIndex ) {
+                    return pref.getInt(k, defValue as Int) as T
+                }
             }
-            else -> return 0 as T
+
+            is Long -> {
+                if(k == keyGPSsampleRate ||
+                    k == keySprintGoal ||
+                    k == keyRaceGoal) {
+                    return pref.getLong(k, defValue as Long) as T
+                }
+            }
+
+            is Float -> {
+                if(k == keySplitDistance)
+                    return pref.getFloat(k, defValue as Float) as T
+            }
+
+            is String -> {
+                if(k == keyName ||
+                    k == keyLastLongitude ||
+                    k == keyLastLatitutde ) {
+                    return pref.getString(k, defValue as String) as T
+                }
+            }
+
+            is Type -> {
+                if(k == keyRunState ) {
+                    val def = type2String(defValue as Type)
+                    var str = pref.getString(k, def)
+                    if(str==null)
+                        str = type2String(StateError::class.java)
+
+                    return Class.forName(str) as T
+                }
+            }
+           // else -> return defValue
         }
+        return defValue
     }
 
     inline fun<reified T> set(key:String, value:T)
@@ -72,22 +94,49 @@ object SharedPrefUtility
         val editor = pref.edit()
 
         val k = key
-        when (key) {
-            keySprintLength,
-            keyJogLength,
-            keyNumIterations,
-            keySplitIndex,
-            keyStepIndex -> editor.putInt(k, value as Int)
-            keyGPSsampleRate,
-            keySprintGoal,
-            keyRaceGoal -> editor.putLong(k, value as Long)
-            keyName,
-            keyLastLongitude,
-            keyLastLatitutde -> editor.putString(k, value as String)
-            keySplitDistance -> editor.putFloat(k, value as Float)
-            keyRunState -> {
-                val str = type2String(value as Type)
-                editor.putString(k, str)
+        when (value) {
+
+            is Int -> {
+                if(k == keySprintLength ||
+                    k == keyJogLength ||
+                    k == keyNumIterations ||
+                    k == keySplitIndex ||
+                    k == keyStepIndex ) {
+                    editor.putInt(k, value as Int)
+                }
+            }
+
+            is Long -> {
+                if(k == keyGPSsampleRate ||
+                    k == keySprintGoal ||
+                    k == keyRaceGoal) {
+                    editor.putLong(k, value as Long)
+                }
+            }
+
+            is Float -> {
+                if( k == keySplitDistance) {
+                    editor.putFloat(k, value as Float)
+                }
+            }
+
+            is String -> {
+                if(k == keyName ||
+                    k == keyLastLongitude ||
+                    k == keyLastLatitutde ) {
+                    editor.putString(k, value as String)
+                }
+            }
+
+            is Type -> {
+                if(k == keyRunState) {
+                    val str = type2String(value as Type)
+                    editor.putString(k, str)
+                }
+            }
+            else -> {
+                Log.d("SharedPrefUtility.set()", "failed")
+                return
             }
         }
         editor.commit()

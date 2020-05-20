@@ -416,9 +416,9 @@ class LocationUpdateService : Service(), IRunStatsCallBack {
         const val EXTRA_STARTED_FROM_NOTIFICATION = PACKAGE_NAME + ".started_from_notification"
         const val EXTRA_UPDATE_CODE = "updateCode"
 
-        val MAX_SAMPLE_RATE:Long = 80000
-        val DEFAULT_SAMPLE_RATE:Long = 20000
-        val MIN_SAMPLE_RATE:Long = 3000
+        const val MAX_SAMPLE_RATE:Long = 80000
+        const val DEFAULT_SAMPLE_RATE:Long = 20000
+        const val MIN_SAMPLE_RATE:Long = 3000
 
         /**
          * The identifier for the notification displayed for the foreground service.
