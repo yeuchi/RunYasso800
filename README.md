@@ -187,3 +187,6 @@ https://alediaferia.com/2018/12/17/testing-livedata-room-android/
 
 11. Google Foreground Location service code example, Jeremy Walker, March 19, 2019 \
 https://github.com/android/location-samples/blob/master/LocationUpdatesForegroundService/app/src/main/java/com/google/android/gms/location/sample/locationupdatesforegroundservice/MainActivity.java
+
+12. Generic set & get method for SharedPreferences.Editor #435 comment by Ahmad Sattout, March 14, 2018
+https://github.com/android/android-ktx/issues/435
