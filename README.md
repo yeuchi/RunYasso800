@@ -66,7 +66,7 @@ http://erdraw.com/graphs/487344524370/edit \
 
 A Yasso800 Entity is composed of 10 iterations.\
 Each Iteration is composed of 2 splits: jog and sprint.\
-A split is a collection of steps for the duration of the 800 meters.
+A split is a collection of steps for the duration of the 800 meters.\
 A step is recorded every 20,000 milliseconds (20 seconds).\
 In an example with Sprint Goal= 40 minutes, there would be 240 steps.\
 ( 40 minutes (sprint) + 40 minutes (jog) )  * 60 seconds / 20 seconds = 240 samples
