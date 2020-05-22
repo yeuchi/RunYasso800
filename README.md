@@ -64,11 +64,12 @@ Supported functions are as follow:
 http://erdraw.com/graphs/487344524370/edit \
 <img width="583" src="https://user-images.githubusercontent.com/1282659/82627811-e2369a00-9bb0-11ea-87f1-2bf0b0ca48f9.png">
 
-A Yasso800 Entity is composed of 20 splits.\
-Each split is composed of 2 collections, jog steps and sprint steps.\
-By default (but configurable in menu), a step is recorded every 5000 milliseconds (5 seconds).\
-In an example with Sprint Goal= 40 minutes, there would be 960 steps.\
-( 40 minutes (sprint) + 40 minutes (jog) )  * 60 seconds / 5 seconds = 960 samples
+A Yasso800 Entity is composed of 10 iterations.\
+Each Iteration is composed of 2 splits: jog and sprint.\
+A split is a collection of steps for the duration of the 800 meters.
+A step is recorded every 20,000 milliseconds (20 seconds).\
+In an example with Sprint Goal= 40 minutes, there would be 240 steps.\
+( 40 minutes (sprint) + 40 minutes (jog) )  * 60 seconds / 20 seconds = 240 samples
 
 #### State machine 
 - IDLE : Starting point, nothing is happening.
