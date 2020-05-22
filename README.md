@@ -108,7 +108,7 @@ During your jogs and sprints, Google location service will continue to record yo
 PLEASE INSERT YOUR GOOGLE MAP KEY in values/google_map_api.xml before running app.
 <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">!! MY_KEY_HERE !!</string>\
 
-<img src="https://user-images.githubusercontent.com/1282659/80295008-74738b80-8734-11ea-97a1-8bb76f8d7541.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/78513888-3a861980-7774-11ea-97d9-f8be36a69eb3.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/79158438-f7433080-7d9b-11ea-9de9-c89f53b14438.jpg" width="200"> 
+<img src="https://user-images.githubusercontent.com/1282659/80295008-74738b80-8734-11ea-97a1-8bb76f8d7541.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/82707740-45bcd800-9c42-11ea-960b-da85a5602f5a.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/79158438-f7433080-7d9b-11ea-9de9-c89f53b14438.jpg" width="200"> 
 
 ### Persist (Share) Activity
 Activity provides persistence (share) methods to user.  They include the follow:
