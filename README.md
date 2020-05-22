@@ -64,7 +64,7 @@ Supported functions are as follow:
 http://erdraw.com/graphs/487344524370/edit \
 <img width="583" src="https://user-images.githubusercontent.com/1282659/78720941-3d0b7f00-78ec-11ea-87cb-ba8875fb142e.png">
 
-A Yasso800 Entity is composed of 10 splits.\
+A Yasso800 Entity is composed of 20 splits.\
 Each split is composed of 2 collections, jog steps and sprint steps.\
 By default (but configurable in menu), a step is recorded every 5000 milliseconds (5 seconds).\
 In an example with Sprint Goal= 40 minutes, there would be 960 steps.\
@@ -187,3 +187,6 @@ https://alediaferia.com/2018/12/17/testing-livedata-room-android/
 
 11. Google Foreground Location service code example, Jeremy Walker, March 19, 2019 \
 https://github.com/android/location-samples/blob/master/LocationUpdatesForegroundService/app/src/main/java/com/google/android/gms/location/sample/locationupdatesforegroundservice/MainActivity.java
+
+12. Generic set & get method for SharedPreferences.Editor #435 comment by Ahmad Sattout, March 14, 2018
+https://github.com/android/android-ktx/issues/435
