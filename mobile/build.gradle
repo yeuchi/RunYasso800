@@ -13,8 +13,8 @@ android {
         applicationId "com.ctyeung.runyasso800"
         minSdkVersion 26
         targetSdkVersion 28
-        versionCode 18
-        versionName "18.0"
+        versionCode 19
+        versionName "19.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

@@ -55,13 +55,12 @@ class NumberPickerFragment : DialogFragment() {
             // valueChangeListener.onValueChange(numberPicker,
             //        numberPicker.getValue(), numberPicker.getValue());
         }
-        builder.setNegativeButton(
-            cancel
-        ) { dialog, which ->
-            valueChangeListener!!.onValueChange(
+        builder.setNegativeButton(cancel) { dialog, which ->
+          /*  valueChangeListener!!.onValueChange(
                 numberPicker,
                 numberPicker!!.value, numberPicker!!.value
-            )
+            ) */
+            dismiss()
         }
         builder.setView(numberPicker)
         return builder.create()

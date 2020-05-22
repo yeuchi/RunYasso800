@@ -8,13 +8,14 @@ import com.ctyeung.runyasso800.viewModels.StepViewModel
 import java.lang.reflect.Type
 
 class StateSprint : MotionState, Isprint, Ijog {
-    var NUM_ITERATIONS:Int = Split.DEFAULT_SPLIT_ITERATIONS
+    // 1 iteration = 2 splits (jog + sprint)
+    var NUM_SPLITS:Int = Split.DEFAULT_SPLIT_ITERATIONS * 2
 
     constructor(listener:IStateCallback,
                 actListener: IRunStatsCallBack):super(listener, actListener)
     {
         FINISH_DISTANCE = SharedPrefUtility.get(SharedPrefUtility.keySprintLength, Split.DEFAULT_SPLIT_DISTANCE.toInt()).toDouble()
-        NUM_ITERATIONS = SharedPrefUtility.get(SharedPrefUtility.keyNumIterations, Split.DEFAULT_SPLIT_ITERATIONS)
+        NUM_SPLITS = SharedPrefUtility.get(SharedPrefUtility.keyNumIterations, Split.DEFAULT_SPLIT_ITERATIONS) * 2
     }
 
     /*
@@ -42,7 +43,7 @@ class StateSprint : MotionState, Isprint, Ijog {
         // go to Jog !
         var stateType:Type = StateJog::class.java
 
-        if(getSplitIndex() >= NUM_ITERATIONS)  {
+        if(getSplitIndex() >= NUM_SPLITS)  {
             // done with Yasso !
             stateType = StateDone::class.java
         }

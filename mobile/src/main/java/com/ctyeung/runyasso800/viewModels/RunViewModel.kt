@@ -45,11 +45,13 @@ class RunViewModel (application: Application) : AndroidViewModel(application)
     var txtSplitTime:String = "Time: 00:00"
     var txtTotalTime:String = "Total: 00:00"
     var txtSplitType:String = "Sprint/Jog"
-    var txtTotalSplits:String = "Total: 10"
+    var txtTotalSplits:String = "Total: 20"
     val defaultValue = "--"
 
     fun init() {
-        txtTotalSplits = "${MainApplication.applicationContext().resources.getString(R.string.total)}: ${SharedPrefUtility.get(SharedPrefUtility.keyNumIterations, Split.DEFAULT_SPLIT_ITERATIONS)}"
+        // 1 iteration = 2 splits (jog + sprint)
+        val numSplits = SharedPrefUtility.get(SharedPrefUtility.keyNumIterations, Split.DEFAULT_SPLIT_ITERATIONS) * 2
+        txtTotalSplits = "${MainApplication.applicationContext().resources.getString(R.string.total)}: ${numSplits}"
         SharedPrefUtility.set(SharedPrefUtility.keyLastLatitutde, defaultValue)
         SharedPrefUtility.set(SharedPrefUtility.keyLastLongitude, defaultValue)
     }

@@ -128,9 +128,9 @@ abstract class MotionState  : StateAbstract {
 
             if (Split.RUN_TYPE_SPRINT == getRunType()) {
                 SharedPrefUtility.set(SharedPrefUtility.keyStepIndex,0)
-                incrementSplitIndex()
-                split = null
             }
+            incrementSplitIndex()
+            split = null
             return true
         }
         return false
