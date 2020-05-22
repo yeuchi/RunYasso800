@@ -62,7 +62,7 @@ Supported functions are as follow:
 
 #### Data
 http://erdraw.com/graphs/487344524370/edit \
-<img width="583" src="https://user-images.githubusercontent.com/1282659/82627710-9c79d180-9bb0-11ea-9bc3-6f78b1141822.png">
+<img width="583" src="https://user-images.githubusercontent.com/1282659/82627811-e2369a00-9bb0-11ea-87f1-2bf0b0ca48f9.png">
 
 A Yasso800 Entity is composed of 20 splits.\
 Each split is composed of 2 collections, jog steps and sprint steps.\
