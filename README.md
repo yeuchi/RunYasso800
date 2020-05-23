@@ -37,7 +37,7 @@ Start with less distance, iterations or want to less jog (rest) ?
 Customizable configuration is available under the menu selections.
 - Jog and Sprint distances can be reduced from 800 meter. 
 - Number of iterations (Jog + Sprint) can be reduced from 10 X
-- GPS sampling rate can be modified within (3,000 - 80,000 milliseconds), default @ 20,000 milliseconds (20 seconds).
+- GPS sampling rate can be modified within (3 - 80 seconds), default @ 10 seconds.
 - Factory Reset for above default values is available in 'About' dialog box.
 
 MENU -> CONFIGURATION        
@@ -67,9 +67,9 @@ http://erdraw.com/graphs/487344524370/edit \
 A Yasso800 Entity is composed of 10 iterations.\
 Each Iteration is composed of 2 splits: jog and sprint.\
 A split is a collection of steps for the duration of the 800 meters.\
-A step is recorded every 20,000 milliseconds (20 seconds).\
-In an example with Sprint Goal= 40 minutes, there would be 240 steps.\
-( 40 minutes (sprint) + 40 minutes (jog) )  * 60 seconds / 20 seconds = 240 samples
+A step is recorded every 10 seconds.\
+In an example with Sprint Goal= 4 minutes, there would be 480 steps.\
+( 240 seconds (sprint) + 240 seconds (jog) )  * 10 iterations * 60 seconds / 10 seconds-per-sample = 480 samples
 
 #### State machine 
 - IDLE : Starting point, nothing is happening.
