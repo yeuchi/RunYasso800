@@ -62,13 +62,14 @@ Supported functions are as follow:
 
 #### Data
 http://erdraw.com/graphs/487344524370/edit \
-<img width="583" src="https://user-images.githubusercontent.com/1282659/78720941-3d0b7f00-78ec-11ea-87cb-ba8875fb142e.png">
+<img width="583" src="https://user-images.githubusercontent.com/1282659/82627811-e2369a00-9bb0-11ea-87f1-2bf0b0ca48f9.png">
 
-A Yasso800 Entity is composed of 20 splits.\
-Each split is composed of 2 collections, jog steps and sprint steps.\
-By default (but configurable in menu), a step is recorded every 5000 milliseconds (5 seconds).\
-In an example with Sprint Goal= 40 minutes, there would be 960 steps.\
-( 40 minutes (sprint) + 40 minutes (jog) )  * 60 seconds / 5 seconds = 960 samples
+A Yasso800 Entity is composed of 10 iterations.\
+Each Iteration is composed of 2 splits: jog and sprint.\
+A split is a collection of steps for the duration of the 800 meters.\
+A step is recorded every 20,000 milliseconds (20 seconds).\
+In an example with Sprint Goal= 40 minutes, there would be 240 steps.\
+( 40 minutes (sprint) + 40 minutes (jog) )  * 60 seconds / 20 seconds = 240 samples
 
 #### State machine 
 - IDLE : Starting point, nothing is happening.
@@ -83,7 +84,7 @@ In an example with Sprint Goal= 40 minutes, there would be 960 steps.\
 <img width="495" alt="Screen Shot 2020-02-15 at 3 30 04 PM" src="https://user-images.githubusercontent.com/1282659/78703407-b5177c00-78cf-11ea-81c2-fda1fd8716bb.png">
 
 IDLE -> START -> JOG <-> SPRINT -> PAUSE\
-<img src="https://user-images.githubusercontent.com/1282659/77359501-a8b0f200-6d19-11ea-9efb-68c7dfc4da21.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77270830-07735e80-6c7b-11ea-9230-108e3fbfbfd9.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77270817-fcb8c980-6c7a-11ea-8966-92d5229db13c.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/79081035-4d9e6980-7cdf-11ea-984a-60c3c6e112ca.jpg" width="200"> 
+<img src="https://user-images.githubusercontent.com/1282659/77359501-a8b0f200-6d19-11ea-9efb-68c7dfc4da21.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77270830-07735e80-6c7b-11ea-9230-108e3fbfbfd9.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/77270817-fcb8c980-6c7a-11ea-8966-92d5229db13c.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/82707739-45244180-9c42-11ea-809e-1e55be9cb5f7.jpg" width="200"> 
 
 -> DONE\
 <img src="https://user-images.githubusercontent.com/1282659/77836547-acc78000-711c-11ea-9f49-dc592b8a3153.jpg" width="200"> 
@@ -107,7 +108,7 @@ During your jogs and sprints, Google location service will continue to record yo
 PLEASE INSERT YOUR GOOGLE MAP KEY in values/google_map_api.xml before running app.
 <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">!! MY_KEY_HERE !!</string>\
 
-<img src="https://user-images.githubusercontent.com/1282659/80295008-74738b80-8734-11ea-97a1-8bb76f8d7541.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/78513888-3a861980-7774-11ea-97d9-f8be36a69eb3.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/79158438-f7433080-7d9b-11ea-9de9-c89f53b14438.jpg" width="200"> 
+<img src="https://user-images.githubusercontent.com/1282659/80295008-74738b80-8734-11ea-97a1-8bb76f8d7541.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/82707740-45bcd800-9c42-11ea-960b-da85a5602f5a.jpg" width="200">  <img src="https://user-images.githubusercontent.com/1282659/79158438-f7433080-7d9b-11ea-9de9-c89f53b14438.jpg" width="200"> 
 
 ### Persist (Share) Activity
 Activity provides persistence (share) methods to user.  They include the follow:
