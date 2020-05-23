@@ -154,6 +154,21 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         )
     }
 
+    override fun onResume() {
+        super.onResume()
+        if(mServiceConnection != null && mBound == false) {
+            var intent = Intent(this, LocationUpdateService.javaClass)
+            bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE)
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (mBound) {
+            unbindService(mServiceConnection)
+        }
+    }
+
     private fun registerReceiver() {
         myReceiver = MyReceiver()
         LocalBroadcastManager.getInstance(this).registerReceiver(
@@ -166,9 +181,6 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         if(myReceiver != null) {
             LocalBroadcastManager.getInstance(this).unregisterReceiver(myReceiver!!)
             myReceiver = null
-            /*if (mBound) {
-            unbindService(mServiceConnection)
-        }*/
         }
     }
 
@@ -263,13 +275,11 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
 
             when (runState) {
                 StateIdle::class.java -> {
-                    //stateMachine.interruptStart()
                     mService!!.runStart()
                     fab.changeState(StateResume::class.java)
                 }
 
                 StatePause::class.java -> {
-                    //stateMachine.interruptPause()
                     mService!!.runPause()
                     fab.changeState(StateResume::class.java)
                 }
@@ -292,7 +302,6 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
             when (runState) {
                 StateJog::class.java,
                 StateSprint::class.java -> {
-                    //stateMachine.interruptPause()
                     mService!!.runPause()
                     fab.changeState(StatePause::class.java)
                 }
@@ -316,7 +325,6 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
                 StatePause::class.java,
                 StateError::class.java,
                 StateDone::class.java -> {
-                    //stateMachine.interruptClear()
                     mService!!.runClear()
                     fab.changeState(StateClear::class.java)
                     splitContainer.updateBackgroundColor()

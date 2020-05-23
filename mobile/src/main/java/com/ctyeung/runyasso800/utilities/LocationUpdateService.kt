@@ -83,7 +83,7 @@ class LocationUpdateService : Service(), IRunStatsCallBack {
      * The current location.
      */
     private var mLocation: Location? = null
-    private lateinit var stateMachine:StateMachine
+    private var stateMachine:StateMachine? = null
 
     override fun onCreate() {
         instance = this
@@ -116,11 +116,11 @@ class LocationUpdateService : Service(), IRunStatsCallBack {
     }
 
     fun startStateMachine() {
-        stateMachine = StateMachine(this)
-
-        // start with a clean slate
-        stateMachine.interruptClear()
-        createLocationRequest()
+        if(stateMachine == null) {
+            stateMachine = StateMachine(this)
+            stateMachine?.interruptClear()
+            createLocationRequest()
+        }
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
@@ -170,18 +170,9 @@ class LocationUpdateService : Service(), IRunStatsCallBack {
         // Called when the last client (MainActivity in case of this sample) unbinds from this
         // service. If this method is called due to a configuration change in MainActivity, we
         // do nothing. Otherwise, we make this service a foreground service.
-        if (!mChangingConfiguration && Utils.requestingLocationUpdates(
-                this
-            )
-        ) {
-            Log.i(
-                TAG,
-                "Starting foreground service"
-            )
-            startForeground(
-                NOTIFICATION_ID,
-                getNotification()
-            )
+        if (!mChangingConfiguration && Utils.requestingLocationUpdates(this)) {
+            Log.i(TAG, "Starting foreground service")
+            startForeground(NOTIFICATION_ID, getNotification())
         }
         return true // Ensures onRebind() is called when a client re-binds.
     }
@@ -191,15 +182,15 @@ class LocationUpdateService : Service(), IRunStatsCallBack {
     }
 
     fun runStart() {
-        stateMachine.interruptStart()
+        stateMachine?.interruptStart()
     }
 
     fun runPause() {
-        stateMachine.interruptPause()
+        stateMachine?.interruptPause()
     }
 
     fun runClear() {
-        stateMachine.interruptClear()
+        stateMachine?.interruptClear()
     }
 
     /**
@@ -305,7 +296,7 @@ class LocationUpdateService : Service(), IRunStatsCallBack {
             "New location: $location"
         )
         mLocation = location
-        stateMachine.update(location)
+        stateMachine?.update(location)
 
         // Update notification content if running as a foreground service.
         if (serviceIsRunningInForeground(this)) {
@@ -365,11 +356,13 @@ class LocationUpdateService : Service(), IRunStatsCallBack {
      * Sets the location request parameters.
      */
     private fun createLocationRequest() {
-        val interval = SharedPrefUtility.get(SharedPrefUtility.keyGPSsampleRate, DEFAULT_SAMPLE_RATE)
+        val MILLI_SECOND = 1000
+        val interval = SharedPrefUtility.get(SharedPrefUtility.keyGPSsampleRate, DEFAULT_SAMPLE_RATE) * MILLI_SECOND
+        mLocationRequest = null
         mLocationRequest = LocationRequest()
-        mLocationRequest!!.interval = interval
-        mLocationRequest!!.fastestInterval = interval / 2
-        mLocationRequest!!.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        mLocationRequest?.interval = interval
+        mLocationRequest?.fastestInterval = interval / 2
+        mLocationRequest?.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
     }
 
     /**
@@ -416,9 +409,9 @@ class LocationUpdateService : Service(), IRunStatsCallBack {
         const val EXTRA_STARTED_FROM_NOTIFICATION = PACKAGE_NAME + ".started_from_notification"
         const val EXTRA_UPDATE_CODE = "updateCode"
 
-        const val MAX_SAMPLE_RATE:Long = 80000
-        const val DEFAULT_SAMPLE_RATE:Long = 20000
-        const val MIN_SAMPLE_RATE:Long = 3000
+        const val MAX_SAMPLE_RATE:Long = 80
+        const val DEFAULT_SAMPLE_RATE:Long = 10
+        const val MIN_SAMPLE_RATE:Long = 3
 
         /**
          * The identifier for the notification displayed for the foreground service.
