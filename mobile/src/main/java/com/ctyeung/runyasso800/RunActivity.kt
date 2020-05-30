@@ -185,6 +185,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     }
 
     override fun gotoActivity(classType:Class<*>) {
+        RemoveLocation()
         unregisterReceiver()
         super.gotoActivity(classType)
     }
@@ -207,7 +208,6 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         runViewModel.updateType()
         refresh()
         fab.changeState(StateDone::class.java)
-        RemoveLocation()
     }
 
     // State machine callback -- background update, vibrate, beep
@@ -307,7 +307,6 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
                 }
                 else -> toastErrorState(runState)
             }
-            RemoveLocation()
         }
     }
 

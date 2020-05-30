@@ -410,7 +410,7 @@ class LocationUpdateService : Service(), IRunStatsCallBack {
         const val EXTRA_UPDATE_CODE = "updateCode"
 
         const val MAX_SAMPLE_RATE:Long = 80
-        const val DEFAULT_SAMPLE_RATE:Long = 10
+        const val DEFAULT_SAMPLE_RATE:Long = 15
         const val MIN_SAMPLE_RATE:Long = 3
 
         /**

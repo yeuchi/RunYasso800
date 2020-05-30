@@ -15,8 +15,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7f23c7d-28c0-4a37-be60-ae5f42b5e57f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/website/.vscode/launch.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/accordion.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/bootstrap-4.3.1-dist/css/bootstrap-grid.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/bootstrap-4.3.1-dist/css/bootstrap-grid.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/bootstrap-4.3.1-dist/css/bootstrap-grid.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/bootstrap-4.3.1-dist/css/bootstrap-grid.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/bootstrap-4.3.1-dist/css/bootstrap-reboot.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/bootstrap-4.3.1-dist/css/bootstrap-reboot.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/bootstrap-4.3.1-dist/css/bootstrap-reboot.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/bootstrap-4.3.1-dist/css/bootstrap-reboot.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/bootstrap-4.3.1-dist/css/bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/bootstrap-4.3.1-dist/css/bootstrap.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/bootstrap-4.3.1-dist/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/bootstrap-4.3.1-dist/css/bootstrap.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/bootstrap-4.3.1-dist/js/bootstrap.bundle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/bootstrap-4.3.1-dist/js/bootstrap.bundle.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/bootstrap-4.3.1-dist/js/bootstrap.bundle.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/bootstrap-4.3.1-dist/js/bootstrap.bundle.min.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/bootstrap-4.3.1-dist/js/bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/bootstrap-4.3.1-dist/js/bootstrap.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/bootstrap-4.3.1-dist/js/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/bootstrap-4.3.1-dist/js/bootstrap.min.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/default.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" afterDir="false" />
@@ -27,10 +47,15 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/core/group-index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/core/group-index.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/test/espresso/group-index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/test/espresso/group-index.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/test/ext/group-index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/test/ext/group-index.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/test/group-index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/test/group-index.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/com/google/android/material/group-index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/com/google/android/material/group-index.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile/mobile.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/mobile.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/release/mobile-release.aab" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/release/mobile-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/release/mobile-release.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/release/mobile-release.apks" beforeDir="false" />
@@ -598,12 +623,12 @@
         </line-breakpoint>
         <line-breakpoint type="kotlin-line">
           <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt</url>
-          <line>332</line>
+          <line>331</line>
           <option name="timeStamp" value="263" />
         </line-breakpoint>
         <line-breakpoint type="kotlin-line">
           <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt</url>
-          <line>188</line>
+          <line>189</line>
           <option name="timeStamp" value="269" />
         </line-breakpoint>
         <line-breakpoint type="kotlin-line">
@@ -617,12 +642,83 @@
           <option name="timeStamp" value="279" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/ResultActivity.kt</url>
+          <line>72</line>
+          <option name="timeStamp" value="287" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/ResultActivity.kt</url>
+          <line>57</line>
+          <option name="timeStamp" value="288" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/viewModels/ResultViewModel.kt</url>
+          <line>42</line>
+          <option name="timeStamp" value="290" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/viewModels/ResultViewModel.kt</url>
+          <line>50</line>
+          <option name="timeStamp" value="296" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/viewModels/ResultViewModel.kt</url>
+          <line>130</line>
+          <option name="timeStamp" value="297" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/room/splits/SplitRepository.kt</url>
+          <line>20</line>
+          <option name="timeStamp" value="298" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/room/steps/StepRepository.kt</url>
+          <line>20</line>
+          <option name="timeStamp" value="299" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/viewModels/RunViewModel.kt</url>
+          <line>135</line>
+          <option name="timeStamp" value="308" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateClear.kt</url>
+          <line>33</line>
+          <option name="timeStamp" value="310" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine/StateClear.kt</url>
+          <line>38</line>
+          <option name="timeStamp" value="311" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/utilities/LocationUpdateService.kt</url>
-          <line>119</line>
-          <option name="timeStamp" value="286" />
+          <line>118</line>
+          <option name="timeStamp" value="312" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt</url>
+          <line>99</line>
+          <option name="timeStamp" value="313" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt</url>
+          <line>109</line>
+          <option name="timeStamp" value="314" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt</url>
+          <line>158</line>
+          <option name="timeStamp" value="315" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="mobile">
+        <watch expression="splits" language="kotlin" />
+        <watch expression="steps" language="kotlin" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="masterDetails">
     <states>
