@@ -1,5 +1,7 @@
 package com.ctyeung.runyasso800
 import android.content.*
+import android.location.Location
+import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
@@ -59,6 +61,8 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_run)
         binding.run = this
         activity = this
+
+        isGPSEnabled()
 
         stepViewModel = ViewModelProvider(this).get(StepViewModel::class.java)
         runViewModel = ViewModelProvider(this).get(RunViewModel::class.java)
@@ -260,6 +264,17 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
         isPermitted = true
     }
 
+    fun isGPSEnabled():Boolean {
+        val mgr:LocationManager = getSystemService( Context.LOCATION_SERVICE ) as LocationManager
+        if(mgr.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            return true
+        }
+        else {
+            Toast.makeText(this, R.string.gps_not_enabled, Toast.LENGTH_LONG).show()
+            return false
+        }
+    }
+
     /*
      * when IDLE state
      * -> goto SPRINT state
@@ -269,22 +284,27 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
      */
     fun onClickStart()
     {
-        wakeLock.acquire()
-        if(mService != null) {
-            mService!!.requestLocationUpdates()
+        if(isPermitted && isGPSEnabled()) {
+            wakeLock.acquire()
+            if (mService != null) {
+                mService!!.requestLocationUpdates()
 
-            when (runState) {
-                StateIdle::class.java -> {
-                    mService!!.runStart()
-                    fab.changeState(StateResume::class.java)
-                }
+                when (runState) {
+                    StateIdle::class.java -> {
+                        mService!!.runStart()
+                        fab.changeState(StateResume::class.java)
+                    }
 
-                StatePause::class.java -> {
-                    mService!!.runPause()
-                    fab.changeState(StateResume::class.java)
+                    StatePause::class.java -> {
+                        mService!!.runPause()
+                        fab.changeState(StateResume::class.java)
+                    }
+                    else -> toastErrorState(runState)
                 }
-                else -> toastErrorState(runState)
             }
+        }
+        else {
+            Toast.makeText(this, R.string.not_permitted, Toast.LENGTH_LONG).show()
         }
     }
 

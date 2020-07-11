@@ -44,6 +44,8 @@
     <string name="idle">Idle</string>
     <string name="unknown">Unknown</string>
     <string name="total">Total</string>
+    <string name="not_permitted">No GPS permission</string>
+    <string name="gps_not_enabled">GPS not enabled</string>
 
     <!-- Result Activity -->
     <string name="splits">Splits</string>
