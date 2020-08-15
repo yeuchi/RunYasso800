@@ -158,8 +158,10 @@ Add data processing (such as Kalman filter) to enhance distance calculation.
 ## Website
 
 Data review is available on a desktop computer via browser. \
-Copy & Paste JSON data into Splits and Steps <textarea>
-By default, an example data set below is rendered.
+Copy & Paste JSON data into Splits and Steps <textarea> \
+By default, an example data set below is rendered. \
+ https://yeuchi.github.io/RunYasso800/website/
+ 
  <img src="https://user-images.githubusercontent.com/1282659/90322165-4d74db80-df16-11ea-9c24-95b9f12b4cfa.png" width="600">
    
 # References
