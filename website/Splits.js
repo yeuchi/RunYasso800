@@ -4,10 +4,9 @@
  */ 
 class Splits {
 
-    constructor(splitsJsonString)
+    constructor(demo)
     {
-        if(splitsJsonString != null && splitsJsonString.length > 0)
-            this.deserialize(splitsJsonString)
+       this.demo = demo
     }
 
     isEmpty() {
@@ -17,20 +16,31 @@ class Splits {
         return false;
     }
 
-    deserialize(splitsJsonString)
+    deserialize(stepsJsonString)
     {
-        this.listSplit = JSON.parse(splitsJsonString)
+        var json = JSON.parse(stepsJsonString)
+        parse(json)
+    }
+
+    parse(json) {
+        this.listSplit = [];
+        if(json != null && json.length>0) {
+            var splitIndex = -1
+            for(var i=0; i<json.length; i++){
+                var step = json[i]
+                if(step.splitIndex > splitIndex) {
+                    splitIndex = step.splitIndex
+                    var colorStr = (splitIndex % 2==0)?"blue":"green"
+                    this.listSplit.push({lat:step.latitude, lng:step.longitude, color:colorStr})
+                }
+            }
+        }
     }
 
     getStartAt(index) {
         if(this.listSplit != null && 
             this.listSplit.length >= index) {
-            var split = this.listSplit[index]
-            var str = split.meetGoal==true?"green":"red"
-            if(index%2==0)
-                str = "blue"
-
-            return {lat: split.startLat, lng: split.startLong, color:str}
+            return this.listSplit[index]
         }
         return null;
     }
@@ -59,7 +69,7 @@ class Splits {
     }
 
     getDemo()
-    {
+    {/*
         this.listSplit = [
             {"dis":814.8068237304688,"endLat":44.9174924,"endLong":-93.3160292,"endTime":1597402189062,"meetGoal":true,"run_type":"jog","splitIndex":0,"startLat":44.9112725,"startLong":-93.3175595,"startTime":1597401897269},
             {"dis":811.99951171875,"endLat":44.915937,"endLong":-93.3076769,"endTime":1597402443542,"meetGoal":false,"run_type":"sprint","splitIndex":1,"startLat":44.9175766,"startLong":-93.3158391,"startTime":1597402196740},
@@ -70,7 +80,10 @@ class Splits {
             {"dis":809.59716796875,"endLat":44.92144,"endLong":-93.3132496,"endTime":1597403730289,"meetGoal":true,"run_type":"jog","splitIndex":6,"startLat":44.9273706,"startLong":-93.3096776,"startTime":1597403489497},
             {"dis":808.24853515625,"endLat":44.915371,"endLong":-93.3163511,"endTime":1597403995953,"meetGoal":false,"run_type":"sprint","splitIndex":7,"startLat":44.9208664,"startLong":-93.3133643,"startTime":1597403739036},
             {"dis":579.4636840820312,"endLat":44.9112146,"endLong":-93.3175156,"endTime":1597404252853,"meetGoal":true,"run_type":"jog","splitIndex":8,"startLat":44.9150937,"startLong":-93.316286,"startTime":1597404003552}];
-
-            return this.getAll();
+            */
+        var demo = new Demo()
+        var json = demo.getAll()
+        this.parse(json)
+        return this.getAll();
     }
 }

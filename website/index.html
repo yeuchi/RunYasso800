@@ -5,7 +5,7 @@
     Author: Chi (CT) Yeung
 
     Date: August 15, 2020
-    
+
     Reference:
     https://developers.google.com/maps/documentation/javascript/examples/polyline-simple 
 
@@ -14,18 +14,37 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>Simple Polylines</title>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <title>RunYasso800</title>
+    <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script defer
     src="https://maps.googleapis.com/maps/api/js?AIzaSyAThDBNxCs_gHlusYlCPv765XjyRKz4-hY&callback=initMap">
     </script>
+    <script src="Demo.js"></script>
     <script src="Splits.js"></script>
     <script src="Steps.js"></script>
+
     <style>
+      #resizable { 
+        width: 150px; 
+        height: 150px; 
+        padding: 0.5em; 
+        position: absolute;
+        overflow: hidden;
+        z-index: 200;
+        }
+      #resizable h3 { 
+        text-align: center; 
+        margin: 0; 
+        }
 
       textarea {
         overflow-y: scroll;
-        height: 50px;
+        width: 100%;
+        height: 90%;
         resize: none; /* Remove this if you want the user to resize the textarea */
       }
 
@@ -41,12 +60,14 @@
         padding: 0;
       }
     </style>
+
   </head>
 
   <script>
     let map;
-    var splits = new Splits();
-    var steps = new Steps();
+    var demo = new Demo();
+    var splits = new Splits(demo);
+    var steps = new Steps(demo);
 
     function initMarkers(map, list) {
       for(var i=0; i<list.length; i++){
@@ -90,20 +111,16 @@
       initMarkers(map, markers)
     }
 
+    $( function() {
+      $( "#resizable" ).resizable();
+    } );
+
     $(document).ready(function() {
-
-      $("#txtPerformance").on('change', function() {
-        // your code here
-      });
-
-      $("#txtSplits").on('change', function() {
-        var str = $(this).val();
-        splits.deserialize(str);
-        initMap();
-      });
-
+      var str = JSON.stringify(demo.getAll())
+      $("#txtSteps").val(str)
       $("#txtSteps").on('change', function() {
         var str = $(this).val();
+        splits.deserialize(str);
         steps.deserialize(str);
         initMap();
       });
@@ -113,15 +130,12 @@
   </script>
 
   <body>
+    <div id="resizable" class="ui-widget-content">
+      <h3 class="ui-widget-header">Steps</h3>
+      <textarea id="txtSteps"></textarea>
+    </div> 
 
-    <p>Performance</p>
-    <textarea id="txtPerformance" rows="20" cols="100"></textarea>
-    <p>Splits</p>
-    <textarea id="txtSplits" rows="100" cols="100"></textarea>
-    <p>Steps</p>
-    <textarea id="txtSteps" rows="100" cols="100"></textarea>
-    
-    <div id="map"></div>
-    
+    <div id="map">
+
   </body>
 </html>
