@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RunYasso800.iml" filepath="$PROJECT_DIR$/RunYasso800.iml" group="RunYasso800" />
-      <module fileurl="file://$PROJECT_DIR$/mobile/mobile.iml" filepath="$PROJECT_DIR$/mobile/mobile.iml" group="RunYasso800/mobile" />
-      <module fileurl="file://$PROJECT_DIR$/wear/wear.iml" filepath="$PROJECT_DIR$/wear/wear.iml" group="RunYasso800/wear" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mobile/mobile.iml" filepath="$PROJECT_DIR$/.idea/modules/mobile/mobile.iml" group="RunYasso800/mobile" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/wear/wear.iml" filepath="$PROJECT_DIR$/.idea/modules/wear/wear.iml" group="RunYasso800/wear" />
     </modules>
   </component>
 </project>

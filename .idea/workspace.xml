@@ -13,8 +13,30 @@
     <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="a7f23c7d-28c0-4a37-be60-ae5f42b5e57f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" afterDir="false" />
@@ -34,32 +56,24 @@
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_16_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_16_0_1_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_wearable_16_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_wearable_16_0_1_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_support_wearable_2_4_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_support_wearable_2_4_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RunYasso800.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RunYasso800.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/constraintlayout/group-index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/constraintlayout/group-index.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/core/group-index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/core/group-index.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/lifecycle/group-index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/lifecycle/group-index.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/room/group-index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/room/group-index.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/com/google/android/gms/group-index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/com/google/android/gms/group-index.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/com/google/android/material/group-index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/com/google/android/material/group-index.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/master-index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/master-index.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile/mobile.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/mobile.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/mobile.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/release/mobile-release.aab" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/release/mobile-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/release/mobile-release.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/release/mobile-release.apks" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile/release/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/release/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/release/wear-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/release/wear-release.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/RunActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wear/wear.iml" beforeDir="false" afterPath="$PROJECT_DIR$/wear/wear.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wear/wear.iml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Android_Accelerated_Oreo" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_4_API_30" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -100,23 +114,25 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ApkExportedModule" value="mobile" />
     <property name="BundleExportedModule" value="mobile" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="344c5a4832333098" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-01-21T02:32:48.638Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_4_API_30" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-08-02T22:00:35.548Z" />
     <property name="ExportApk.ApkPath" value="$PROJECT_DIR$/mobile" />
     <property name="ExportApk.BuildVariants" value="release" />
     <property name="ExportApk.SignV1" value="true" />
     <property name="ExportApk.SignV2" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/mobile/src/main/res/drawable" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="memory.settings.postsync.last.time.stamp" value="1596404873353" />
     <property name="not.eligible.for.single.variant.sync" value="true" />
     <property name="settings.editor.selected.configurable" value="gradle.compiler" />
     <property name="show.migrate.to.gradle.popup" value="false" />
@@ -140,7 +156,7 @@
       <recent name="$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/stateMachine" />
     </key>
   </component>
-  <component name="RunManager" selected="Android App.mobile">
+  <component name="RunManager" selected="Android App.wear">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -148,7 +164,7 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="mobile" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+    <configuration name="mobile" type="AndroidRunConfigurationType" factoryName="Android App">
       <module name="mobile" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
@@ -251,7 +267,7 @@
       </method>
     </configuration>
     <configuration name="GoalActivityTests" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
-      <module name="mobile" />
+      <module name="RunYasso800.mobile" />
       <option name="TESTING_TYPE" value="2" />
       <option name="METHOD_NAME" value="" />
       <option name="CLASS_NAME" value="com.ctyeung.runyasso800.GoalActivityTests" />
@@ -299,7 +315,7 @@
       </method>
     </configuration>
     <configuration name="RunState()" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
-      <module name="mobile" />
+      <module name="RunYasso800.mobile" />
       <option name="TESTING_TYPE" value="3" />
       <option name="METHOD_NAME" value="RunState" />
       <option name="CLASS_NAME" value="com.ctyeung.runyasso800.viewModels.SharedPrefUtilityTest" />
@@ -347,7 +363,7 @@
       </method>
     </configuration>
     <configuration name="SharedPrefUtilityTest" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
-      <module name="mobile" />
+      <module name="RunYasso800.mobile" />
       <option name="TESTING_TYPE" value="2" />
       <option name="METHOD_NAME" value="" />
       <option name="CLASS_NAME" value="com.ctyeung.runyasso800.viewModels.SharedPrefUtilityTest" />
@@ -395,7 +411,7 @@
       </method>
     </configuration>
     <configuration name="Tests in 'com.ctyeung.runyasso800'" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
-      <module name="mobile" />
+      <module name="RunYasso800.mobile" />
       <option name="TESTING_TYPE" value="1" />
       <option name="METHOD_NAME" value="" />
       <option name="CLASS_NAME" value="" />
@@ -443,7 +459,7 @@
       </method>
     </configuration>
     <configuration name="Tests in 'com.ctyeung.runyasso800.room'" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
-      <module name="mobile" />
+      <module name="RunYasso800.mobile" />
       <option name="TESTING_TYPE" value="1" />
       <option name="METHOD_NAME" value="" />
       <option name="CLASS_NAME" value="" />
@@ -530,38 +546,42 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1379" height="148" key="GridCell.Tab.0.bottom" timestamp="1594500918497">
+    <state x="120" y="143" width="1200" height="637" key="AVDManager" timestamp="1596405608198">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1379" height="148" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1594500918497" />
-    <state width="1379" height="148" key="GridCell.Tab.0.center" timestamp="1594500918496">
+    <state x="120" y="143" width="1200" height="637" key="AVDManager/0.23.1440.877@0.23.1440.877" timestamp="1596405608198" />
+    <state width="1076" height="148" key="GridCell.Tab.0.bottom" timestamp="1594505228912">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1379" height="148" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1594500918496" />
-    <state width="1379" height="148" key="GridCell.Tab.0.left" timestamp="1594500918496">
+    <state width="1076" height="148" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1594505228912" />
+    <state width="1076" height="148" key="GridCell.Tab.0.center" timestamp="1594505228912">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1379" height="148" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1594500918496" />
-    <state width="1379" height="148" key="GridCell.Tab.0.right" timestamp="1594500918497">
+    <state width="1076" height="148" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1594505228912" />
+    <state width="1076" height="148" key="GridCell.Tab.0.left" timestamp="1594505228912">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1379" height="148" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1594500918497" />
-    <state width="1379" height="148" key="GridCell.Tab.1.bottom" timestamp="1594500910154">
+    <state width="1076" height="148" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1594505228912" />
+    <state width="1076" height="148" key="GridCell.Tab.0.right" timestamp="1594505228912">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1379" height="148" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1594500910154" />
-    <state width="1379" height="148" key="GridCell.Tab.1.center" timestamp="1594500910153">
+    <state width="1076" height="148" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1594505228912" />
+    <state width="1076" height="148" key="GridCell.Tab.1.bottom" timestamp="1594505228913">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1379" height="148" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1594500910153" />
-    <state width="1379" height="148" key="GridCell.Tab.1.left" timestamp="1594500910153">
+    <state width="1076" height="148" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1594505228913" />
+    <state width="1076" height="148" key="GridCell.Tab.1.center" timestamp="1594505228912">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1379" height="148" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1594500910153" />
-    <state width="1379" height="148" key="GridCell.Tab.1.right" timestamp="1594500910153">
+    <state width="1076" height="148" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1594505228912" />
+    <state width="1076" height="148" key="GridCell.Tab.1.left" timestamp="1594505228912">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1379" height="148" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1594500910153" />
+    <state width="1076" height="148" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1594505228912" />
+    <state width="1076" height="148" key="GridCell.Tab.1.right" timestamp="1594505228913">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1076" height="148" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1594505228913" />
     <state x="436" y="268" key="com.intellij.ide.util.TipDialog" timestamp="1593969709073">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -576,6 +596,15 @@
     <state x="382" y="217" width="693" height="488" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1594501790011" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/ctyeung/runyasso800/utilities/LocationUpdateService.kt</url>
+          <line>267</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="mobile">
         <watch expression="splits" language="kotlin" />

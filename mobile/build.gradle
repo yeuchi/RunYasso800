@@ -7,12 +7,12 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.0"
     defaultConfig {
         applicationId "com.ctyeung.runyasso800"
-        minSdkVersion 26
-        targetSdkVersion 28
+        minSdkVersion 30
+        targetSdkVersion 30
         versionCode 23
         versionName "23.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

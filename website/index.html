@@ -3,13 +3,26 @@
     Reference:
     https://developers.google.com/maps/documentation/javascript/examples/polyline-simple 
 
--->>
+-->
 <html>
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Simple Polylines</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script defer
+    src="https://maps.googleapis.com/maps/api/js?AIzaSyAThDBNxCs_gHlusYlCPv765XjyRKz4-hY&callback=initMap">
+    </script>
+    <script src="Splits.js"></script>
+    <script src="Steps.js"></script>
     <style>
+
+      textarea {
+        overflow-y: scroll;
+        height: 50px;
+        resize: none; /* Remove this if you want the user to resize the textarea */
+      }
+
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -23,40 +36,86 @@
       }
     </style>
   </head>
-  <body>
-    <div id="map"></div>
-    <script>
 
-      // This example creates a 2-pixel-wide red polyline showing the path of
-      // the first trans-Pacific flight between Oakland, CA, and Brisbane,
-      // Australia which was made by Charles Kingsford Smith.
+  <script>
+    let map;
+    var splits = new Splits();
+    var steps = new Steps();
 
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 3,
-          center: {lat: 0, lng: -180},
-          mapTypeId: 'terrain'
+    function initMarkers(map, list) {
+      for(var i=0; i<list.length; i++){
+        var color = list[i].color
+        var j = i+1;
+        var image = {
+        url: "https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_"+color+j+".png",
+        };
+
+        var marker = new google.maps.Marker({
+          position: list[i],
+          icon: image
         });
 
-        var flightPlanCoordinates = [
-          {lat: 37.772, lng: -122.214},
-          {lat: 21.291, lng: -157.821},
-          {lat: -18.142, lng: 178.431},
-          {lat: -27.467, lng: 153.027}
-        ];
-        var flightPath = new google.maps.Polyline({
-          path: flightPlanCoordinates,
-          geodesic: true,
-          strokeColor: '#FF0000',
-          strokeOpacity: 1.0,
-          strokeWeight: 2
-        });
-
-        flightPath.setMap(map);
+        marker.setMap(map);
       }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?AIzaSyAThDBNxCs_gHlusYlCPv765XjyRKz4-hY&callback=initMap">
-    </script>
+    }
+
+    function initPath(map, list) {
+      var runPath = new google.maps.Polyline({
+        path: list,
+        geodesic: true,
+        strokeColor: '#FF0000',
+        strokeOpacity: 1.0,
+        strokeWeight: 2
+      });
+
+      runPath.setMap(map);
+    }
+
+    function initMap() {
+      var runPath = steps.isEmpty() ? steps.getDemo() : steps.getAll();
+      var markers = splits.isEmpty() ? splits.getDemo() : splits.getAll();
+
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 14,
+        center: {lat: runPath[0].lat, lng: runPath[0].lng},
+        mapTypeId: 'terrain'
+      });
+      initPath(map, runPath)
+      initMarkers(map, markers)
+    }
+
+    $(document).ready(function() {
+
+      $("#txtPerformance").on('change', function() {
+        // your code here
+      });
+
+      $("#txtSplits").on('change', function() {
+        var str = $(this).val();
+        splits.deserialize(str);
+        initMap();
+      });
+
+      $("#txtSteps").on('change', function() {
+        var str = $(this).val();
+        steps.deserialize(str);
+        initMap();
+      });
+
+      initMap()
+    });
+  </script>
+
+  <body>
+
+    <p>Performance</p>
+    <textarea id="txtPerformance" rows="20" cols="100"></textarea>
+    <p>Splits</p>
+    <textarea id="txtSplits" rows="100" cols="100"></textarea>
+    <p>Steps</p>
+    <textarea id="txtSteps" rows="100" cols="100"></textarea>
+    
+    <div id="map"></div>
+    
   </body>
 </html>

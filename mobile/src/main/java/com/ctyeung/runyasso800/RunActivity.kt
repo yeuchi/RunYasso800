@@ -122,7 +122,7 @@ class RunActivity : BaseActivity(), IRunStatsCallBack {
     private class MyReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
 
-            val code = intent.extras.get(LocationUpdateService.EXTRA_UPDATE_CODE) as UpdateCode
+            val code = intent.extras?.get(LocationUpdateService.EXTRA_UPDATE_CODE) as UpdateCode
             if(self!=null) {
 
                 when (code) {
