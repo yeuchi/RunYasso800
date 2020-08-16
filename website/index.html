@@ -195,7 +195,7 @@ type="text/javascript"></script>
       // click button Goal listener
       $("#btnGoal").on('click', function() {
         var time = $('#timeGoal').val().split(':')
-        goal = time[0] * 60 + time[1];
+        goal = parseInt(time[0]) * 60 + parseInt(time[1];
 
         initMap();
       });
