@@ -166,7 +166,7 @@ By default, an example data set below is rendered. \
  <img src="https://user-images.githubusercontent.com/1282659/90323659-e2cd9b00-df29-11ea-9b20-ede76f827d09.png" width="600">
  
 ### IDE 
-Visual Studio Code is used for website development.
+Visual Studio Code is used for website development. \
 Navigate to 127.0.0.1:5500/index.html for debugging.
    
 # References
