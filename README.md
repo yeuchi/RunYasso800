@@ -166,8 +166,7 @@ By default, an example data set below is rendered. \
  <img src="https://user-images.githubusercontent.com/1282659/90338275-2ec22380-dfae-11ea-83c6-04a0fa4c4071.png" height="400"> <img src="https://user-images.githubusercontent.com/1282659/90338278-3255aa80-dfae-11ea-9838-8319b837e094.png" height="400">
  
 ### IDE 
-Visual Studio Code is used for website development. \
-Navigate to 127.0.0.1:5500/index.html for debugging.
+Visual Studio Code is used for website development. 
    
 # References
 1. How to do Yasso 800s, by Christine Luff, VeryWellFit, August 04, 2019\
