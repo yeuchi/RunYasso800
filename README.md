@@ -163,7 +163,7 @@ Copy & Paste Steps JSON array into upper left <textarea> \
 By default, an example data set below is rendered. \
  https://yeuchi.github.io/RunYasso800/website/
  
- <img src="https://user-images.githubusercontent.com/1282659/90338275-2ec22380-dfae-11ea-83c6-04a0fa4c4071.png" width="300"> <img src="https://user-images.githubusercontent.com/1282659/90338278-3255aa80-dfae-11ea-9838-8319b837e094.png" width="300">
+ <img src="https://user-images.githubusercontent.com/1282659/90338275-2ec22380-dfae-11ea-83c6-04a0fa4c4071.png" height="400"> <img src="https://user-images.githubusercontent.com/1282659/90338278-3255aa80-dfae-11ea-9838-8319b837e094.png" height="400">
  
 ### IDE 
 Visual Studio Code is used for website development. \
