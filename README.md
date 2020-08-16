@@ -158,11 +158,15 @@ Add data processing (such as Kalman filter) to enhance distance calculation.
 ## Website
 
 Data review is available on a desktop computer via browser. \
-Copy & Paste JSON data into Splits and Steps <textarea> \
+Copy & Paste Steps JSON array into upper left <textarea> \
 By default, an example data set below is rendered. \
  https://yeuchi.github.io/RunYasso800/website/
  
- <img src="https://user-images.githubusercontent.com/1282659/90322165-4d74db80-df16-11ea-9c24-95b9f12b4cfa.png" width="600">
+ <img src="https://user-images.githubusercontent.com/1282659/90323614-46a39400-df29-11ea-9d9a-d9b9061b1ee6.png" width="600">
+ 
+### IDE 
+Visual Studio Code is used for website development.
+Navigate to 127.0.0.1:5500/index.html for debugging.
    
 # References
 1. How to do Yasso 800s, by Christine Luff, VeryWellFit, August 04, 2019\
