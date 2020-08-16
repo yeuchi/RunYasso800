@@ -7,7 +7,12 @@
     Date: August 15, 2020
 
     Reference:
+
+    Google map
     https://developers.google.com/maps/documentation/javascript/examples/polyline-simple 
+
+    Time with no Am/Pm
+    https://stackoverflow.com/questions/45283030/html5-input-type-time-without-am-pm-and-with-min-max
 
 -->
 <html>
@@ -28,17 +33,31 @@
     <script src="Steps.js"></script>
 
     <style>
+      #btnGoal {
+        display: inline-block;
+        cursor: pointer;
+      }
+      
+      #timeGoal {
+        display: inline-block;
+      }
+
+      .divTime {
+        margin-bottom: 10px;
+      }
+
       #resizable { 
-        width: 150px; 
+        width: 250px; 
         height: 150px; 
         padding: 0.5em; 
         position: absolute;
         overflow: hidden;
         z-index: 200;
         }
-      #resizable h3 { 
+      #btnSteps { 
         text-align: center; 
-        margin: 0; 
+        width: 100%;
+        cursor: pointer;
         }
 
       textarea {
@@ -59,19 +78,41 @@
         margin: 0;
         padding: 0;
       }
+
+      .without_ampm::-webkit-datetime-edit-ampm-field {
+        display: none;
+      }
+      input[type=time]::-webkit-clear-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -o-appearance: none;
+        -ms-appearance:none;
+        appearance: none;
+        margin: -10px; 
+      }
     </style>
 
   </head>
 
   <script>
     let map;
+    var goal = 240;
     var demo = new Demo();
     var splits = new Splits(demo);
     var steps = new Steps(demo);
 
-    function initMarkers(map, list) {
-      for(var i=0; i<list.length; i++){
-        var color = list[i].color
+    function setColor(index, time) {
+      if(index%2==0) {
+        return "blue";
+      }
+      
+      return time < goal ? "green" : "red";
+    }
+
+    function initMarkers(map, list, goal) {
+      for(var i=0; i<list.length; i++) {
+        // set color
+        var color = setColor(i, list[i].time)
         var j = i+1;
         var image = {
         url: "https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_"+color+j+".png",
@@ -107,8 +148,9 @@
         center: {lat: runPath[0].lat, lng: runPath[0].lng},
         mapTypeId: 'terrain'
       });
+
       initPath(map, runPath)
-      initMarkers(map, markers)
+      initMarkers(map, markers, goal)
     }
 
     $( function() {
@@ -116,22 +158,41 @@
     } );
 
     $(document).ready(function() {
+      // init Steps textarea
       var str = JSON.stringify(demo.getAll())
       $("#txtSteps").val(str)
-      $("#txtSteps").on('change', function() {
-        var str = $(this).val();
+
+      // click button Steps listener
+      $("#btnSteps").on('click', function() {
+        var str = $("#txtSteps").val();
         splits.deserialize(str);
         steps.deserialize(str);
         initMap();
       });
 
+      // click button Goal listener
+      $("#btnGoal").on('click', function() {
+        var time = $('#timeGoal').val().split(':')
+        goal = time[0] * 60 + time[1];
+
+        initMap();
+      });
+
+      // start map
       initMap()
     });
   </script>
 
   <body>
     <div id="resizable" class="ui-widget-content">
-      <h3 class="ui-widget-header">Steps</h3>
+      <!-- Goal -->
+      <div class="divTime">
+        <input id="btnGoal" type="submit" value="Goal">
+        <input id="timeGoal" type="time" value="04:00" class="without_ampm" >
+      </div>
+
+      <!-- Steps -->
+      <input id="btnSteps" type="submit" value="Steps">
       <textarea id="txtSteps"></textarea>
     </div> 
 

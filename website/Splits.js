@@ -19,22 +19,47 @@ class Splits {
     deserialize(stepsJsonString)
     {
         var json = JSON.parse(stepsJsonString)
-        parse(json)
+        this.parse(json)
     }
 
     parse(json) {
         this.listSplit = [];
         if(json != null && json.length>0) {
             var splitIndex = -1
-            for(var i=0; i<json.length; i++){
+            var splitStartTime = json[0].time
+            var splitEndTime = 0
+            for(var i=0; i<json.length; i++) {
                 var step = json[i]
+
+                // every transition of splitIndex
                 if(step.splitIndex > splitIndex) {
                     splitIndex = step.splitIndex
-                    var colorStr = (splitIndex % 2==0)?"blue":"green"
-                    this.listSplit.push({lat:step.latitude, lng:step.longitude, color:colorStr})
+
+                    if(splitIndex>0)
+                    // store split time -> seconds
+                    this.setSplitTime(splitIndex-1, splitEndTime)
+
+                    // new split 
+                    splitStartTime = step.time
+                    this.listSplit.push({lat:step.latitude, lng:step.longitude, time:step.time})
+                }
+                else {
+                    // store last time stamp
+                    splitEndTime = step.time;
                 }
             }
+            // store split time -- seconds
+            this.setSplitTime(splitIndex, splitEndTime)
         }
+    }
+
+    setSplitTime(index, splitEndTime) {
+        var startTime = this.listSplit[index].time
+        this.listSplit[index].time = this.milli2second(splitEndTime - startTime)
+    }
+
+    milli2second(num) {
+        return (num==0)? 0 : num / 1000;
     }
 
     getStartAt(index) {
