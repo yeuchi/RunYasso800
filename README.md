@@ -157,7 +157,8 @@ Add data processing (such as Kalman filter) to enhance distance calculation.
 
 ## Website
 
-Data review is available on a desktop computer via browser. \
+Data review is best on desktop computer via chrome browser. \
+Retrieve your persisted Steps data [email, drive, etc] from mobile app. \
 Copy & Paste Steps JSON array into upper left <textarea> \
 By default, an example data set below is rendered. \
  https://yeuchi.github.io/RunYasso800/website/
