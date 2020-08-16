@@ -18,7 +18,13 @@ class Steps {
 
     deserialize(stepsJsonString)
     {
-        this.listStep = JSON.parse(stepsJsonString)
+        try{
+            this.listStep = JSON.parse(stepsJsonString)
+            return true
+        }
+        catch(ex){
+            return false
+        }
     }
 
     getStepAt(index)

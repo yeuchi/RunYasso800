@@ -20,7 +20,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>RunYasso800</title>
-    <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -157,6 +157,17 @@
       $( "#resizable" ).resizable();
     } );
 
+    function filterSteps(str) {
+      if(str!=null) {
+        for(var i=0; i<str.length; i++) {
+          if(str.charAt(i) == '[') {
+            return str.substring(i, str.length) 
+          }
+        }
+      }
+      return str;
+    }
+
     $(document).ready(function() {
       // init Steps textarea
       var str = JSON.stringify(demo.getAll())
@@ -165,9 +176,14 @@
       // click button Steps listener
       $("#btnSteps").on('click', function() {
         var str = $("#txtSteps").val();
-        splits.deserialize(str);
-        steps.deserialize(str);
-        initMap();
+        str = filterSteps(str)
+        
+        var goodSplits = splits.deserialize(str);
+        var goodSteps = steps.deserialize(str);
+        if(goodSplits && goodSteps)
+          initMap();
+        else 
+          alert("Steps load error\n Your Steps JSON Array please.")
       });
 
       // click button Goal listener

@@ -18,8 +18,14 @@ class Splits {
 
     deserialize(stepsJsonString)
     {
-        var json = JSON.parse(stepsJsonString)
-        this.parse(json)
+        try {
+            var json = JSON.parse(stepsJsonString)
+            this.parse(json)
+            return true
+        }
+        catch(ex) {
+            return false
+        }
     }
 
     parse(json) {
