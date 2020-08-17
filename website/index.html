@@ -150,11 +150,13 @@ type="text/javascript"></script>
       var markers = splits.isEmpty() ? splits.getDemo() : splits.getAll();
 
       if(typeof google != 'undefined') {
-        var midpoint = splits.findCenter()
-        if(midpoint != null) {
+
+        // midpoint might be better
+        var meanPoint = splits.findCenter()
+        if(meanPoint != null) {
           map = new google.maps.Map(document.getElementById('map'), {
             zoom: 14,
-            center: midpoint,
+            center: meanPoint,
             mapTypeId: 'terrain'
           });
         }
