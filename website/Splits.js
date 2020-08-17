@@ -28,6 +28,20 @@ class Splits {
         }
     }
 
+    findCenter() {
+        var count = this.listSplit.length;
+        if(count > 0) {
+            var sumLat = 0;
+            var sumLng = 0; 
+            for(var i=0; i<count; i++) {
+                sumLat += this.listSplit[i].lat;
+                sumLng += this.listSplit[i].lng;
+            }
+            return {lat:sumLat/count, lng:sumLng/count}
+        }
+        return null;
+    }
+
     parse(json) {
         this.listSplit = [];
         if(json != null && json.length>0) {

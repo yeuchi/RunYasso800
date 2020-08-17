@@ -32,7 +32,7 @@
 
     <!-- yeuchi's domain -->
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC76sHFtIIhGRNQHyaOEViocPW5QXOai_o&callback=initMap"
-type="text/javascript"></script>
+type="text/javascript"></script> 
 
     <script src="Demo.js"></script>
     <script src="Splits.js"></script>
@@ -150,11 +150,14 @@ type="text/javascript"></script>
       var markers = splits.isEmpty() ? splits.getDemo() : splits.getAll();
 
       if(typeof google != 'undefined') {
-        map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 14,
-          center: {lat: runPath[0].lat, lng: runPath[0].lng},
-          mapTypeId: 'terrain'
-        });
+        var midpoint = splits.findCenter()
+        if(midpoint != null) {
+          map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 14,
+            center: midpoint,
+            mapTypeId: 'terrain'
+          });
+        }
 
         initPath(map, runPath)
         initMarkers(map, markers, goal)
