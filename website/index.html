@@ -149,14 +149,16 @@ type="text/javascript"></script>
       var runPath = steps.isEmpty() ? steps.getDemo() : steps.getAll();
       var markers = splits.isEmpty() ? splits.getDemo() : splits.getAll();
 
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 14,
-        center: {lat: runPath[0].lat, lng: runPath[0].lng},
-        mapTypeId: 'terrain'
-      });
+      if(google) {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: {lat: runPath[0].lat, lng: runPath[0].lng},
+          mapTypeId: 'terrain'
+        });
 
-      initPath(map, runPath)
-      initMarkers(map, markers, goal)
+        initPath(map, runPath)
+        initMarkers(map, markers, goal)
+      }
     }
 
     $( function() {
