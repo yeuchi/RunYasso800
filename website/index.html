@@ -149,7 +149,7 @@ type="text/javascript"></script>
       var runPath = steps.isEmpty() ? steps.getDemo() : steps.getAll();
       var markers = splits.isEmpty() ? splits.getDemo() : splits.getAll();
 
-      if(google) {
+      if(typeof google != 'undefined') {
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 14,
           center: {lat: runPath[0].lat, lng: runPath[0].lng},
