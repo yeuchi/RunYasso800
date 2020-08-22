@@ -125,6 +125,7 @@ type="text/javascript"></script>
     $(document).ready(function() {
       // init Steps textarea
       var str = JSON.stringify(demo.getAll())
+      localStorage.setItem('steps', str);
       $("#txtSteps").val(str)
 
       // click button Steps listener
