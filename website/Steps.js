@@ -20,6 +20,7 @@ class Steps {
     {
         try{
             this.listStep = JSON.parse(stepsJsonString)
+            localStorage.setItem('steps', stepsJsonString);
             return true
         }
         catch(ex){

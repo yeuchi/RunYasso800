@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<!-- 
+    Description: RunYasso javascript website for reviewing data.
+
+    Author: Chi (CT) Yeung
+
+    Date: August 15, 2020
+
+    Reference:
+
+    Google map
+    https://developers.google.com/maps/documentation/javascript/examples/polyline-simple 
+
+    Time with no Am/Pm
+    https://stackoverflow.com/questions/45283030/html5-input-type-time-without-am-pm-and-with-min-max
+
+-->
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>RunYasso800</title>
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="default.css"/>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <script src="Demo.js"></script>
+    <script src="Splits.js"></script>
+    <script src="Steps.js"></script>
+
+    <style> 
+    .splits_svg {
+      background: #EFEFEF;
+    }
+    </style>
+
+  </head>
+
+  <script>
+var demo = new Demo();
+    var splits = new Splits(demo);
+    var steps = new Steps(demo);
+
+    $(document).ready(function() {
+        const stepsString = localStorage.getItem('steps');
+        if(stepsString != null && 
+            stepsString.length>0){
+
+            var goodSplits = splits.deserialize(stepsString);
+            var goodSteps = steps.deserialize(stepsString);
+            if(goodSplits && goodSteps)
+                renderGraphs();
+            else 
+                alert("Steps load error. Please reload in Map")
+        }
+    });
+
+    /*
+     * Render SVG graphs for splits
+     */
+    function renderGraphs() {
+
+    }
+
+  </script>
+
+    <body>
+      <h2>Splits</h2>
+      <svg class="splits_svg" viewBox="0 0 256 100" #slider>
+        <path [attr.d]="path" fill="none" stroke="green"></path>
+        <g>
+          <path d="M -1,0 L 256,0" fill="none" stroke="black"></path>
+        </g>
+        <g>
+          <path d="M 256,0 L 256,100" fill="none" stroke="black"></path>
+        </g>
+    </svg>
+
+    </body>
+</html>
