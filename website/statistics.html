@@ -31,12 +31,25 @@
     .splits_svg {
       background: #EFEFEF;
       margin-left: 30px;
+      margin-right:50px;
       width: 400px;
+    }
+
+    .time {
+      left: 450px;
     }
 
     .num {
       position: absolute !important;
       z-index: 200;
+    }
+
+    .jog {
+      color: blue;
+    }
+
+    .sprint {
+      color: green;
     }
 
     .n1 {
@@ -88,6 +101,86 @@
       top: 785px;
       left: 10px;
     }
+
+    .t1jog {
+      top: 50px;
+    }
+
+    .t2jog {
+      top: 130px;
+    }
+
+    .t3jog {
+      top: 210px;
+    }
+
+    .t4jog {
+      top: 290px;
+    }
+
+    .t5jog {
+      top: 370px;
+    }
+
+    .t6jog {
+      top: 450px;
+    }
+
+    .t7jog {
+      top: 530px
+    }
+
+    .t8jog {
+      top: 610px
+    }
+
+    .t9jog {
+      top: 690px
+    }
+
+    .t10jog {
+      top: 770px
+    }
+
+    .t1sprint {
+      top: 70px;
+    }
+
+    .t2sprint {
+      top: 150px;
+    }
+
+    .t3sprint {
+      top: 230px;
+    }
+
+    .t4sprint {
+      top: 310px;
+    }
+
+    .t5sprint {
+      top: 390px;
+    }
+
+    .t6sprint {
+      top: 470px;
+    }
+
+    .t7sprint {
+      top: 550px
+    }
+
+    .t8sprint {
+      top: 630px
+    }
+
+    .t9sprint {
+      top: 710px
+    }
+
+    .t10sprint {
+      top: 790px
+    }
     </style>
 
   </head>
@@ -125,17 +218,27 @@ var demo = new Demo();
           jog += createBar(i, listSplit[i].time, max, 0)
           $(".jog").attr("d", jog)
           insertIndex(i/2)
+          insertTime(i/2+1, listSplit[i].time, "jog")
         }
         else {
           sprint += createBar(i-1, listSplit[i].time, max, 5)
           $(".sprint").attr("d", sprint)
+          insertTime(Math.floor(i/2+1), listSplit[i].time, "sprint")
         }
       }
     }
 
+    /*
+     * Insert Split index label
+     */
     function insertIndex(i) {
       var splitIndex = (i + 1).toString()
         $(".splits_graph").append("<p class='num n" +splitIndex+ "'>"+ splitIndex +"</p>")
+    }
+
+    function insertTime(i, time, type) {
+      var num = i.toString()
+        $(".splits_graph").append("<p class='num time "+type+" t" + num + type+ "'>"+ time.toString() +"s</p>")
     }
 
     /*
