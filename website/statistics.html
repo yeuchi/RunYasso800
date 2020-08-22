@@ -7,14 +7,6 @@
 
     Date: August 15, 2020
 
-    Reference:
-
-    Google map
-    https://developers.google.com/maps/documentation/javascript/examples/polyline-simple 
-
-    Time with no Am/Pm
-    https://stackoverflow.com/questions/45283030/html5-input-type-time-without-am-pm-and-with-min-max
-
 -->
 <html>
   <head>
@@ -32,8 +24,69 @@
     <script src="Steps.js"></script>
 
     <style> 
+    h2 {
+      margin-left: 10px;
+    }
+
     .splits_svg {
       background: #EFEFEF;
+      margin-left: 30px;
+      width: 400px;
+    }
+
+    .num {
+      position: absolute !important;
+      z-index: 200;
+    }
+
+    .n1 {
+      top: 65px;
+      left: 10px;
+    }
+
+    .n2 {
+      top: 145px;
+      left: 10px;
+    }
+
+    .n3 {
+      top: 225px;
+      left: 10px;
+    }
+
+    .n4 {
+      top: 305px;
+      left: 10px;
+    }
+
+    .n5 {
+      top: 385px;
+      left: 10px;
+    }
+
+    .n6 {
+      top: 465px;
+      left: 10px;
+    }
+
+    .n7 {
+      top: 545px;
+      left: 10px;
+    }
+
+    .n8 {
+      top: 625px;
+      left: 10px;
+    }
+
+    .n9 {
+      top: 705px;
+      left: 10px;
+    }
+
+    .n10 {
+      top: 785px;
+      left: 10px;
     }
     </style>
 
@@ -62,22 +115,64 @@ var demo = new Demo();
      * Render SVG graphs for splits
      */
     function renderGraphs() {
+      var listSplit = splits.getAll()
+      var max = findMax(listSplit)
+      var jog = ""
+      var sprint = ""
+      for(var i=0; i<listSplit.length; i++) {
+        
+        if(i%2==0) {
+          jog += createBar(i, listSplit[i].time, max, 0)
+          $(".jog").attr("d", jog)
+          insertIndex(i/2)
+        }
+        else {
+          sprint += createBar(i-1, listSplit[i].time, max, 5)
+          $(".sprint").attr("d", sprint)
+        }
+      }
+    }
 
+    function insertIndex(i) {
+      var splitIndex = (i + 1).toString()
+        $(".splits_graph").append("<p class='num n" +splitIndex+ "'>"+ splitIndex +"</p>")
+    }
+
+    /*
+     * find longest time value
+     */
+    function findMax(listSplit) {
+      var max = 0
+      for(var i=0; i<listSplit.length; i++) {
+        if(listSplit[i].time > max)
+          max = listSplit[i].time
+      }
+      return max;
+    }
+
+    /*
+     * generate path for bar graph
+     */
+    function createBar(i, duration, max, offset) {
+      var pos = i * 10 + offset;
+      var start = (pos).toString()
+      var end = (pos + 5).toString()
+      var time = (duration/max * 100).toString()
+
+      return " M 0, "+ start + " L " + time + "," + start +   // top
+              " L " + time + "," + end +                      // right
+              " L 0, " + end;                                 // bottom
     }
 
   </script>
-
     <body>
       <h2>Splits</h2>
-      <svg class="splits_svg" viewBox="0 0 256 100" #slider>
-        <path [attr.d]="path" fill="none" stroke="green"></path>
-        <g>
-          <path d="M -1,0 L 256,0" fill="none" stroke="black"></path>
-        </g>
-        <g>
-          <path d="M 256,0 L 256,100" fill="none" stroke="black"></path>
-        </g>
-    </svg>
+      <div class="splits_graph">
+        <svg class="splits_svg" viewBox="0 0 100 240" #slider>
+          <path class="jog" fill="blue" stroke="blue"></path>
+          <path class="sprint" fill="green" stroke="green"></path>
+      </svg>
+    </div>
 
     </body>
 </html>
