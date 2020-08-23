@@ -167,7 +167,7 @@ By default, an example data set below is rendered. \
  
 Tabulated split data can be found on statistics page. \
 Click on button 'Steps' to pass the data. \
-Graph is rendered via SVG. \
+Graph is rendered via SVG. Use Chrome, FireFox \
  https://yeuchi.github.io/RunYasso800/website/statistics.html \
  <img src="https://user-images.githubusercontent.com/1282659/90981613-b3b9b980-e527-11ea-8e4a-95cfc02eb0ff.png" height="400">
   
