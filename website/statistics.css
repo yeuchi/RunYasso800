@@ -160,7 +160,7 @@ h2 {
     top: 710px
   }
 
-  .t10sprint.t10failed {
+  .t10sprint, .t10failed {
     top: 790px
   }
  
