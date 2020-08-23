@@ -168,7 +168,7 @@ By default, an example data set below is rendered. \
 Split data SVG graph is available on below page. \
 Click on button 'Steps' to pass the data. \
  https://yeuchi.github.io/RunYasso800/website/statistics.html \
- <img src="https://user-images.githubusercontent.com/1282659/90966379-5a09ae80-e497-11ea-87c2-1481d245f8f2.png" height="400">
+ <img src="https://user-images.githubusercontent.com/1282659/90981613-b3b9b980-e527-11ea-8e4a-95cfc02eb0ff.png" height="400">
   
 ### IDE 
 Visual Studio Code is used for website development. 
