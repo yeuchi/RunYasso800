@@ -165,10 +165,11 @@ By default, an example data set below is rendered. \
  
  <img src="https://user-images.githubusercontent.com/1282659/90338275-2ec22380-dfae-11ea-83c6-04a0fa4c4071.png" height="400"> <img src="https://user-images.githubusercontent.com/1282659/90338278-3255aa80-dfae-11ea-9838-8319b837e094.png" height="400">
  
-Split data SVG graph is available on below page. \
+Tabulated split data can be found on statistics page. \
 Click on button 'Steps' to pass the data. \
+Graph is rendered via SVG. Use Chrome, FireFox, Safari \
  https://yeuchi.github.io/RunYasso800/website/statistics.html \
- <img src="https://user-images.githubusercontent.com/1282659/90966379-5a09ae80-e497-11ea-87c2-1481d245f8f2.png" height="400">
+ <img src="https://user-images.githubusercontent.com/1282659/90981613-b3b9b980-e527-11ea-8e4a-95cfc02eb0ff.png" height="400">
   
 ### IDE 
 Visual Studio Code is used for website development. 
