@@ -19,7 +19,7 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>RunYasso800</title>
+    <title>RunYasso800 - Map</title>
     <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="default.css"/>
 
@@ -122,11 +122,17 @@ type="text/javascript"></script>
       return str;
     }
 
+    function persistGoal() {
+      localStorage.setItem('goal', goal);
+    }
+
     $(document).ready(function() {
       // init Steps textarea
-      var str = JSON.stringify(demo.getAll())
-      localStorage.setItem('steps', str);
-      $("#txtSteps").val(str)
+      var stepsString = JSON.stringify(demo.getAll())
+      localStorage.setItem('steps', stepsString);
+      persistGoal()
+
+      $("#txtSteps").val(stepsString)
 
       // click button Steps listener
       $("#btnSteps").on('click', function() {
@@ -145,7 +151,7 @@ type="text/javascript"></script>
       $("#btnGoal").on('click', function() {
         var time = $('#timeGoal').val().split(':')
         goal = parseInt(time[0]) * 60 + parseInt(time[1]);
-
+        persistGoal();
         initMap();
       });
 

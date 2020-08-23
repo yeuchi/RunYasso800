@@ -12,9 +12,9 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>RunYasso800</title>
+    <title>RunYasso800 - Stats</title>
     <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" type="text/css" href="default.css"/>
+    <link rel="stylesheet" type="text/css" href="statistics.css"/>
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -24,173 +24,18 @@
     <script src="Steps.js"></script>
 
     <style> 
-    h2 {
-      margin-left: 10px;
-    }
-
-    .splits_svg {
-      background: #EFEFEF;
-      margin-left: 30px;
-      margin-right:50px;
-      width: 400px;
-    }
-
-    .time {
-      left: 450px;
-    }
-
-    .num {
-      position: absolute !important;
-      z-index: 200;
-    }
-
-    .jog {
-      color: blue;
-    }
-
-    .sprint {
-      color: green;
-    }
-
-    .n1 {
-      top: 65px;
-      left: 10px;
-    }
-
-    .n2 {
-      top: 145px;
-      left: 10px;
-    }
-
-    .n3 {
-      top: 225px;
-      left: 10px;
-    }
-
-    .n4 {
-      top: 305px;
-      left: 10px;
-    }
-
-    .n5 {
-      top: 385px;
-      left: 10px;
-    }
-
-    .n6 {
-      top: 465px;
-      left: 10px;
-    }
-
-    .n7 {
-      top: 545px;
-      left: 10px;
-    }
-
-    .n8 {
-      top: 625px;
-      left: 10px;
-    }
-
-    .n9 {
-      top: 705px;
-      left: 10px;
-    }
-
-    .n10 {
-      top: 785px;
-      left: 10px;
-    }
-
-    .t1jog {
-      top: 50px;
-    }
-
-    .t2jog {
-      top: 130px;
-    }
-
-    .t3jog {
-      top: 210px;
-    }
-
-    .t4jog {
-      top: 290px;
-    }
-
-    .t5jog {
-      top: 370px;
-    }
-
-    .t6jog {
-      top: 450px;
-    }
-
-    .t7jog {
-      top: 530px
-    }
-
-    .t8jog {
-      top: 610px
-    }
-
-    .t9jog {
-      top: 690px
-    }
-
-    .t10jog {
-      top: 770px
-    }
-
-    .t1sprint {
-      top: 70px;
-    }
-
-    .t2sprint {
-      top: 150px;
-    }
-
-    .t3sprint {
-      top: 230px;
-    }
-
-    .t4sprint {
-      top: 310px;
-    }
-
-    .t5sprint {
-      top: 390px;
-    }
-
-    .t6sprint {
-      top: 470px;
-    }
-
-    .t7sprint {
-      top: 550px
-    }
-
-    .t8sprint {
-      top: 630px
-    }
-
-    .t9sprint {
-      top: 710px
-    }
-
-    .t10sprint {
-      top: 790px
-    }
     </style>
 
   </head>
 
   <script>
-var demo = new Demo();
+    var goal = 240;
+    var demo = new Demo();
     var splits = new Splits(demo);
     var steps = new Steps(demo);
 
     $(document).ready(function() {
+        goal = localStorage.getItem('goal');
         const stepsString = localStorage.getItem('steps');
         if(stepsString != null && 
             stepsString.length>0){
@@ -212,6 +57,7 @@ var demo = new Demo();
       var max = findMax(listSplit)
       var jog = ""
       var sprint = ""
+      var failed = ""
       for(var i=0; i<listSplit.length; i++) {
         
         if(i%2==0) {
@@ -220,10 +66,15 @@ var demo = new Demo();
           insertIndex(i/2)
           insertTime(i/2+1, listSplit[i].time, "jog")
         }
-        else {
+        else if (listSplit[i].time <= goal) {
           sprint += createBar(i-1, listSplit[i].time, max, 5)
           $(".sprint").attr("d", sprint)
           insertTime(Math.floor(i/2+1), listSplit[i].time, "sprint")
+        }
+        else {
+          failed += createBar(i-1, listSplit[i].time, max, 5)
+          $(".failed").attr("d", failed)
+          insertTime(Math.floor(i/2+1), listSplit[i].time, "failed")
         }
       }
     }
@@ -274,6 +125,7 @@ var demo = new Demo();
         <svg class="splits_svg" viewBox="0 0 100 240" #slider>
           <path class="jog" fill="blue" stroke="blue"></path>
           <path class="sprint" fill="green" stroke="green"></path>
+          <path class="failed" fill="red" stroke="red"></path>
       </svg>
     </div>
 
