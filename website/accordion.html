@@ -1,80 +1,196 @@
-<html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <title>Simple Polylines</title>
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
+<!DOCTYPE html>
 
-  <body>
-    <LINK REL=StyleSheet HREF="bootstrap-4.3.1-dist/css/bootstrap.css" TYPE="text/css"> 
-    <script src="bootstrap-4.3.1-dist/js/bootstrap.js"></script>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RunYasso800 - Map</title>
+  <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" href="default.css"/>
 
-        
-    <script>
-        $('.collapse').collapse()
-
-        $('#myCollapsible').on('hidden.bs.collapse', function () {
-        // do something...
-        })
-
-    </script>
-    <div class="accordion" id="accordionExample">
-    <div class="card">
-      <div class="card-header" id="headingOne">
-        <h2 class="mb-0">
-          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            Collapsible Group Item #1
-          </button>
-        </h2>
-      </div>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   
-      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-        <div class="card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-        </div>
-      </div>
+  <!-- Use this for your personal domain 
+    <script defer src="https://maps.googleapis.com/maps/api/js?AIzaSyAThDBNxCs_gHlusYlCPv765XjyRKz4-hY&callback=initMap">
+  </script> -->
+
+  <!-- yeuchi's domain -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC76sHFtIIhGRNQHyaOEViocPW5QXOai_o&callback=initMap" type="text/javascript"></script> 
+
+  <script src="Demo.js"></script>
+  <script src="Splits.js"></script>
+  <script src="Steps.js"></script>
+  
+  <style> 
+  
+  #accordion {
+    height: 100%;
+  }
+
+  .section {
+    background:grey;
+  }
+
+  .s2 {
+    height: 85% !important;
+  }
+
+  .ui-accordion .ui-accordion-content {
+    padding: 0;
+  }
+  </style>
+
+<script>
+  let map;
+  var goal = 240;
+  var demo = new Demo();
+  var splits = new Splits(demo);
+  var steps = new Steps(demo);
+
+  // accordion
+  $( function() {
+    $( "#accordion" ).accordion();
+  } );
+
+  function setColor(index, time) {
+    if(index%2==0) {
+      return "blue";
+    }
+    
+    return time < goal ? "green" : "red";
+  }
+
+  function initMarkers(map, list, goal) {
+    for(var i=0; i<list.length; i++) {
+      // set color
+      var color = setColor(i, list[i].time)
+      var j = i+1;
+      var image = {
+      url: "https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_"+color+j+".png",
+      };
+
+      var marker = new google.maps.Marker({
+        position: list[i],
+        icon: image
+      });
+
+      marker.setMap(map);
+    }
+  }
+
+  function initPath(map, list) {
+    var runPath = new google.maps.Polyline({
+      path: list,
+      geodesic: true,
+      strokeColor: '#FF0000',
+      strokeOpacity: 1.0,
+      strokeWeight: 2
+    });
+
+    runPath.setMap(map);
+  }
+
+  function initMap() {
+    var runPath = steps.isEmpty() ? steps.getDemo() : steps.getAll();
+    var markers = splits.isEmpty() ? splits.getDemo() : splits.getAll();
+
+    if(typeof google != 'undefined') {
+
+      // midpoint might be better
+      var meanPoint = splits.findCenter()
+      if(meanPoint != null) {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: meanPoint,
+          mapTypeId: 'terrain'
+        });
+      }
+
+      initPath(map, runPath)
+      initMarkers(map, markers, goal)
+    }
+  }
+
+  $( function() {
+    $( "#resizable" ).resizable();
+  } );
+
+  function filterSteps(str) {
+    if(str!=null) {
+      for(var i=0; i<str.length; i++) {
+        if(str.charAt(i) == '[') {
+          return str.substring(i, str.length) 
+        }
+      }
+    }
+    return str;
+  }
+
+  function persistGoal() {
+    localStorage.setItem('goal', goal);
+  }
+
+  $(document).ready(function() {
+    $("#btn2").click();
+
+    // init Steps textarea
+    var stepsString = JSON.stringify(demo.getAll())
+    localStorage.setItem('steps', stepsString);
+    persistGoal()
+
+    $("#txtSteps").val(stepsString)
+
+    // click button Steps listener
+    $("#btnSteps").on('click', function() {
+      var str = $("#txtSteps").val();
+      str = filterSteps(str)
+      
+      var goodSplits = splits.deserialize(str);
+      var goodSteps = steps.deserialize(str);
+      if(goodSplits && goodSteps)
+        initMap();
+      else 
+        alert("Steps load error\n Your Steps JSON Array please.")
+    });
+
+    // click button Goal listener
+    $("#btnGoal").on('click', function() {
+      var time = $('#timeGoal').val().split(':')
+      goal = parseInt(time[0]) * 60 + parseInt(time[1]);
+      persistGoal();
+      initMap();
+    });
+
+    // start map
+    initMap()
+  });
+</script>
+
+</head>
+<body>
+ 
+<div id="accordion">
+  <h3 id="btn1">Map</h3>
+  <div class="section s1">
+     
+    <!-- Goal -->
+    <div class="divTime">
+      <input id="btnGoal" type="submit" value="Goal">
+      <input id="timeGoal" type="time" value="04:00" class="without_ampm" >
     </div>
-    <div class="card">
-      <div class="card-header" id="headingTwo">
-        <h2 class="mb-0">
-          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            Collapsible Group Item #2
-          </button>
-        </h2>
-      </div>
-      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-        <div class="card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header" id="headingThree">
-        <h2 class="mb-0">
-          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            Collapsible Group Item #3
-          </button>
-        </h2>
-      </div>
-      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-        <div class="card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-        </div>
-      </div>
-    </div>
+
+    <!-- Steps -->
+    <input id="btnSteps" type="submit" value="Steps">
+    <textarea id="txtSteps"></textarea>
   </div>
-  </body>
-  </html>
+  <h3 id="btn2">Goal and Steps</h3>
+  <div class="section s2">
+    <div id="map"></div>
+   
+  </div>
+</div>
+ 
+ 
+</body>
+</html>
