@@ -36,6 +36,8 @@
 
     $(document).ready(function() {
         goal = localStorage.getItem('goal');
+        $(".txtGoal").val("Goal:"+goal.toString())
+
         const stepsString = localStorage.getItem('steps');
         if(stepsString != null && 
             stepsString.length>0){
@@ -59,24 +61,27 @@
       var sprint = ""
       var failed = ""
       for(var i=0; i<listSplit.length; i++) {
-        
+        // jog
         if(i%2==0) {
           jog += createBar(i, listSplit[i].time, max, 0)
           $(".jog").attr("d", jog)
           insertIndex(i/2)
           insertTime(i/2+1, listSplit[i].time, "jog")
         }
+        // sprint - meets goal
         else if (listSplit[i].time <= goal) {
           sprint += createBar(i-1, listSplit[i].time, max, 5)
           $(".sprint").attr("d", sprint)
           insertTime(Math.floor(i/2+1), listSplit[i].time, "sprint")
         }
+        // sprint - failed
         else {
           failed += createBar(i-1, listSplit[i].time, max, 5)
           $(".failed").attr("d", failed)
           insertTime(Math.floor(i/2+1), listSplit[i].time, "failed")
         }
       }
+      drawGoalLine(goal, max, listSplit.length)
     }
 
     /*
@@ -118,14 +123,24 @@
               " L 0, " + end;                                 // bottom
     }
 
+    function drawGoalLine(goal, max, len) {
+
+      var pos = goal/max * 100
+      var y = (len*10).toString()
+      var line = " M " + pos + ",0 L " + pos.toString() + ","+y
+      $(".goal").attr("d", line)
+      $(".txtGoal").css("left", pos*4)
+    }
+
   </script>
     <body>
-      <h2>Splits</h2>
+      <h2>Splits</h2> <h3 class="txtGoal">Goal:240s</h3>
       <div class="splits_graph">
         <svg class="splits_svg" viewBox="0 0 100 240" #slider>
           <path class="jog" fill="blue" stroke="blue"></path>
           <path class="sprint" fill="green" stroke="green"></path>
           <path class="failed" fill="red" stroke="red"></path>
+          <path class="goal" fill="black" stroke="black"></path>
       </svg>
     </div>
 
