@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<!-- 
+    Description: RunYasso javascript website for reviewing data.
+
+    Evaluate N number of runs for trending performance.
+
+    Author: Chi (CT) Yeung
+
+    Date: September 6, 2020
+
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RunYasso800 - Trend</title>
+  <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" href="default.css"/>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <script src="Demo.js"></script>
+  <script src="Splits.js"></script>
+  <script src="Steps.js"></script>
+  
+  <style> 
+  
+  #accordion {
+    height: 100%;
+  }
+
+  .section {
+    background:grey;
+    
+  }
+
+  .accordion-content {
+    padding: 10px;
+  }
+
+  .s3 {
+    height: 85% !important;
+  }
+
+  .ui-accordion .ui-accordion-content {
+    padding: 0;
+  }
+
+  .stepTextArea {
+    height: 50px;
+    overflow-y: scroll;
+    width: 80%;
+    display:inline-block;
+  }
+
+  .btnStep {
+    width: 100px;
+    display:inline-block;
+  }
+
+  li {
+    display:flex;
+    vertical-align: middle;
+    padding:5px;
+  }
+
+  .trend_svg {
+    margin-left: 30px;
+    margin-right:50px;
+  }
+  </style>
+
+<script>
+  var listSplits = [];
+
+  // accordion
+  $( function() {
+    $( "#accordion" ).accordion();
+  } );
+
+  /*
+   * Step has changed or new
+   * 1. parse steps
+   * 2. create split object
+   * 3. update graph
+   * 4. create new empty li
+   */
+  function onChangeStepHandler() {
+    var index = $(this).parent().index();
+    var textArea = $(this).siblings('textarea');
+    var strJSON = $(textArea).val()
+    var filtered = filterSteps(strJSON);
+
+    if(filtered.length > 0) {
+
+      var splits = new Splits();
+      splits.deserialize(filtered);
+      listSplits[index] = splits;
+      renderSVG();
+
+      var size = $('li').length;
+      if(size == (index+1)) {
+        createStep();
+      }
+    }
+  }
+
+  function renderSVG() {
+
+    for (var j=0; j<listSplits.length; j++) {
+      var splits = listSplits[j];
+      var list = splits.getAll();
+      
+      var line = " M 0,0";
+      for(var i=0; i<list.length; i++){
+        var split = list[i];
+        line += " L " + (i*50).toString() + ","+ list[i].time.toString()
+      }
+      $("#run"+(j+1)).attr("d", line).attr("stroke-width", 3);
+
+    }
+
+  }
+
+  function filterSteps(str) {
+    if(str!=null) {
+        for(var i=0; i<str.length; i++) {
+            if(str.charAt(i) == '[') {
+                return str.substring(i, str.length) 
+            }
+        }
+    }
+    return str;
+  }
+
+  function createStep() {
+    var list = $('li')
+    $(".stepList").append("<li class='stepItem'><button type='button' class='btnStep'>Step "+(list.length+1)+"</button><textarea class='stepTextArea'></textarea></li>");
+    $(".btnStep").off('click').on('click', onChangeStepHandler)
+  }
+
+  $(document).ready(function() {
+
+    // Start as a demo -- show the trending graph with demo data
+    $("#btn3").click();
+
+    $(".btnStep").on('click', onChangeStepHandler)
+  });
+
+</script>
+
+</head>
+<body>
+ 
+<div id="accordion">
+  <h3 id="btn1">Your Goal</h3>
+  <div class="section s1">
+
+    <p class="accordion-content"> Set your Marathon Goal in HH:MM or in Yasso 800 term, MM:SS</p>
+     
+    <!-- Goal -->
+    <div class="divTime, accordion-content">
+      <input id="btnGoal" type="submit" value="Goal">
+      <input id="timeGoal" type="time" value="04:00" class="without_ampm" >
+    </div>
+
+  </div>
+  <h3 id="btn2">Steps (run data)</h3>
+  <div class="section s2">
+   
+    <!-- Steps -->
+   <ul class="stepList">
+     <li class="stepItem">
+      <button type="button" class="btnStep">Step 1</button>
+      <textarea class="stepTextArea"></textarea>
+     </li>
+   </ul>
+  
+  </div>
+
+  <h3 id="btn3">Trending Graph</h3>
+  <div class="section s3">
+    <div class="trend_graph">
+      <svg class="trend_svg" width="1000" height="500" #slider>
+        <path id="run1" fill="none" stroke="green" stroke-width="3"/>
+        <path id="run2" fill="none" stroke="blue" stroke-width="3"/>
+        <path id="run3" fill="none" stroke="red" stroke-width="3"/>
+        <path id="run4" fill="none" stroke="gray" stroke-width="3"/>
+        <path id="run5" fill="none" stroke="black" stroke-width="3"/>
+        <path id="run6" fill="none" stroke="cyan" stroke-width="3"/>
+        <path id="run7" fill="none" stroke="yellow" stroke-width="3"/>
+        <path id="run8" fill="none" stroke="orange" stroke-width="3"/>
+        <path id="run9" fill="none" stroke="purple" stroke-width="3"/>
+        <path id="run10" fill="none" stroke="pink" stroke-width="3"/>
+        
+    </svg>
+  </div>
+</div>
+ 
+ 
+</body>
+</html>
