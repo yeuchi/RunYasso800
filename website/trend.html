@@ -115,12 +115,19 @@
       var line = " M 0,0";
       for(var i=0; i<list.length; i++){
         var split = list[i];
-        line += " L " + (i*50).toString() + ","+ list[i].time.toString()
+        var x = i*50;
+        var y = list[i].time;
+        line += " L " + x + ","+ y;
+        drawCircle(x,y);
       }
       $("#run"+(j+1)).attr("d", line).attr("stroke-width", 3);
-
     }
+  }
 
+  function drawCircle(x, y) {
+    var existingContent = $('.trend_svg').html();
+    var toInsert = '<circle cx="' + x + '" cy="' + y + '" r="4" stroke="green" stroke-width="1" fill="yellow" />';
+    $('.trend_svg').html(existingContent + toInsert);
   }
 
   function filterSteps(str) {
@@ -182,7 +189,7 @@
   <h3 id="btn3">Trending Graph</h3>
   <div class="section s3">
     <div class="trend_graph">
-      <svg class="trend_svg" width="1000" height="500" #slider>
+      <svg class="trend_svg" width="1000" height="500">
         <path id="run1" fill="none" stroke="green" stroke-width="3"/>
         <path id="run2" fill="none" stroke="blue" stroke-width="3"/>
         <path id="run3" fill="none" stroke="red" stroke-width="3"/>
