@@ -123,16 +123,17 @@
       var splits = listSplits[j];
       var list = splits.getAll();
       
-      var line = " M 0,0";
+      var line = "";
       for(var i=0; i<list.length; i++){
         var split = list[i];
-        var x = i*50;
+        var x = (i+1)*50;
         var y = list[i].time;
-        line += " L " + x + ","+ y;
+        var type = (i==0)?" M ":" L ";
+        line += type + x + ","+ y;
         var clr = setColor(i, list[i].time);
         drawCircle(x,y, clr);
       }
-      drawLine(line, i);
+      drawLine(line, j);
     }
   }
 
