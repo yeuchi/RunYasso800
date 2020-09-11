@@ -118,7 +118,13 @@
   }
 
   function renderSVG() {
+    // initialize graph with goal line
+    $("path").remove();
+    $("circle").remove();
+    var line = "M 0,"+goal+" L1000 "+goal;
+    drawLine(line, "green");
 
+    // render each split segment
     for (var j=0; j<listSplits.length; j++) {
       var splits = listSplits[j];
       var list = splits.getAll();
@@ -133,13 +139,13 @@
         var clr = setColor(i, list[i].time);
         drawCircle(x,y, clr);
       }
-      drawLine(line, j);
+      var clr = colors[i%colors.length];
+      drawLine(line, clr);
     }
   }
 
-  function drawLine(line, i) {
+  function drawLine(line, clr) {
     var existingContent = $('.trend_svg').html();
-    var clr = colors[i%colors.length];
     var toInsert = "<path d='" + line + "'stroke='"+clr+"' stroke-width='1' fill='none'/>";
     $('.trend_svg').html(existingContent + toInsert);
   }
