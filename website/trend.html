@@ -73,6 +73,7 @@
 
 <script>
   var listSplits = [];
+  var goal = 240;  // 240 seconds default goal or 4:00 minutes
 
   var colors = ["AliceBlue","AntiqueWhite","Aqua","Aquamarine","Azure","Beige","Bisque","Blue","BlueViolet","Brown","CadetBlue","Chartreuse","Chocolate","Coral","CornflowerBlue","Cornsilk","Crimson","Cyan","DarkBlue",
                 "DarkCyan","DarkGoldenRod","DarkGreen","DarkKhaki","DarkMagenta","DarkOliveGreen","DarkOrange","DarkSalmon","DarkSeaGreen","DarkSlateGray","DeepSkyBlue","Gold","HotPink","IndianRed","GreenYellow","Indigo","LightCyan","LightCoral","Maroon"]
@@ -108,6 +109,14 @@
     }
   }
 
+  function setColor(index, time) {
+    if(index%2==0) {
+      return "blue";
+    }
+    
+    return time < goal ? "green" : "red";
+  }
+
   function renderSVG() {
 
     for (var j=0; j<listSplits.length; j++) {
@@ -120,7 +129,8 @@
         var x = i*50;
         var y = list[i].time;
         line += " L " + x + ","+ y;
-        drawCircle(x,y);
+        var clr = setColor(i, list[i].time);
+        drawCircle(x,y, clr);
       }
       drawLine(line, i);
     }
@@ -133,9 +143,9 @@
     $('.trend_svg').html(existingContent + toInsert);
   }
 
-  function drawCircle(x, y) {
+  function drawCircle(x, y, color) {
     var existingContent = $('.trend_svg').html();
-    var toInsert = '<circle cx="' + x + '" cy="' + y + '" r="4" stroke="black" stroke-width="1" fill="white" />';
+    var toInsert = "<circle cx='" + x + "' cy='" + y + "' r='4' stroke='black' stroke-width='1' fill='"+color+"' />";
     $('.trend_svg').html(existingContent + toInsert);
   }
 
@@ -164,8 +174,13 @@
   }
 
   $(document).ready(function() {
-
     $(".btnStep").on('click', onChangeStepHandler)
+
+    $("#btnGoal").on('click', function() {
+      var time = $('#timeGoal').val().split(':')
+      goal = parseInt(time[0]) * 60 + parseInt(time[1]);
+    });
+
 
     initDemo();
 
