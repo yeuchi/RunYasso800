@@ -36,7 +36,9 @@
          var today = new Date();
          var diffDays = Math.round(Math.abs((firstDate - today) / oneDay));
          var milesPerDay = Math.round(2022.0 / DAYS_COUNT * 100) / 100
-
+         
+         $(".today").html(today)
+         
          // Unit
          $(".per").find('td:eq(1)').html(1);
          $(".per").find('td:eq(2)').html(milesPerDay);
@@ -78,6 +80,8 @@
    <h1>Run2021</h1>
 
    <p> Week starts on Friday since January 01, 2021</p>
+   <p class="today"></p>
+
    <table>
       <tr>
          <th>Category</th>
