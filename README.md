@@ -170,6 +170,10 @@ Click on button 'Steps' to pass the data. \
 Graph is rendered via SVG. Use Chrome, FireFox, Safari \
  https://yeuchi.github.io/RunYasso800/website/statistics.html \
  <img src="https://user-images.githubusercontent.com/1282659/90981613-b3b9b980-e527-11ea-8e4a-95cfc02eb0ff.png" height="400">
+   
+Multiple runs may be compared on trend page. \
+https://yeuchi.github.io/RunYasso800/website/trend.html
+<img src="https://user-images.githubusercontent.com/1282659/92984267-a466c580-f46e-11ea-86ab-32d8f003a427.png" height="400">
   
 ### IDE 
 Visual Studio Code is used for website development. 
