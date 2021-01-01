@@ -35,42 +35,44 @@
          var firstDate = new Date(2021, 0, 1);
          var today = new Date();
          var diffDays = Math.round(Math.abs((firstDate - today) / oneDay));
-         var milesPerDay = Math.round(2022.0 / DAYS_COUNT * 100) / 100
+         var milesPerDay = 2021.0 / DAYS_COUNT ;
          
          $(".today").html(today)
          
          // Unit
          $(".per").find('td:eq(1)').html(1);
-         $(".per").find('td:eq(2)').html(milesPerDay);
-         $(".per").find('td:eq(3)').html(milesPerDay*7);
-         var MaxMonthMiles = Math.round(milesPerDay*31 * 100) / 100
-         $(".per").find('td:eq(4)').html("(31 days) "+MaxMonthMiles );
-         $(".per").find('td:eq(5)').html(2021);
+         $(".per").find('td:eq(2)').html(round(milesPerDay));
+         $(".per").find('td:eq(3)').html(round(milesPerDay * 7));
+         $(".per").find('td:eq(4)').html("(31 days) "+round(milesPerDay*31) );
+         $(".per").find('td:eq(5)').html(milesPerDay * DAYS_COUNT);
 
          // Accrued
          $(".accrued").find('td:eq(1)').html(diffDays);
          $(".accrued").find('td:eq(2)').html("n/a");
-         var dayInWeek = diffDays % 7;
-         $(".accrued").find('td:eq(3)').html("("+dayInWeek +"days) "+(milesPerDay * dayInWeek));
+         var daysInWeek = diffDays % 7;
+         $(".accrued").find('td:eq(3)').html("("+daysInWeek +"days) "+round(daysInWeek * milesPerDay));
          var dayInMonth = new Date().getDate();
-         $(".accrued").find('td:eq(4)').html(("("+dayInMonth+"days) "+(milesPerDay*dayInMonth)));
-         $(".accrued").find('td:eq(5)').html(milesPerDay*diffDays);
+         $(".accrued").find('td:eq(4)').html("("+dayInMonth+"days) "+round(milesPerDay*dayInMonth));
+         $(".accrued").find('td:eq(5)').html(round(milesPerDay*diffDays));
 
          // todo
          var daysRemain = DAYS_COUNT-diffDays;
          $(".todo").find('td:eq(1)').html(daysRemain);
          $(".todo").find('td:eq(2)').html("n/a");
-         var dayInWeekRemain = 7 - dayInWeek
-         $(".todo").find('td:eq(3)').html("("+dayInWeekRemain +"days) "+(milesPerDay * dayInWeekRemain));
+         var dayInWeekRemain = 7 - daysInWeek
+         $(".todo").find('td:eq(3)').html("("+dayInWeekRemain +"days) "+round(milesPerDay * dayInWeekRemain));
          var dayInMonthRemain = getDaysInMonth(new Date().getMonth(), 2021) - dayInMonth;
-         $(".todo").find('td:eq(4)').html(("("+dayInMonthRemain+"days) "+(milesPerDay*dayInMonthRemain)));
-         var milesRemain = Math.round(milesPerDay*daysRemain * 100) / 100
-         $(".todo").find('td:eq(5)').html(milesRemain);
+         $(".todo").find('td:eq(4)').html(("("+dayInMonthRemain+"days) "+round(milesPerDay*dayInMonthRemain)));
+         $(".todo").find('td:eq(5)').html(round(milesPerDay*daysRemain));
       });
 
       var getDaysInMonth = function (month,year) {
          return new Date(year, month, 0).getDate();
       };
+
+      function round(number) {
+         return Math.round(number * 100)/100;
+      }
    </script>
 
 
