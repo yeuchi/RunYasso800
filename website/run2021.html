@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Run2021</title>   
+
+   <!-- jQuery library -->	
+	<script src="jquery1_7_1.min.js"></script>
+ 
+   </head>
+
+   <style>
+      table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+   </style>
+
+   <script>
+      $(document).ready(function() {
+
+         const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+         const DAYS_COUNT = 365;
+         var firstDate = new Date(2021, 0, 1);
+         var today = new Date();
+         var diffDays = Math.round(Math.abs((firstDate - today) / oneDay));
+         var milesPerDay = Math.round(2022.0 / DAYS_COUNT * 100) / 100
+
+         // Unit
+         $(".per").find('td:eq(1)').html(1);
+         $(".per").find('td:eq(2)').html(milesPerDay);
+         $(".per").find('td:eq(3)').html(milesPerDay*7);
+         var MaxMonthMiles = Math.round(milesPerDay*31 * 100) / 100
+         $(".per").find('td:eq(4)').html("(31 days) "+MaxMonthMiles );
+         $(".per").find('td:eq(5)').html(2021);
+
+         // Accrued
+         $(".accrued").find('td:eq(1)').html(diffDays);
+         $(".accrued").find('td:eq(2)').html("n/a");
+         var dayInWeek = diffDays % 7;
+         $(".accrued").find('td:eq(3)').html("("+dayInWeek +"days) "+(milesPerDay * dayInWeek));
+         var dayInMonth = new Date().getDate();
+         $(".accrued").find('td:eq(4)').html(("("+dayInMonth+"days) "+(milesPerDay*dayInMonth)));
+         $(".accrued").find('td:eq(5)').html(milesPerDay*diffDays);
+
+         // todo
+         var daysRemain = DAYS_COUNT-diffDays;
+         $(".todo").find('td:eq(1)').html(daysRemain);
+         $(".todo").find('td:eq(2)').html("n/a");
+         var dayInWeekRemain = 7 - dayInWeek
+         $(".todo").find('td:eq(3)').html("("+dayInWeekRemain +"days) "+(milesPerDay * dayInWeekRemain));
+         var dayInMonthRemain = getDaysInMonth(new Date().getMonth(), 2021) - dayInMonth;
+         $(".todo").find('td:eq(4)').html(("("+dayInMonthRemain+"days) "+(milesPerDay*dayInMonthRemain)));
+         var milesRemain = Math.round(milesPerDay*daysRemain * 100) / 100
+         $(".todo").find('td:eq(5)').html(milesRemain);
+      });
+
+      var getDaysInMonth = function (month,year) {
+         return new Date(year, month, 0).getDate();
+      };
+   </script>
+
+
+   <body>
+<div id="divAppView">
+   
+   <h1>Run2021</h1>
+
+   <p> Week starts on Friday since January 01, 2021</p>
+   <table>
+      <tr>
+         <th>Category</th>
+         <th>Day (count)</th>
+         <th>Day (miles)</th>
+         <th>Week (miles)</th>
+         <th>Month (miles)</th>
+         <th>Year (miles)</th>
+      </tr>
+      <tr class="per">
+         <td>Units</td>
+         <td>1</td>
+         <td>1</td>
+         <td>1</td>
+         <td>1</td>
+         <td>1</td>
+      </tr>
+      <tr class="accrued">
+         <td>Accrued</td>
+         <td>2</td>
+         <td>2</td>
+         <td>2</td>
+         <td>2</td>
+         <td>2</td>
+      </tr>
+      <tr class="todo">
+         <td>Todo</td>
+         <td>3</td>
+         <td>3</td>
+         <td>3</td>
+         <td>3</td>
+         <td>3</td>
+      </tr>
+   </table>
+   
+</div>
+
+</body>
+   
+</html>
+
