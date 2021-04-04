@@ -214,3 +214,6 @@ https://github.com/android/location-samples/blob/master/LocationUpdatesForegroun
 
 12. Generic set & get method for SharedPreferences.Editor #435 comment by Ahmad Sattout, March 14, 2018
 https://github.com/android/android-ktx/issues/435
+
+13. Sensor - Use the step counter sensor \
+https://developer.android.com/guide/topics/sensors/sensors_motion
