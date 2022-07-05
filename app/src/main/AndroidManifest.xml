@@ -60,7 +60,7 @@
         </activity>
 
         <service
-            android:name="com.ctyeung.runyasso800.utilities.LocationUpdateService"
+            android:name="com.ctyeung.runyasso800.features.run.services.LocationUpdateService"
             android:enabled="true"
             android:exported="true"/>
         <!--

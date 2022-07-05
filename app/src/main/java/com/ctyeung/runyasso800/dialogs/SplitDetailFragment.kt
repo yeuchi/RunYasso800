@@ -1,14 +1,12 @@
 package com.ctyeung.runyasso800.dialogs
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
-import com.ctyeung.runyasso800.utilities.TimeFormatter
-import com.ctyeung.runyasso800.room.splits.Split
+import com.ctyeung.runyasso800.data.room.splits.Split
 import com.ctyeung.runyasso800.databinding.FragmentSplitDetailBinding
 import com.ctyeung.runyasso800.viewModels.SplitDetailViewModel
 

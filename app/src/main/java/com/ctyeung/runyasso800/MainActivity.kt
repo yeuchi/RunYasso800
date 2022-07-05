@@ -8,10 +8,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.ctyeung.runyasso800.dialogs.AboutDialogFragment
 import com.ctyeung.runyasso800.dialogs.NumberPickerFragment
-import com.ctyeung.runyasso800.room.splits.Split
-import com.ctyeung.runyasso800.utilities.LocationUpdateService
+import com.ctyeung.runyasso800.data.room.splits.Split
+import com.ctyeung.runyasso800.features.run.services.LocationUpdateService
 import com.ctyeung.runyasso800.viewModels.MainViewModel
-import com.ctyeung.runyasso800.R
 import com.ctyeung.runyasso800.databinding.ActivityMainBinding
 import com.ctyeung.runyasso800.features.goals.GoalActivity
 import com.ctyeung.runyasso800.features.persist.PersistActivity

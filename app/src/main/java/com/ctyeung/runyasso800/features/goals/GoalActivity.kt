@@ -1,15 +1,13 @@
 package com.ctyeung.runyasso800.features.goals
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.ctyeung.runyasso800.BaseActivity
-import com.ctyeung.runyasso800.ICompanion
 import com.ctyeung.runyasso800.R
 import com.ctyeung.runyasso800.databinding.ActivityGoalBinding
 import com.ctyeung.runyasso800.features.run.RunActivity
-import com.ctyeung.runyasso800.utilities.SharedPrefUtility
+import com.ctyeung.runyasso800.storage.SharedPrefUtility
 
 class GoalActivity : BaseActivity() {
     lateinit var binding:ActivityGoalBinding

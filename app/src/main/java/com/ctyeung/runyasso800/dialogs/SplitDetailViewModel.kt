@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.ctyeung.runyasso800.MainApplication
 import com.ctyeung.runyasso800.R
-import com.ctyeung.runyasso800.utilities.TimeFormatter
+import com.ctyeung.runyasso800.storage.TimeFormatter
 
 class SplitDetailViewModel : AndroidViewModel {
 

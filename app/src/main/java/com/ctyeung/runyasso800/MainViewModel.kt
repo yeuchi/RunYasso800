@@ -2,7 +2,7 @@ package com.ctyeung.runyasso800.viewModels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import com.ctyeung.runyasso800.utilities.SharedPrefUtility
+import com.ctyeung.runyasso800.storage.SharedPrefUtility
 
 class MainViewModel (application: Application) : AndroidViewModel(application){
     fun getSprintDistance():Int {

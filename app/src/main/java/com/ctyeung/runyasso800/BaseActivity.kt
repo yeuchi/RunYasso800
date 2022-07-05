@@ -4,10 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.ctyeung.runyasso800.utilities.SharedPrefUtility
-import com.ctyeung.runyasso800.utilities.TimeFormatter
-import com.ctyeung.runyasso800.MainApplication
-import com.ctyeung.runyasso800.R
+import com.ctyeung.runyasso800.storage.SharedPrefUtility
+import com.ctyeung.runyasso800.storage.TimeFormatter
 
 open class BaseActivity : AppCompatActivity() {
 

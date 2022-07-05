@@ -4,9 +4,9 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.ctyeung.runyasso800.MainApplication
 import com.ctyeung.runyasso800.R
-import com.ctyeung.runyasso800.room.splits.Split
-import com.ctyeung.runyasso800.utilities.LocationUpdateService
-import com.ctyeung.runyasso800.utilities.SharedPrefUtility
+import com.ctyeung.runyasso800.data.room.splits.Split
+import com.ctyeung.runyasso800.features.run.services.LocationUpdateService
+import com.ctyeung.runyasso800.storage.SharedPrefUtility
 import java.text.NumberFormat
 import java.util.*
 

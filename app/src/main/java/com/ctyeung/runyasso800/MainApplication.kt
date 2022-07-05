@@ -3,8 +3,11 @@ package com.ctyeung.runyasso800
 import android.app.Application
 import android.content.Context
 import com.ctyeung.runyasso800.MainActivity
+import com.ctyeung.runyasso800.features.run.RunActivity
 import java.lang.reflect.Type
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class MainApplication : Application() {
 
     init {

@@ -1,6 +1,9 @@
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -77,6 +80,10 @@ dependencies {
 
     // location api background
     implementation 'com.google.android.gms:play-services-location:16.0.0'
+
+    // HILT
+    implementation 'com.google.dagger:hilt-android:2.42'
+    annotationProcessor 'com.google.dagger:hilt-compiler:2.42'
 
     // Test
 //    testImplementation 'junit:junit:4.12'
