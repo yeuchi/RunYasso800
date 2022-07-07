@@ -9,10 +9,9 @@ import androidx.room.*
  */
 
 @Dao
-interface SplitDao
-{
+interface SplitDao {
     @Query("SELECT * from split_table ORDER BY `splitIndex`")
-    fun getAll() : LiveData<List<Split>>
+    fun getAll(): LiveData<List<Split>>
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insert(split: Split)
@@ -21,8 +20,8 @@ interface SplitDao
     suspend fun update(split: Split)
 
     @Query("DELETE FROM split_table")
-    suspend fun deleteAll()
+    fun deleteAll()
 
     @Query("SELECT SUM(dis) FROM split_table")
-    fun getTotalDistanceRun():Double
+    fun getTotalDistanceRun(): Double
 }
