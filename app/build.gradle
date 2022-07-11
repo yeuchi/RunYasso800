@@ -61,7 +61,7 @@ dependencies {
 //    androidTestImplementation "androidx.arch.core:core-testing:$rootProject.androidxArchVersion"
 
     // ViewModel Kotlin support
-//    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
 
     // Coroutines
 //    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
