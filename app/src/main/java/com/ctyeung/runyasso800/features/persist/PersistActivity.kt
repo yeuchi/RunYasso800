@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.ctyeung.runyasso800.R
 import com.ctyeung.runyasso800.databinding.ActivityPersistBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PersistActivity : AppCompatActivity() {
     lateinit var binding:ActivityPersistBinding
 

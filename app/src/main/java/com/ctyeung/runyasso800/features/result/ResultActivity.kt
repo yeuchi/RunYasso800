@@ -7,8 +7,9 @@ import com.ctyeung.runyasso800.BaseActivity
 import com.ctyeung.runyasso800.R
 import com.ctyeung.runyasso800.databinding.ActivityResultBinding
 import com.google.android.gms.location.LocationServices
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ResultActivity : BaseActivity()  {
     lateinit var binding:ActivityResultBinding
 //    private lateinit var mMap: GoogleMap

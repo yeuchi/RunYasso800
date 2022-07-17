@@ -16,6 +16,7 @@ import com.ctyeung.runyasso800.features.goals.GoalActivity
 import com.ctyeung.runyasso800.features.persist.PersistActivity
 import com.ctyeung.runyasso800.features.result.ResultActivity
 import com.ctyeung.runyasso800.features.run.RunActivity
+import dagger.hilt.android.AndroidEntryPoint
 
 /*
  * To do:
@@ -33,6 +34,7 @@ import com.ctyeung.runyasso800.features.run.RunActivity
  *                               GPS sampling rate    // default 10 seconds
  *
  */
+//@AndroidEntryPoint
 class MainActivity : BaseActivity(),
     NumberPickerFragment.INumberPickerListener,
     AboutDialogFragment.IFactoryResetListener {
@@ -68,7 +70,7 @@ class MainActivity : BaseActivity(),
         model = ViewModelProvider(this).get(MainViewModel::class.java)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_tab, menu)
         return true
     }

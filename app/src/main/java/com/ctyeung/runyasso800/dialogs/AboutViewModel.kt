@@ -7,8 +7,10 @@ import com.ctyeung.runyasso800.R
 import com.ctyeung.runyasso800.data.room.splits.Split
 import com.ctyeung.runyasso800.features.run.services.LocationUpdateService
 import com.ctyeung.runyasso800.storage.SharedPrefUtility
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.NumberFormat
 import java.util.*
+
 
 class AboutViewModel : AndroidViewModel{
 

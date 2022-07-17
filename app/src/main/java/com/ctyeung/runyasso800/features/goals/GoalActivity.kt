@@ -12,8 +12,10 @@ import com.ctyeung.runyasso800.R
 import com.ctyeung.runyasso800.databinding.ActivityGoalBinding
 import com.ctyeung.runyasso800.features.run.RunActivity
 import com.ctyeung.runyasso800.storage.SharedPrefUtility
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
+@AndroidEntryPoint
 class GoalActivity : BaseActivity() {
     lateinit var binding:ActivityGoalBinding
     lateinit var model:GoalViewModel
