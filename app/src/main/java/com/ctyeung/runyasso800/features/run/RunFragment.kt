@@ -20,7 +20,7 @@ import com.ctyeung.runyasso800.features.run.stateMachine.RunStates
 
 class RunFragment : Fragment() {
     lateinit var binding: FragmentRunBinding
-//    private val viewModel by viewModels<RunViewModel>()
+    private val viewModel by activityViewModels<RunViewModel>()
     val refresh: () -> Unit = { binding?.invalidateAll() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,15 +54,15 @@ class RunFragment : Fragment() {
 
     private fun updateDisplayMetrics() {
         binding.apply {
-//            txtLat.text = viewModel.txtLat
-//            txtLong.text = viewModel.txtLong
-//            txtSplitIndex.text = viewModel.txtSplitIndex
-//            txtTotalSplits.text = viewModel.txtTotalSplits
-//            txtSplitType.text = viewModel.txtSplitType
-//            txtSplitTime.text = viewModel.txtSplitTime
-//            txtTotalTime.text = viewModel.txtTotalTime
-//            txtStepDistance.text = viewModel.txtStepDistance
-//            txtTotalDistance.text = viewModel.txtTotalDistance
+            txtLat.text = viewModel.txtLat
+            txtLong.text = viewModel.txtLong
+            txtSplitIndex.text = viewModel.txtSplitIndex
+            txtTotalSplits.text = viewModel.txtTotalSplits
+            txtSplitType.text = viewModel.txtSplitType
+            txtSplitTime.text = viewModel.txtSplitTime
+            txtTotalTime.text = viewModel.txtTotalTime
+            txtStepDistance.text = viewModel.txtStepDistance
+            txtTotalDistance.text = viewModel.txtTotalDistance
         }
     }
 
