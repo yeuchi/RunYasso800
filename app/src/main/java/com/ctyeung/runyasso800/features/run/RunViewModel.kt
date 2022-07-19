@@ -24,8 +24,8 @@ class RunViewModel @Inject constructor(
     private val repository: RunRepository
 ) : ViewModel() {
 
-    var steps: LiveData<List<Step>> = repository.getSteps()
-    var splits: LiveData<List<Split>> = repository.getSplits()
+    var steps: LiveData<List<Step>> = repository.steps
+    var splits: LiveData<List<Split>> = repository.splits
 
     /*
      * Steps - GPS data

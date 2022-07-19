@@ -46,7 +46,7 @@ class MainActivity : BaseActivity(),
     override fun onNumberDialogOKClick(id: String, value: Int) {
         dlg.dismiss()
 
-        when(id.toLowerCase()) {
+        when(id.lowercase()) {
             this.resources.getString(R.string.id_sprint) -> {
                 model.setSprintDistance(value)
             }

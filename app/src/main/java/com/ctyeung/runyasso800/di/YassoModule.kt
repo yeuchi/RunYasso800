@@ -25,11 +25,11 @@ object YassoModule {
 
     @Provides
     @Singleton
-    fun provideAppDatabase(@ApplicationContext appContext: Context): YassoDatabase {
+    fun provideYassoDatabase(@ApplicationContext appContext: Context): YassoDatabase {
         return Room.databaseBuilder(
             appContext,
             YassoDatabase::class.java,
-            "RssReader"
+            "yasso_database"
         ).build()
     }
 

@@ -27,9 +27,8 @@ class RunRepository @Inject constructor(
     /*
      * Steps - GPS data
      */
-
-    fun getSteps() = stepRepository.steps
-    fun getSplits() = splitRepository.splits
+    val steps = stepRepository.steps
+    val splits = splitRepository.splits
 
     fun insertStep(step: Step) = viewModelScope.launch {
         val dis = SharedPrefUtility.get(SharedPrefUtility.keySplitDistance, 0f)

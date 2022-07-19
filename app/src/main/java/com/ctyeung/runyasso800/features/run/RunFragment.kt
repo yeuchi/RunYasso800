@@ -40,7 +40,7 @@ class RunFragment : Fragment() {
         if (shouldAskPermissions())
             askPermissions()
 
-//        viewModel.steps.observe(viewLifecycleOwner, Observer(::onHandleStepUpdate))
+        viewModel.steps.observe(viewLifecycleOwner, Observer(::onHandleStepUpdate))
 //        viewModel.splits.observe(viewLifecycleOwner, Observer(::onHandleSplitsUpdate))
     }
 
