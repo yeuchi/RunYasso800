@@ -41,7 +41,7 @@ class RunFragment : Fragment() {
             askPermissions()
 
         viewModel.steps.observe(viewLifecycleOwner, Observer(::onHandleStepUpdate))
-//        viewModel.splits.observe(viewLifecycleOwner, Observer(::onHandleSplitsUpdate))
+        viewModel.splits.observe(viewLifecycleOwner, Observer(::onHandleSplitsUpdate))
     }
 
     fun onHandleStepUpdate(steps: List<Step>) {
