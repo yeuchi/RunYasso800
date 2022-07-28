@@ -113,6 +113,20 @@ class RunFragment : Fragment() {
         refresh()
     }
 
+    // State machine callback -- background update, vibrate, beep
+    fun onChangedSplit() {
+//        splitContainer.updateSupport()
+//        runViewModel.updateType()
+        refresh()
+    }
+
+    // State machine callback
+    fun onHandleYassoDone() {
+//        runViewModel.updateType()
+//        refresh()
+//        fab.changeState(StateDone::class.java)
+    }
+
     /*
      * when IDLE state
      * -> goto SPRINT state
