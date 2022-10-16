@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RunYasso800.iml" filepath="$PROJECT_DIR$/RunYasso800.iml" group="RunYasso800" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mobile/mobile.iml" filepath="$PROJECT_DIR$/.idea/modules/mobile/mobile.iml" group="RunYasso800/mobile" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/wear/wear.iml" filepath="$PROJECT_DIR$/.idea/modules/wear/wear.iml" group="RunYasso800/wear" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Android.RunYasso800.iml" filepath="$PROJECT_DIR$/.idea/modules/Android.RunYasso800.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/RunYasso800.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/RunYasso800.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/RunYasso800.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/RunYasso800.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/RunYasso800.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/RunYasso800.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/RunYasso800.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/RunYasso800.app.unitTest.iml" />
     </modules>
   </component>
 </project>

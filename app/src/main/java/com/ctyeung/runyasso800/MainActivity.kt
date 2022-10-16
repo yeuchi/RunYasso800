@@ -22,6 +22,7 @@ import com.ctyeung.runyasso800.views.RecapScreen
 import com.ctyeung.runyasso800.views.RunScreen
 import com.ctyeung.runyasso800.views.ShareScreen
 import com.google.accompanist.pager.*
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 /*
@@ -29,6 +30,8 @@ import kotlinx.coroutines.launch
  * Tab Layout in Android using Jetpack Compose
  * https://www.geeksforgeeks.org/tab-layout-in-android-using-jetpack-compose/
  */
+
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +49,7 @@ class MainActivity : ComponentActivity() {
 fun TabLayout() {
 
     // on below line we are creating variable for pager state.
-    val pagerState = rememberPagerState(pageCount = 3)
+    val pagerState = rememberPagerState(pageCount = 4)
 
     // on below line we are creating a column for our widgets.
     Scaffold(
