@@ -15,7 +15,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.ctyeung.runyasso800.HiltTestRunner"
         vectorDrawables {
             useSupportLibrary true
         }
@@ -70,9 +70,10 @@ dependencies {
     /* HILT */
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_version"
 //    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_version"
 //    kapt "androidx.hilt:hilt-compiler:$hilt_version"
-    androidTestImplementation "com.google.dagger:hilt-android-android-testing:$hilt_version"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
      /* end HILT */
 
     /* Coroutine */
