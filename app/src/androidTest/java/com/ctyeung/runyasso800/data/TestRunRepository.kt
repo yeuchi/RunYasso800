@@ -4,6 +4,7 @@ import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-open class RunRepository @Inject constructor(
-    @ApplicationContext context: Context) {
+class TestRunRepository @Inject constructor(
+    @ApplicationContext context: Context
+) : RunRepository(context) {
 }
