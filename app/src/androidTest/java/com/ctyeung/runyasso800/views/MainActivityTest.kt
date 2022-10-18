@@ -1,6 +1,11 @@
 package com.ctyeung.runyasso800.views
 
+import android.app.LauncherActivity
 import android.content.Context
+import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onNodeWithText
+import com.ctyeung.runyasso800.MainActivity
 import com.ctyeung.runyasso800.data.RunRepository
 import com.ctyeung.runyasso800.data.TestRunRepository
 import com.ctyeung.runyasso800.di.RunModule
@@ -30,6 +35,8 @@ class MainActivityTest {
     @get:Rule(order = 0)
     var hiltRule = HiltAndroidRule(this)
 
+    @get:Rule(order = 1)
+    val composeTestRule = createAndroidComposeRule<MainActivity>()
     @Before
     fun init() {
         hiltRule.inject()
@@ -48,7 +55,12 @@ class MainActivityTest {
     }
 
     @Test
-    fun happy_path_run() {
+    fun happy_path_goal() {
+        composeTestRule.onNodeWithText("Goal").assertIsDisplayed()
+    }
 
+    @Test
+    fun happy_path_run() {
+        composeTestRule.onNodeWithText("Run").assertIsDisplayed()
     }
 }

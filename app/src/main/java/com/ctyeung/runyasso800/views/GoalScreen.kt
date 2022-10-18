@@ -27,7 +27,7 @@ class GoalScreen {
             // in this column we are specifying the text
             Text(
                 // on below line we are specifying the text message
-                text = "Goal",
+                text = "GoalScreen",
 
                 // on below line we are specifying the text style.
                 style = MaterialTheme.typography.h5,
