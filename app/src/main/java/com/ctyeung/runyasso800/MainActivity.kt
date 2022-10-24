@@ -3,13 +3,15 @@ package com.ctyeung.runyasso800
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.Face
+import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -52,11 +54,7 @@ fun TabLayout() {
     val pagerState = rememberPagerState(pageCount = 4)
 
     // on below line we are creating a column for our widgets.
-    Scaffold(
-        // for column we are specifying modifier on below line.
-        modifier = Modifier.background(Color.White)
-    ) {
-        BottomAppBar(backgroundColor = Color.Blue) {
+        TopAppBar(backgroundColor = Color.Blue) {
             Column(
                 modifier = Modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -66,7 +64,6 @@ fun TabLayout() {
         TabsContent(pagerState = pagerState)
         Tabs(pagerState = pagerState)
     }
-}
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
