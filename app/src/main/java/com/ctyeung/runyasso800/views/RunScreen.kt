@@ -11,8 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import com.ctyeung.runyasso800.viewmodels.RunViewModel
 
-class RunScreen {
+class RunScreen(val viewModel: RunViewModel) {
 
     @Composable
     fun Render() {
@@ -42,4 +43,12 @@ class RunScreen {
             )
         }
     }
+}
+
+sealed class ExerciseState {
+    object Stop : ExerciseState()   // default Stop -> Run / Jog
+    object Run : ExerciseState()    // active Run -> Pause / Jog
+    object Jog : ExerciseState()    // active Jog -> Pause / Run
+    object Pause : ExerciseState()  // interrupt Pause -> Resume -> Run / Jog
+    object Resume : ExerciseState() // go back to Run / Jog
 }

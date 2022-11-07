@@ -1,19 +1,21 @@
 package com.ctyeung.runyasso800.views
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import android.widget.EditText
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.currentCompositionLocalContext
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import com.ctyeung.runyasso800.viewmodels.RunViewModel
 
-class GoalScreen {
-
+class GoalScreen(val viewModel: RunViewModel) {
 
     @Composable
     fun Render() {
@@ -27,7 +29,7 @@ class GoalScreen {
             // in this column we are specifying the text
             Text(
                 // on below line we are specifying the text message
-                text = "GoalScreen",
+                text = "Set your running goals",
 
                 // on below line we are specifying the text style.
                 style = MaterialTheme.typography.h5,
@@ -41,6 +43,70 @@ class GoalScreen {
                 //on below line we are specifying the text alignment.
                 textAlign = TextAlign.Center
             )
+
+            ComposeRunname()
+            ComposeMarathonGoal()
+            Compose800mGoal()
+        }
+    }
+
+    @Composable
+    fun ComposeRunname() {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth().height(150.dp)
+                .padding(15.dp)
+                .clickable { },
+            elevation = 10.dp
+        ) {
+            Row() {
+                Text(text = "Run name")
+
+                OutlinedTextField(
+                    value = viewModel.runName,
+                    onValueChange = { viewModel.runName = it },
+                    label = { Text("Label") }
+                )
+            }
+        }
+    }
+
+    @Composable
+    fun ComposeMarathonGoal() {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth().height(150.dp)
+                .padding(15.dp)
+                .clickable { },
+            elevation = 10.dp
+        ) {
+            Row() {
+                Text(text = "Marathon Goal")
+
+                Button(onClick = {
+                    /*Load time picker*/
+
+                }) {
+                    Text(text = viewModel.goalMarathon)
+                }
+            }
+        }
+    }
+
+    @Composable
+    fun Compose800mGoal() {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth().height(150.dp)
+                .padding(15.dp)
+                .clickable { },
+            elevation = 10.dp
+        ) {
+            Row() {
+                Text(text = "800m Goal")
+
+                Text(text = viewModel.goal800m)
+            }
         }
     }
 }

@@ -18,7 +18,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModelProvider
 import com.ctyeung.runyasso800.ui.theme.RunYasso800Theme
+import com.ctyeung.runyasso800.viewmodels.RunViewModel
 import com.ctyeung.runyasso800.views.GoalScreen
 import com.ctyeung.runyasso800.views.RecapScreen
 import com.ctyeung.runyasso800.views.RunScreen
@@ -35,12 +37,14 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    lateinit var viewModel: RunViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(this)[RunViewModel::class.java]
         setContent {
             RunYasso800Theme {
                 // A surface container using the 'background' color from the theme
-                TabLayout()
+                TabLayout(viewModel)
             }
         }
     }
@@ -48,9 +52,8 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun TabLayout() {
+fun TabLayout(viewModel: RunViewModel) {
 
-    // on below line we are creating variable for pager state.
     val pagerState = rememberPagerState(pageCount = 4)
 
     // on below line we are creating a column for our widgets.
@@ -61,7 +64,7 @@ fun TabLayout() {
                 verticalArrangement = Arrangement.Center
             ) {}
         }
-        TabsContent(pagerState = pagerState)
+        TabsContent(pagerState, viewModel)
         Tabs(pagerState = pagerState)
     }
 
@@ -144,7 +147,7 @@ fun Tabs(pagerState: PagerState) {
 // in which we will be displaying the individual page of our tab .
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun TabsContent(pagerState: PagerState) {
+fun TabsContent(pagerState: PagerState, viewModel:RunViewModel) {
     // on below line we are creating
     // horizontal pager for our tab layout.
     HorizontalPager(state = pagerState) {
@@ -154,15 +157,15 @@ fun TabsContent(pagerState: PagerState) {
         when (page) {
             // on below line we are calling tab content screen
             // and specifying data as Home Screen.
-            0 -> GoalScreen().Render()
+            0 -> GoalScreen(viewModel).Render()
             // on below line we are calling tab content screen
             // and specifying data as Shopping Screen.
-            1 -> RunScreen().Render()
+            1 -> RunScreen(viewModel).Render()
             // on below line we are calling tab content screen
             // and specifying data as Settings Screen.
-            2 -> RecapScreen().Render()
+            2 -> RecapScreen(viewModel).Render()
 
-            3 -> ShareScreen().Render()
+            3 -> ShareScreen(viewModel).Render()
         }
     }
 }
