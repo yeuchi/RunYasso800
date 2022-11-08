@@ -14,6 +14,6 @@ open class RunViewModel @Inject constructor(
     val ENTER_TIME = "Enter Time"
 
     var runName:String = ""
-    var goal800m:String = ""
+    var goal800m:String = "choose"
     var goalMarathon:String = ENTER_TIME
 }

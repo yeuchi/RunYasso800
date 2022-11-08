@@ -1,12 +1,17 @@
 package com.ctyeung.runyasso800.views
 
+import android.app.TimePickerDialog
+import android.icu.util.Calendar
 import android.widget.EditText
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.currentCompositionLocalContext
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -54,7 +59,8 @@ class GoalScreen(val viewModel: RunViewModel) {
     fun ComposeRunname() {
         Card(
             modifier = Modifier
-                .fillMaxWidth().height(150.dp)
+                .fillMaxWidth()
+                .height(150.dp)
                 .padding(15.dp)
                 .clickable { },
             elevation = 10.dp
@@ -62,32 +68,65 @@ class GoalScreen(val viewModel: RunViewModel) {
             Row() {
                 Text(text = "Run name")
 
-                OutlinedTextField(
-                    value = viewModel.runName,
-                    onValueChange = { viewModel.runName = it },
-                    label = { Text("Label") }
-                )
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .align(Alignment.CenterVertically)
+                ) {
+                    OutlinedTextField(modifier = Modifier
+                        .padding(0.dp, 30.dp)
+                        .align(Alignment.Center),
+                        value = viewModel.runName,
+                        onValueChange = { viewModel.runName = it },
+                        label = { Text("Label") }
+                    )
+                }
             }
         }
     }
 
+    @OptIn(ExperimentalComposeUiApi::class)
     @Composable
     fun ComposeMarathonGoal() {
         Card(
             modifier = Modifier
-                .fillMaxWidth().height(150.dp)
+                .fillMaxWidth()
+                .height(150.dp)
                 .padding(15.dp)
                 .clickable { },
             elevation = 10.dp
         ) {
+            // Declaring and initializing a calendar
+            val mCalendar = Calendar.getInstance()
+            val mHour = mCalendar[Calendar.HOUR_OF_DAY]
+            val mMinute = mCalendar[Calendar.MINUTE]
+
+            // Value for storing time as a string
+            val mTime = remember { mutableStateOf("") }
+
+            // Creating a TimePicker dialod
+            val mTimePickerDialog = TimePickerDialog(
+                LocalContext.current,
+                { _, mHour: Int, mMinute: Int ->
+                    mTime.value = "$mHour:$mMinute"
+                }, mHour, mMinute, false
+            )
+
             Row() {
                 Text(text = "Marathon Goal")
-
-                Button(onClick = {
-                    /*Load time picker*/
-
-                }) {
-                    Text(text = viewModel.goalMarathon)
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .align(Alignment.CenterVertically)
+                ) {
+                    Button(modifier = Modifier
+                        .padding(0.dp, 30.dp)
+                        .align(Alignment.Center),
+                        onClick = {
+                            mTimePickerDialog.show()
+                        }) {
+                        Text(text = viewModel.goalMarathon)
+                    }
                 }
             }
         }
@@ -97,7 +136,8 @@ class GoalScreen(val viewModel: RunViewModel) {
     fun Compose800mGoal() {
         Card(
             modifier = Modifier
-                .fillMaxWidth().height(150.dp)
+                .fillMaxWidth()
+                .height(150.dp)
                 .padding(15.dp)
                 .clickable { },
             elevation = 10.dp
@@ -105,7 +145,16 @@ class GoalScreen(val viewModel: RunViewModel) {
             Row() {
                 Text(text = "800m Goal")
 
-                Text(text = viewModel.goal800m)
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .align(Alignment.CenterVertically)
+                ) {
+                    Text(text = viewModel.goal800m,
+                        modifier = Modifier
+                        .padding(0.dp, 30.dp)
+                        .align(Alignment.Center))
+                }
             }
         }
     }
