@@ -31,6 +31,7 @@
             <stringArg name="classpath">
               <args>
                 <arg>$MODULE_DIR$/../../../app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar</arg>
+                <arg>$MODULE_DIR$/../../../app/build/intermediates/compile_app_classes_jar/debug/classes.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/73a126a34c1c944896e211fe3eada2c4/transformed/accompanist-pager-indicators-0.13.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/62d1a8e62bc0bf1614a14a51e798de4e/transformed/accompanist-pager-0.13.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/38291080c131c18edfd24f29b9fe56e3/transformed/ui-tooling-1.2.0-api.jar</arg>

@@ -14,6 +14,8 @@
           <stringArguments>
             <stringArg name="classpath">
               <args>
+                <arg>$MODULE_DIR$/../../../app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debugAndroidTest/R.jar</arg>
+                <arg>$MODULE_DIR$/../../../app/build/intermediates/compile_app_classes_jar/debug/classes.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/3ce27b6b9cd51843dec0a95327a67b18/transformed/hilt-android-testing-2.44-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/1fc505a046f1110e3bf5ff005eb96872/transformed/ui-test-junit4-1.2.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/a13e1d9b240146e4388a886010a97763/transformed/junit-1.1.3-api.jar</arg>

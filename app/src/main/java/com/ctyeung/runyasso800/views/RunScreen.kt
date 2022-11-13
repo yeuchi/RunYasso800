@@ -1,16 +1,19 @@
-package com.ctyeung.runyasso800.views
+package com.ctyeung.runyasso800
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import com.ctyeung.runyasso800.viewmodels.RunViewModel
 
 class RunScreen(val viewModel: RunViewModel) {
@@ -41,6 +44,29 @@ class RunScreen(val viewModel: RunViewModel) {
                 //on below line we are specifying the text alignment.
                 textAlign = TextAlign.Center
             )
+
+            ComposeLatLon()
+        }
+    }
+
+    @Composable
+    fun ComposeLatLon() {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(150.dp)
+                .padding(15.dp)
+                .clickable { },
+            elevation = 10.dp
+        ) {
+            Row() {
+                Image(painter = painterResource(id = R.drawable.ic_location),
+                    contentDescription = "location")
+                Text(text = "lat:")
+                Text(text = viewModel.lat.value.toString())
+                Text(text = "lon:")
+                Text(text = viewModel.lon.value.toString())
+            }
         }
     }
 }

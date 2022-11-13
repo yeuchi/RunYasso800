@@ -23,7 +23,7 @@ import com.ctyeung.runyasso800.ui.theme.RunYasso800Theme
 import com.ctyeung.runyasso800.viewmodels.RunViewModel
 import com.ctyeung.runyasso800.views.GoalScreen
 import com.ctyeung.runyasso800.views.RecapScreen
-import com.ctyeung.runyasso800.views.RunScreen
+import com.ctyeung.runyasso800.RunScreen
 import com.ctyeung.runyasso800.views.ShareScreen
 import com.google.accompanist.pager.*
 import dagger.hilt.android.AndroidEntryPoint

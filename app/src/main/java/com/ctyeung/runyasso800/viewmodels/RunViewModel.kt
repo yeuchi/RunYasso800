@@ -1,5 +1,6 @@
 package com.ctyeung.runyasso800.viewmodels
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.ctyeung.runyasso800.data.RunRepository
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -16,4 +17,8 @@ open class RunViewModel @Inject constructor(
     var runName:String = ""
     var goal800m:String = "choose"
     var goalMarathon:String = ENTER_TIME
+
+    val lat = mutableStateOf<Int>(0)
+    val lon = mutableStateOf<Int>(0)
+
 }
