@@ -1,6 +1,7 @@
 package com.ctyeung.runyasso800
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
@@ -14,7 +15,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.ctyeung.runyasso800.viewmodels.RunViewModel
+import com.ctyeung.runyasso800.RunViewModel
 
 class RunScreen(val viewModel: RunViewModel) {
 
@@ -46,6 +47,7 @@ class RunScreen(val viewModel: RunViewModel) {
             )
 
             ComposeLatLon()
+            ComposeDetail()
         }
     }
 
@@ -69,12 +71,62 @@ class RunScreen(val viewModel: RunViewModel) {
             }
         }
     }
+
+    @Composable
+    fun ComposeDetail() {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(150.dp)
+                .padding(15.dp)
+                .clickable { },
+            elevation = 10.dp
+        ) {
+            Column(modifier = Modifier.background(viewModel.exerciseStateColor)) {
+
+                Row() {
+                    Image(painter = painterResource(id = viewModel.exerciseStateIcon),
+                        contentDescription = "exercise")
+                    Text(text = "Split:")
+                    Text(text = viewModel.currentSplit.value.toString())
+                    Text(text = "Total:")
+                    Text(text = viewModel.SplitCount.value.toString())
+                }
+
+                Row() {
+                    Image(painter = painterResource(id = R.drawable.ic_assignment),
+                        contentDescription = "assignment")
+                    Text(text = viewModel.exerciseStateName)
+                }
+
+                Row() {
+                    Image(painter = painterResource(id = R.drawable.ic_access_time),
+                        contentDescription = "Time")
+                    Text(text = "Time:")
+                    /*
+                     * TODO Formater time
+                     */
+                    Text(text = viewModel.currentSplitTime.value.toString())
+                    Text(text = "Total:")
+                    Text(text = viewModel.totalTime.value.toString())
+                }
+
+                Row() {
+                    Image(painter = painterResource(id = R.drawable.ic_distance),
+                        contentDescription = "distance")
+                    Text(text = "Distance:")
+                    Text(text = viewModel.currentSplitDistance.value.toString())
+                    Text(text = "Total:")
+                    Text(text = viewModel.totalDistance.value.toString())
+                }
+
+                Row() {
+                    /*
+                     * TODO Floating action buttons
+                     */
+                }
+            }
+        }
+    }
 }
 
-sealed class ExerciseState {
-    object Stop : ExerciseState()   // default Stop -> Run / Jog
-    object Run : ExerciseState()    // active Run -> Pause / Jog
-    object Jog : ExerciseState()    // active Jog -> Pause / Run
-    object Pause : ExerciseState()  // interrupt Pause -> Resume -> Run / Jog
-    object Resume : ExerciseState() // go back to Run / Jog
-}

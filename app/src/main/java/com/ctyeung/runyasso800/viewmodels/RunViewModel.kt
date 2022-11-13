@@ -1,10 +1,10 @@
-package com.ctyeung.runyasso800.viewmodels
+package com.ctyeung.runyasso800
 
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.graphics.Color
+import androidx.core.graphics.toColorInt
 import androidx.lifecycle.ViewModel
 import com.ctyeung.runyasso800.data.RunRepository
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.PagerState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -21,4 +21,56 @@ open class RunViewModel @Inject constructor(
     val lat = mutableStateOf<Int>(0)
     val lon = mutableStateOf<Int>(0)
 
+    val currentSplit = mutableStateOf<Int>(0)
+    val SplitCount = mutableStateOf<Int>(0)
+
+    val exerciseState = mutableStateOf<ExerciseState>(ExerciseState.IDLE)
+
+    val currentSplitTime = mutableStateOf<Int>(0)
+    val totalTime = mutableStateOf<Int>(0)
+
+    val currentSplitDistance = mutableStateOf<Int>(0)
+    val totalDistance = mutableStateOf<Int>(0)
+
+    val exerciseStateName : String
+        get() {
+            return when(exerciseState.value) {
+                is ExerciseState.IDLE -> "IDLE"
+                is ExerciseState.Run -> "RUN"
+                is ExerciseState.Jog -> "JOG"
+                is ExerciseState.Pause -> "PAUSE"
+                else -> "Don't Know"
+            }
+        }
+
+    val exerciseStateIcon : Int
+        get() {
+            return when(exerciseState.value) {
+                is ExerciseState.IDLE -> R.drawable.ic_person_idle
+                is ExerciseState.Run -> R.drawable.ic_run
+                is ExerciseState.Jog -> R.drawable.ic_jog
+                is ExerciseState.Pause -> R.drawable.ic_android
+                else -> R.drawable.ic_android
+            }
+        }
+
+    val exerciseStateColor : androidx.compose.ui.graphics.Color
+    get() {
+        return when(exerciseState.value) {
+            is ExerciseState.IDLE -> Color("#999999".toColorInt())
+            is ExerciseState.Run -> Color("#88FF88".toColorInt())
+            is ExerciseState.Jog -> Color("#88FFFF".toColorInt())
+            is ExerciseState.Pause -> Color("#FFBB55".toColorInt())
+            else -> Color("#999999".toColorInt())
+        }
+    }
+}
+
+sealed class ExerciseState {
+    object IDLE : ExerciseState()   // default IDLE -> Run / Jog
+    object Stop : ExerciseState()   // Stop -> IDLE
+    object Run : ExerciseState()    // active Run -> Pause / Jog
+    object Jog : ExerciseState()    // active Jog -> Pause / Run
+    object Pause : ExerciseState()  // interrupt Pause -> Resume -> Run / Jog
+    object Resume : ExerciseState() // go back to Run / Jog
 }
