@@ -3,7 +3,7 @@ package com.ctyeung.runyasso800.di
 import android.app.Activity
 import android.content.Context
 import com.ctyeung.runyasso800.data.RunRepository
-import com.ctyeung.runyasso800.viewmodels.RunViewModel
+import com.ctyeung.runyasso800.RunViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

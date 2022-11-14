@@ -14,8 +14,6 @@
           <stringArguments>
             <stringArg name="classpath">
               <args>
-                <arg>$MODULE_DIR$/../../../app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debugAndroidTest/R.jar</arg>
-                <arg>$MODULE_DIR$/../../../app/build/intermediates/compile_app_classes_jar/debug/classes.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/3ce27b6b9cd51843dec0a95327a67b18/transformed/hilt-android-testing-2.44-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/1fc505a046f1110e3bf5ff005eb96872/transformed/ui-test-junit4-1.2.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/a13e1d9b240146e4388a886010a97763/transformed/junit-1.1.3-api.jar</arg>
@@ -40,6 +38,10 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/5d1cc45f467483207a36ee1ef49965f9/transformed/lifecycle-viewmodel-ktx-2.5.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/7a45c64ad493dc627d60625b576c26ba/transformed/hilt-android-2.44-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/77781b2bba25566837a3bdd57894e180/transformed/ui-test-manifest-1.2.0-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/663347c658d350285ffc2469f3aaaf6a/transformed/play-services-maps-18.0.2-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/b8f30404cfa57c4d1df64e289e62f9cf/transformed/play-services-base-18.0.1-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/d09c31c8f7e92326cce0a124004ca12c/transformed/play-services-tasks-18.0.1-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/5c68560a9e0a93165a53fa29284b6865/transformed/play-services-basement-18.0.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/d59c9fefdbed0d4ec8d84a3ad4e11513/transformed/fragment-1.5.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/d6ea729838017f4fa0bd22d6cd5d7cbf/transformed/activity-1.5.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/f99ce5655cd2521bd89f9a0cedefca69/transformed/lifecycle-viewmodel-savedstate-2.5.1-api.jar</arg>
@@ -93,6 +95,8 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/0a240b2470a00d00a306eb7754be4c46/transformed/espresso-idling-resource-3.4.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup/javawriter/2.1.1/67ff45d9ae02e583d0f9b3432a5ebbe05c30c966/javawriter-2.1.1.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.compose.compiler/compiler/1.2.0/2fdcb137dbe4bc969cbff2c00ed9b74d2a432644/compiler-1.2.0.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/529790f904d67311a12effde68d443b8/transformed/maps-compose-2.7.2-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/5dd74a0d7e19a85760a1755172c2ee31/transformed/maps-compose-widgets-2.7.2-api.jar</arg>
                 <arg>$USER_HOME$/Library/Android/sdk/platforms/android-32/android.jar</arg>
                 <arg>$USER_HOME$/Library/Android/sdk/build-tools/30.0.3/core-lambda-stubs.jar</arg>
               </args>
@@ -251,6 +255,12 @@
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.savedstate:savedstate-ktx:1.2.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.accompanist:accompanist-pager:0.13.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.accompanist:accompanist-pager-indicators:0.13.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.maps.android:maps-compose:2.7.2@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.gms:play-services-maps:18.0.2@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.gms:play-services-base:18.0.1@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.gms:play-services-basement:18.0.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.gms:play-services-tasks:18.0.1@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.maps.android:maps-compose-widgets:2.7.2@aar" level="project" />
   </component>
   <component name="TestModuleProperties" production-module="RunYasso800.app.main" />
 </module>

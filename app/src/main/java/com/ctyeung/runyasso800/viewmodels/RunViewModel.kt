@@ -39,6 +39,8 @@ open class RunViewModel @Inject constructor(
                 is ExerciseState.Run -> "RUN"
                 is ExerciseState.Jog -> "JOG"
                 is ExerciseState.Pause -> "PAUSE"
+                is ExerciseState.Clear -> "Clear"
+                is ExerciseState.Pause -> "DONE"
                 else -> "Don't Know"
             }
         }
@@ -61,6 +63,8 @@ open class RunViewModel @Inject constructor(
             is ExerciseState.Run -> Color("#88FF88".toColorInt())
             is ExerciseState.Jog -> Color("#88FFFF".toColorInt())
             is ExerciseState.Pause -> Color("#FFBB55".toColorInt())
+            is ExerciseState.Clear -> Color("#FF0000".toColorInt())
+            is ExerciseState.Done -> Color("#8888FF".toColorInt())
             else -> Color("#999999".toColorInt())
         }
     }
@@ -68,9 +72,9 @@ open class RunViewModel @Inject constructor(
 
 sealed class ExerciseState {
     object IDLE : ExerciseState()   // default IDLE -> Run / Jog
-    object Stop : ExerciseState()   // Stop -> IDLE
     object Run : ExerciseState()    // active Run -> Pause / Jog
     object Jog : ExerciseState()    // active Jog -> Pause / Run
     object Pause : ExerciseState()  // interrupt Pause -> Resume -> Run / Jog
-    object Resume : ExerciseState() // go back to Run / Jog
+    object Clear : ExerciseState()   // Clear -> IDLE
+    object Done : ExerciseState()   // DONE
 }

@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
+import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -48,6 +49,8 @@ class RunScreen(val viewModel: RunViewModel) {
 
             ComposeLatLon()
             ComposeDetail()
+
+            ComposeFABs()
         }
     }
 
@@ -62,8 +65,10 @@ class RunScreen(val viewModel: RunViewModel) {
             elevation = 10.dp
         ) {
             Row() {
-                Image(painter = painterResource(id = R.drawable.ic_location),
-                    contentDescription = "location")
+                Image(
+                    painter = painterResource(id = R.drawable.ic_location),
+                    contentDescription = "location"
+                )
                 Text(text = "lat:")
                 Text(text = viewModel.lat.value.toString())
                 Text(text = "lon:")
@@ -85,8 +90,10 @@ class RunScreen(val viewModel: RunViewModel) {
             Column(modifier = Modifier.background(viewModel.exerciseStateColor)) {
 
                 Row() {
-                    Image(painter = painterResource(id = viewModel.exerciseStateIcon),
-                        contentDescription = "exercise")
+                    Image(
+                        painter = painterResource(id = viewModel.exerciseStateIcon),
+                        contentDescription = "exercise"
+                    )
                     Text(text = "Split:")
                     Text(text = viewModel.currentSplit.value.toString())
                     Text(text = "Total:")
@@ -94,14 +101,18 @@ class RunScreen(val viewModel: RunViewModel) {
                 }
 
                 Row() {
-                    Image(painter = painterResource(id = R.drawable.ic_assignment),
-                        contentDescription = "assignment")
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_assignment),
+                        contentDescription = "assignment"
+                    )
                     Text(text = viewModel.exerciseStateName)
                 }
 
                 Row() {
-                    Image(painter = painterResource(id = R.drawable.ic_access_time),
-                        contentDescription = "Time")
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_access_time),
+                        contentDescription = "Time"
+                    )
                     Text(text = "Time:")
                     /*
                      * TODO Formater time
@@ -112,18 +123,85 @@ class RunScreen(val viewModel: RunViewModel) {
                 }
 
                 Row() {
-                    Image(painter = painterResource(id = R.drawable.ic_distance),
-                        contentDescription = "distance")
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_distance),
+                        contentDescription = "distance"
+                    )
                     Text(text = "Distance:")
                     Text(text = viewModel.currentSplitDistance.value.toString())
                     Text(text = "Total:")
                     Text(text = viewModel.totalDistance.value.toString())
                 }
+            }
+        }
+    }
 
-                Row() {
+    @Composable
+    fun ComposeFABs() {
+        Row() {
+
+            when (viewModel.exerciseState.value) {
+                is ExerciseState.IDLE -> {
+                    FloatingActionButton(onClick = {
                     /*
-                     * TODO Floating action buttons
+                     * TODO PLAY
                      */
+                    }) {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_play_arrow),
+                            contentDescription = "Play"
+                        )
+                    }
+                }
+                is ExerciseState.Run,
+                is ExerciseState.Jog -> {
+                    FloatingActionButton(onClick = {
+                        /*
+                         * TODO PAUSE
+                         */
+                    }) {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_pause),
+                            contentDescription = "Play"
+                        )
+                    }
+                }
+                is ExerciseState.Pause -> {
+                    FloatingActionButton(onClick = {
+                        /*
+                         * TODO PLAY
+                         */
+                    }) {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_play_arrow),
+                            contentDescription = "Play"
+                        )
+                    }
+
+                    FloatingActionButton(onClick = {
+                        /*
+                         * TODO STOP
+                         */
+                    }) {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_stop),
+                            contentDescription = "Stop"
+                        )
+                    }
+
+                    FloatingActionButton(onClick = {
+                        /*
+                         * TODO DONE
+                         */
+                    }) {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_navigate_next),
+                            contentDescription = "Done"
+                        )
+                    }
+                }
+                else -> {
+
                 }
             }
         }

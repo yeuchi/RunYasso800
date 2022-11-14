@@ -11,8 +11,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import com.ctyeung.runyasso800.viewmodels.RunViewModel
+import com.ctyeung.runyasso800.RunViewModel
 
+/*
+ * TODO check out this demo
+ *  https://github.com/googlemaps/android-maps-compose/blob/main/app/src/main/java/com/google/maps/android/compose/BasicMapActivity.kt
+ */
 class RecapScreen(val viewModel: RunViewModel) {
 
     @Composable

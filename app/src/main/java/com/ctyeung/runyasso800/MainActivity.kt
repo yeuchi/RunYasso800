@@ -18,14 +18,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.ctyeung.runyasso800.ui.theme.RunYasso800Theme
-import com.ctyeung.runyasso800.viewmodels.RunViewModel
 import com.ctyeung.runyasso800.views.GoalScreen
 import com.ctyeung.runyasso800.views.RecapScreen
-import com.ctyeung.runyasso800.RunScreen
 import com.ctyeung.runyasso800.views.ShareScreen
 import com.google.accompanist.pager.*
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.Marker
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -38,8 +40,13 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     lateinit var viewModel: RunViewModel
+    private lateinit var mMap: GoogleMap
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        askPermissions()
+
         viewModel = ViewModelProvider(this)[RunViewModel::class.java]
         setContent {
             RunYasso800Theme {
@@ -48,6 +55,33 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    protected fun askPermissions() {
+        val permissions = arrayOf(
+            "android.permission.ACCESS_FINE_LOCATION",
+            "android.permission.ACCESS_COARSE_LOCATION"
+        )
+        val requestCode = 200
+        requestPermissions(permissions, requestCode)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int,
+                                            permissions: Array<String>,
+                                            grantResults: IntArray)
+    {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        for(permission:String in permissions)
+        {
+            // result:0 is ok
+            val result = ContextCompat.checkSelfPermission(this, permission)
+            if (0!=result)
+            {
+                // not permitted to save or read -- !!! data-binding refactor
+                return
+            }
+        }
+    }
+
 }
 
 @OptIn(ExperimentalPagerApi::class)
