@@ -12,12 +12,18 @@ import javax.inject.Inject
 open class RunViewModel @Inject constructor(
     runRepository: RunRepository
 ) : ViewModel() {
+    /*
+     * Goal
+     */
     val ENTER_TIME = "Enter Time"
 
     var runName:String = ""
     var goal800m:String = "choose"
     var goalMarathon:String = ENTER_TIME
 
+    /*
+     * Run
+     */
     val lat = mutableStateOf<Int>(0)
     val lon = mutableStateOf<Int>(0)
 
@@ -68,6 +74,26 @@ open class RunViewModel @Inject constructor(
             else -> Color("#999999".toColorInt())
         }
     }
+
+    /*
+     * Recap
+     */
+    val showDetailDlg = mutableStateOf<Boolean>(true)
+    val detailSplitIndex = mutableStateOf<Int>(0)
+    val detailAction:String
+    get() {
+        /*
+         * Retrieve Run or Jog Action time from database
+         */
+        return "Run"
+    }
+    val detailTime:String
+        get() {
+            /*
+             * Retrieve elapse time from database
+             */
+            return "00:00:30"
+        }
 }
 
 sealed class ExerciseState {
