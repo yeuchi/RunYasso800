@@ -23,11 +23,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.ctyeung.runyasso800.ui.theme.RunYasso800Theme
 import com.ctyeung.runyasso800.views.GoalScreen
 import com.ctyeung.runyasso800.views.RecapScreen
-import com.ctyeung.runyasso800.views.ShareScreen
 import com.google.accompanist.pager.*
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.model.Marker
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

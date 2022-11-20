@@ -94,6 +94,12 @@ open class RunViewModel @Inject constructor(
              */
             return "00:00:30"
         }
+
+    /*
+     * Share
+     */
+    var shareHeader:String = ""
+    var shareFooter:String = ""
 }
 
 sealed class ExerciseState {

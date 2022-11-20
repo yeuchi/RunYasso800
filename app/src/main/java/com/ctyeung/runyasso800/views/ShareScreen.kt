@@ -1,16 +1,16 @@
-package com.ctyeung.runyasso800.views
+package com.ctyeung.runyasso800
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import com.ctyeung.runyasso800.RunViewModel
 
 class ShareScreen(val viewModel: RunViewModel) {
@@ -39,6 +39,44 @@ class ShareScreen(val viewModel: RunViewModel) {
 
                 //on below line we are specifying the text alignment.
                 textAlign = TextAlign.Center
+            )
+            Card() {
+                Row() {
+                  Text(text = "Header")
+                    OutlinedTextField(modifier = Modifier
+                        .padding(0.dp, 30.dp),
+                        value = viewModel.shareHeader,
+                        onValueChange = { viewModel.shareHeader = it },
+                        label = { Text("Label") }
+                    )
+                }
+            }
+
+            Card() {
+                Row() {
+                    Text(text = "Footer")
+                    OutlinedTextField(modifier = Modifier
+                        .padding(0.dp, 30.dp),
+                        value = viewModel.shareFooter,
+                        onValueChange = { viewModel.shareFooter = it },
+                        label = { Text("Label") }
+                    )
+                }
+            }
+            ComposeFAB()
+        }
+    }
+
+    @Composable
+    fun ComposeFAB() {
+        FloatingActionButton(onClick = {
+            /*
+             * TODO DONE
+             */
+        }) {
+            Image(
+                painter = painterResource(id = R.drawable.ic_share),
+                contentDescription = "Share"
             )
         }
     }
