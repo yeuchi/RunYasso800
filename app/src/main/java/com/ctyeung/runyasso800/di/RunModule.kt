@@ -1,9 +1,10 @@
 package com.ctyeung.runyasso800.di
 
-import android.app.Activity
 import android.content.Context
-import com.ctyeung.runyasso800.data.RunRepository
 import com.ctyeung.runyasso800.RunViewModel
+import com.ctyeung.runyasso800.data.preference.StoreRepository
+import com.ctyeung.runyasso800.data.room.splits.SplitRepository
+import com.ctyeung.runyasso800.data.room.steps.StepRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,10 +16,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 object RunModule {
 
     @Provides
-    fun provideRunRepository(@ApplicationContext context: Context):RunRepository = RunRepository(context)
-
-    @Provides
-    fun provideRunViewModel(runRepository: RunRepository):RunViewModel {
-        return RunViewModel(runRepository)
+    fun provideRunViewModel(storeRepository: StoreRepository, stepRepository: StepRepository, splitRepository: SplitRepository):RunViewModel {
+        return RunViewModel(storeRepository, stepRepository, splitRepository)
     }
 }

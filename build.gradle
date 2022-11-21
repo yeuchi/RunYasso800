@@ -1,5 +1,6 @@
 buildscript {
     ext {
+        roomVersion = '2.2.1'
         compose_version = '1.2.0'
         hilt_version = '2.44'
         kotlin_version = "1.7.0"

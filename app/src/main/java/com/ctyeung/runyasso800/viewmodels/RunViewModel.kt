@@ -4,13 +4,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
 import androidx.core.graphics.toColorInt
 import androidx.lifecycle.ViewModel
-import com.ctyeung.runyasso800.data.RunRepository
+import com.ctyeung.runyasso800.data.preference.StoreRepository
+import com.ctyeung.runyasso800.data.room.splits.SplitRepository
+import com.ctyeung.runyasso800.data.room.steps.StepRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 open class RunViewModel @Inject constructor(
-    runRepository: RunRepository
+    storeRepository: StoreRepository,
+    stepRepository: StepRepository,
+    splitRepository: SplitRepository
 ) : ViewModel() {
     /*
      * Goal
