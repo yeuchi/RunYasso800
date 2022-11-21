@@ -75,14 +75,13 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
 }
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun TabLayout(viewModel: RunViewModel) {
 
-    val pagerState = rememberPagerState(pageCount = 4)
+    val pagerState = rememberPagerState(pageCount = 5)
 
     // on below line we are creating a column for our widgets.
         TopAppBar(backgroundColor = Color.Blue) {
