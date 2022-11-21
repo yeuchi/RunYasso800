@@ -8,10 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Face
-import androidx.compose.material.icons.filled.List
-import androidx.compose.material.icons.filled.Share
-import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -103,6 +100,7 @@ fun TabLayout(viewModel: RunViewModel) {
 @Composable
 fun Tabs(pagerState: PagerState) {
     val list = listOf(
+        "Settings" to Icons.Default.Settings,
         "Goal" to Icons.Default.Star,
         "Run" to Icons.Default.Face,
         "Recap" to Icons.Default.List,
@@ -186,17 +184,11 @@ fun TabsContent(pagerState: PagerState, viewModel:RunViewModel) {
         // the different pages.
             page ->
         when (page) {
-            // on below line we are calling tab content screen
-            // and specifying data as Home Screen.
-            0 -> GoalScreen(viewModel).Render()
-            // on below line we are calling tab content screen
-            // and specifying data as Shopping Screen.
-            1 -> RunScreen(viewModel).Render()
-            // on below line we are calling tab content screen
-            // and specifying data as Settings Screen.
-            2 -> RecapScreen(viewModel).Render()
-
-            3 -> ShareScreen(viewModel).Render()
+            0 -> SettingScreen(viewModel).Render()
+            1 -> GoalScreen(viewModel).Render()
+            2 -> RunScreen(viewModel).Render()
+            3 -> RecapScreen(viewModel).Render()
+            4 -> ShareScreen(viewModel).Render()
         }
     }
 }
