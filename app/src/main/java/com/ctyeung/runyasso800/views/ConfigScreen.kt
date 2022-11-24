@@ -12,18 +12,19 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Dialog
-import androidx.compose.ui.window.DialogProperties
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 
-class SettingScreen(val viewModel: RunViewModel) {
+class ConfigScreen(val viewModel: RunViewModel) {
 
     @Composable
     fun Render() {
-        Dialog(
-            onDismissRequest = { viewModel.showDetailDlg.value = false },
-            properties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = true)
+        Column(
+            // in this column we are specifying modifier
+            // and aligning it center of the screen on below lines.
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
             Card() {
                 Column(modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)) {

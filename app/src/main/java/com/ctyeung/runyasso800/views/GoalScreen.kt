@@ -31,24 +31,6 @@ class GoalScreen(val viewModel: RunViewModel) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            // in this column we are specifying the text
-            Text(
-                // on below line we are specifying the text message
-                text = "Set your running goals",
-
-                // on below line we are specifying the text style.
-                style = MaterialTheme.typography.h5,
-
-                // on below line we are specifying the text color
-                color = Color.Green,
-
-                // on below line we are specifying the font weight
-                fontWeight = FontWeight.Bold,
-
-                //on below line we are specifying the text alignment.
-                textAlign = TextAlign.Center
-            )
-
             ComposeRunname()
             ComposeMarathonGoal()
             Compose800mGoal()
@@ -65,7 +47,7 @@ class GoalScreen(val viewModel: RunViewModel) {
                 .clickable { },
             elevation = 10.dp
         ) {
-            Row() {
+            Row(modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)) {
                 Text(text = "Run name")
 
                 Box(
@@ -112,7 +94,7 @@ class GoalScreen(val viewModel: RunViewModel) {
                 }, mHour, mMinute, false
             )
 
-            Row() {
+            Row(modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)) {
                 Text(text = "Marathon Goal")
                 Box(
                     modifier = Modifier
@@ -142,7 +124,7 @@ class GoalScreen(val viewModel: RunViewModel) {
                 .clickable { },
             elevation = 10.dp
         ) {
-            Row() {
+            Row(modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)) {
                 Text(text = "800m Goal")
 
                 Box(

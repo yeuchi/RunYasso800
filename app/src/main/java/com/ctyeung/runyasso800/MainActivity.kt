@@ -99,7 +99,7 @@ fun TabLayout(viewModel: RunViewModel) {
 @Composable
 fun Tabs(pagerState: PagerState) {
     val list = listOf(
-        "Settings" to Icons.Default.Settings,
+        "Config" to Icons.Default.Settings,
         "Goal" to Icons.Default.Star,
         "Run" to Icons.Default.Face,
         "Recap" to Icons.Default.List,
@@ -183,7 +183,7 @@ fun TabsContent(pagerState: PagerState, viewModel:RunViewModel) {
         // the different pages.
             page ->
         when (page) {
-            0 -> SettingScreen(viewModel).Render()
+            0 -> ConfigScreen(viewModel).Render()
             1 -> GoalScreen(viewModel).Render()
             2 -> RunScreen(viewModel).Render()
             3 -> RecapScreen(viewModel).Render()

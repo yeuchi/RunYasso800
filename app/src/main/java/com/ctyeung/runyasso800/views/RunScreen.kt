@@ -49,7 +49,6 @@ class RunScreen(val viewModel: RunViewModel) {
 
             ComposeLatLon()
             ComposeDetail()
-
             ComposeFABs()
         }
     }
