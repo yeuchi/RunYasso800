@@ -82,7 +82,7 @@ open class RunViewModel @Inject constructor(
     /*
      * Recap
      */
-    val showDetailDlg = mutableStateOf<Boolean>(true)
+    val showDetailDlg = mutableStateOf<Boolean>(false)
     val detailSplitIndex = mutableStateOf<Int>(0)
     val detailAction:String
     get() {

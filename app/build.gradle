@@ -82,9 +82,8 @@ dependencies {
 //    annotationProcessor "androidx.lifecycle:lifecycle-compiler:2.5.1"
     /* ends Coroutines */
 
-    implementation 'com.google.maps.android:maps-compose:2.7.2'
-
     // Make sure to also include the latest version of the Maps SDK for Android
+    implementation 'com.google.maps.android:maps-compose:2.7.2'
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
 
     // Also include Compose version `1.2.0-alpha03` or higher - for example:

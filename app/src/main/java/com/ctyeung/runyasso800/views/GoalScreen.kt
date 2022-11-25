@@ -22,6 +22,9 @@ import com.ctyeung.runyasso800.RunViewModel
 
 class GoalScreen(val viewModel: RunViewModel) {
 
+    /*
+     * TODO consolidate all styling into theme
+     */
     @Composable
     fun Render() {
         Column(

@@ -15,6 +15,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.ctyeung.runyasso800.RunViewModel
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
+import com.google.maps.android.compose.GoogleMap
+import com.google.maps.android.compose.Marker
+import com.google.maps.android.compose.MarkerState
+import com.google.maps.android.compose.rememberCameraPositionState
 
 /*
  * TODO check out this demo
@@ -31,28 +38,39 @@ class RecapScreen(val viewModel: RunViewModel) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            // in this column we are specifying the text
-            Text(
-                // on below line we are specifying the text message
-                text = "Summary",
-
-                // on below line we are specifying the text style.
-                style = MaterialTheme.typography.h5,
-
-                // on below line we are specifying the text color
-                color = Color.Green,
-
-                // on below line we are specifying the font weight
-                fontWeight = FontWeight.Bold,
-
-                //on below line we are specifying the text alignment.
-                textAlign = TextAlign.Center
-            )
-
+            /*
+             * TODO finish google map
+             *  https://developers.google.com/maps/documentation/android-sdk/maps-compose
+             */
+            val singapore = LatLng(1.35, 103.87)
+            val cameraPositionState = rememberCameraPositionState {
+                position = CameraPosition.fromLatLngZoom(singapore, 10f)
+            }
+            GoogleMap(
+                modifier = Modifier.fillMaxSize(),
+                cameraPositionState = cameraPositionState
+            ) {
+                drawMakers()
+            }
             if (viewModel.showDetailDlg.value) {
                 ComposeDetailDialog()
             }
         }
+    }
+
+    @Composable
+    fun drawMakers() {
+        val singapore = LatLng(1.35, 103.87)
+        Marker(
+            state = MarkerState(position = singapore),
+            title = "Singapore",
+            snippet = "Marker in Singapore",
+            onClick = onMarkerClick
+        )
+    }
+
+    val onMarkerClick:(marker: Marker)->Boolean = {
+        false
     }
 
     @Composable
@@ -64,19 +82,24 @@ class RecapScreen(val viewModel: RunViewModel) {
             Card() {
                 Column(modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)) {
                     Row(modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)) {
-                        Text(text = "Split:")
+                        Text(text = "Split:",
+                        modifier = Modifier.width(80.dp))
                         Text(text = viewModel.detailSplitIndex.value.toString())
                     }
                     Row(modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)) {
-                        Text(text = "Action:")
+                        Text(text = "Action:",
+                            modifier = Modifier.width(80.dp))
                         Text(text = viewModel.detailAction)
                     }
                     Row(modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)) {
-                        Text(text = "Time:")
+                        Text(text = "Time:",
+                            modifier = Modifier.width(80.dp))
                         Text(text = viewModel.detailTime)
                     }
                     Row(modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)) {
-                        Text(text = "Distance:800m")
+                        Text(text = "Distance:",
+                            modifier = Modifier.width(80.dp))
+                        Text(text = "800m")
                     }
 
                     Button(modifier = Modifier.align(Alignment.CenterHorizontally),

@@ -19,7 +19,9 @@ import androidx.compose.ui.unit.dp
 import com.ctyeung.runyasso800.RunViewModel
 
 class RunScreen(val viewModel: RunViewModel) {
-
+        /*
+         * TODO consolidate all styling into theme
+         */
     @Composable
     fun Render() {
         Column(
@@ -29,23 +31,6 @@ class RunScreen(val viewModel: RunViewModel) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            // in this column we are specifying the text
-            Text(
-                // on below line we are specifying the text message
-                text = "RunScreen",
-
-                // on below line we are specifying the text style.
-                style = MaterialTheme.typography.h5,
-
-                // on below line we are specifying the text color
-                color = Color.Green,
-
-                // on below line we are specifying the font weight
-                fontWeight = FontWeight.Bold,
-
-                //on below line we are specifying the text alignment.
-                textAlign = TextAlign.Center
-            )
 
             ComposeLatLon()
             ComposeDetail()
@@ -63,15 +48,20 @@ class RunScreen(val viewModel: RunViewModel) {
                 .clickable { },
             elevation = 10.dp
         ) {
-            Row() {
+            Row(modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_location),
-                    contentDescription = "location"
+                    contentDescription = "location",
+                    modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
                 )
-                Text(text = "lat:")
-                Text(text = viewModel.lat.value.toString())
-                Text(text = "lon:")
-                Text(text = viewModel.lon.value.toString())
+                Text(text = "lat:",
+                    modifier = Modifier.width(80.dp))
+                Text(text = viewModel.lat.value.toString(),
+                    modifier = Modifier.width(80.dp))
+                Text(text = "lon:",
+                    modifier = Modifier.width(80.dp))
+                Text(text = viewModel.lon.value.toString(),
+                    modifier = Modifier.width(80.dp))
             }
         }
     }
@@ -88,48 +78,64 @@ class RunScreen(val viewModel: RunViewModel) {
         ) {
             Column(modifier = Modifier.background(viewModel.exerciseStateColor)) {
 
-                Row() {
+                Row(modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)) {
                     Image(
                         painter = painterResource(id = viewModel.exerciseStateIcon),
-                        contentDescription = "exercise"
+                        contentDescription = "exercise",
+                        modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
                     )
-                    Text(text = "Split:")
-                    Text(text = viewModel.currentSplit.value.toString())
-                    Text(text = "Total:")
-                    Text(text = viewModel.SplitCount.value.toString())
+                    Text(text = "Split:",
+                        modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp))
+                    Text(text = viewModel.currentSplit.value.toString(),
+                        modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp))
+                    Text(text = "Total:",
+                        modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp))
+                    Text(text = viewModel.SplitCount.value.toString(),
+                        modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp))
                 }
 
-                Row() {
+                Row(modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)) {
                     Image(
                         painter = painterResource(id = R.drawable.ic_assignment),
-                        contentDescription = "assignment"
+                        contentDescription = "assignment",
+                        modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
                     )
-                    Text(text = viewModel.exerciseStateName)
+                    Text(text = viewModel.exerciseStateName,
+                        modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp))
                 }
 
-                Row() {
+                Row(modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)) {
                     Image(
                         painter = painterResource(id = R.drawable.ic_access_time),
-                        contentDescription = "Time"
+                        contentDescription = "Time",
+                        modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
                     )
                     Text(text = "Time:")
                     /*
                      * TODO Formater time
                      */
-                    Text(text = viewModel.currentSplitTime.value.toString())
-                    Text(text = "Total:")
-                    Text(text = viewModel.totalTime.value.toString())
+                    Text(text = viewModel.currentSplitTime.value.toString(),
+                        modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp))
+                    Text(text = "Total:",
+                        modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp))
+                    Text(text = viewModel.totalTime.value.toString(),
+                        modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp))
                 }
 
-                Row() {
+                Row(modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)) {
                     Image(
                         painter = painterResource(id = R.drawable.ic_distance),
-                        contentDescription = "distance"
+                        contentDescription = "distance",
+                        modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
                     )
-                    Text(text = "Distance:")
-                    Text(text = viewModel.currentSplitDistance.value.toString())
-                    Text(text = "Total:")
-                    Text(text = viewModel.totalDistance.value.toString())
+                    Text(text = "Distance:",
+                        modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp))
+                    Text(text = viewModel.currentSplitDistance.value.toString(),
+                        modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp))
+                    Text(text = "Total:",
+                        modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp))
+                    Text(text = viewModel.totalDistance.value.toString(),
+                        modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp))
                 }
             }
         }
@@ -137,7 +143,7 @@ class RunScreen(val viewModel: RunViewModel) {
 
     @Composable
     fun ComposeFABs() {
-        Row() {
+        Row(modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)) {
 
             when (viewModel.exerciseState.value) {
                 is ExerciseState.IDLE -> {
