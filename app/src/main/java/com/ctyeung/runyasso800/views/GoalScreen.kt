@@ -63,7 +63,7 @@ class GoalScreen(val viewModel: RunViewModel) {
                         .align(Alignment.Center),
                         value = viewModel.runName,
                         onValueChange = { viewModel.runName = it },
-                        label = { Text("Label") }
+                        label = { Text("My first run") }
                     )
                 }
             }
