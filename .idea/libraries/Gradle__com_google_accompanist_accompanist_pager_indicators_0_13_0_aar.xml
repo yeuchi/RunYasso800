@@ -1,15 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.accompanist:accompanist-pager-indicators:0.13.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/54008889982360afcbd4d65ac4418baf/transformed/accompanist-pager-indicators-0.13.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4ff36183e5586b65918541d252ae51aa/transformed/accompanist-pager-indicators-0.13.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2ef280b13a24a9fbe72e016bdb4b3721/transformed/accompanist-pager-indicators-0.13.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/15587344ef9cd2ced85c4fc93b817a7a/transformed/accompanist-pager-indicators-0.13.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b81ed2c411f0b5d1d865f06955c25639/transformed/accompanist-pager-indicators-0.13.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/9f8b47073aa2a837bc8ad1c57c06b3e9/transformed/accompanist-pager-indicators-0.13.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/b320095140a625b440c263b422ab79aa/transformed/accompanist-pager-indicators-0.13.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b320095140a625b440c263b422ab79aa/transformed/accompanist-pager-indicators-0.13.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b320095140a625b440c263b422ab79aa/transformed/accompanist-pager-indicators-0.13.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b3babb7391ff7519f0202c6451335e8b/transformed/accompanist-pager-indicators-0.13.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/b3babb7391ff7519f0202c6451335e8b/transformed/accompanist-pager-indicators-0.13.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.accompanist/accompanist-pager-indicators/0.13.0/7a294f658ed0a8770acea9cb7b45860163b40b72/accompanist-pager-indicators-0.13.0-javadoc.jar!/" />

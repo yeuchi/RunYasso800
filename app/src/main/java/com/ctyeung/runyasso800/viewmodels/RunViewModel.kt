@@ -69,7 +69,7 @@ open class RunViewModel @Inject constructor(
     val exerciseStateColor : androidx.compose.ui.graphics.Color
     get() {
         return when(exerciseState.value) {
-            is ExerciseState.IDLE -> Color("#999999".toColorInt())
+            is ExerciseState.IDLE -> Color("#AAAAAA".toColorInt())
             is ExerciseState.Run -> Color("#88FF88".toColorInt())
             is ExerciseState.Jog -> Color("#88FFFF".toColorInt())
             is ExerciseState.Pause -> Color("#FFBB55".toColorInt())
