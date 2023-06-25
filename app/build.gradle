@@ -6,12 +6,12 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.ctyeung.runyasso800"
         minSdk 28
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -35,6 +35,8 @@ android {
         jvmTarget = '1.8'
     }
     buildFeatures {
+        viewBinding true
+        dataBinding true
         compose true
     }
     composeOptions {
@@ -52,7 +54,11 @@ kapt {
 }
 
 dependencies {
-    implementation("androidx.navigation:navigation-compose:2.5.3")
+    /* navigation */
+    implementation 'androidx.navigation:navigation-compose:2.5.2'
+    implementation "androidx.navigation:navigation-ui-ktx:2.5.2"
+    /* ends navigation */
+
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation "androidx.compose.runtime:runtime:$compose_version"
     implementation "androidx.compose.compiler:compiler:$compose_version"
@@ -70,6 +76,9 @@ dependencies {
     /* HILT */
     implementation "com.google.dagger:hilt-android:$hilt_version"
     implementation 'com.google.android.gms:play-services-location:21.0.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
     kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_version"
 //    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_version"

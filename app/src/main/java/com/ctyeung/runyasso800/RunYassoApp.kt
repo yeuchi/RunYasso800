@@ -5,4 +5,8 @@ import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
 class RunYassoApp:Application() {
+    override fun onCreate() {
+        super.onCreate()
+    }
+
 }

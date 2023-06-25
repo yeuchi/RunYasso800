@@ -1,41 +1,28 @@
 package com.ctyeung.runyasso800
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.activity.viewModels
 import androidx.compose.material.*
-import androidx.compose.material.R
-import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
+import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.ctyeung.runyasso800.ui.theme.RunYasso800Theme
-import com.ctyeung.runyasso800.views.GoalScreen
-import com.ctyeung.runyasso800.views.RecapScreen
-import com.google.accompanist.pager.*
-import com.google.android.gms.maps.GoogleMap
-import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import androidx.navigation.compose.rememberNavController
+import com.ctyeung.runyasso800.ui.theme.RunYasso800Theme
+import com.google.accompanist.pager.*
+import dagger.hilt.android.AndroidEntryPoint
 
 /*
  * Reference
@@ -48,22 +35,22 @@ import androidx.navigation.compose.rememberNavController
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    lateinit var viewModel: RunViewModel
-    private lateinit var mMap: GoogleMap
+    private val viewModel:RunViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         askPermissions()
 
-        viewModel = ViewModelProvider(this)[RunViewModel::class.java]
-        setContent {
-            RunYasso800Theme {
-                // A surface container using the 'background' color from the theme
-                MainScreenView()
-//                TabLayout(viewModel)
-            }
-        }
+        /*
+                 * TODO something to say afte splash screen and before transition to active Activity
+                 */
+        startActivity(Intent(this@MainActivity, ConfigActivity::class.java))
+
+//        setContent {
+//            RunYasso800Theme {
+//                MainScreenView()
+//            }
+//        }
     }
 
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -71,73 +58,15 @@ class MainActivity : ComponentActivity() {
     fun MainScreenView(){
         val navController = rememberNavController()
         Scaffold(
-            bottomBar = { BottomNavigation(navController = navController) }
-        ) {
-            NavigationGraph(navController = navController)
-        }
-    }
+            bottomBar = { BottomNavigation(navController = navController) },
+            content = {
 
-
-    @Composable
-    fun BottomNavigation(navController: NavController) {
-        val items = listOf(
-            BottomNavItem.Config,
-            BottomNavItem.Goal,
-            BottomNavItem.Run,
-            BottomNavItem.Recap,
-            BottomNavItem.Share,
+            }
         )
-        BottomNavigation(
-            backgroundColor = Color.Blue,
-            contentColor = Color.Black
-        ) {
-            val navBackStackEntry by navController.currentBackStackEntryAsState()
-            val currentRoute = navBackStackEntry?.destination?.route
-            items.forEach { item ->
-                BottomNavigationItem(
-                    icon = {
-                        Icon(imageVector = item.icon, contentDescription = item.title)},
-                    label = { Text(text = item.title,
-                        fontSize = 9.sp) },
-                    selectedContentColor = Color.Black,
-                    unselectedContentColor = Color.Black.copy(0.4f),
-
-                    alwaysShowLabel = true,
-                    selected = currentRoute == item.screen_route,
-                    onClick = {
-                        if (currentRoute != item.screen_route) {
-                            navController.navigate(item.screen_route)
-                        }
-                    }
-                )
-            }
-        }
+//        {
+//            NavigationGraph(navController = navController, this)
+//        }
     }
-
-    @Composable
-    fun NavigationGraph(navController: NavHostController) {
-        viewModel = ViewModelProvider(this)[RunViewModel::class.java]
-
-        NavHost(navController, startDestination = BottomNavItem.Config.screen_route) {
-            composable(BottomNavItem.Config.screen_route) {
-                ConfigScreen(viewModel).Render()
-            }
-            composable(BottomNavItem.Goal.screen_route) {
-                GoalScreen(viewModel).Render()
-            }
-            composable(BottomNavItem.Run.screen_route) {
-                ExerciseScreen(viewModel).Render()
-            }
-            composable(BottomNavItem.Recap.screen_route) {
-                RecapScreen(viewModel).Render()
-            }
-            composable(BottomNavItem.Share.screen_route) {
-                ShareScreen(viewModel).Render()
-            }
-        }
-    }
-
-
     protected fun askPermissions() {
         val permissions = arrayOf(
             "android.permission.ACCESS_FINE_LOCATION",
@@ -161,6 +90,65 @@ class MainActivity : ComponentActivity() {
                 // not permitted to save or read -- !!! data-binding refactor
                 return
             }
+        }
+    }
+}
+
+
+
+@Composable
+fun BottomNavigation(navController: NavController) {
+    val items = listOf(
+        BottomNavItem.Config,
+        BottomNavItem.Goal,
+        BottomNavItem.Run,
+        BottomNavItem.Recap,
+        BottomNavItem.Share,
+    )
+    BottomNavigation(
+        backgroundColor = Color.Blue,
+        contentColor = Color.Black
+    ) {
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentRoute = navBackStackEntry?.destination?.route
+        items.forEach { item ->
+            BottomNavigationItem(
+                icon = {
+                    Icon(imageVector = item.icon, contentDescription = item.title)},
+                label = { Text(text = item.title,
+                    fontSize = 9.sp) },
+                selectedContentColor = Color.Black,
+                unselectedContentColor = Color.Black.copy(0.4f),
+
+                alwaysShowLabel = true,
+                selected = currentRoute == item.screen_route,
+                onClick = {
+                    if (currentRoute != item.screen_route) {
+                        navController.navigate(item.screen_route)
+                    }
+                }
+            )
+        }
+    }
+}
+
+@Composable
+fun NavigationGraph(navController: NavHostController, activity:ComponentActivity) {
+    NavHost(navController, startDestination = BottomNavItem.Config.screen_route) {
+        composable(BottomNavItem.Config.screen_route) {
+            activity.startActivity(Intent(activity, ConfigActivity::class.java))
+        }
+        composable(BottomNavItem.Goal.screen_route) {
+            activity.startActivity(Intent(activity, GoalActivity::class.java))
+        }
+        composable(BottomNavItem.Run.screen_route) {
+            activity.startActivity(Intent(activity, ExerciseActivity::class.java))
+        }
+        composable(BottomNavItem.Recap.screen_route) {
+            activity.startActivity(Intent(activity, RecapActivity::class.java))
+        }
+        composable(BottomNavItem.Share.screen_route) {
+            activity.startActivity(Intent(activity, ShareActivity::class.java))
         }
     }
 }
