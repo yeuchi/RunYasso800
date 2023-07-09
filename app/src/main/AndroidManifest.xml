@@ -50,6 +50,10 @@
             android:name=".RecapActivity"
             android:exported="false"
             android:theme="@style/Theme.RunYasso800"/>
+        <activity
+            android:name=".ShareActivity"
+            android:exported="false"
+            android:theme="@style/Theme.RunYasso800"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
