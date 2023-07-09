@@ -18,12 +18,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ExerciseActivity : ComponentActivity() {
-    private val viewModel:RunViewModel by viewModels()
+    private val viewModel: RunViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,15 +35,11 @@ class ExerciseActivity : ComponentActivity() {
 
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     @Composable
-    fun MainScreenView(){
-        val navController = rememberNavController()
+    fun MainScreenView() {
         Scaffold(
-            bottomBar = { BottomNavigation(navController = navController) },
-            content = {Render()}
+            bottomBar = { BottomNavigation(BottomNavItem.Run.screen_route, this) },
+            content = { Render() }
         )
-//        {
-//            NavigationGraph(navController = navController, this)
-//        }
     }
 
     @Composable
@@ -235,6 +232,7 @@ class ExerciseActivity : ComponentActivity() {
                         )
                     }
                 }
+
                 is ExerciseState.Run,
                 is ExerciseState.Jog -> {
                     FloatingActionButton(onClick = {
@@ -248,6 +246,7 @@ class ExerciseActivity : ComponentActivity() {
                         )
                     }
                 }
+
                 is ExerciseState.Pause -> {
                     FloatingActionButton(onClick = {
                         /*
@@ -282,6 +281,7 @@ class ExerciseActivity : ComponentActivity() {
                         )
                     }
                 }
+
                 else -> {
 
                 }

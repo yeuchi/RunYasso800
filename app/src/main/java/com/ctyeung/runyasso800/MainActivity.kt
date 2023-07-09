@@ -1,6 +1,7 @@
 package com.ctyeung.runyasso800
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -35,38 +36,13 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private val viewModel:RunViewModel by viewModels()
+    private val viewModel: RunViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         askPermissions()
-
-        /*
-                 * TODO something to say afte splash screen and before transition to active Activity
-                 */
-        startActivity(Intent(this@MainActivity, ConfigActivity::class.java))
-
-//        setContent {
-//            RunYasso800Theme {
-//                MainScreenView()
-//            }
-//        }
     }
 
-    @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
-    @Composable
-    fun MainScreenView(){
-        val navController = rememberNavController()
-        Scaffold(
-            bottomBar = { BottomNavigation(navController = navController) },
-            content = {
-
-            }
-        )
-//        {
-//            NavigationGraph(navController = navController, this)
-//        }
-    }
     protected fun askPermissions() {
         val permissions = arrayOf(
             "android.permission.ACCESS_FINE_LOCATION",
@@ -76,28 +52,29 @@ class MainActivity : ComponentActivity() {
         requestPermissions(permissions, requestCode)
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int,
-                                            permissions: Array<String>,
-                                            grantResults: IntArray)
-    {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        for(permission:String in permissions)
-        {
+        for (permission: String in permissions) {
             // result:0 is ok
             val result = ContextCompat.checkSelfPermission(this, permission)
-            if (0!=result)
-            {
+            if (0 != result) {
                 // not permitted to save or read -- !!! data-binding refactor
                 return
+            }
+            else {
+                startActivity(Intent(this@MainActivity, ConfigActivity::class.java))
             }
         }
     }
 }
 
 
-
 @Composable
-fun BottomNavigation(navController: NavController) {
+fun BottomNavigation(currentSelection: String, activity: Activity) {
     val items = listOf(
         BottomNavItem.Config,
         BottomNavItem.Goal,
@@ -106,49 +83,58 @@ fun BottomNavigation(navController: NavController) {
         BottomNavItem.Share,
     )
     BottomNavigation(
-        backgroundColor = Color.Blue,
+        backgroundColor = Color.White,
         contentColor = Color.Black
     ) {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute = navBackStackEntry?.destination?.route
+
         items.forEach { item ->
             BottomNavigationItem(
                 icon = {
-                    Icon(imageVector = item.icon, contentDescription = item.title)},
-                label = { Text(text = item.title,
-                    fontSize = 9.sp) },
+                    Icon(imageVector = item.icon, contentDescription = item.title)
+                },
+                label = {
+                    Text(
+                        text = item.title,
+                        fontSize = 9.sp
+                    )
+                },
                 selectedContentColor = Color.Black,
                 unselectedContentColor = Color.Black.copy(0.4f),
 
                 alwaysShowLabel = true,
-                selected = currentRoute == item.screen_route,
+                selected = currentSelection == item.screen_route,
                 onClick = {
-                    if (currentRoute != item.screen_route) {
-                        navController.navigate(item.screen_route)
+                    if (currentSelection != item.screen_route) {
+                        //navController.navigate(item.screen_route)
+                        when (item.screen_route) {
+                            BottomNavItem.Config.screen_route -> {
+                                activity.startActivity(Intent(activity, ConfigActivity::class.java))
+                            }
+
+                            BottomNavItem.Goal.screen_route -> {
+                                activity.startActivity(Intent(activity, GoalActivity::class.java))
+                            }
+
+                            BottomNavItem.Share.screen_route -> {
+                                activity.startActivity(Intent(activity, ShareActivity::class.java))
+                            }
+
+                            BottomNavItem.Run.screen_route -> {
+                                activity.startActivity(
+                                    Intent(
+                                        activity,
+                                        ExerciseActivity::class.java
+                                    )
+                                )
+                            }
+
+                            BottomNavItem.Recap.screen_route -> {
+                                activity.startActivity(Intent(activity, RecapActivity::class.java))
+                            }
+                        }
                     }
                 }
             )
-        }
-    }
-}
-
-@Composable
-fun NavigationGraph(navController: NavHostController, activity:ComponentActivity) {
-    NavHost(navController, startDestination = BottomNavItem.Config.screen_route) {
-        composable(BottomNavItem.Config.screen_route) {
-            activity.startActivity(Intent(activity, ConfigActivity::class.java))
-        }
-        composable(BottomNavItem.Goal.screen_route) {
-            activity.startActivity(Intent(activity, GoalActivity::class.java))
-        }
-        composable(BottomNavItem.Run.screen_route) {
-            activity.startActivity(Intent(activity, ExerciseActivity::class.java))
-        }
-        composable(BottomNavItem.Recap.screen_route) {
-            activity.startActivity(Intent(activity, RecapActivity::class.java))
-        }
-        composable(BottomNavItem.Share.screen_route) {
-            activity.startActivity(Intent(activity, ShareActivity::class.java))
         }
     }
 }

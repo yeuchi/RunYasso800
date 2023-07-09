@@ -16,10 +16,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ShareActivity : ComponentActivity() {
-    private val viewModel:RunViewModel by viewModels()
+    private val viewModel: RunViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,15 +33,11 @@ class ShareActivity : ComponentActivity() {
 
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     @Composable
-    fun MainScreenView(){
-        val navController = rememberNavController()
+    fun MainScreenView() {
         Scaffold(
-            bottomBar = { BottomNavigation(navController = navController) },
-            content = {Render()}
+            bottomBar = { BottomNavigation(BottomNavItem.Share.screen_route, this) },
+            content = { Render() }
         )
-//        {
-//            NavigationGraph(navController = navController, this)
-//        }
     }
 
     @Composable

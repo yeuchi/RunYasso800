@@ -36,16 +36,20 @@
         tools:targetApi="31">
         <activity
             android:name=".GoalActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.RunYasso800"/>
         <activity
             android:name=".ExerciseActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.RunYasso800"/>
         <activity
             android:name=".ConfigActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.RunYasso800"/>
         <activity
             android:name=".RecapActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.RunYasso800"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

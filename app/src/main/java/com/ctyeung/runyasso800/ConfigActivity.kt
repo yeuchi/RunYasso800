@@ -20,10 +20,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ConfigActivity : ComponentActivity() {
-    private val viewModel:RunViewModel by viewModels()
+    private val viewModel: RunViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,15 +38,11 @@ class ConfigActivity : ComponentActivity() {
 
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     @Composable
-    fun MainScreenView(){
-        val navController = rememberNavController()
+    fun MainScreenView() {
         Scaffold(
-            bottomBar = { BottomNavigation(navController = navController) },
-            content = {Render()}
+            bottomBar = { BottomNavigation(BottomNavItem.Config.screen_route, this) },
+            content = { Render() }
         )
-//        {
-//            NavigationGraph(navController = navController, this)
-//        }
     }
 
     @Composable

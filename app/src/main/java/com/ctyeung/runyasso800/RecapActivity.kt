@@ -19,6 +19,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.ctyeung.runyasso800.RecapActivity.Companion.TAG
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -27,6 +28,7 @@ import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.maps.android.compose.*
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 
@@ -35,6 +37,7 @@ val singapore2 = LatLng(1.40, 103.77)
 val singapore3 = LatLng(1.45, 103.77)
 val defaultCameraPosition = CameraPosition.fromLatLngZoom(singapore, 11f)
 
+@AndroidEntryPoint
 class RecapActivity : ComponentActivity() {
     companion object {
         val TAG = "RecapActivity"
@@ -51,15 +54,11 @@ class RecapActivity : ComponentActivity() {
 
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     @Composable
-    fun MainScreenView(){
-        val navController = rememberNavController()
+    fun MainScreenView() {
         Scaffold(
-            bottomBar = { BottomNavigation(navController = navController) },
-            content = {Render()}
+            bottomBar = { BottomNavigation(BottomNavItem.Recap.screen_route, this) },
+            content = { Render() }
         )
-//        {
-//            NavigationGraph(navController = navController, this)
-//        }
     }
 
     @Composable

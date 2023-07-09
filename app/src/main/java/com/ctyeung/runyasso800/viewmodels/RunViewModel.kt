@@ -4,6 +4,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
 import androidx.core.graphics.toColorInt
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.ctyeung.runyasso800.data.preference.StoreRepository
 import com.ctyeung.runyasso800.data.room.splits.SplitRepository

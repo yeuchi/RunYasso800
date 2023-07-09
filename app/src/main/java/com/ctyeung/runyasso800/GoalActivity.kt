@@ -5,6 +5,7 @@ import android.app.TimePickerDialog
 import android.icu.util.Calendar
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.clickable
@@ -18,10 +19,13 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
 
-class GoalActivity : AppCompatActivity() {
-    private val viewModel:RunViewModel by viewModels()
+@AndroidEntryPoint
+class GoalActivity : ComponentActivity() {
+    private val viewModel: RunViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,15 +36,11 @@ class GoalActivity : AppCompatActivity() {
 
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     @Composable
-    fun MainScreenView(){
-        val navController = rememberNavController()
+    fun MainScreenView() {
         Scaffold(
-            bottomBar = { BottomNavigation(navController = navController) },
-            content = {Render()}
+            bottomBar = { BottomNavigation(BottomNavItem.Goal.screen_route, this) },
+            content = { Render() }
         )
-//        {
-//            NavigationGraph(navController = navController, this)
-//        }
     }
 
     /*
