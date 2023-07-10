@@ -1,19 +1,10 @@
 package com.ctyeung.runyasso800.views
 
-import android.content.Context
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import com.ctyeung.runyasso800.MainActivity
-import com.ctyeung.runyasso800.data.TestRunRepository
 import com.ctyeung.runyasso800.di.RunModule
-import com.ctyeung.runyasso800.viewmodels.RunViewModel
-import com.ctyeung.runyasso800.viewmodels.TestRunViewModel
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
@@ -40,17 +31,17 @@ class MainActivityTest {
         hiltRule.inject()
     }
 
-    @Module
-    @InstallIn(ActivityComponent::class)
-    object TestRunModule {
-        @Provides
-        fun provideRunRepository(@ApplicationContext context: Context): RunRepository = TestRunRepository(context)
-
-        @Provides
-        fun provideRunViewModel(runRepository: TestRunRepository): RunViewModel {
-            return TestRunViewModel(runRepository)
-        }
-    }
+//    @Module
+//    @InstallIn(ActivityComponent::class)
+//    object TestRunModule {
+//        @Provides
+//        fun provideRunRepository(@ApplicationContext context: Context): RunRepository = TestRunRepository(context)
+//
+//        @Provides
+//        fun provideRunViewModel(runRepository: TestRunRepository): TestMainViewModel {
+//            return TestMainViewModel(runRepository)
+//        }
+//    }
 
     @Test
     fun happy_path_goal() {

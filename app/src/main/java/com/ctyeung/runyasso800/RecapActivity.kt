@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.ctyeung.runyasso800.RecapActivity.Companion.TAG
+import com.ctyeung.runyasso800.viewmodels.RecapViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
@@ -42,7 +43,7 @@ class RecapActivity : ComponentActivity() {
         val TAG = "RecapActivity"
     }
 
-    private val viewModel: RunViewModel by viewModels()
+    private val viewModel: RecapViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
