@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.accompanist:accompanist-pager:0.13.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/aa63aa800d50b34a06a3ad3f4e894506/transformed/accompanist-pager-0.13.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/aa63aa800d50b34a06a3ad3f4e894506/transformed/accompanist-pager-0.13.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5dfcaa41368b6e05dd241086193de43a/transformed/accompanist-pager-0.13.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/5dfcaa41368b6e05dd241086193de43a/transformed/accompanist-pager-0.13.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.accompanist/accompanist-pager/0.13.0/48e1af481941750745dadc3da4e568e2bc59f668/accompanist-pager-0.13.0-javadoc.jar!/" />

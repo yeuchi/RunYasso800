@@ -1,6 +1,8 @@
 package com.ctyeung.runyasso800
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -19,10 +21,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
+import androidx.core.app.ActivityCompat
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.ctyeung.runyasso800.RecapActivity.Companion.TAG
+import com.ctyeung.runyasso800.viewmodels.MapEvent
 import com.ctyeung.runyasso800.viewmodels.RecapViewModel
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
@@ -30,6 +36,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.maps.android.compose.*
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /*
@@ -48,8 +56,68 @@ class RecapActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MainScreenView()
+            Box(
+                Modifier
+                    .padding(0.dp, 30.dp, 0.dp, 0.dp)
+                    .fillMaxSize()
+                    .background(androidx.compose.ui.graphics.Color.Black)
+                    .testTag("init_black_box"),
+            )
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.event.observe(this, Observer(::onViewModelEvent))
+    }
+
+    private fun onViewModelEvent(event: MapEvent) {
+        setContent {
+            when (event) {
+                is MapEvent.Success -> {
+                    setLocation(event)
+                    MainScreenView()
+                }
+
+                is MapEvent.InProgress -> ComposeSpinner()
+                is MapEvent.Confirm -> Render()
+                is MapEvent.Error -> ComposeSnackbar(event.msg)
+            }
+        }
+    }
+
+    private fun setLocation(event: MapEvent.Success? = null) {
+        // user specified location
+        event?.myPlace?.let {
+            viewModel.updateMyPlace(it)
+        } ?: run {
+            // current phone location
+            findMyLocation()?.let {
+                viewModel.updateMyPlace(LatLng(it.latitude, it.longitude))
+            } ?: run {
+                // use hardcoded values
+                viewModel.myPlace.apply {
+                    viewModel.updateMyPlace(this)
+                }
+            }
+        }
+    }
+
+    private fun findMyLocation(): LatLng? {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            val location = LocationServices.getFusedLocationProviderClient(this)
+            location.lastLocation.result?.let {
+                return LatLng(it.latitude, it.longitude)
+            }
+        }
+        return null
     }
 
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -63,7 +131,7 @@ class RecapActivity : ComponentActivity() {
 
     @Composable
     fun Render() {
-        var isMapLoaded by remember { mutableStateOf(true) }
+        var isMapLoaded by remember { mutableStateOf(false) }
 
         Box(Modifier.fillMaxSize())
         {
