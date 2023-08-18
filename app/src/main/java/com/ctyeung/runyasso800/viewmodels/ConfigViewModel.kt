@@ -36,21 +36,24 @@ class ConfigViewModel @Inject constructor(
 
     fun updateJogDistance(meters: Int) {
         configData.jogDisMeter = meters
-        _event.value = ConfigEvent.Success(configData)
     }
 
     fun updateRunDistance(meters: Int) {
         configData.runDisMeter = meters
-        _event.value = ConfigEvent.Success(configData)
     }
 
     fun updateLoop(count: Int) {
         configData.loopCount = count
-        _event.value = ConfigEvent.Success(configData)
     }
 
     fun updateSampleRate(time: Int) {
         configData.sampleRateMilliSec = time
+    }
+
+    fun updateConfig() {
+        /*
+         * TODO write to DataStore
+         */
         _event.value = ConfigEvent.Success(configData)
     }
 

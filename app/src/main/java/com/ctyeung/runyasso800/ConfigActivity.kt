@@ -181,7 +181,9 @@ class ConfigActivity : ComponentActivity() {
                         }
 
                         Button(
-                            onClick = { /*TODO*/ },
+                            onClick = {
+                                viewModel.updateConfig()
+                            },
                             modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
                         ) {
                             Text(text = "OK")
