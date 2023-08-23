@@ -71,7 +71,7 @@ sealed class ConfigEvent() {
 
 data class ConfigData(
     var jogDisMeter: Int? = 400,
-    var runDisMeter: Int? = 400,
-    var loopCount: Int? = 800,
+    var runDisMeter: Int? = 800,
+    var loopCount: Int? = 8,
     var sampleRateMilliSec: Int? = 500
 )

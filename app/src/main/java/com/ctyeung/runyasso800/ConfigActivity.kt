@@ -14,12 +14,16 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
@@ -83,14 +87,27 @@ class ConfigActivity : ComponentActivity() {
                             modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
                         )
                         Text(
-                            text = "Jog",
+                            text = "Jog (meters)",
                             modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
                         )
+                        val jogTextString = remember {
+                            mutableStateOf(
+                                TextFieldValue(
+                                    text = configData.jogDisMeter.toString(),
+                                    selection = TextRange(configData.jogDisMeter.toString().length),
+                                ),
+                            )
+                        }
                         TextField(
-                            value = "${configData.jogDisMeter}m",
+                            value = jogTextString.value,
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                             onValueChange = {
-                                viewModel.updateJogDistance(it.toInt())
+                                if (it.text.contains('\n')) {
+                                    val num = it.text.replace("\n", "").toInt()
+                                    viewModel.updateJogDistance(num)
+                                } else {
+                                    jogTextString.value = it
+                                }
                             }
                         )
                     }
@@ -102,14 +119,27 @@ class ConfigActivity : ComponentActivity() {
                             modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
                         )
                         Text(
-                            text = "Run",
+                            text = "Run (meters)",
                             modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
                         )
+                        val runTextString = remember {
+                            mutableStateOf(
+                                TextFieldValue(
+                                    text = configData.runDisMeter.toString(),
+                                    selection = TextRange(configData.runDisMeter.toString().length),
+                                ),
+                            )
+                        }
                         TextField(
-                            value = "${configData.runDisMeter}m",
+                            value = runTextString.value,
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                             onValueChange = {
-                                viewModel.updateRunDistance(it.toInt())
+                                if (it.text.contains('\n')) {
+                                    val num = it.text.replace("\n", "").toInt()
+                                    viewModel.updateRunDistance(num)
+                                } else {
+                                    runTextString.value = it
+                                }
                             }
                         )
                     }
@@ -121,14 +151,27 @@ class ConfigActivity : ComponentActivity() {
                             modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
                         )
                         Text(
-                            text = "Loops",
+                            text = "Loops (x)",
                             modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
                         )
+                        val loopTextString = remember {
+                            mutableStateOf(
+                                TextFieldValue(
+                                    text = configData.loopCount.toString(),
+                                    selection = TextRange(configData.loopCount.toString().length),
+                                ),
+                            )
+                        }
                         TextField(
-                            value = "${configData.loopCount}X",
+                            value = loopTextString.value,
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                             onValueChange = {
-                                viewModel.updateLoop(it.toInt())
+                                if (it.text.contains('\n')) {
+                                    val num = it.text.replace("\n", "").toInt()
+                                    viewModel.updateLoop(num)
+                                } else {
+                                    loopTextString.value = it
+                                }
                             }
                         )
                     }
@@ -140,14 +183,27 @@ class ConfigActivity : ComponentActivity() {
                             modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
                         )
                         Text(
-                            text = "Sample Rate",
+                            text = "Sample Rate (meter/sec)",
                             modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
                         )
+                        val sampleRateTextString = remember {
+                            mutableStateOf(
+                                TextFieldValue(
+                                    text = configData.sampleRateMilliSec.toString(),
+                                    selection = TextRange(configData.sampleRateMilliSec.toString().length),
+                                ),
+                            )
+                        }
                         TextField(
-                            value = "${configData.sampleRateMilliSec}ms",
+                            value = sampleRateTextString.value,
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                             onValueChange = {
-                                viewModel.updateSampleRate(it.toInt())
+                                if (it.text.contains('\n')) {
+                                    val num = it.text.replace("\n", "").toInt()
+                                    viewModel.updateJogDistance(num)
+                                } else {
+                                    sampleRateTextString.value = it
+                                }
                             }
                         )
                     }
