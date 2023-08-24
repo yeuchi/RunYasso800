@@ -18,6 +18,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -74,7 +76,7 @@ class ConfigActivity : ComponentActivity() {
         Column(
             // in this column we are specifying modifier
             // and aligning it center of the screen on below lines.
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize().focusRequester(FocusRequester.Default),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -167,6 +169,9 @@ class ConfigActivity : ComponentActivity() {
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                             onValueChange = {
                                 if (it.text.contains('\n')) {
+                                    /*
+                                     * TODO need to enhance and remove other bad chars
+                                     */
                                     val num = it.text.replace("\n", "").toInt()
                                     viewModel.updateLoop(num)
                                 } else {
@@ -200,7 +205,7 @@ class ConfigActivity : ComponentActivity() {
                             onValueChange = {
                                 if (it.text.contains('\n')) {
                                     val num = it.text.replace("\n", "").toInt()
-                                    viewModel.updateJogDistance(num)
+                                    viewModel.updateSampleRate(num)
                                 } else {
                                     sampleRateTextString.value = it
                                 }

@@ -7,13 +7,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ctyeung.runyasso800.data.preference.StoreRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ConfigViewModel @Inject constructor(
-    storeRepository: StoreRepository
+    val storeRepository: StoreRepository
 ) : ViewModel() {
 
     private var configData: ConfigData = ConfigData()
@@ -27,10 +28,36 @@ class ConfigViewModel @Inject constructor(
     private fun initDataStoreEvent() {
         kotlin.runCatching {
             viewModelScope.launch {
-                _event.value = ConfigEvent.Success(configData)
+                storeRepository.apply {
+                    getInt(StoreRepository.CONFIG_JOG_DIS).collect() {
+                        it?.let {
+                            configData.jogDisMeter = it
+                        }
+                        _event.value = ConfigEvent.Success(configData)
+                    }
+                    getInt(StoreRepository.CONFIG_RUN_DIS).collect() {
+                        it?.let {
+                            configData.runDisMeter = it
+                        }
+                        _event.value = ConfigEvent.Success(configData)
+                    }
+                    getInt(StoreRepository.CONFIG_LOOP_COUNT).collect() {
+                        it?.let {
+                            configData.loopCount = it
+                        }
+                        _event.value = ConfigEvent.Success(configData)
+                    }
+                    getInt(StoreRepository.CONFIG_SAMPLE_RATE).collect() {
+                        it?.let {
+                            configData.sampleRateMilliSec = it
+                        }
+                        _event.value = ConfigEvent.Success(configData)
+                    }
+                }
             }
         }.onFailure {
-            Log.e("ConfigViewModel", it.toString())
+            Log.e("ConfigViewModel failed", it.toString())
+            _event.value = ConfigEvent.Error("ConfigViewModel failed")
         }
     }
 
@@ -51,10 +78,23 @@ class ConfigViewModel @Inject constructor(
     }
 
     fun updateConfig() {
-        /*
-         * TODO write to DataStore
-         */
-        _event.value = ConfigEvent.Success(configData)
+        viewModelScope.launch {
+            storeRepository.apply {
+                configData.jogDisMeter?.let {
+                    setInt(StoreRepository.CONFIG_JOG_DIS, it)
+                }
+                configData.runDisMeter?.let {
+                    setInt(StoreRepository.CONFIG_RUN_DIS, it)
+                }
+                configData.loopCount?.let {
+                    setInt(StoreRepository.CONFIG_LOOP_COUNT, it)
+                }
+                configData.sampleRateMilliSec?.let {
+                    setInt(StoreRepository.CONFIG_SAMPLE_RATE, it)
+                }
+            }
+            _event.value = ConfigEvent.Success(configData)
+        }
     }
 
     fun resetFactory() {

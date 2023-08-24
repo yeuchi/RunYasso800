@@ -24,6 +24,10 @@ class StoreRepository  @Inject constructor(
 
     companion object {
         const val KEY_SPRINT_GOAL = "key_sprint_goal"
+        const val CONFIG_JOG_DIS = "config_jog_dis"
+        const val CONFIG_RUN_DIS = "config_run_dis"
+        const val CONFIG_LOOP_COUNT = "config_loop_count"
+        const val CONFIG_SAMPLE_RATE = "config_sample_rate"
     }
 
     init {
