@@ -9,6 +9,7 @@ import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.createDataStore
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
@@ -23,11 +24,7 @@ class StoreRepository  @Inject constructor(
     private val prefStore: DataStore<Preferences>
 
     companion object {
-        const val KEY_SPRINT_GOAL = "key_sprint_goal"
-        const val CONFIG_JOG_DIS = "config_jog_dis"
-        const val CONFIG_RUN_DIS = "config_run_dis"
-        const val CONFIG_LOOP_COUNT = "config_loop_count"
-        const val CONFIG_SAMPLE_RATE = "config_sample_rate"
+        const val CONFIG = "config"
     }
 
     init {

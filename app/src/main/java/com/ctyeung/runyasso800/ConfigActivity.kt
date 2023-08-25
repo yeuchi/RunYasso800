@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
@@ -22,6 +23,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
@@ -76,7 +78,7 @@ class ConfigActivity : ComponentActivity() {
         Column(
             // in this column we are specifying modifier
             // and aligning it center of the screen on below lines.
-            modifier = Modifier.fillMaxSize().focusRequester(FocusRequester.Default),
+            modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -241,13 +243,15 @@ class ConfigActivity : ComponentActivity() {
                             Text(text = "Factory Reset")
                         }
 
+                        val focusMgr = LocalFocusManager.current
                         Button(
                             onClick = {
                                 viewModel.updateConfig()
+                                focusMgr.clearFocus(true)
                             },
                             modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
                         ) {
-                            Text(text = "OK")
+                            Text(text = "Save")
                         }
                     }
                 }

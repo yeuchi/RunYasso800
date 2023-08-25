@@ -29,27 +29,9 @@ class ConfigViewModel @Inject constructor(
         kotlin.runCatching {
             viewModelScope.launch {
                 storeRepository.apply {
-                    getInt(StoreRepository.CONFIG_JOG_DIS).collect() {
-                        it?.let {
-                            configData.jogDisMeter = it
-                        }
-                        _event.value = ConfigEvent.Success(configData)
-                    }
-                    getInt(StoreRepository.CONFIG_RUN_DIS).collect() {
-                        it?.let {
-                            configData.runDisMeter = it
-                        }
-                        _event.value = ConfigEvent.Success(configData)
-                    }
-                    getInt(StoreRepository.CONFIG_LOOP_COUNT).collect() {
-                        it?.let {
-                            configData.loopCount = it
-                        }
-                        _event.value = ConfigEvent.Success(configData)
-                    }
-                    getInt(StoreRepository.CONFIG_SAMPLE_RATE).collect() {
-                        it?.let {
-                            configData.sampleRateMilliSec = it
+                    getString(StoreRepository.CONFIG).collect() {
+                        it.let {
+                            configData.deserialize(it)
                         }
                         _event.value = ConfigEvent.Success(configData)
                     }
@@ -79,26 +61,14 @@ class ConfigViewModel @Inject constructor(
 
     fun updateConfig() {
         viewModelScope.launch {
-            storeRepository.apply {
-                configData.jogDisMeter?.let {
-                    setInt(StoreRepository.CONFIG_JOG_DIS, it)
-                }
-                configData.runDisMeter?.let {
-                    setInt(StoreRepository.CONFIG_RUN_DIS, it)
-                }
-                configData.loopCount?.let {
-                    setInt(StoreRepository.CONFIG_LOOP_COUNT, it)
-                }
-                configData.sampleRateMilliSec?.let {
-                    setInt(StoreRepository.CONFIG_SAMPLE_RATE, it)
-                }
-            }
-            _event.value = ConfigEvent.Success(configData)
+            storeRepository.setString(StoreRepository.CONFIG, configData.serialize())
         }
+        _event.value = ConfigEvent.Success(configData)
     }
 
     fun resetFactory() {
-        this.configData = ConfigData()
+        configData = ConfigData()
+        updateConfig()
         _event.value = ConfigEvent.Success(configData)
     }
 }
@@ -114,4 +84,16 @@ data class ConfigData(
     var runDisMeter: Int? = 800,
     var loopCount: Int? = 8,
     var sampleRateMilliSec: Int? = 500
-)
+) {
+    fun serialize() = "${jogDisMeter},${runDisMeter},${loopCount},${sampleRateMilliSec}"
+
+    fun deserialize(str: String) {
+        val list = str.split(',')
+        if (list.size == 4) {
+            jogDisMeter = list[0].toInt()
+            runDisMeter = list[1].toInt()
+            loopCount = list[2].toInt()
+            sampleRateMilliSec = list[3].toInt()
+        }
+    }
+}
