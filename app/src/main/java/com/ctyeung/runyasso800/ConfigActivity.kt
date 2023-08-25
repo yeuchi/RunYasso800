@@ -18,12 +18,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
@@ -73,6 +75,7 @@ class ConfigActivity : ComponentActivity() {
         )
     }
 
+    @OptIn(ExperimentalComposeUiApi::class)
     @Composable
     fun Render(configData: ConfigData) {
         Column(
@@ -82,6 +85,7 @@ class ConfigActivity : ComponentActivity() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
+            val keyboardController = LocalSoftwareKeyboardController.current
             Card() {
                 Column(modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)) {
                     Row(modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)) {
@@ -108,6 +112,7 @@ class ConfigActivity : ComponentActivity() {
                             onValueChange = {
                                 if (it.text.contains('\n')) {
                                     val num = it.text.replace("\n", "").toInt()
+                                    keyboardController?.hide()
                                     viewModel.updateJogDistance(num)
                                 } else {
                                     jogTextString.value = it
@@ -140,6 +145,7 @@ class ConfigActivity : ComponentActivity() {
                             onValueChange = {
                                 if (it.text.contains('\n')) {
                                     val num = it.text.replace("\n", "").toInt()
+                                    keyboardController?.hide()
                                     viewModel.updateRunDistance(num)
                                 } else {
                                     runTextString.value = it
@@ -175,6 +181,7 @@ class ConfigActivity : ComponentActivity() {
                                      * TODO need to enhance and remove other bad chars
                                      */
                                     val num = it.text.replace("\n", "").toInt()
+                                    keyboardController?.hide()
                                     viewModel.updateLoop(num)
                                 } else {
                                     loopTextString.value = it
@@ -207,6 +214,7 @@ class ConfigActivity : ComponentActivity() {
                             onValueChange = {
                                 if (it.text.contains('\n')) {
                                     val num = it.text.replace("\n", "").toInt()
+                                    keyboardController?.hide()
                                     viewModel.updateSampleRate(num)
                                 } else {
                                     sampleRateTextString.value = it
