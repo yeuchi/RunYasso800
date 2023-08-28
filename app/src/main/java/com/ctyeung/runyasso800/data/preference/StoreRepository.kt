@@ -16,6 +16,7 @@ import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 /*
+ * TODO use Proto ?  Nah... just string for simplicity
  * https://developer.android.com/topic/libraries/architecture/datastore
  */
 class StoreRepository @Inject constructor(
@@ -52,16 +53,6 @@ class StoreRepository @Inject constructor(
         }
     }
 
-    fun getBoolean(flag: String): Flow<Boolean?> {
-        return prefStore.data.map { it[preferencesKey(flag)] }
-    }
-
-    suspend fun setBoolean(flag: String, isTrue: Boolean) {
-        prefStore.edit {
-            it[preferencesKey<Boolean>(flag)] = isTrue
-        }
-    }
-
     fun getString(key: Preferences.Key<String>): Flow<String> {
         return prefStore.data.map {
             it[key] ?: ""
@@ -71,26 +62,6 @@ class StoreRepository @Inject constructor(
     suspend fun setString(key: Preferences.Key<String>, str: String) {
         prefStore.edit {
             it[key] = str
-        }
-    }
-
-    fun getLong(flag: String): Flow<Long> {
-        return prefStore.data.map { it[preferencesKey(flag)] ?: -1L }
-    }
-
-    suspend fun setLong(flag: String, num: Long) {
-        prefStore.edit {
-            it[preferencesKey<Long>(flag)] = num
-        }
-    }
-
-    fun getInt(flag: String): Flow<Int?> {
-        return prefStore.data.map { it[preferencesKey(flag)] }
-    }
-
-    suspend fun setInt(flag: String, num: Int) {
-        prefStore.edit {
-            it[preferencesKey<Int>(flag)] = num
         }
     }
 }

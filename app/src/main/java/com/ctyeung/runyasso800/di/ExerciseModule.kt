@@ -52,10 +52,8 @@ object ExerciseModule {
     @Provides
     fun provideGoalViewModel(
         storeRepository: StoreRepository,
-        stepRepository: StepRepository,
-        splitRepository: SplitRepository
     ): GoalViewModel {
-        return GoalViewModel(storeRepository, stepRepository, splitRepository)
+        return GoalViewModel(storeRepository)
     }
 
     @Provides

@@ -15,8 +15,6 @@ import javax.inject.Inject
 @HiltViewModel
 class GoalViewModel @Inject constructor(
     val storeRepository: StoreRepository,
-    val stepRepository: StepRepository,
-    val splitRepository: SplitRepository
 ) : ViewModel() {
 
     private var goalData: GoalData = GoalData()
