@@ -41,11 +41,3 @@ open class MainViewModel @Inject constructor(
 
 data class LatLong(val lat:Double, val lon:Double)
 
-sealed class ExerciseState {
-    object IDLE : ExerciseState()   // default IDLE -> Run / Jog
-    object Run : ExerciseState()    // active Run -> Pause / Jog
-    object Jog : ExerciseState()    // active Jog -> Pause / Run
-    object Pause : ExerciseState()  // interrupt Pause -> Resume -> Run / Jog
-    object Clear : ExerciseState()   // Clear -> IDLE
-    object Done : ExerciseState()   // DONE
-}

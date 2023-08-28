@@ -1,7 +1,9 @@
 package com.ctyeung.runyasso800.data
 
 import android.content.Context
-import android.os.SystemClock
+import com.ctyeung.runyasso800.data.preference.StoreRepository
+import com.ctyeung.runyasso800.data.room.splits.SplitRepository
+import com.ctyeung.runyasso800.data.room.steps.StepRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -12,32 +14,46 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ExeriseRepository @Inject constructor(
-    @ApplicationContext val context: Context
-) {
+    @ApplicationContext val context: Context,
+    storeRepository: StoreRepository,
+    stepRepository: StepRepository,
+    splitRepository: SplitRepository
+    ) {
+    private var exData = ExerciseData()
+
     private val _event =
-        MutableStateFlow<RepositoryEvent>(
-            RepositoryEvent.TimerStop,
+        MutableStateFlow<ExRepoEvent>(
+            ExRepoEvent.Clear(),
         )
-    val event: StateFlow<RepositoryEvent> = _event
+    val event: StateFlow<ExRepoEvent> = _event
 
     private var startTime: Long = System.currentTimeMillis()
 
     init {
-        _event.value = RepositoryEvent.TimerStop
+        _event.value = ExRepoEvent.Idle(exData)
     }
 
     private fun loopTimer() {
         when (_event.value) {
-            is RepositoryEvent.TimerStop -> {
-                // never happends
-                _event.value = RepositoryEvent.Error("should not happen")
+            is ExRepoEvent.Done -> {
+                _event.value = ExRepoEvent.Done(exData)
             }
 
-            is RepositoryEvent.TimerStart,
-            is RepositoryEvent.OneSecond -> waitOneSecond()
+            is ExRepoEvent.Clear -> {
+                exData = ExerciseData()
+                _event.value = ExRepoEvent.Idle(exData)
+            }
 
-            is RepositoryEvent.Error -> {
-                _event.value = RepositoryEvent.Error("failed")
+            is ExRepoEvent.Pause -> {
+                _event.value = ExRepoEvent.Pause(exData)
+            }
+
+            is ExRepoEvent.Run,
+            is ExRepoEvent.Jog -> waitOneSecond()
+
+//            is ExRepoEvent.Error
+            else -> {
+                _event.value = ExRepoEvent.Error("failed")
             }
         }
     }
@@ -49,30 +65,93 @@ class ExeriseRepository @Inject constructor(
         else {
             CoroutineScope(Dispatchers.Default).launch {
                 delay(1000)
+                /*
+                 * TODO need to diff run vs jog
+                 */
                 val elapsedTime = (System.currentTimeMillis() - startTime) / 1000
-                _event.value = RepositoryEvent.OneSecond(elapsedTime)
+                _event.value = ExRepoEvent.Run(exData)
                 loopTimer()
             }
         }
     }
 
     suspend fun startTimer() {
+        /*
+         * TODO handle restart after pause ?
+         */
         startTime = System.currentTimeMillis()
-        _event.value = RepositoryEvent.TimerStart
+        _event.value = ExRepoEvent.Run(exData)
         need2Stop = false
         loopTimer()
     }
 
     private var need2Stop = false
     suspend fun stopTimer() {
+        // state -> done
         need2Stop = true
-        _event.value = RepositoryEvent.TimerStop
+        _event.value = ExRepoEvent.Done(exData)
+    }
+
+    suspend fun pauseTimer() {
+        _event.value = ExRepoEvent.Pause(exData)
     }
 }
 
-sealed class RepositoryEvent() {
-    object TimerStart : RepositoryEvent()
-    object TimerStop : RepositoryEvent()
-    class OneSecond(val elapsed: Long) : RepositoryEvent()
-    class Error(val msg: String) : RepositoryEvent()
+sealed class ExRepoEvent() {
+    class Idle(val exerciseData: ExerciseData) : ExRepoEvent()
+    class Run(val exerciseData: ExerciseData) : ExRepoEvent()
+    class Jog(val exerciseData: ExerciseData) : ExRepoEvent()
+    class Pause(val exerciseData: ExerciseData) : ExRepoEvent()
+    class Done(val exerciseData: ExerciseData) : ExRepoEvent()
+    class Clear : ExRepoEvent()
+    class Error(val msg: String) : ExRepoEvent()
+}
+
+data class ExerciseData(
+    var lat: Double? = DEFAULT_LAT,
+    var lon: Double? = DEFAULT_LON,
+    var split: Int? = DEFAULT_SPLIT,
+    var splitTargetTotal: Int? = DEFAULT_SPLIT_TOTAL,
+    var state: ExerciseState? = DEFAULT_STATE,
+    var time: Long? = DEFAULT_TIME,
+    var timeTotal: Long? = DEFAULT_TIME_TOTAL,
+    var distance: Long? = DEFAULT_DIS,
+    var distanceTotal: Long? = DEFAULT_DIS_TOTAL
+) {
+    companion object {
+        const val DEFAULT_LAT = 0.0
+        const val DEFAULT_LON = 0.0
+        const val DEFAULT_SPLIT = 0
+        const val DEFAULT_SPLIT_TOTAL = 10
+        val DEFAULT_STATE = ExerciseState.Idle
+        const val DEFAULT_TIME = 0L
+        const val DEFAULT_TIME_TOTAL = 0L
+        const val DEFAULT_DIS = 0L
+        const val DEFAULT_DIS_TOTAL = 0L
+    }
+    fun serialize() = "${lat},${lon},${split},${splitTargetTotal},${state},${time},${timeTotal},${distance},${distanceTotal}"
+
+    fun deserialize(str: String) {
+        val list = str.split(',')
+        if (list.size == 9) {
+            lat = list[0].toDouble()
+            lon = list[1].toDouble()
+            split = list[2].toInt()
+            splitTargetTotal = list[3].toInt()
+            state = ExerciseState.valueOf(list[4])
+            time = list[5].toLong()
+            timeTotal = list[6].toLong()
+            time = list[7].toLong()
+            timeTotal = list[8].toLong()
+        }
+    }
+}
+
+enum class ExerciseState {
+    Idle,    // default IDLE -> Run / Jog
+    Run,     // active Run -> Pause / Jog
+    Jog,     // active Jog -> Pause / Run
+    Pause,   // interrupt Pause -> Resume -> Run / Jog
+    Clear,    // Clear -> IDLE
+    Done,    // DONE
 }

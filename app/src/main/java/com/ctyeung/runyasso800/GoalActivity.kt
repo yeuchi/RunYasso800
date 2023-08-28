@@ -58,7 +58,7 @@ class GoalActivity : ComponentActivity() {
     @Composable
     fun ComposeScreen(goalData: GoalData) {
         Scaffold(
-            bottomBar = { BottomNavigation(BottomNavItem.Config.screen_route, this) },
+            bottomBar = { BottomNavigation(BottomNavItem.Goal.screen_route, this) },
             content = { Render(goalData) }
         )
     }

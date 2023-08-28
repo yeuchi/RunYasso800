@@ -18,6 +18,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Observer
+import com.ctyeung.runyasso800.data.ExerciseData
+import com.ctyeung.runyasso800.data.ExerciseState
+import com.ctyeung.runyasso800.ui.theme.RunYasso800Theme
+import com.ctyeung.runyasso800.viewmodels.ConfigData
+import com.ctyeung.runyasso800.viewmodels.ConfigEvent
+import com.ctyeung.runyasso800.viewmodels.ExModelEvent
 import com.ctyeung.runyasso800.viewmodels.ExerciseViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,22 +34,44 @@ class ExerciseActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.event.observe(this, Observer(::onEventChange))
+    }
+
+    private fun onEventChange(event: ExModelEvent) {
         setContent {
-            MainScreenView()
+            RunYasso800Theme {
+                when (event) {
+                    is ExModelEvent.Idle -> ComposeScreen(event.exerciseData)
+
+                    is ExModelEvent.Run -> ComposeScreen(event.exerciseData)
+
+                    is ExModelEvent.Jog -> ComposeScreen(event.exerciseData)
+
+                    is ExModelEvent.Pause -> ComposeScreen(event.exerciseData)
+
+                    is ExModelEvent.Done -> ComposeScreen(event.exerciseData)
+
+                    is ExModelEvent.Error -> ComposeError(error = event.msg)
+                }
+            }
         }
     }
 
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     @Composable
-    fun MainScreenView() {
+    fun ComposeScreen(exData: ExerciseData) {
         Scaffold(
             bottomBar = { BottomNavigation(BottomNavItem.Run.screen_route, this) },
-            content = { Render() }
+            content = { Render(exData) }
         )
     }
 
     @Composable
-    fun Render() {
+    fun Render(exData: ExerciseData) {
         Column(
             // in this column we are specifying modifier
             // and aligning it center of the screen on below lines.
@@ -50,14 +79,42 @@ class ExerciseActivity : ComponentActivity() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            ComposeLatLon()
-            ComposeDetail()
-            ComposeFABs()
+            ComposeLatLon(exData)
+            ComposeDetail(exData)
+            ComposeFABs(exData)
         }
     }
 
     @Composable
-    fun ComposeLatLon() {
+    fun ComposeStateIdle() {
+        // initial state after cleared
+    }
+
+    @Composable
+    fun ComposeStateRun() {
+    }
+
+    @Composable
+    fun ComposeStateJog() {
+    }
+
+    @Composable
+    fun ComposeStatePause() {
+        // run or jog -> paused
+    }
+
+    @Composable
+    fun ComposeStateClear() {
+        // never seen in UI - a transition state in state machine
+    }
+
+    @Composable
+    fun ComposeStateDone() {
+        // run or jog -> done
+    }
+
+    @Composable
+    fun ComposeLatLon(exData: ExerciseData) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -78,7 +135,7 @@ class ExerciseActivity : ComponentActivity() {
                         .padding(10.dp, 10.dp, 10.dp, 10.dp)
                 )
                 Text(
-                    text = viewModel.lat.value.toString(),
+                    text = exData.lat.toString(),
                     modifier = Modifier
                         .width(80.dp)
                         .padding(10.dp, 10.dp, 10.dp, 10.dp)
@@ -90,7 +147,7 @@ class ExerciseActivity : ComponentActivity() {
                         .padding(10.dp, 10.dp, 10.dp, 10.dp)
                 )
                 Text(
-                    text = viewModel.lon.value.toString(),
+                    text = exData.lon.toString(),
                     modifier = Modifier
                         .width(80.dp)
                         .padding(10.dp, 10.dp, 10.dp, 10.dp)
@@ -100,7 +157,7 @@ class ExerciseActivity : ComponentActivity() {
     }
 
     @Composable
-    fun ComposeDetail() {
+    fun ComposeDetail(exData: ExerciseData) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -108,11 +165,12 @@ class ExerciseActivity : ComponentActivity() {
                 .clickable { },
             elevation = 10.dp
         ) {
-            Column(modifier = androidx.compose.ui.Modifier.background(viewModel.exerciseStateColor)) {
+            val state = exData.state?:ExerciseState.Idle
+            Column(modifier = androidx.compose.ui.Modifier.background(viewModel.getColor(state))) {
 
                 Row(modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)) {
                     Image(
-                        painter = painterResource(id = viewModel.exerciseStateIcon),
+                        painter = painterResource(id = viewModel.getIcon(state)),
                         contentDescription = "exercise",
                         modifier = Modifier
                             .padding(10.dp, 10.dp, 10.dp, 10.dp)
@@ -125,7 +183,7 @@ class ExerciseActivity : ComponentActivity() {
                             .width(70.dp)
                     )
                     Text(
-                        text = viewModel.currentSplit.value.toString(),
+                        text = exData.split.toString(),
                         modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
                     )
                     Text(
@@ -135,7 +193,7 @@ class ExerciseActivity : ComponentActivity() {
                             .width(70.dp)
                     )
                     Text(
-                        text = viewModel.SplitCount.value.toString(),
+                        text = exData.splitTargetTotal.toString(),
                         modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
                     )
                 }
@@ -147,7 +205,7 @@ class ExerciseActivity : ComponentActivity() {
                         modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
                     )
                     Text(
-                        text = viewModel.exerciseStateName,
+                        text = state.toString(),
                         modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
                     )
                 }
@@ -168,7 +226,7 @@ class ExerciseActivity : ComponentActivity() {
                      * TODO Formater time
                      */
                     Text(
-                        text = viewModel.currentSplitTime.value.toString(),
+                        text = exData.time.toString(),
                         modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
                     )
                     Text(
@@ -178,7 +236,7 @@ class ExerciseActivity : ComponentActivity() {
                             .width(70.dp)
                     )
                     Text(
-                        text = viewModel.totalTime.value.toString(),
+                        text = exData.time.toString(),
                         modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
                     )
                 }
@@ -196,7 +254,7 @@ class ExerciseActivity : ComponentActivity() {
                             .width(70.dp)
                     )
                     Text(
-                        text = viewModel.currentSplitDistance.value.toString(),
+                        text = exData.distance.toString(),
                         modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
                     )
                     Text(
@@ -206,7 +264,7 @@ class ExerciseActivity : ComponentActivity() {
                             .width(70.dp)
                     )
                     Text(
-                        text = viewModel.totalDistance.value.toString(),
+                        text = exData.distanceTotal.toString(),
                         modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
                     )
                 }
@@ -215,11 +273,11 @@ class ExerciseActivity : ComponentActivity() {
     }
 
     @Composable
-    fun ComposeFABs() {
+    fun ComposeFABs(exData: ExerciseData) {
         Row(modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)) {
 
-            when (viewModel.exerciseState.value) {
-                is ExerciseState.IDLE -> {
+            when (exData.state) {
+                ExerciseState.Idle -> {
                     FloatingActionButton(onClick = {
                         /*
                          * TODO PLAY
@@ -232,8 +290,8 @@ class ExerciseActivity : ComponentActivity() {
                     }
                 }
 
-                is ExerciseState.Run,
-                is ExerciseState.Jog -> {
+                ExerciseState.Run,
+                ExerciseState.Jog -> {
                     FloatingActionButton(onClick = {
                         /*
                          * TODO PAUSE
@@ -246,7 +304,7 @@ class ExerciseActivity : ComponentActivity() {
                     }
                 }
 
-                is ExerciseState.Pause -> {
+                ExerciseState.Pause -> {
                     FloatingActionButton(onClick = {
                         /*
                          * TODO PLAY

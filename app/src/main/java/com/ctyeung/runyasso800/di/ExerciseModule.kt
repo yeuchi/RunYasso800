@@ -37,16 +37,19 @@ object ExerciseModule {
 
     @Provides
     fun provideExerciseViewModel(
-        storeRepository: StoreRepository,
-        stepRepository: StepRepository,
-        splitRepository: SplitRepository
-    ): ExerciseViewModel {
-        return ExerciseViewModel(storeRepository, stepRepository, splitRepository)
+        @ApplicationContext context: Context,
+        exeriseRepository: ExeriseRepository
+        ): ExerciseViewModel {
+        return ExerciseViewModel(context, exeriseRepository)
     }
 
     @Provides
-    fun provideExeriseRepository(@ApplicationContext context: Context): ExeriseRepository {
-        return ExeriseRepository(context)
+    fun provideExeriseRepository(
+        @ApplicationContext context: Context,
+        storeRepository: StoreRepository,
+        stepRepository: StepRepository,
+        splitRepository: SplitRepository): ExeriseRepository {
+        return ExeriseRepository(context, storeRepository, stepRepository, splitRepository)
     }
 
     @Provides
