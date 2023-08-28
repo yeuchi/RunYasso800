@@ -74,9 +74,9 @@ class GoalActivity : ComponentActivity() {
             verticalArrangement = Arrangement.Center
         ) {
             goalData.apply {
-                ComposeName(name?:GoalData.DEFAULT_NAME)
-                ComposeMarathonGoal(goalMarathonInSeconds)
-                Compose800mGoal(goal800mCalculated)
+                ComposeName(name ?: GoalData.DEFAULT_NAME)
+                ComposeMarathonGoal(goalMarathonInSeconds ?: GoalData.DEFAULT_MARATHON_GOAL)
+                Compose800mGoal(goal800mCalculated ?: GoalData.DEFAULT_800M_GOAL)
                 ComposeButtons()
             }
         }
@@ -87,7 +87,7 @@ class GoalActivity : ComponentActivity() {
         Row(
             modifier = Modifier
                 .padding(10.dp, 10.dp, 10.dp, 10.dp)
-                //.align(Alignment.CenterHorizontally)
+            //.align(Alignment.CenterHorizontally)
         ) {
             Button(
                 onClick = {
@@ -113,7 +113,7 @@ class GoalActivity : ComponentActivity() {
 
     @OptIn(ExperimentalComposeUiApi::class)
     @Composable
-    fun ComposeName(name:String) {
+    fun ComposeName(name: String) {
         val keyboardController = LocalSoftwareKeyboardController.current
 
         Card(
@@ -153,7 +153,7 @@ class GoalActivity : ComponentActivity() {
                             } else {
                                 nameString.value = it
                             }
-                                        },
+                        },
                         label = { Text("My first run") }
                     )
                 }
@@ -163,8 +163,7 @@ class GoalActivity : ComponentActivity() {
 
     @OptIn(ExperimentalComposeUiApi::class)
     @Composable
-    fun ComposeMarathonGoal(goalMarathonInSec:Long?) {
-        val keyboardController = LocalSoftwareKeyboardController.current
+    fun ComposeMarathonGoal(goalMarathonInSec: Long) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -174,23 +173,29 @@ class GoalActivity : ComponentActivity() {
             elevation = 10.dp
         ) {
             // Declaring and initializing a calendar
-            val mCalendar = Calendar.getInstance()
-            val mHour = mCalendar[Calendar.HOUR_OF_DAY]
-            val mMinute = mCalendar[Calendar.MINUTE]
-
+            val timeInMinutes = goalMarathonInSec / 60
+            val hr = (timeInMinutes / 60).toInt()
+            val min = (timeInMinutes % 60).toInt()
             // Value for storing time as a string
-            val mTime = remember { mutableStateOf("") }
+            val mTime = remember {
+                mutableStateOf(
+                    String.format("%02d", hr)
+                            + ":" +
+                            String.format("%02d", min)
+                )
+            }
 
             // Creating a TimePicker dialod
             val mTimePickerDialog = TimePickerDialog(
                 LocalContext.current,
                 { _, mHour: Int, mMinute: Int ->
-                    mTime.value = "$mHour:$mMinute"
-                }, mHour, mMinute, false
+                    mTime.value = "$hr:$min"
+                },
+                hr, min, true,
             )
 
             Row(modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)) {
-                Text(text = "Marathon Goal")
+                Text(text = "Marathon Goal (HH:MM)")
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
@@ -202,17 +207,19 @@ class GoalActivity : ComponentActivity() {
                         onClick = {
                             mTimePickerDialog.show()
                         }) {
-                        Text(text = goalMarathonInSec.toString())
+                        Text(text = mTime.value)
+
+                        /*
+                         * TODO Handle change event
+                         */
                     }
                 }
             }
         }
     }
 
-    @OptIn(ExperimentalComposeUiApi::class)
     @Composable
-    fun Compose800mGoal(goal800mInSec:Long?) {
-        val keyboardController = LocalSoftwareKeyboardController.current
+    fun Compose800mGoal(goal800mInSec: Long) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -222,15 +229,17 @@ class GoalActivity : ComponentActivity() {
             elevation = 10.dp
         ) {
             Row(modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)) {
-                Text(text = "800m Goal")
+                Text(text = "800m Goal (MM:SS)")
 
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
                         .align(Alignment.CenterVertically)
                 ) {
+                    val min = String.format("%02d",goal800mInSec / 60)
+                    val sec = String.format("%02d",goal800mInSec % 60)
                     Text(
-                        text = goal800mInSec.toString(),
+                        text = "${min}:${sec}",
                         modifier = Modifier
                             .padding(0.dp, 30.dp)
                             .align(Alignment.Center)
