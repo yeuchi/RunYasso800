@@ -9,6 +9,7 @@ import com.ctyeung.runyasso800.data.preference.StoreRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -29,7 +30,8 @@ class ConfigViewModel @Inject constructor(
         kotlin.runCatching {
             viewModelScope.launch {
                 storeRepository.apply {
-                    getString(StoreRepository.CONFIG).collect() {
+                    configFlow.collect() {
+                    //getString(StoreRepository.CONFIG).collect() {
                         it.let {
                             configData.deserialize(it)
                         }
@@ -61,7 +63,7 @@ class ConfigViewModel @Inject constructor(
 
     fun updateConfig() {
         viewModelScope.launch {
-            storeRepository.setString(StoreRepository.CONFIG, configData.serialize())
+            storeRepository.setString(StoreRepository.CONFIG_KEY, configData.serialize())
         }
         _event.value = ConfigEvent.Success(configData)
     }

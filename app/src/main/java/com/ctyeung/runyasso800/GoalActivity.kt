@@ -17,7 +17,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.text.TextRange
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Observer
+import com.ctyeung.runyasso800.ui.theme.RunYasso800Theme
+import com.ctyeung.runyasso800.viewmodels.GoalData
+import com.ctyeung.runyasso800.viewmodels.GoalEvent
 import com.ctyeung.runyasso800.viewmodels.GoalViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,25 +35,37 @@ class GoalActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.event.observe(this, Observer(::onEventChange))
+    }
+
+    private fun onEventChange(event: GoalEvent) {
         setContent {
-            MainScreenView()
+            RunYasso800Theme {
+                when (event) {
+                    is GoalEvent.InProgress -> ComposeSpinner()
+                    is GoalEvent.Success -> ComposeScreen(event.goalData)
+                    is GoalEvent.Error -> ComposeError(error = event.msg)
+                }
+            }
         }
     }
 
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     @Composable
-    fun MainScreenView() {
+    fun ComposeScreen(goalData: GoalData) {
         Scaffold(
-            bottomBar = { BottomNavigation(BottomNavItem.Goal.screen_route, this) },
-            content = { Render() }
+            bottomBar = { BottomNavigation(BottomNavItem.Config.screen_route, this) },
+            content = { Render(goalData) }
         )
     }
 
-    /*
-     * TODO consolidate all styling into theme
-     */
+    @OptIn(ExperimentalComposeUiApi::class)
     @Composable
-    fun Render() {
+    fun Render(goalData: GoalData) {
         Column(
             // in this column we are specifying modifier
             // and aligning it center of the screen on below lines.
@@ -53,14 +73,49 @@ class GoalActivity : ComponentActivity() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            ComposeRunname()
-            ComposeMarathonGoal()
-            Compose800mGoal()
+            goalData.apply {
+                ComposeName(name?:GoalData.DEFAULT_NAME)
+                ComposeMarathonGoal(goalMarathonInSeconds)
+                Compose800mGoal(goal800mCalculated)
+                ComposeButtons()
+            }
         }
     }
 
     @Composable
-    fun ComposeRunname() {
+    fun ComposeButtons() {
+        Row(
+            modifier = Modifier
+                .padding(10.dp, 10.dp, 10.dp, 10.dp)
+                //.align(Alignment.CenterHorizontally)
+        ) {
+            Button(
+                onClick = {
+                    viewModel.resetFactory()
+                },
+                modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
+            ) {
+                Text(text = "Factory Reset")
+            }
+
+            val focusMgr = LocalFocusManager.current
+            Button(
+                onClick = {
+                    viewModel.updateGoal()
+                    focusMgr.clearFocus(true)
+                },
+                modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 10.dp)
+            ) {
+                Text(text = "Save")
+            }
+        }
+    }
+
+    @OptIn(ExperimentalComposeUiApi::class)
+    @Composable
+    fun ComposeName(name:String) {
+        val keyboardController = LocalSoftwareKeyboardController.current
+
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -77,11 +132,28 @@ class GoalActivity : ComponentActivity() {
                         .fillMaxSize()
                         .align(Alignment.CenterVertically)
                 ) {
-                    OutlinedTextField(modifier = Modifier
+                    val nameString = remember {
+                        mutableStateOf(
+                            TextFieldValue(
+                                text = name,
+                                selection = TextRange(name.length),
+                            ),
+                        )
+                    }
+
+                    TextField(modifier = Modifier
                         .padding(0.dp, 30.dp)
                         .align(Alignment.Center),
-                        value = viewModel.runName,
-                        onValueChange = { viewModel.runName = it },
+                        value = nameString.value,
+                        onValueChange = {
+                            if (it.text.contains('\n')) {
+                                val newName = it.text.replace("\n", "")
+                                keyboardController?.hide()
+                                viewModel.updateName(newName)
+                            } else {
+                                nameString.value = it
+                            }
+                                        },
                         label = { Text("My first run") }
                     )
                 }
@@ -91,7 +163,8 @@ class GoalActivity : ComponentActivity() {
 
     @OptIn(ExperimentalComposeUiApi::class)
     @Composable
-    fun ComposeMarathonGoal() {
+    fun ComposeMarathonGoal(goalMarathonInSec:Long?) {
+        val keyboardController = LocalSoftwareKeyboardController.current
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -129,15 +202,17 @@ class GoalActivity : ComponentActivity() {
                         onClick = {
                             mTimePickerDialog.show()
                         }) {
-                        Text(text = viewModel.goalMarathon)
+                        Text(text = goalMarathonInSec.toString())
                     }
                 }
             }
         }
     }
 
+    @OptIn(ExperimentalComposeUiApi::class)
     @Composable
-    fun Compose800mGoal() {
+    fun Compose800mGoal(goal800mInSec:Long?) {
+        val keyboardController = LocalSoftwareKeyboardController.current
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -155,7 +230,7 @@ class GoalActivity : ComponentActivity() {
                         .align(Alignment.CenterVertically)
                 ) {
                     Text(
-                        text = viewModel.goal800m,
+                        text = goal800mInSec.toString(),
                         modifier = Modifier
                             .padding(0.dp, 30.dp)
                             .align(Alignment.Center)

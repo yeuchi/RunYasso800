@@ -1,6 +1,8 @@
 package com.ctyeung.runyasso800.di
 
+import android.content.Context
 import com.ctyeung.runyasso800.MainViewModel
+import com.ctyeung.runyasso800.data.ExeriseRepository
 import com.ctyeung.runyasso800.data.preference.StoreRepository
 import com.ctyeung.runyasso800.data.room.splits.SplitRepository
 import com.ctyeung.runyasso800.data.room.steps.StepRepository
@@ -13,10 +15,11 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 @Module
 @InstallIn(ActivityComponent::class)
-object RunModule {
+object ExerciseModule {
 
     @Provides
     fun provideMainViewModel(
@@ -39,6 +42,11 @@ object RunModule {
         splitRepository: SplitRepository
     ): ExerciseViewModel {
         return ExerciseViewModel(storeRepository, stepRepository, splitRepository)
+    }
+
+    @Provides
+    fun provideExeriseRepository(@ApplicationContext context: Context): ExeriseRepository {
+        return ExeriseRepository(context)
     }
 
     @Provides

@@ -15,7 +15,10 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
-class StoreRepository  @Inject constructor(
+/*
+ * https://developer.android.com/topic/libraries/architecture/datastore
+ */
+class StoreRepository @Inject constructor(
     @ApplicationContext val context: Context
 ) {
 
@@ -24,52 +27,28 @@ class StoreRepository  @Inject constructor(
     private val prefStore: DataStore<Preferences>
 
     companion object {
-        const val CONFIG = "config"
+        private const val CONFIG = "config"
+        val CONFIG_KEY: Preferences.Key<String> = preferencesKey<String>(CONFIG)
+
+        private const val GOAL = "goal"
+        val GOAL_KEY: Preferences.Key<String> = preferencesKey<String>(GOAL)
     }
+
+    var configFlow: Flow<String>
+    var goalFlow: Flow<String>
 
     init {
         prefStore = context.createDataStore(
             name = STORE_NAME,
             migrations = listOf(SharedPreferencesMigration(context, PREFS_NAME))
         )
-    }
 
-    /*
-     * Reified example - no delay
-     */
-    inline fun <reified T> get(key: String, defaultValue: T): T {
-        return runBlocking {
-            when (defaultValue) {
-                is Boolean -> getBoolean(key).firstOrNull() ?: defaultValue
-                is Int -> getInt(key).firstOrNull() ?: defaultValue
-                is String -> getString(key).firstOrNull() ?: defaultValue
-                is Long -> getLong(key).firstOrNull() ?: defaultValue
-                else -> null
-            } as T
+        configFlow = prefStore.data.map { preferences ->
+            preferences[CONFIG_KEY] ?: ""
         }
-    }
 
-    inline fun <reified T> set(key: String, value: T): Boolean {
-        return runBlocking {
-            when (value) {
-                is Boolean -> {
-                    setBoolean(key, value as Boolean)
-                    true
-                }
-                is Int -> {
-                    setInt(key, value as Int)
-                    true
-                }
-                is String -> {
-                    setString(key, value as String)
-                    true
-                }
-                is Long -> {
-                    setLong(key, value as Long)
-                    true
-                }
-                else -> false
-            }
+        goalFlow = prefStore.data.map { preferences ->
+            preferences[GOAL_KEY] ?: ""
         }
     }
 
@@ -83,13 +62,15 @@ class StoreRepository  @Inject constructor(
         }
     }
 
-    fun getString(flag: String): Flow<String> {
-        return prefStore.data.map { it[preferencesKey(flag)] ?: "" }
+    fun getString(key: Preferences.Key<String>): Flow<String> {
+        return prefStore.data.map {
+            it[key] ?: ""
+        }
     }
 
-    suspend fun setString(flag: String, str: String) {
+    suspend fun setString(key: Preferences.Key<String>, str: String) {
         prefStore.edit {
-            it[preferencesKey<String>(flag)] = str
+            it[key] = str
         }
     }
 

@@ -4,7 +4,7 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import com.ctyeung.runyasso800.MainActivity
-import com.ctyeung.runyasso800.di.RunModule
+import com.ctyeung.runyasso800.di.ExerciseModule
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
@@ -18,7 +18,7 @@ import org.junit.Test
  * https://www.youtube.com/watch?v=vVJeOACGSOU
  */
 
-@UninstallModules(RunModule::class)
+@UninstallModules(ExerciseModule::class)
 @HiltAndroidTest
 class MainActivityTest {
     @get:Rule(order = 0)
